@@ -10,7 +10,7 @@
 ## Ținte zilnice
 
 | Macro | Cantitate | Calorii |
-|-------|-----------|---------|
+|-------|-----------|--------|
 | Proteine | **200g** | 800 kcal |
 | Carbohidrați | **140g** | 560 kcal |
 | Grăsimi | **55g** | 495 kcal |
