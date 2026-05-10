@@ -86,7 +86,7 @@
 
 **Note Zi B**:
 - La Lat Pulldown: trage până la bărbie, coatele în jos și înapoi (nu doar înapoi)
-- Face Pull: trage frânghia spre față, la nivelul ochilor, coatele sus — excelent pentru postura
+- Face Pull: trage frânghia spre față, la nivelul ochilor, coatele sus — excelent pentru postură
 
 ---
 
