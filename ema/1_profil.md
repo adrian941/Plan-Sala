@@ -38,7 +38,7 @@
 |------|---------|
 | Alergii / intoleranțe | **niciuna** |
 | Regim | omnivor. Mănâncă carne (preferă **vită, porc, pui**), dar **preferă mai mult brânza/lactatele**. Ouă: **3 ouă la două zile** (o zi da / o zi pauză). **Pește 2×/săptămână** (omega-3). |
-| Legume | **multe și variate** (nu mereu aceleași) — vezi [`7_alimente.md`](./7_alimente.md) |
+| Legume | **multe și variate** (nu mereu aceleași) — vezi [`comun/1_ingrediente.md`](../comun/1_ingrediente.md) |
 | Pește | **de 2x/săptămână** (sursă de omega-3) — planificat |
 | Alimente pe care le urăște | nespecificat |
 | Câte mese/zi preferă | **3 mese + 1 gustare** (gustarea de preferat ~20 min după sală) |

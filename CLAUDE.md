@@ -7,7 +7,10 @@
 
 ## 0. Sursa de adevăr
 
-Proiectul e dedicat exclusiv planului **Emei**. Planurile vechi (Ema + Adi) au fost **șterse definitiv** — nu mai există și nu sunt referință.
+Planurile vechi (Ema + Adi) au fost **șterse definitiv** — nu mai există și nu sunt referință.
+
+**Focusul principal rămâne Ema** (plan complet: profil, nutriție, mese, sală, sănătate).
+**Adi intră în scop doar pe partea de bucătărie** — pentru că gătesc împreună: ingrediente, preferințe, rețete, ținte de macro/fibre și lista de cumpărături comună. Sala și sănătatea lui nu sunt (deocamdată) în scop.
 
 Sursa de adevăr este exclusiv structura pornind din **[Gym-Rules.md](./Gym-Rules.md)**.
 
@@ -33,8 +36,22 @@ Toate în **limba română**, cu ton cald, direct, fără jargon inutil, dar cu 
 - **Întreabă înainte să presupui.** Dacă îți lipsește o dată care schimbă recomandarea (greutate, analize, alergii, echipament, buget, timp de gătit), întreabă. E preferabil să pui 2-3 întrebări bune decât să inventezi.
 - **Bazat pe dovezi.** Recomandările se sprijină pe principii nutriționale și de antrenament validate, nu pe mode. Când e o zonă gri, spune-o.
 - **Sănătatea pe primul loc.** Niciun plan agresiv nedumeritor. Deficit/surplus rezonabil, sustenabil, fără carențe.
-- **Personalizat pentru Ema.** Fiecare recomandare se raportează la profilul real din [`ema/1_profil.md`](./ema/1_profil.md).
+- **Personalizat.** Fiecare recomandare se raportează la profilul real: [`ema/1_profil.md`](./ema/1_profil.md) și, pentru mâncare, [`adi/1_profil.md`](./adi/1_profil.md). Nu amesteca țintele — porțiile diferă chiar și când rețeta e aceeași.
 - **Documentează deciziile.** Când stabilim ceva împreună, îl scrii în modulul potrivit și notezi în jurnalul din `Gym-Rules.md` (§ Jurnal iterații).
+
+---
+
+## 2.1 Pipeline-ul culinar (proces OBLIGATORIU)
+
+Toată partea de mâncare se construiește în **3 pași, în ordine**, definiți în **[`comun/0_pipeline.md`](./comun/0_pipeline.md)**:
+
+1. **Ingrediente + preferințe (Ema & Adi) + nevoi de macro și fibre** → `comun/1_ingrediente.md` + `*/2_nutritie.md`
+2. **Farfurii / rețete** → `comun/2_retete.md` + `comun/retete/*.md` → meniu per persoană în `*/3_plan-mese.md`
+3. **Listă de cumpărături** → `comun/3_cumparaturi.md`
+
+**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat** în listele specializate — fișă în `comun/retete/`, rând în indexul de rețete, iar preferințele descoperite se propagă înapoi în `comun/1_ingrediente.md`. Vezi procedura completă în `comun/0_pipeline.md`.
+
+Nu sări peste pași: nimic nu ajunge în lista de cumpărături fără să vină dintr-o rețetă programată în meniu.
 
 ---
 
@@ -43,17 +60,30 @@ Toate în **limba română**, cu ton cald, direct, fără jargon inutil, dar cu 
 ```
 CLAUDE.md              ← acest fișier (STABIL)
 Gym-Rules.md           ← index-master VIU, linkează modular ↓
+
+comun/                  ← BUCĂTĂRIA COMUNĂ = cei 3 pași ai pipeline-ului
+├── 0_pipeline.md      → definiția procesului (P1→P2→P3), legenda verdictelor
+├── 1_ingrediente.md   → PASUL 1: alimente pe categorii + preferințe Ema/Adi + lista de fibre
+├── 2_retete.md        → PASUL 2: indexul rețetelor (cu verdict per persoană)
+├── retete/            →   fișe individuale de rețetă (+ `_sablon.md`)
+└── 3_cumparaturi.md   → PASUL 3: lista pe magazine, generată din meniuri
+
 ema/                    (fișiere prefixate numeric = ordinea de lucru)
 ├── 1_profil.md        → date, obiective, analize, restricții (fundația a tot)
-├── 2_nutritie.md      → ținte calorice/macro, principii, suplimente
-├── 3_plan-mese.md     → meniuri concrete, rețete, meal prep
+├── 2_nutritie.md      → ținte calorice/macro/fibre, principii, suplimente
+├── 3_plan-mese.md     → meniul săptămânal + porțiile Emei
 ├── 4_sala.md          → programul de antrenament
-├── 5_sanatate.md      → somn, stres, mobilitate, semne de alarmă, monitorizare
-├── 6_cumparaturi.md   → liste pe magazine (se completează ulterior)
-└── 7_alimente.md      → liste de alimente pe categorii + lista de fibre (referință)
+└── 5_sanatate.md      → somn, stres, mobilitate, semne de alarmă, monitorizare
+
+adi/                    (doar partea de bucătărie — vezi §0)
+├── 1_profil.md        → date necesare pentru calculul țintelor
+├── 2_nutritie.md      → ținte calorice/macro/fibre
+└── 3_plan-mese.md     → meniul săptămânal + porțiile lui Adi
 ```
 
-Când modularizezi mai departe, adaugă fișiere noi în `ema/` (cu prefix numeric, în ordinea de lucru) și linkează-le din `Gym-Rules.md`.
+Ce e **individual** stă în `ema/` sau `adi/` (profil, ținte, porții). Ce e **comun** stă în `comun/` (ingrediente, rețete, cumpărături). Nu duplica informația între ele.
+
+Când modularizezi mai departe, păstrează prefixul numeric (ordinea de lucru) și linkează noile fișiere din `Gym-Rules.md`.
 
 ---
 

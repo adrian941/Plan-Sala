@@ -14,10 +14,11 @@
 | Proteine | **150 g** | 600 | ~1,9 g/kg greutate-țintă (~80 kg). Calculat pe masă slabă, NU pe 110 kg. Păstrare mușchi + sațietate. |
 | Grăsimi | **65 g** | 585 | ~28% din calorii; prag minim hormonal. |
 | Carbohidrați | **230 g** | 920 | Energie antrenament + fibre. |
+| **Fibre** | **25–30 g** | — | Sațietate, glicemie stabilă, tranzit, microbiom. Ținta OMS pentru femei adulte. |
 | **TOTAL** | | **≈ 2105 kcal** | |
 
 - **Proteină distribuită**: ~30–40 g × 4 mese.
-- **Fibre**: 25–30 g/zi.
+- Fibrele se urmăresc ca macro de rang egal (apar în fiecare fișă de rețetă) — surse: [`comun/1_ingrediente.md`](../comun/1_ingrediente.md#-lista-de-fibre-surse-bogate--ema-țintă-2530-gzi).
 
 ## Principii personalizate
 - Proteina se calculează pe **greutatea-țintă/masa slabă**, nu pe cele 110 kg (evită supraestimarea — greșeala planului vechi cu 200g).
@@ -31,7 +32,7 @@ Regulă vizuală per masă (proporții pe farfurie, nu la gram):
 
 | Proporție | Categorie | Exemple |
 |:---------:|-----------|---------|
-| **40%** | Legume / carbohidrați fibroși | broccoli, salate, ardei, dovlecel… → [`7_alimente.md`](./7_alimente.md) |
+| **40%** | Legume / carbohidrați fibroși | broccoli, salate, ardei, dovlecel… → [`comun/1_ingrediente.md`](../comun/1_ingrediente.md) |
 | **40%** | Proteine | lactate, ouă, carne, pește |
 | **20%** | Carbohidrați cu amidon | orez, cartof, paste, quinoa, pâine |
 
