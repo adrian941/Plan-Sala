@@ -1,12 +1,12 @@
-# ❤️ Sănătate & Recuperare — ⟨Nume⟩
+# ❤️ Sănătate & Recuperare — Ema
 
-> **Opțional.** Sănătatea e pe primul loc (vezi [CLAUDE.md §4](../../CLAUDE.md)).
+> Sănătatea e pe primul loc (vezi [CLAUDE.md §4](../CLAUDE.md)). Aici urmărim ce susține progresul: somn, stres, recuperare, monitorizare.
 
 ## Somn & recuperare
 *(Țintă ore somn, igiena somnului.)*
 
 ## Stres & echilibru
-*(Impact asupra cortizolului, poftelor, somnului.)*
+*(Management stres — impact asupra cortizolului, poftelor, somnului.)*
 
 ## Monitorizare progres
 *(Cântar, circumferințe, poze, energie, forță — cadență și cum interpretăm.)*

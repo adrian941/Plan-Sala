@@ -1,41 +1,38 @@
 # 🛒 Cumpărături
 
-> **Pasul 3** din [pipeline](./0_pipeline.md). Aici stau **generatorul** și **configurația de magazine**.
-> Listele efective, săptămână de săptămână, sunt în [`liste/`](./liste/) — sunt rezultate, nu configurație.
+> **Pasul 3** din [cum lucrăm](./0_pipeline.md). O singură listă, pentru amândoi,
+> făcută din meniurile lor ([`ema/4_meniu.md`](../ema/4_meniu.md), [`adi/4_meniu.md`](../adi/4_meniu.md)).
 
-## Generatorul
+## Cum se face lista
 
-**Intrare:** meniurile săptămânale ale **tuturor persoanelor active** (`persoane/*/4_meniu.md`) × porții.
+1. Iau fiecare rețetă din meniuri și o desfac în ingrediente × porții.
+2. **Adun** ce se repetă, între rețete și între ei doi — o singură linie „piept de pui — 1,4 kg", nu cinci.
+3. Trec în cantități de **cumpărat** (kg, bucăți, pachete, conserve), rotunjite la ambalajul real.
+4. Scad ce e deja în casă.
+5. Grupez pe **magazin**, apoi pe raion.
+6. Marchez ce trebuie proaspăt (🥬) și ce se poate lua din timp (📦).
 
-1. Fiecare rețetă programată se explodează în ingrediente × porții.
-2. Cantitățile identice se **agregă peste toate persoanele și toate rețetele** (un singur rând „piept de pui — 1,4 kg").
-3. Se convertesc în **unități de cumpărat** (kg, buc., pachet, conservă), rotunjite la ambalajul real.
-4. Se scade ce e deja în casă (stoc / staples).
-5. Se grupează pe **magazin**, apoi pe raion.
-6. Se marchează perisabilele (🥬 proaspăt) vs. ce se ia în avans (📦).
+## Magazine
 
-> Algoritmul nu cunoaște nume de persoane — merge peste câte foldere există în `persoane/`.
-> Adăugarea cuiva nu cere nicio modificare aici.
-
-## Magazine disponibile
-
-> ⚠️ **Blocant.** Am nevoie de: ce magazine aveți la îndemână + ce se găsește bun/ieftin în fiecare.
-> Până atunci, listele ies grupate doar pe categorii.
+> ⚠️ **Aici m-am blocat.** Am nevoie să știu ce magazine aveți la îndemână și ce se găsește bun în fiecare.
+> Până atunci, lista iese grupată doar pe categorii.
 
 | Magazin | Ce luăm de aici | Observații |
 |---------|-----------------|------------|
 | ⟨…⟩ | ⟨…⟩ | |
 
-## Listă „staples" (mereu în casă)
+## Ce ținem mereu în casă
 
-*(Se completează după primele rețete — ce apare în ≥3 rețete devine staple.)*
+*(Se completează după primele rețete — ce apare des devine „de bază".)*
 
-| Produs | Cantitate de siguranță | Magazin |
-|--------|------------------------|---------|
+| Produs | Cât ținem | Magazin |
+|--------|-----------|---------|
 | ⟨…⟩ | | |
 
-## Liste săptămânale
+## Lista săptămânii
 
-| Săptămână | Fișier |
-|-----------|--------|
-| *(niciuna încă)* | |
+*(Goală — se face după ce avem meniu.)*
+
+| ✓ | Produs | Cantitate | Magazin | Categorie | 🥬/📦 |
+|:-:|--------|----------:|---------|-----------|:-----:|
+| ☐ | *(gol)* | | | | |

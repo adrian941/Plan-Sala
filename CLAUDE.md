@@ -9,9 +9,9 @@
 
 Planurile vechi (Ema + Adi) au fost **șterse definitiv** — nu mai există și nu sunt referință.
 
-**Focusul actual e Ema** (plan complet: profil, nutriție, mese, sală, sănătate) — singura persoană configurată.
+**Ema are plan complet** (profil, nutriție, mese, sală, sănătate).
 
-**Mâncarea și cumpărăturile sunt însă COMUNE.** Se gătește și se cumpără pentru toți, în funcție de plăcerile, preferințele și nevoile fiecăruia. **Adi urmează să fie configurat**, iar arhitectura e construită să-l accepte fără nicio rescriere: o persoană nouă = un folder nou în `persoane/`, zero modificări în `comun/`.
+**Mâncarea și cumpărăturile se fac la comun**, ținând cont de plăcerile, preferințele și nevoile fiecăruia. **Adi se completează ulterior** — folderul lui există deja, cu datele de umplut.
 
 Sursa de adevăr este exclusiv structura pornind din **[Gym-Rules.md](./Gym-Rules.md)**.
 
@@ -37,36 +37,27 @@ Toate în **limba română**, cu ton cald, direct, fără jargon inutil, dar cu 
 - **Întreabă înainte să presupui.** Dacă îți lipsește o dată care schimbă recomandarea (greutate, analize, alergii, echipament, buget, timp de gătit), întreabă. E preferabil să pui 2-3 întrebări bune decât să inventezi.
 - **Bazat pe dovezi.** Recomandările se sprijină pe principii nutriționale și de antrenament validate, nu pe mode. Când e o zonă gri, spune-o.
 - **Sănătatea pe primul loc.** Niciun plan agresiv nedumeritor. Deficit/surplus rezonabil, sustenabil, fără carențe.
-- **Personalizat.** Fiecare recomandare se raportează la profilul real al persoanei ([`persoane/`](./persoane/)). Nu amesteca țintele — porțiile diferă chiar și când rețeta e aceeași.
+- **Personalizat.** Fiecare recomandare se raportează la profilul real: [`ema/1_profil.md`](./ema/1_profil.md), [`adi/1_profil.md`](./adi/1_profil.md). Nu amesteca țintele — porțiile diferă chiar și când rețeta e aceeași.
 - **Documentează deciziile.** Când stabilim ceva împreună, îl scrii în modulul potrivit și notezi în jurnalul din `Gym-Rules.md` (§ Jurnal iterații).
 
 ---
 
-## 2.1 Pipeline-ul culinar (proces OBLIGATORIU)
+## 2.1 Cum lucrăm la mâncare (proces OBLIGATORIU)
 
-Toată partea de mâncare se construiește în **3 pași, în ordine**, definiți în **[`comun/0_pipeline.md`](./comun/0_pipeline.md)**:
+Trei pași, în ordine, descriși pe larg în **[`comun/0_pipeline.md`](./comun/0_pipeline.md)**:
 
-1. **Ingrediente + preferințe + nevoi de macro/fibre**
-   → `comun/1_ingrediente.md` (catalog neutru) + `persoane/<x>/{1_profil,2_nutritie,3_preferinte}.md`
-2. **Farfurii / rețete**
-   → `comun/2_retete.md` + `comun/retete/*.md` (fișe neutre) → meniu per persoană în `persoane/<x>/4_meniu.md`
-3. **Listă de cumpărături**
-   → `comun/3_cumparaturi.md` (generator + magazine) → `comun/liste/*.md`
+1. **Ce mâncăm și de ce are nevoie fiecare** → `comun/1_ingrediente.md` (lista de alimente) + `ema/` și `adi/`: `1_profil.md`, `2_nutritie.md`, `3_preferinte.md`
+2. **Rețetele** → `comun/2_retete.md` → meniul fiecăruia în `ema/4_meniu.md`, `adi/4_meniu.md`
+3. **Cumpărăturile** → `comun/3_cumparaturi.md`
 
-**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat**: fișă neutră în `comun/retete/`, verdictele în `persoane/<x>/3_preferinte.md`, rând regenerat în indexul de rețete, ingrediente noi în catalog. Procedura completă: `comun/0_pipeline.md`.
+**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat**: rețeta în `comun/2_retete.md`, cu calorii/macro/fibre pe porție; verdictele în `ema/3_preferinte.md` și `adi/3_preferinte.md`; ingredientele noi în lista de alimente.
 
-Nu sări peste pași: nimic nu ajunge în lista de cumpărături fără să vină dintr-o rețetă programată într-un meniu.
+**Ordinea contează:** nimic nu ajunge pe lista de cumpărături dacă nu vine dintr-o rețetă pusă în meniu, și nicio rețetă nu intră în meniul cuiva dacă are în ea ceva ce el nu poate mânca.
 
-### Cele 4 reguli de arhitectură (nu le încălca)
+### Două reguli de organizare
 
-1. **Comunul e neutru** — niciun fișier din `comun/` nu conține nume de persoane.
-2. **Preferințele sunt excepții** — se scrie doar ce iese din normal (⭐/❌/⛔); restul catalogului e implicit ✅.
-3. **O persoană = un folder** — `cp -r persoane/_sablon persoane/<nume>`, zero modificări în `comun/`.
-4. **Vederile derivate sunt marcate** — coloanele per persoană din indexul de rețete se regenerează din `3_preferinte.md`, nu se editează pe loc.
-
-Detalii și motivația fiecăreia: [`comun/0_pipeline.md`](./comun/0_pipeline.md#principii-de-arhitectură).
-
-**Verificare automată:** `python3 scripts/verifica.py` — validează link-urile, neutralitatea lui `comun/` și structura folderelor de persoane. Rulează-l după orice modificare de structură.
+1. **Ce ține de mâncare stă în `comun/`; ce ține de un om stă în folderul lui.** Lista de alimente și rețetele sunt aceleași indiferent cine mănâncă din ele, deci nu conțin nume de oameni. Excepție firească: coloanele „Ema"/„Adi" din cuprinsul rețetelor, care doar arată pe scurt cui i-a plăcut.
+2. **Preferințele se scriu scurt — doar ce iese din tipar.** Ce nu apare în `3_preferinte.md` se înțelege că e ok. Nu bifăm fiecare aliment pentru fiecare om.
 
 ---
 
@@ -74,33 +65,30 @@ Detalii și motivația fiecăreia: [`comun/0_pipeline.md`](./comun/0_pipeline.md
 
 ```
 CLAUDE.md              ← acest fișier (STABIL)
-Gym-Rules.md           ← index-master VIU, linkează modular ↓
+Gym-Rules.md           ← ce e la zi, se updatează mereu
 
-comun/                  ← DOMENIUL COMUN — neutru, fără nume de persoane
-├── 0_pipeline.md      → procesul (P1→P2→P3) + principiile de arhitectură
-├── 1_ingrediente.md   → PASUL 1a: catalog de alimente (grupă, rol pe farfurie, fibre)
-├── 2_retete.md        → PASUL 2a: index de rețete (vedere DERIVATĂ)
-├── retete/            →   fișe neutre de rețetă (+ `_sablon.md`)
-├── 3_cumparaturi.md   → PASUL 3: generatorul + configurația de magazine
-└── liste/             →   listele săptămânale generate (+ `_sablon.md`)
+comun/                  ← ce ține de mâncare, pentru amândoi
+├── 0_pipeline.md      → cum lucrăm: cei 3 pași
+├── 1_ingrediente.md   → lista de alimente pe categorii + fibre
+├── 2_retete.md        → rețetele, cu ce iese pe porție
+└── 3_cumparaturi.md   → lista de cumpărături + magazinele
 
-scripts/verifica.py    ← verifică automat regulile de arhitectură
+ema/
+├── 1_profil.md        → date, activitate, sănătate, obiectiv
+├── 2_nutritie.md      → calorii, macro, fibre pe zi
+├── 3_preferinte.md    → ce-i place, ce nu, ce nu poate
+├── 4_meniu.md         → meniul săptămânal + porțiile ei
+├── 5_sala.md          → programul de antrenament
+└── 6_sanatate.md      → somn, stres, mobilitate, monitorizare
 
-persoane/               ← ACTORII — un folder per om, structură identică
-├── README.md          → cine e activ + cum adaugi pe cineva
-├── _sablon/           → TEMPLATE: se copiază pentru o persoană nouă
-└── ema/
-    ├── 1_profil.md        → corp, activitate, medical, obiectiv
-    ├── 2_nutritie.md      → ținte: kcal, macro, fibre
-    ├── 3_preferinte.md    → PASUL 1b: excepțiile ei (⭐/❌/⛔) + verdicte pe rețete
-    ├── 4_meniu.md         → PASUL 2b: meniul săptămânal + porțiile ei
-    ├── 5_sala.md          → (opțional) programul de antrenament
-    └── 6_sanatate.md      → (opțional) somn, stres, mobilitate, monitorizare
+adi/                    (de completat)
+├── 1_profil.md
+├── 2_nutritie.md
+├── 3_preferinte.md
+└── 4_meniu.md
 ```
 
-Ce e **despre alimente și preparate** stă în `comun/`. Ce e **despre un om** stă în `persoane/<nume>/`. Nu duplica între ele și nu amesteca: un nume de persoană apărut într-un fișier din `comun/` e un bug de arhitectură.
-
-Când modularizezi mai departe, păstrează prefixul numeric (ordinea de lucru), respectă cele 4 reguli de arhitectură din §2.1 și linkează noile fișiere din `Gym-Rules.md`.
+Fișierele sunt numerotate în ordinea în care le completăm. Când adaugi ceva nou, păstrează numerotarea și linkează din `Gym-Rules.md`.
 
 ---
 

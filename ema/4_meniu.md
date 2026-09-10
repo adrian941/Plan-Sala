@@ -1,16 +1,15 @@
 # 🍳 Meniu săptămânal — Ema
 
-> **Pasul 2b** din [pipeline](../../comun/0_pipeline.md).
-> Rețetele sunt comune ([`comun/2_retete.md`](../../comun/2_retete.md)) — aici alegem **care** rețete
-> și **în ce porții**, ca să nimerească țintele din [`2_nutritie.md`](./2_nutritie.md).
-> Filtrele Emei (favorite / ce nu-i place / frecvențe): [`3_preferinte.md`](./3_preferinte.md).
-> Ieșirea alimentează [`comun/3_cumparaturi.md`](../../comun/3_cumparaturi.md).
+> Rețetele sunt comune ([`comun/2_retete.md`](../comun/2_retete.md)) — aici alegem **care** rețete
+> și **în ce porții**, ca să iasă țintele din [`2_nutritie.md`](./2_nutritie.md).
+> Ce-i place și ce nu: [`3_preferinte.md`](./3_preferinte.md).
+> Ce iese de aici intră în [`comun/3_cumparaturi.md`](../comun/3_cumparaturi.md).
 
 ## Structura zilei
 **3 mese + 1 gustare** (~2100 kcal, macro: P150 / G65 / C230).
 - Fiecare masă respectă [regula farfuriei 40/40/20](./2_nutritie.md).
 - Gustarea: de preferat **~20 min după sală** (bună ca obicei; „fereastra anabolică" e de fapt mai largă, deci nu e o problemă dacă întârzie).
-- Variație din [`comun/1_ingrediente.md`](../../comun/1_ingrediente.md) — nu mereu aceleași legume.
+- Variație din [`comun/1_ingrediente.md`](../comun/1_ingrediente.md) — nu mereu aceleași legume.
 - Regulile de frecvență (pește 2×/săpt., ouă 3 la două zile) sunt în [`3_preferinte.md`](./3_preferinte.md).
 
 | Masa | Orar | Note |

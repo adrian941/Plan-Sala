@@ -1,8 +1,8 @@
-# 🥦 Catalog de ingrediente (neutru)
+# 🥦 Lista de alimente
 
-> **Pasul 1a** din [pipeline](./0_pipeline.md). Aici stau **doar fapte despre alimente** — categorie, rol pe farfurie, conținut de fibre.
+> **Pasul 1** din [cum lucrăm](./0_pipeline.md). Lista alimentelor din care construim rețetele — pe categorii, cu rolul pe farfurie și conținutul de fibre.
 >
-> ⚠️ **Nicio preferință personală nu se scrie aici.** Cine ce place / nu place / nu poate → în [`persoane/<nume>/3_preferinte.md`](../persoane/). Motivul: catalogul trebuie să rămână identic indiferent câte persoane sunt în plan.
+> Aici nu scriem cui îi place ce. Gusturile fiecăruia stau la el: [`ema/3_preferinte.md`](../ema/3_preferinte.md), [`adi/3_preferinte.md`](../adi/3_preferinte.md).
 
 **Rolul pe farfurie** (regula 40/40/20): `P` = proteină (40%) · `L` = legume/fibroși (40%) · `A` = amidon (20%) · `G` = grăsime (nu ocupă felie) · `F` = fruct
 

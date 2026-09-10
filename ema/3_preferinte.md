@@ -1,15 +1,13 @@
 # 🍽️ Preferințe & restricții — Ema
 
-> **Pasul 1b** din [pipeline](../../comun/0_pipeline.md). Catalogul de alimente e comun și neutru
-> ([`comun/1_ingrediente.md`](../../comun/1_ingrediente.md)); aici sunt **doar excepțiile** Emei.
->
-> **Regula implicită: orice aliment din catalog care nu apare mai jos este ✅ acceptat.**
+> Lista de alimente e comună, în [`comun/1_ingrediente.md`](../comun/1_ingrediente.md).
+> Aici scriem **doar ce iese din tipar la Ema** — ce nu apare mai jos se înțelege că e ok.
 
-**Legenda:** ⭐ favorit (prioritizat) · ❌ nu-i place (exclus din meniul ei) · ⛔ nu poate — alergie/medical (**exclus total**) · 🟡 tolerat, nu des · ❔ de testat
+**Legenda:** ⭐ favorit · ❌ nu-i place · ⛔ nu poate (alergie/medical) · 🟡 tolerat, nu des · ❔ de testat
 
 ---
 
-## ⛔ Restricții absolute
+## ⛔ Nu poate (alergii, intoleranțe, medical)
 
 **Niciuna.** Fără alergii, fără intoleranțe, fără condiții medicale sau medicație care să restrângă alimentația.
 
@@ -63,9 +61,9 @@
 
 ---
 
-## Verdicte pe rețete
+## Ce a zis despre rețete
 
-Sursa de adevăr pentru coloana „Ema" din [`comun/2_retete.md`](../../comun/2_retete.md).
+De aici se completează coloana „Ema" din [`comun/2_retete.md`](../comun/2_retete.md).
 
 | Rețetă | Verdict | Notă |
 |--------|:-------:|------|

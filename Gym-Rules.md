@@ -2,41 +2,41 @@
 
 > Acesta este documentul „viu": se updatează la fiecare sesiune de brainstorming.
 > Regulile de fond și persona sunt în **[CLAUDE.md](./CLAUDE.md)** (fișier stabil).
-> Procesul culinar în 3 pași + principiile de arhitectură: **[`comun/0_pipeline.md`](./comun/0_pipeline.md)**.
+> Cum lucrăm la mâncare, în 3 pași: **[`comun/0_pipeline.md`](./comun/0_pipeline.md)**.
 >
-> **Status curent:** 🟡 Ema are profilul și țintele gata. Mâncarea și cumpărăturile sunt comune;
-> **Adi se configurează ulterior** — arhitectura îl acceptă fără rescriere.
+> **Status curent:** 🟡 Ema are profilul și țintele gata. Mâncarea și cumpărăturile se fac la comun;
+> **Adi se completează ulterior**.
 
 ---
 
-## 👥 Persoane
-
-| Persoană | Folder | Scop | Status |
-|----------|--------|------|--------|
-| **Ema** | [`persoane/ema/`](./persoane/ema/) | plan complet (mâncare + sală + sănătate) | 🟡 în lucru |
-| **Adi** | *(neconfigurat)* | doar mâncare — la comun cu Ema | ⚪ ulterior |
-
-> Adăugarea unei persoane: [`persoane/README.md`](./persoane/README.md) — `cp -r persoane/_sablon persoane/<nume>`.
-
-## 🔄 Pipeline culinar (comun, neutru)
+## 🍽️ Mâncare — comun (Ema + Adi)
 
 | Pas | Fișier | Ce conține | Status |
 |-----|--------|-----------|--------|
-| Proces | [`comun/0_pipeline.md`](./comun/0_pipeline.md) | Cei 3 pași, legenda verdictelor, principiile de arhitectură | 🟢 |
-| 1️⃣a Catalog ingrediente | [`comun/1_ingrediente.md`](./comun/1_ingrediente.md) | Alimente pe grupe, rol pe farfurie, fibre | 🟢 |
-| 2️⃣a Rețete | [`comun/2_retete.md`](./comun/2_retete.md) · [`comun/retete/`](./comun/retete/) | Index derivat + fișe neutre cu macro/porție | ⚪ aștept prima rețetă |
-| 3️⃣ Cumpărături | [`comun/3_cumparaturi.md`](./comun/3_cumparaturi.md) · [`comun/liste/`](./comun/liste/) | Generator + magazine → liste săptămânale | ⚪ blocat: lipsesc magazinele |
+| Cum lucrăm | [`comun/0_pipeline.md`](./comun/0_pipeline.md) | Cei 3 pași + ce înseamnă semnele | 🟢 |
+| 1️⃣ Alimente | [`comun/1_ingrediente.md`](./comun/1_ingrediente.md) | Lista pe categorii, rol pe farfurie, fibre | 🟢 |
+| 2️⃣ Rețete | [`comun/2_retete.md`](./comun/2_retete.md) | Rețetele + ce iese pe porție | ⚪ aștept prima rețetă |
+| 3️⃣ Cumpărături | [`comun/3_cumparaturi.md`](./comun/3_cumparaturi.md) | Lista + magazinele | ⚪ blocat: lipsesc magazinele |
 
-## 🧍 Module Ema
+## 🧍 Ema
 
 | Modul | Fișier | Ce conține | Status |
 |-------|--------|-----------|--------|
-| Profil & obiective | [`persoane/ema/1_profil.md`](./persoane/ema/1_profil.md) | Corp, activitate, medical, obiectiv | 🟡 lipsesc talie/șold, job, somn, loc antrenament |
-| Nutriție | [`persoane/ema/2_nutritie.md`](./persoane/ema/2_nutritie.md) | Ținte: kcal, macro, fibre | 🟢 2100 kcal · P150/G65/C230 · fibre 25–30 g |
-| 1️⃣b Preferințe | [`persoane/ema/3_preferinte.md`](./persoane/ema/3_preferinte.md) | Favorite, restricții, frecvențe, verdicte rețete | 🟡 lipsesc preferințele culinare (metode, condimentare) |
-| 2️⃣b Meniu | [`persoane/ema/4_meniu.md`](./persoane/ema/4_meniu.md) | Meniu săptămânal + porții | ⚪ după rețete |
-| Sală | [`persoane/ema/5_sala.md`](./persoane/ema/5_sala.md) | Split, exerciții, progresie | ⚪ blocat: unde antrenează |
-| Sănătate | [`persoane/ema/6_sanatate.md`](./persoane/ema/6_sanatate.md) | Somn, stres, mobilitate, monitorizare | ⚪ după profil |
+| Profil & obiective | [`ema/1_profil.md`](./ema/1_profil.md) | Date, activitate, sănătate, obiectiv | 🟡 lipsesc talie/șold, job, somn, loc antrenament |
+| Nutriție | [`ema/2_nutritie.md`](./ema/2_nutritie.md) | Calorii, macro, fibre | 🟢 2100 kcal · P150/G65/C230 · fibre 25–30 g |
+| Preferințe | [`ema/3_preferinte.md`](./ema/3_preferinte.md) | Ce-i place, ce nu, frecvențe | 🟡 lipsesc preferințele culinare (metode, condimentare) |
+| Meniu | [`ema/4_meniu.md`](./ema/4_meniu.md) | Meniul săptămânal + porții | ⚪ după rețete |
+| Sală | [`ema/5_sala.md`](./ema/5_sala.md) | Split, exerciții, progresie | ⚪ blocat: unde antrenează |
+| Sănătate | [`ema/6_sanatate.md`](./ema/6_sanatate.md) | Somn, stres, mobilitate, monitorizare | ⚪ după profil |
+
+## 🧍 Adi (doar mâncare)
+
+| Modul | Fișier | Ce conține | Status |
+|-------|--------|-----------|--------|
+| Profil | [`adi/1_profil.md`](./adi/1_profil.md) | Datele de care am nevoie | 🔴 gol |
+| Nutriție | [`adi/2_nutritie.md`](./adi/2_nutritie.md) | Calorii, macro, fibre | 🔴 blocat de profil |
+| Preferințe | [`adi/3_preferinte.md`](./adi/3_preferinte.md) | Ce-i place, ce nu, ce nu poate | 🔴 gol |
+| Meniu | [`adi/4_meniu.md`](./adi/4_meniu.md) | Meniul săptămânal + porții | ⚪ după rețete |
 
 Legendă: 🟢 stabil · 🟡 în lucru · ⚪ neînceput · 🔴 blocat
 
@@ -67,8 +67,8 @@ Acestea sunt reguli generale de plecare; le personalizăm pe măsură ce apar da
 
 **Pipeline culinar (cele 3 etape cerute de utilizator):**
 
-1. **Ingrediente + preferințe + ținte macro/fibre.** ⬅️ *suntem aici* — catalogul e gata, Ema e configurată; Adi urmează.
-2. **Rețete / farfurii** — utilizatorul dă rețete cu detalii + cui îi place; eu le fișez, le calculez macro și le indexez.
+1. **Alimente + preferințe + ținte (calorii, macro, fibre).** ⬅️ *suntem aici* — lista de alimente e gata, Ema e completă; Adi urmează.
+2. **Rețete** — utilizatorul dă rețete cu detalii + cui îi place; eu le scriu, le calculez pe porție și le trec în cuprins.
 3. **Lista de cumpărături** — generată din meniuri, grupată pe magazine.
 
 **În paralel, doar pentru Ema:**
@@ -89,5 +89,6 @@ Acestea sunt reguli generale de plecare; le personalizăm pe măsură ce apar da
 | 2026-09-08 | Profil completat: fără probleme medicale/alergii; omnivor cu preferință lactate; ouă 3/2 zile; **pește 2×/săpt. (omega-3)**; obiectiv slăbit (secundar mușchi). Adoptat **regula farfuriei 40/40/20** (aprobată). Creat **7_alimente.md** (liste pe categorii + lista de fibre). Mese: **3 + 1 gustare post-sală**, orele TBD. Gătit la comun cu Adi. | 1_profil, 2_nutritie, 3_plan-mese, 7_alimente |
 | 2026-09-08 | Șterse definitiv planurile vechi (arhiva Ema `_arhiva/` + folderul `adi/`). Repo dedicat exclusiv Emei. Curățate referințele din CLAUDE.md / README. | structură |
 | 2026-09-10 | Explicat de ce cer **talia și șoldul** (grăsime viscerală, WHR, progres când cântarul stagnează, estimare % grăsime pt. Katch-McArdle). Rămân opționale. | 1_profil |
-| 2026-09-10 | **Stabilit pipeline-ul culinar în 3 pași** (ingrediente+preferințe+macro/fibre → rețete → cumpărături). Creat `comun/` cu `0_pipeline.md`, `1_ingrediente.md` (mutat din `ema/7_alimente.md`), `2_retete.md` + `retete/_sablon.md`, `3_cumparaturi.md` (mutat din `ema/6_cumparaturi.md`). Fibrele promovate la macro de rang egal. | toate |
-| 2026-09-10 | **Refactor de arhitectură — modular, extensibil la N persoane.** Prima variantă avea preferințele ca *coloane per persoană* în fișierele comune (catalog, fișe de rețetă): adăugarea unui om cerea editarea tuturor fișierelor comune. Normalizat: `comun/` devine complet **neutru** (catalog de fapte + fișe de rețetă fără nume), iar preferințele trec în `persoane/<x>/3_preferinte.md` ca **excepții** (implicit ✅). Introduse `persoane/` cu `_sablon/` (o persoană = `cp -r`), `comun/liste/` pentru listele generate, ingrediente marcabile drept *opționale* (variante „la farfurie"), indexul de rețete marcat ca **vedere derivată**. Șterse scheletele goale `adi/` — se creează din șablon când vine configurarea. Cele 4 reguli de arhitectură scrise în CLAUDE.md §2.1. | toate |
+| 2026-09-10 | **Stabilit pipeline-ul culinar în 3 pași** (ingrediente+preferințe+macro/fibre → rețete → cumpărături). Creat `comun/` cu `0_pipeline.md`, `1_ingrediente.md` (mutat din `ema/7_alimente.md`), `2_retete.md` și `3_cumparaturi.md` (mutat din `ema/6_cumparaturi.md`). Fibrele promovate la macro de rang egal. | toate |
+| 2026-09-10 | **Separate lucrurile care se amestecau:** lista de alimente și rețetele rămân comune și fără nume de oameni, iar gusturile trec la fiecare, în `3_preferinte.md`, scrise scurt (doar ce iese din tipar — restul se înțelege că e ok). Motivul: altfel, la fiecare om nou trebuia rescris tot. Preferințele alimentare scoase din profil (se dublau). | toate |
+| 2026-09-10 | **Simplificare.** Prima variantă a acestei separări o dusesem în zona tehnică — foldere `persoane/`, șabloane de copiat, script de verificare. Scoase toate: rămân trei foldere citibile — `comun/`, `ema/`, `adi/` — și fișiere .md scrise pe înțelesul oricui. Rețetele stau într-un singur fișier (`comun/2_retete.md`) până se adună multe. | toate |
