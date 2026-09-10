@@ -1,8 +1,7 @@
-# 🧍 Profil & Obiective — Adi
+# 🧍 Profil & Obiective — ⟨Nume⟩
 
-> **Pasul 1** din [pipeline](../comun/0_pipeline.md). Fără datele de aici nu pot calcula țintele lui Adi,
-> deci nu pot valida rețetele și porțiile pentru el.
-> Câmpurile cu `⟨…⟩` se completează cu date **reale**.
+> Fundația țintelor. Fără datele de aici nu se poate calcula nimic.
+> **Preferințele alimentare NU se scriu aici** → [`3_preferinte.md`](./3_preferinte.md).
 
 ## Date de bază
 
@@ -14,6 +13,7 @@
 | Greutate actuală | ⟨… kg⟩ |
 | Circumferință talie | ⟨… cm⟩ *(opțional — monitorizare)* |
 | Circumferință șold | ⟨… cm⟩ *(opțional — monitorizare)* |
+| Nivel grăsime estimat | ⟨…⟩ |
 
 ## Activitate & stil de viață
 
@@ -22,9 +22,11 @@
 | Job (sedentar / activ / în picioare) | ⟨…⟩ |
 | Pași/zi aproximativ | ⟨…⟩ |
 | Somn (ore/calitate) | ⟨…⟩ |
+| Nivel stres | ⟨…⟩ |
 | Experiență la sală | ⟨…⟩ |
 | Zile/săptămână disponibile pt. antrenament | ⟨…⟩ |
 | Nivel activitate (factor TDEE) | ⟨…⟩ |
+| Unde antrenează | ⟨…⟩ |
 
 ## Sănătate (medical)
 
@@ -34,19 +36,6 @@
 | Accidentări / probleme articulare | ⟨…⟩ |
 | Analize recente | ⟨…⟩ |
 
-## Alimentație — preferințe & restricții
-
-> Detaliul pe ingrediente stă în [`comun/1_ingrediente.md`](../comun/1_ingrediente.md) (coloana **Adi**).
-
-| Câmp | Valoare |
-|------|---------|
-| Alergii / intoleranțe | ⟨…⟩ |
-| Regim (omnivor / vegetarian / altul) | ⟨…⟩ |
-| Alimente pe care le urăște | ⟨…⟩ |
-| Câte mese/zi preferă | ⟨…⟩ |
-| Timp de gătit realist/zi | ⟨…⟩ |
-| Gătit la comun cu Ema | **Da** |
-
 ## Obiectiv
 
 | Câmp | Valoare |
@@ -54,8 +43,16 @@
 | Obiectiv principal | ⟨slăbit / menținere / masă musculară⟩ |
 | Obiectiv secundar | ⟨…⟩ |
 | Orizont de timp | ⟨…⟩ |
+| Ce a încercat înainte | ⟨…⟩ |
+
+## Buget & context
+
+| Câmp | Valoare |
+|------|---------|
+| Buget alimentar orientativ | ⟨…⟩ |
+| Gătește la comun cu | ⟨…⟩ |
 
 ---
 
 ### Calcule
-*(Se completează după ce avem datele — aceeași metodă ca la Ema: Mifflin-St Jeor → BMR → TDEE → țintă.)*
+*(Mifflin-St Jeor: `BMR = 10·W + 6.25·H − 5·A + s`, s = −161 femei / +5 bărbați → ×factor activitate = TDEE → ținta.)*

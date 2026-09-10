@@ -1,6 +1,6 @@
 # 🥗 Nutriție — Ema
 
-> Se completează după ce [`1_profil.md`](./1_profil.md) are datele reale. Principiile de fond: [Gym-Rules.md](../Gym-Rules.md).
+> Se completează după ce [`1_profil.md`](./1_profil.md) are datele reale. Principiile de fond: [Gym-Rules.md](../../Gym-Rules.md).
 
 ## Bază de calcul (Mifflin-St Jeor)
 - BMR ≈ **1950 kcal** · TDEE (×1.375, activitate ușoară) ≈ **2680 kcal**
@@ -18,7 +18,7 @@
 | **TOTAL** | | **≈ 2105 kcal** | |
 
 - **Proteină distribuită**: ~30–40 g × 4 mese.
-- Fibrele se urmăresc ca macro de rang egal (apar în fiecare fișă de rețetă) — surse: [`comun/1_ingrediente.md`](../comun/1_ingrediente.md#-lista-de-fibre-surse-bogate--ema-țintă-2530-gzi).
+- Fibrele se urmăresc ca macro de rang egal (apar în fiecare fișă de rețetă) — surse: [`comun/1_ingrediente.md`](../../comun/1_ingrediente.md#-conținut-de-fibre--referință).
 
 ## Principii personalizate
 - Proteina se calculează pe **greutatea-țintă/masa slabă**, nu pe cele 110 kg (evită supraestimarea — greșeala planului vechi cu 200g).
@@ -32,7 +32,7 @@ Regulă vizuală per masă (proporții pe farfurie, nu la gram):
 
 | Proporție | Categorie | Exemple |
 |:---------:|-----------|---------|
-| **40%** | Legume / carbohidrați fibroși | broccoli, salate, ardei, dovlecel… → [`comun/1_ingrediente.md`](../comun/1_ingrediente.md) |
+| **40%** | Legume / carbohidrați fibroși | broccoli, salate, ardei, dovlecel… → [`comun/1_ingrediente.md`](../../comun/1_ingrediente.md) |
 | **40%** | Proteine | lactate, ouă, carne, pește |
 | **20%** | Carbohidrați cu amidon | orez, cartof, paste, quinoa, pâine |
 

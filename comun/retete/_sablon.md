@@ -1,7 +1,7 @@
 # 🍽️ ⟨Nume rețetă⟩
 
-> Șablon pentru fișele de rețetă. Copiază acest fișier și completează.
-> Legenda verdictelor: [`../0_pipeline.md`](../0_pipeline.md#pasul-1--ingrediente--nevoi-nutriționale)
+> Șablon pentru fișele de rețetă. **Fișa e neutră** — nu conține nume de persoane.
+> Cui îi place / cui nu se scrie în `persoane/<nume>/3_preferinte.md`, secțiunea „Verdicte pe rețete".
 
 ## Fișă
 
@@ -12,16 +12,17 @@
 | Porții | ⟨…⟩ |
 | Dificultate | ușor / mediu |
 | Meal prep | da / nu (rezistă ⟨…⟩ zile la frigider) |
-| **Verdict Ema** | ⭐ / ✅ / 🟡 / ❌ / ⛔ / ❔ |
-| **Verdict Adi** | ⭐ / ✅ / 🟡 / ❌ / ⛔ / ❔ |
-| Sursă | ⟨cine a propus-o / de unde⟩ |
+| Sursă | ⟨de unde vine rețeta⟩ |
 | Tag-uri | ⟨vită, cuptor, lactate, fără gluten…⟩ |
 
 ## Ingrediente (pentru ⟨N⟩ porții)
 
-| Ingredient | Cantitate | Notă |
-|-----------|----------:|------|
-| ⟨…⟩ | ⟨…⟩ | |
+| Ingredient | Cantitate | Rol | Opțional? |
+|-----------|----------:|:---:|:---------:|
+| ⟨…⟩ | ⟨…⟩ | P/L/A/G/F | |
+
+> Coloana **Opțional** contează: un ingredient marcat opțional poate fi scos din porția cuiva
+> care îl are ❌, fără să pice rețeta (vezi „variantă la farfurie" mai jos).
 
 ## Preparare
 
@@ -33,11 +34,11 @@
 |-----:|---------:|--------:|------:|----------:|
 | ⟨…⟩ | ⟨… g⟩ | ⟨… g⟩ | ⟨… g⟩ | ⟨… g⟩ |
 
-## Adaptări
+## Scalare porții
+*(Cum se mărește/micșorează porția fără să se strice echilibrul — ce se scalează liniar și ce nu.)*
 
-- **Pentru Ema** (țintă 2100 kcal · P150/G65/C230): ⟨porție, ajustări⟩
-- **Pentru Adi** (țintă ⟨…⟩): ⟨porție, ajustări⟩
-- **Diferențe „la farfurie"** (dacă unuia nu-i place un ingredient secundar): ⟨…⟩
+## Variante „la farfurie"
+*(Modificări per porție, descrise prin ingredient, nu prin persoană — ex. „brânza se adaugă la final, doar în porțiile care o vor".)*
 
 ## Verificare farfurie 40/40/20
 ⟨Se respectă? Ce ajustăm?⟩
