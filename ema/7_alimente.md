@@ -1,5 +1,7 @@
 # 🥦 Liste de alimente pe categorii — Ema
 
+> ⚠️ **Istoric — nu se mai actualizează.** Referința curentă e [`comun/1_ingrediente.md`](../comun/1_ingrediente.md). Alimente/rețete noi se adaugă acolo, nu aici.
+
 > Referință pentru variație (Ema vrea legume multe și diverse, nu mereu aceleași) și pentru [regula farfuriei 40/40/20](./2_nutritie.md).
 > Alimentăm de aici: [`3_plan-mese.md`](./3_plan-mese.md) și lista de [`6_cumparaturi.md`](./6_cumparaturi.md).
 > Preferințe Ema: **lactate > carne**, ouă 3 la două zile, carne preferată vită/porc/pui.
