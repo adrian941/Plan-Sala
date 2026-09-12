@@ -50,7 +50,7 @@ Ulei de măsline extravirgin, avocado, nuci/migdale/caju, semințe (chia, in, do
 ---
 
 ## 🍓 FRUCTE
-Prioritate low-sugar: **fructe de pădure** (afine, zmeură, căpșuni, mure). Moderat: mere, pere, kiwi, citrice, prune. Pre/post sală: banană, struguri.
+Prioritate low-sugar: **fructe de pădure** (afine, zmeură, căpșuni, mure). Moderat: mere, pere, kiwi, citrice (portocale), prune, piersici, nectarine. Pre/post sală: banană, struguri.
 
 ---
 
