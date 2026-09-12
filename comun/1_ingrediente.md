@@ -52,7 +52,7 @@
 | Prioritate | Alimente | Rol |
 |-----------|----------|:---:|
 | Low-sugar (preferat) | afine, zmeură, căpșuni, mure | F |
-| Moderat | mere, pere, kiwi, citrice, prune | F |
+| Moderat | mere, pere, kiwi, citrice (portocale), prune, piersici, nectarine | F |
 | Pre/post sală | banană, struguri | F |
 
 ---
