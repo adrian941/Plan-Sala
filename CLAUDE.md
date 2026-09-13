@@ -7,13 +7,13 @@
 
 ## 0. Sursa de adevăr
 
-**Ema are plan complet** (profil, nutriție, mese, sală, sănătate) — în `ema/`.
+Planurile vechi (Ema + Adi) au fost **șterse definitiv** — nu mai există și nu sunt referință.
 
-**Mâncarea și cumpărăturile se fac la comun**, ținând cont de plăcerile, preferințele și nevoile fiecăruia — în `comun/`. **Adi se completează ulterior** — folderul `adi/` există deja, cu datele de umplut.
+**Ema are plan complet** (profil, nutriție, mese, sală, sănătate).
+
+**Mâncarea și cumpărăturile se fac la comun**, ținând cont de plăcerile, preferințele și nevoile fiecăruia. **Adi se completează ulterior** — folderul lui există deja, cu datele de umplut.
 
 Sursa de adevăr este exclusiv structura pornind din **[Gym-Rules.md](./Gym-Rules.md)**.
-
-> Notă: `ema/7_alimente.md` conține încă lista de alimente în format propriu (dinainte să fie refăcut `comun/`). Referința comună pentru mâncare, de acum înainte, e **[`comun/1_ingrediente.md`](./comun/1_ingrediente.md)** — orice aliment/rețetă nou se adaugă acolo (vezi §2.1), nu în `ema/7_alimente.md`.
 
 ---
 
@@ -46,18 +46,18 @@ Toate în **limba română**, cu ton cald, direct, fără jargon inutil, dar cu 
 
 Trei pași, în ordine, descriși pe larg în **[`comun/0_pipeline.md`](./comun/0_pipeline.md)**:
 
-1. **Ce mâncăm și de ce are nevoie fiecare** → `comun/1_ingrediente.md` (lista de alimente) + `ema/` și `adi/`: profil, nutriție, preferințe
-2. **Rețetele** → `comun/2_retete.md` → meniul fiecăruia
+1. **Ce mâncăm și de ce are nevoie fiecare** → `comun/1_ingrediente.md` (lista de alimente) + `ema/` și `adi/`: `1_profil.md`, `2_nutritie.md`, `3_preferinte.md`
+2. **Rețetele** → `comun/2_retete.md` → meniul fiecăruia în `ema/4_meniu.md`, `adi/4_meniu.md`
 3. **Cumpărăturile** → `comun/3_cumparaturi.md`
 
-**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat**: rețeta în `comun/2_retete.md`, cu calorii/macro/fibre pe porție; verdictele în preferințele fiecăruia; ingredientele noi în `comun/1_ingrediente.md`.
+**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat**: rețeta în `comun/2_retete.md`, cu calorii/macro/fibre pe porție; verdictele în `ema/3_preferinte.md` și `adi/3_preferinte.md`; ingredientele noi în lista de alimente.
 
 **Ordinea contează:** nimic nu ajunge pe lista de cumpărături dacă nu vine dintr-o rețetă pusă în meniu, și nicio rețetă nu intră în meniul cuiva dacă are în ea ceva ce el nu poate mânca.
 
 ### Două reguli de organizare
 
-1. **Ce ține de mâncare stă în `comun/`; ce ține de un om stă în folderul lui.** Lista de alimente și rețetele sunt aceleași indiferent cine mănâncă din ele, deci nu conțin nume de oameni (excepție firească: coloanele „Ema"/„Adi" din cuprinsul rețetelor).
-2. **Preferințele se scriu scurt — doar ce iese din tipar.** Ce nu apare într-un fișier de preferințe se înțelege că e ok.
+1. **Ce ține de mâncare stă în `comun/`; ce ține de un om stă în folderul lui.** Lista de alimente și rețetele sunt aceleași indiferent cine mănâncă din ele, deci nu conțin nume de oameni. Excepție firească: coloanele „Ema"/„Adi" din cuprinsul rețetelor, care doar arată pe scurt cui i-a plăcut.
+2. **Preferințele se scriu scurt — doar ce iese din tipar.** Ce nu apare în `3_preferinte.md` se înțelege că e ok. Nu bifăm fiecare aliment pentru fiecare om.
 
 ---
 
@@ -65,22 +65,21 @@ Trei pași, în ordine, descriși pe larg în **[`comun/0_pipeline.md`](./comun/
 
 ```
 CLAUDE.md              ← acest fișier (STABIL)
-Gym-Rules.md           ← index-master VIU, linkează modular ↓
+Gym-Rules.md           ← ce e la zi, se updatează mereu
 
 comun/                  ← ce ține de mâncare, pentru amândoi
 ├── 0_pipeline.md      → cum lucrăm: cei 3 pași
-├── 1_ingrediente.md   → lista de alimente pe categorii + fibre (referința curentă)
+├── 1_ingrediente.md   → lista de alimente pe categorii + fibre
 ├── 2_retete.md        → rețetele, cu ce iese pe porție
 └── 3_cumparaturi.md   → lista de cumpărături + magazinele
 
-ema/                    (fișiere prefixate numeric = ordinea de lucru; plan complet)
-├── 1_profil.md        → date, obiective, analize, restricții (fundația a tot)
-├── 2_nutritie.md      → ținte calorice/macro, principii, suplimente
-├── 3_plan-mese.md     → meniuri concrete, meal prep (rețetele în sine trăiesc acum în comun/2_retete.md)
-├── 4_sala.md          → programul de antrenament
-├── 5_sanatate.md      → somn, stres, mobilitate, semne de alarmă, monitorizare
-├── 6_cumparaturi.md   → istoric — lista curentă e comun/3_cumparaturi.md
-└── 7_alimente.md      → istoric — lista curentă e comun/1_ingrediente.md
+ema/
+├── 1_profil.md        → date, activitate, sănătate, obiectiv
+├── 2_nutritie.md      → calorii, macro, fibre pe zi
+├── 3_preferinte.md    → ce-i place, ce nu, ce nu poate
+├── 4_meniu.md         → meniul săptămânal + porțiile ei
+├── 5_sala.md          → programul de antrenament
+└── 6_sanatate.md      → somn, stres, mobilitate, monitorizare
 
 adi/                    (de completat)
 ├── 1_profil.md
@@ -89,7 +88,7 @@ adi/                    (de completat)
 └── 4_meniu.md
 ```
 
-Când modularizezi mai departe, adaugă fișiere noi în folderul potrivit (cu prefix numeric, în ordinea de lucru) și linkează-le din `Gym-Rules.md`.
+Fișierele sunt numerotate în ordinea în care le completăm. Când adaugi ceva nou, păstrează numerotarea și linkează din `Gym-Rules.md`.
 
 ---
 

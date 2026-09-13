@@ -1,6 +1,7 @@
 # 🧍 Profil & Obiective — Ema
 
 > Fundația întregului plan. Tot ce calculăm (calorii, macro, antrenament) pornește de aici.
+> **Preferințele alimentare NU se scriu aici** → [`3_preferinte.md`](./3_preferinte.md).
 > Câmpurile cu `⟨…⟩` se completează cu date **reale**.
 
 ## Date de bază
@@ -32,20 +33,16 @@
 
 ✅ **Fără probleme medicale, fără medicație, fără accidentări/probleme articulare cunoscute.** Fără contraindicații pentru antrenament sau dietă în deficit moderat.
 
-## Alimentație — preferințe & restricții
+## Alimentație
+
+Detaliul complet (favorite, restricții, reguli de frecvență, preferințe culinare) → [`3_preferinte.md`](./3_preferinte.md).
 
 | Câmp | Valoare |
 |------|---------|
 | Alergii / intoleranțe | **niciuna** |
-| Regim | omnivor. Mănâncă carne (preferă **vită, porc, pui**), dar **preferă mai mult brânza/lactatele**. Ouă: **3 ouă la două zile** (o zi da / o zi pauză). **Pește 2×/săptămână** (omega-3). |
-| Legume | **multe și variate** (nu mereu aceleași) — vezi [`7_alimente.md`](./7_alimente.md) |
-| Pește | **de 2x/săptămână** (sursă de omega-3) — planificat |
-| Alimente pe care le urăște | nespecificat |
-| Câte mese/zi preferă | **3 mese + 1 gustare** (gustarea de preferat ~20 min după sală) |
-| Orele meselor | de stabilit ulterior |
-| Timp de gătit realist/zi | de stabilit |
-| Gătit la comun cu Adi? | **Da** (planificarea lui Adi — ulterior) |
-| Buget alimentar orientativ | ~1000 lei/lună (Ema). *Nu optimizăm după cost — semnalează dacă exagerăm.* |
+| Regim | omnivor |
+| Gătit la comun cu Adi | **Da** |
+| Buget alimentar orientativ | ~1000 lei/lună. *Nu optimizăm după cost — semnalează dacă exagerăm.* |
 
 ## Obiectiv
 
