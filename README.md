@@ -24,6 +24,7 @@ Planuri de mâncare, antrenament și sănătate. **Se gătește și se cumpără
 comun/     ← ce ține de mâncare: alimente, rețete, cumpărături
 ema/       ← profil, nutriție, preferințe, meniu, sală, sănătate
 adi/       ← profil, nutriție, preferințe, meniu   (de completat)
+wiki/      ← ghiduri/referințe generale de antrenament, valabile pentru oricine
 ```
 
 Lista de alimente și rețetele sunt aceleași pentru amândoi, de asta stau în `comun/`. Ce diferă de la om la om — nevoile, gusturile, porțiile — stă la fiecare în folderul lui.

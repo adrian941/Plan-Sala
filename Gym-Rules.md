@@ -40,6 +40,12 @@
 
 Legendă: 🟢 stabil · 🟡 în lucru · ⚪ neînceput · 🔴 blocat
 
+## 📚 Wiki — ghiduri generale de antrenament
+
+| Fișier | Ce conține | Status |
+|--------|-----------|--------|
+| [`wiki/fesieri.md`](./wiki/fesieri.md) | Anatomie + exerciții pentru izolarea fesierilor fără hipertrofierea picioarelor | 🟢 |
+
 ---
 
 ## Principii de fond (le rafinăm împreună)
@@ -92,3 +98,4 @@ Acestea sunt reguli generale de plecare; le personalizăm pe măsură ce apar da
 | 2026-09-10 | **Stabilit pipeline-ul culinar în 3 pași** (ingrediente+preferințe+macro/fibre → rețete → cumpărături). Creat `comun/` cu `0_pipeline.md`, `1_ingrediente.md` (mutat din `ema/7_alimente.md`), `2_retete.md` și `3_cumparaturi.md` (mutat din `ema/6_cumparaturi.md`). Fibrele promovate la macro de rang egal. | toate |
 | 2026-09-10 | **Separate lucrurile care se amestecau:** lista de alimente și rețetele rămân comune și fără nume de oameni, iar gusturile trec la fiecare, în `3_preferinte.md`, scrise scurt (doar ce iese din tipar — restul se înțelege că e ok). Motivul: altfel, la fiecare om nou trebuia rescris tot. Preferințele alimentare scoase din profil (se dublau). | toate |
 | 2026-09-10 | **Simplificare.** Prima variantă a acestei separări o dusesem în zona tehnică — foldere `persoane/`, șabloane de copiat, script de verificare. Scoase toate: rămân trei foldere citibile — `comun/`, `ema/`, `adi/` — și fișiere .md scrise pe înțelesul oricui. Rețetele stau într-un singur fișier (`comun/2_retete.md`) până se adună multe. | toate |
+| 2026-09-13 | Adăugat folder **`wiki/`** pentru ghiduri de antrenament generale (nu personalizate, valabile pentru oricine antrenează). Primul fișier: `wiki/fesieri.md` — anatomie + exerciții pentru izolarea fesierilor fără hipertrofierea picioarelor. Linkat din `ema/5_sala.md`. | wiki |

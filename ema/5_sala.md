@@ -2,6 +2,7 @@
 
 > Se construiește după [`1_profil.md`](./1_profil.md) (nivel, zile disponibile, echipament, articulații).
 > Principii de fond: [Gym-Rules.md](../Gym-Rules.md).
+> Ghid de referință fesieri: [`wiki/fesieri.md`](../wiki/fesieri.md).
 
 ## Cadru
 *(Nr. zile/săptămână, tip split, durată sesiune.)*
