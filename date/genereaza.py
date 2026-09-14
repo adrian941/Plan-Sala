@@ -118,7 +118,7 @@ def menu_zilnic(who, size):
             for lbl,id in zip(MEALS,d[2:]):
                 r=R[id]
                 o.append(f"**{lbl} — {r['nume']}**\n")
-                o.append("| Ingredient | kcal & P/G/C/Fibre |\n|---|---:|")
+                o.append("| Ingredient | kcal & P/G/C/Fibre |\n|:---|:---|")
                 for label,items in r["comp"]:
                     for it in items:
                         k,g = it[0],it[col]

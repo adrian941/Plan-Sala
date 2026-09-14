@@ -11,7 +11,7 @@
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 3 ouă | 236 & 20.8/15.7/1.2/0.0 |
 | 120 g brânză de vaci | 97 & 12.6/2.8/5.8/0.0 |
 | 50 g spanac | 12 & 1.4/0.2/1.8/1.1 |
@@ -25,7 +25,7 @@
 **🍲 Prânz — Chili de linte cu pui tocat, avocado și salată de castraveți**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui tocat | 228 & 42.8/4.9/0.0/0.0 |
 | 50 g ceapă | 20 & 0.6/0.1/4.7/0.8 |
 | 60 g ardei | 16 & 0.6/0.2/3.6/1.3 |
@@ -40,7 +40,7 @@
 **🍎 Gustare — Skyr cu măr și migdale**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 250 g skyr | 148 & 25.5/1.0/9.0/0.0 |
 | 1 măr | 94 & 0.5/0.4/24.8/4.3 |
 | 20 g migdale | 116 & 4.2/10.0/4.3/2.5 |
@@ -48,7 +48,7 @@
 **🌙 Cină — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 100 g broccoli | 34 & 2.8/0.4/6.6/2.6 |
 | 60 g morcov | 25 & 0.5/0.1/5.8/1.7 |
@@ -65,7 +65,7 @@
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g skyr | 118 & 20.4/0.8/7.2/0.0 |
 | 70 g fulgi de ovăz | 265 & 9.2/4.5/47.4/7.1 |
 | 100 g fructe de pădure | 47 & 0.9/0.4/11.4/3.6 |
@@ -76,7 +76,7 @@
 **🍲 Prânz — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 100 g broccoli | 34 & 2.8/0.4/6.6/2.6 |
 | 60 g morcov | 25 & 0.5/0.1/5.8/1.7 |
@@ -91,7 +91,7 @@
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g skyr | 118 & 20.4/0.8/7.2/0.0 |
 | 200 ml lapte 1,5% | 92 & 6.6/3.0/9.6/0.0 |
 | 1 banană | 107 & 1.3/0.4/27.4/3.1 |
@@ -100,7 +100,7 @@
 **🌙 Cină — Doradă la cuptor cu fasole verde cu usturoi, salată de rucola, quinoa și sos de lămâie cu mărar 🐟**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 240 g doradă | 233 & 44.2/4.8/0.0/0.0 |
 | 150 g fasole verde | 46 & 2.7/0.3/10.5/4.0 |
 | 40 g rucola | 10 & 1.0/0.3/1.5/0.6 |
@@ -116,7 +116,7 @@
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 3 ouă | 236 & 20.8/15.7/1.2/0.0 |
 | 120 g brânză de vaci | 97 & 12.6/2.8/5.8/0.0 |
 | 100 g roșii | 18 & 0.9/0.2/3.9/1.2 |
@@ -129,7 +129,7 @@
 **🍲 Prânz — Salată de ton cu năut, legume crude și vinegretă de muștar 🐟**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 140 g ton (conservă, scurs) | 162 & 35.7/1.1/0.0/0.0 |
 | 70 g castravete | 10 & 0.5/0.1/2.5/0.3 |
 | 50 g ardei | 13 & 0.5/0.1/3.0/1.1 |
@@ -146,7 +146,7 @@
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g brânză de vaci | 162 & 21.0/4.6/9.6/0.0 |
 | 50 g pâine integrală | 126 & 6.2/1.8/21.4/3.0 |
 | 50 g castravete | 8 & 0.3/0.1/1.8/0.2 |
@@ -156,7 +156,7 @@
 **🌙 Cină — Tocăniță de vită cu ciuperci, mămăligă și salată de varză roșie cu mere**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g vită slabă | 242 & 46.8/6.0/0.0/0.0 |
 | 80 g ciuperci | 18 & 2.5/0.2/2.6/0.8 |
 | 50 g ceapă | 20 & 0.6/0.1/4.7/0.8 |
@@ -173,7 +173,7 @@
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g iaurt grec | 146 & 20.0/3.8/7.8/0.0 |
 | 50 g fulgi de ovăz | 190 & 6.6/3.2/33.9/5.0 |
 | 1 banană | 107 & 1.3/0.4/27.4/3.1 |
@@ -184,7 +184,7 @@
 **🍲 Prânz — Tocăniță de vită cu ciuperci, mămăligă și salată de varză roșie cu mere**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g vită slabă | 242 & 46.8/6.0/0.0/0.0 |
 | 80 g ciuperci | 18 & 2.5/0.2/2.6/0.8 |
 | 50 g ceapă | 20 & 0.6/0.1/4.7/0.8 |
@@ -199,7 +199,7 @@
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g skyr | 118 & 20.4/0.8/7.2/0.0 |
 | 200 ml lapte 1,5% | 92 & 6.6/3.0/9.6/0.0 |
 | 1 banană | 107 & 1.3/0.4/27.4/3.1 |
@@ -208,7 +208,7 @@
 **🌙 Cină — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 150 g dovlecel | 26 & 1.8/0.5/4.7/1.5 |
 | 40 g ceapă | 16 & 0.4/0.0/3.7/0.7 |
@@ -224,7 +224,7 @@
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 3 ouă | 236 & 20.8/15.7/1.2/0.0 |
 | 120 g brânză de vaci | 97 & 12.6/2.8/5.8/0.0 |
 | 50 g spanac | 12 & 1.4/0.2/1.8/1.1 |
@@ -238,7 +238,7 @@
 **🍲 Prânz — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 150 g dovlecel | 26 & 1.8/0.5/4.7/1.5 |
 | 40 g ceapă | 16 & 0.4/0.0/3.7/0.7 |
@@ -252,7 +252,7 @@
 **🍎 Gustare — Skyr cu măr și migdale**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 250 g skyr | 148 & 25.5/1.0/9.0/0.0 |
 | 1 măr | 94 & 0.5/0.4/24.8/4.3 |
 | 20 g migdale | 116 & 4.2/10.0/4.3/2.5 |
@@ -260,7 +260,7 @@
 **🌙 Cină — Cotlet de porc cu piure de conopidă și morcov, cartofi copți și salată de varză**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g cotlet de porc | 241 & 42.6/6.5/0.0/0.0 |
 | 150 g conopidă | 38 & 2.9/0.5/7.5/3.0 |
 | 80 g morcov | 33 & 0.7/0.2/7.7/2.2 |
@@ -274,7 +274,7 @@
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g skyr | 118 & 20.4/0.8/7.2/0.0 |
 | 70 g fulgi de ovăz | 265 & 9.2/4.5/47.4/7.1 |
 | 100 g fructe de pădure | 47 & 0.9/0.4/11.4/3.6 |
@@ -285,7 +285,7 @@
 **🍲 Prânz — Cotlet de porc cu piure de conopidă și morcov, cartofi copți și salată de varză**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g cotlet de porc | 241 & 42.6/6.5/0.0/0.0 |
 | 150 g conopidă | 38 & 2.9/0.5/7.5/3.0 |
 | 80 g morcov | 33 & 0.7/0.2/7.7/2.2 |
@@ -297,7 +297,7 @@
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g brânză de vaci | 162 & 21.0/4.6/9.6/0.0 |
 | 50 g pâine integrală | 126 & 6.2/1.8/21.4/3.0 |
 | 50 g castravete | 8 & 0.3/0.1/1.8/0.2 |
@@ -307,7 +307,7 @@
 **🌙 Cină — Curry de pui cu conopidă, spanac și năut, orez basmati**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 120 g conopidă | 30 & 2.3/0.4/6.0/2.4 |
 | 80 g spanac | 18 & 2.3/0.3/2.9/1.8 |
@@ -323,7 +323,7 @@
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 3 ouă | 236 & 20.8/15.7/1.2/0.0 |
 | 120 g brânză de vaci | 97 & 12.6/2.8/5.8/0.0 |
 | 100 g roșii | 18 & 0.9/0.2/3.9/1.2 |
@@ -336,7 +336,7 @@
 **🍲 Prânz — Curry de pui cu conopidă, spanac și năut, orez basmati**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 120 g conopidă | 30 & 2.3/0.4/6.0/2.4 |
 | 80 g spanac | 18 & 2.3/0.3/2.9/1.8 |
@@ -350,7 +350,7 @@
 **🍎 Gustare — Skyr cu măr și migdale**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 250 g skyr | 148 & 25.5/1.0/9.0/0.0 |
 | 1 măr | 94 & 0.5/0.4/24.8/4.3 |
 | 20 g migdale | 116 & 4.2/10.0/4.3/2.5 |
@@ -358,7 +358,7 @@
 **🌙 Cină — Chiftele de pui la cuptor cu salată grecească, orez brun și sos de tahini**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 15 g fulgi de ovăz | 57 & 2.0/1.0/10.2/1.5 |
 | 100 g roșii | 18 & 0.9/0.2/3.9/1.2 |
@@ -380,7 +380,7 @@
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g iaurt grec | 146 & 20.0/3.8/7.8/0.0 |
 | 50 g fulgi de ovăz | 190 & 6.6/3.2/33.9/5.0 |
 | 1 banană | 107 & 1.3/0.4/27.4/3.1 |
@@ -391,7 +391,7 @@
 **🍲 Prânz — Chiftele de pui la cuptor cu salată grecească, orez brun și sos de tahini**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 15 g fulgi de ovăz | 57 & 2.0/1.0/10.2/1.5 |
 | 100 g roșii | 18 & 0.9/0.2/3.9/1.2 |
@@ -408,7 +408,7 @@
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g brânză de vaci | 162 & 21.0/4.6/9.6/0.0 |
 | 50 g pâine integrală | 126 & 6.2/1.8/21.4/3.0 |
 | 50 g castravete | 8 & 0.3/0.1/1.8/0.2 |
@@ -418,7 +418,7 @@
 **🌙 Cină — Mușchi de porc la grătar cu piure de broccoli și dovlecel, hrișcă și sos de roșii cu busuioc**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g mușchi de porc | 218 & 42.0/4.4/0.0/0.0 |
 | 150 g broccoli | 51 & 4.2/0.6/9.9/3.9 |
 | 120 g dovlecel | 20 & 1.4/0.4/3.7/1.2 |
@@ -433,7 +433,7 @@
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 3 ouă | 236 & 20.8/15.7/1.2/0.0 |
 | 120 g brânză de vaci | 97 & 12.6/2.8/5.8/0.0 |
 | 50 g spanac | 12 & 1.4/0.2/1.8/1.1 |
@@ -447,7 +447,7 @@
 **🍲 Prânz — Mușchi de porc la grătar cu piure de broccoli și dovlecel, hrișcă și sos de roșii cu busuioc**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g mușchi de porc | 218 & 42.0/4.4/0.0/0.0 |
 | 150 g broccoli | 51 & 4.2/0.6/9.9/3.9 |
 | 120 g dovlecel | 20 & 1.4/0.4/3.7/1.2 |
@@ -460,7 +460,7 @@
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g skyr | 118 & 20.4/0.8/7.2/0.0 |
 | 200 ml lapte 1,5% | 92 & 6.6/3.0/9.6/0.0 |
 | 1 banană | 107 & 1.3/0.4/27.4/3.1 |
@@ -469,7 +469,7 @@
 **🌙 Cină — Păstrăv la cuptor cu legume ratatouille, cartofi și sos de lămâie cu usturoi 🐟**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 220 g păstrăv | 310 & 43.8/13.6/0.0/0.0 |
 | 80 g vinete | 20 & 0.8/0.2/4.7/2.4 |
 | 80 g dovlecel | 14 & 1.0/0.2/2.5/0.8 |
@@ -486,7 +486,7 @@
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g skyr | 118 & 20.4/0.8/7.2/0.0 |
 | 70 g fulgi de ovăz | 265 & 9.2/4.5/47.4/7.1 |
 | 100 g fructe de pădure | 47 & 0.9/0.4/11.4/3.6 |
@@ -497,7 +497,7 @@
 **🍲 Prânz — Salată de ton cu năut, legume crude și vinegretă de muștar 🐟**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 140 g ton (conservă, scurs) | 162 & 35.7/1.1/0.0/0.0 |
 | 70 g castravete | 10 & 0.5/0.1/2.5/0.3 |
 | 50 g ardei | 13 & 0.5/0.1/3.0/1.1 |
@@ -514,7 +514,7 @@
 **🍎 Gustare — Skyr cu măr și migdale**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 250 g skyr | 148 & 25.5/1.0/9.0/0.0 |
 | 1 măr | 94 & 0.5/0.4/24.8/4.3 |
 | 20 g migdale | 116 & 4.2/10.0/4.3/2.5 |
@@ -522,7 +522,7 @@
 **🌙 Cină — Stir-fry de vită cu broccoli, ardei, ciuperci și varză, orez basmati, sos soia-ghimbir, caju**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g vită slabă | 230 & 44.5/5.7/0.0/0.0 |
 | 100 g broccoli | 34 & 2.8/0.4/6.6/2.6 |
 | 70 g ardei | 18 & 0.7/0.2/4.2/1.5 |
@@ -540,7 +540,7 @@
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 3 ouă | 236 & 20.8/15.7/1.2/0.0 |
 | 120 g brânză de vaci | 97 & 12.6/2.8/5.8/0.0 |
 | 100 g roșii | 18 & 0.9/0.2/3.9/1.2 |
@@ -553,7 +553,7 @@
 **🍲 Prânz — Stir-fry de vită cu broccoli, ardei, ciuperci și varză, orez basmati, sos soia-ghimbir, caju**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g vită slabă | 230 & 44.5/5.7/0.0/0.0 |
 | 100 g broccoli | 34 & 2.8/0.4/6.6/2.6 |
 | 70 g ardei | 18 & 0.7/0.2/4.2/1.5 |
@@ -569,7 +569,7 @@
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g skyr | 118 & 20.4/0.8/7.2/0.0 |
 | 200 ml lapte 1,5% | 92 & 6.6/3.0/9.6/0.0 |
 | 1 banană | 107 & 1.3/0.4/27.4/3.1 |
@@ -578,7 +578,7 @@
 **🌙 Cină — Chili de linte cu pui tocat, avocado și salată de castraveți**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui tocat | 228 & 42.8/4.9/0.0/0.0 |
 | 50 g ceapă | 20 & 0.6/0.1/4.7/0.8 |
 | 60 g ardei | 16 & 0.6/0.2/3.6/1.3 |
@@ -595,7 +595,7 @@
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g iaurt grec | 146 & 20.0/3.8/7.8/0.0 |
 | 50 g fulgi de ovăz | 190 & 6.6/3.2/33.9/5.0 |
 | 1 banană | 107 & 1.3/0.4/27.4/3.1 |
@@ -606,7 +606,7 @@
 **🍲 Prânz — Chili de linte cu pui tocat, avocado și salată de castraveți**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui tocat | 228 & 42.8/4.9/0.0/0.0 |
 | 50 g ceapă | 20 & 0.6/0.1/4.7/0.8 |
 | 60 g ardei | 16 & 0.6/0.2/3.6/1.3 |
@@ -621,7 +621,7 @@
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g brânză de vaci | 162 & 21.0/4.6/9.6/0.0 |
 | 50 g pâine integrală | 126 & 6.2/1.8/21.4/3.0 |
 | 50 g castravete | 8 & 0.3/0.1/1.8/0.2 |
@@ -631,7 +631,7 @@
 **🌙 Cină — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 100 g broccoli | 34 & 2.8/0.4/6.6/2.6 |
 | 60 g morcov | 25 & 0.5/0.1/5.8/1.7 |
@@ -648,7 +648,7 @@
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 3 ouă | 236 & 20.8/15.7/1.2/0.0 |
 | 120 g brânză de vaci | 97 & 12.6/2.8/5.8/0.0 |
 | 50 g spanac | 12 & 1.4/0.2/1.8/1.1 |
@@ -662,7 +662,7 @@
 **🍲 Prânz — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 100 g broccoli | 34 & 2.8/0.4/6.6/2.6 |
 | 60 g morcov | 25 & 0.5/0.1/5.8/1.7 |
@@ -677,7 +677,7 @@
 **🍎 Gustare — Skyr cu măr și migdale**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 250 g skyr | 148 & 25.5/1.0/9.0/0.0 |
 | 1 măr | 94 & 0.5/0.4/24.8/4.3 |
 | 20 g migdale | 116 & 4.2/10.0/4.3/2.5 |
@@ -685,7 +685,7 @@
 **🌙 Cină — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 150 g dovlecel | 26 & 1.8/0.5/4.7/1.5 |
 | 40 g ceapă | 16 & 0.4/0.0/3.7/0.7 |
@@ -701,7 +701,7 @@
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g skyr | 118 & 20.4/0.8/7.2/0.0 |
 | 70 g fulgi de ovăz | 265 & 9.2/4.5/47.4/7.1 |
 | 100 g fructe de pădure | 47 & 0.9/0.4/11.4/3.6 |
@@ -712,7 +712,7 @@
 **🍲 Prânz — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 150 g dovlecel | 26 & 1.8/0.5/4.7/1.5 |
 | 40 g ceapă | 16 & 0.4/0.0/3.7/0.7 |
@@ -726,7 +726,7 @@
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 200 g brânză de vaci | 162 & 21.0/4.6/9.6/0.0 |
 | 50 g pâine integrală | 126 & 6.2/1.8/21.4/3.0 |
 | 50 g castravete | 8 & 0.3/0.1/1.8/0.2 |
@@ -736,7 +736,7 @@
 **🌙 Cină — Chiftele de pui la cuptor cu salată grecească, orez brun și sos de tahini**
 
 | Ingredient | kcal & P/G/C/Fibre |
-|---|---:|
+|:---|:---|
 | 190 g piept de pui | 228 & 42.8/4.9/0.0/0.0 |
 | 15 g fulgi de ovăz | 57 & 2.0/1.0/10.2/1.5 |
 | 100 g roșii | 18 & 0.9/0.2/3.9/1.2 |
