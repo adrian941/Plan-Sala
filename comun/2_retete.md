@@ -34,10 +34,10 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 
 | # | Rețetă | Masă | Timp | kcal S / M | S: P / G / C / Fibre | M: P / G / C / Fibre | Ema | Adi | Frigider |
 |--:|--------|------|-----:|-----------:|---|---|:-:|:-:|:-:|
-| MD1 | [Omletă cu legume și brânză de vaci, pâine integrală + banană](#md1) | mic dejun 🥚 | 15′ | 635 / 650 | 43 / 26 / 62 / 9 | 45 / 26 / 63 / 9 | ❔ | ❔ | nu |
+| MD1 | [Omletă cu legume și brânză de vaci, pâine integrală + banană](#md1) | mic dejun 🥚 | 15′ | 635 / 730 | 43 / 26 / 62 / 9 | 52 / 31 / 63 / 9 | ❔ | ❔ | nu |
 | MD2 | [Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci](#md2) | mic dejun | 5′ (seara) | 550 / 625 | 36 / 16 / 70 / 14 | 38 / 20 / 77 / 15 | ❔ | ❔ | 3 zile |
 | MD3 | [Bol de iaurt grec cu banană, unt de arahide, ovăz și in](#md3) | mic dejun | 5′ | 575 / 645 | 32 / 19 / 76 / 12 | 35 / 22 / 84 / 13 | ❔ | ❔ | nu |
-| MD4 | [Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr](#md4) | mic dejun 🥚 | 10′ | 655 / 670 | 41 / 28 / 65 / 13 | 43 / 28 / 66 / 13 | ❔ | ❔ | nu |
+| MD4 | [Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr](#md4) | mic dejun 🥚 | 10′ | 655 / 750 | 41 / 28 / 65 / 13 | 50 / 34 / 66 / 13 | ❔ | ❔ | nu |
 | G1 | [Skyr cu măr și migdale](#g1) | gustare | 2′ | 300 / 355 | 24 / 9 / 35 / 6 | 30 / 11 / 38 / 7 | ❔ | ❔ | — |
 | G2 | [Brânză de vaci cu pâine integrală și legume crude](#g2) | gustare | 5′ | 265 / 330 | 22 / 5 / 34 / 5 | 29 / 7 / 41 / 6 | ❔ | ❔ | — |
 | G3 | [Shake post-sală: lapte, skyr, banană, unt de arahide](#g3) | gustare 🏋️ | 3′ | 345 / 405 | 25 / 9 / 45 / 4 | 32 / 12 / 48 / 4 | ❔ | ❔ | — |
@@ -67,7 +67,7 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 
 | Element | Ingredient | S | M |
 |---|---|--:|--:|
-| **Proteină** | Ouă | 3 | 3 |
+| **Proteină** | Ouă | 3 | 4 |
 |  | Brânză de vaci | 100 g | 120 g |
 | **Legume** | Spanac | 50 g | 50 g |
 |  | Roșii | 60 g | 60 g |
@@ -82,7 +82,7 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
 | **S** | 635 | 43 | 26 | 62 | 9 |
-| **M** | 650 | 45 | 26 | 63 | 9 |
+| **M** | 730 | 52 | 31 | 63 | 9 |
 
 **Variante:** Legumele = ce e în casă (ardei, dovlecel, praz). Banana ↔ măr / 150 g fructe de pădure.
 
@@ -137,7 +137,7 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 
 | Element | Ingredient | S | M |
 |---|---|--:|--:|
-| **Proteină** | Ouă | 3 | 3 |
+| **Proteină** | Ouă | 3 | 4 |
 |  | Brânză de vaci | 100 g | 120 g |
 | **Legume** | Roșii | 100 g | 100 g |
 |  | Castravete | 100 g | 100 g |
@@ -151,7 +151,7 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
 | **S** | 655 | 41 | 28 | 65 | 13 |
-| **M** | 670 | 43 | 28 | 66 | 13 |
+| **M** | 750 | 50 | 34 | 66 | 13 |
 
 
 

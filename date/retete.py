@@ -51,7 +51,7 @@ def rec(id, nume, scurt, masa, timp, tine, comp, cum, var=""):
 
 # ===== MIC DEJUN =====
 rec("MD1","Omletă cu legume și brânză de vaci, pâine integrală + banană","Omletă cu legume","mic dejun 🥚","15′","nu",
- [("Proteină",[("ou",165,165),("branza_vaci",100,120)]),
+ [("Proteină",[("ou",165,220),("branza_vaci",100,120)]),
   ("Legume",[("spanac",50,50),("rosii",60,60),("ciuperci",50,50),("ceapa_verde",20,20)]),
   ("Amidon",[("paine",50,50)]),("Grăsimi",[("ulei",5,5)]),("Fruct",[("banana",120,120)])],
  "Ciupercile și ceapa verde 3 min în ulei, spanacul și roșiile 1 min, ouăle bătute deasupra, amestecat până se leagă. Brânza de vaci alături. Banana la final.",
@@ -66,7 +66,7 @@ rec("MD3","Bol de iaurt grec cu banană, unt de arahide, ovăz și in","Bol de i
   ("Grăsimi",[("unt_arahide",15,20),("in",10,10)])],
  "Iaurtul în bol, banana felii și afinele, ovăzul și inul deasupra, untul de arahide picurat. Scorțișoară.", "")
 rec("MD4","Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr","Ochiuri cu avocado","mic dejun 🥚","10′","nu",
- [("Proteină",[("ou",165,165),("branza_vaci",100,120)]),("Legume",[("rosii",100,100),("castravete",100,100),("rucola",20,20)]),
+ [("Proteină",[("ou",165,220),("branza_vaci",100,120)]),("Legume",[("rosii",100,100),("castravete",100,100),("rucola",20,20)]),
   ("Amidon",[("paine",50,50)]),("Grăsimi",[("avocado",50,50)]),("Fruct",[("mar",180,180)])],
  "Avocado zdrobit cu lămâie pe pâine, ouăle (ochiuri sau fierte moi) deasupra, rucola, roșiile, castravetele și brânza alături.", "")
 

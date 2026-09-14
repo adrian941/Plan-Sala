@@ -34,7 +34,7 @@ Aceleași ca la Ema — simplifică gătitul la comun:
 | Regulă | Detaliu |
 |--------|---------|
 | **Pește 2×/săptămână** | Fix. Prioritar **pește gras** (somon, macrou, sardine, hering, păstrăv) pentru omega-3 |
-| **Ouă: 3 la două zile** | O zi da / o zi pauză, sincronizat cu Ema. În zilele fără ouă → altă sursă de proteină |
+| **Ouă: 4 la două zile** | O zi da / o zi pauză, sincronizat cu Ema (care mănâncă 3). Preferința lui — îi place mai mult, plus proteina extra ajută la recompoziție. În zilele fără ouă → altă sursă de proteină |
 | **Fără lactate cu carne/pește, fără ouă cu carne** | În aceeași masă. Lactatele merg la micul dejun (cu ouă e ok) și la gustări; la felurile cu carne, sosurile sunt fără iaurt/brânză |
 
 ## Preferințe culinare
