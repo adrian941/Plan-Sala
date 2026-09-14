@@ -104,6 +104,29 @@ extra_a = "- Gustarea: în zilele de sală (marți, joi — *de confirmat*) shak
 W("ema/4_meniu.md", menu("Ema","S","ea",TARGET["S"],extra_e))
 W("adi/4_meniu.md", menu("Adi","M","el",TARGET["M"],extra_a))
 
+# ================= 3b. MENIU VIZUAL (rețetele săptămânii, o zi sub alta) =================
+def menu_zilnic(who, size):
+    MEALS = ("🌅 Mic dejun","🍲 Prânz","🍎 Gustare","🌙 Cină")
+    o=[]
+    o.append(f"# 📋 Meniu zilnic — {who} (vizualizare rapidă)\n")
+    o.append(f"> Doar de citit rapid: o zi sub alta, rețetele mesei cu ingredientele pe rânduri separate — **fără tabel, fără calcule**.\n> Sursa de adevăr (porții exacte, kcal, macro, fibre) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.\n")
+    col = 1 if size=="S" else 2
+    for w in (0,1):
+        o.append(f"\n## Săptămâna {w+1}\n")
+        for d in PLAN[w*7:w*7+7]:
+            o.append(f"### {d[0]} {d[1]}".strip()+"\n")
+            for lbl,id in zip(MEALS,d[2:]):
+                r=R[id]
+                o.append(f"**{lbl} — {r['nume']}**\n")
+                for label,items in r["comp"]:
+                    for it in items:
+                        k,g = it[0],it[col]
+                        if g>0: o.append(f"- {qty(k,g)}")
+                o.append("")
+    return "\n".join(o)
+W("ema/4b_meniu_zilnic.md", menu_zilnic("Ema","S"))
+W("adi/4b_meniu_zilnic.md", menu_zilnic("Adi","M"))
+
 
 # ================= 4. CALENDAR =================
 COOK = {  # ce se gătește în seara respectivă, pe lângă cina ×4
