@@ -1,7 +1,7 @@
 # 📋 Meniu zilnic — Adi (vizualizare rapidă)
 
-> Doar de citit rapid: o zi sub alta, rețetele mesei cu ingredientele pe rânduri separate — **fără tabel, fără calcule**.
-> Sursa de adevăr (porții exacte, kcal, macro, fibre) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.
+> Doar de citit rapid: o zi sub alta, rețetele mesei cu ingredientele pe rânduri separate — **fără tabel**. La fiecare ingredient: **kcal & P/G/C/Fibre** pentru cantitatea de pe rând.
+> Sursa de adevăr (porții exacte, totalul pe masă/zi) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.
 
 
 ## Săptămâna 1
@@ -10,311 +10,311 @@
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
-- 3 ouă
-- 120 g brânză de vaci
-- 50 g spanac
-- 60 g roșii
-- 50 g ciuperci
-- 20 g ceapă verde
-- 50 g pâine integrală
-- 5 g ulei de măsline
-- 1 banană
+- 3 ouă — 236 & 20.8/15.7/1.2/0.0
+- 120 g brânză de vaci — 97 & 12.6/2.8/5.8/0.0
+- 50 g spanac — 12 & 1.4/0.2/1.8/1.1
+- 60 g roșii — 11 & 0.5/0.1/2.3/0.7
+- 50 g ciuperci — 11 & 1.6/0.1/1.6/0.5
+- 20 g ceapă verde — 6 & 0.4/0.0/1.5/0.5
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 5 g ulei de măsline — 44 & 0.0/5.0/0.0/0.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
 
 **🍲 Prânz — Chili de linte cu pui tocat, avocado și salată de castraveți**
 
-- 190 g piept de pui tocat
-- 50 g ceapă
-- 60 g ardei
-- 50 g morcov
-- 100 g castravete
-- 75 g linte
-- 150 g roșii pasate
-- 5 ml suc de lămâie
-- 6 g ulei de măsline
-- 50 g avocado
+- 190 g piept de pui tocat — 228 & 42.8/4.9/0.0/0.0
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 60 g ardei — 16 & 0.6/0.2/3.6/1.3
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
+- 100 g castravete — 15 & 0.7/0.1/3.6/0.5
+- 75 g linte — 264 & 18.4/0.8/47.5/8.0
+- 150 g roșii pasate — 57 & 2.5/0.3/13.5/2.9
+- 5 ml suc de lămâie — 1 & 0.0/0.0/0.3/0.0
+- 6 g ulei de măsline — 53 & 0.0/6.0/0.0/0.0
+- 50 g avocado — 80 & 1.0/7.3/4.2/3.4
 
 **🍎 Gustare — Skyr cu măr și migdale**
 
-- 250 g skyr
-- 1 măr
-- 20 g migdale
+- 250 g skyr — 148 & 25.5/1.0/9.0/0.0
+- 1 măr — 94 & 0.5/0.4/24.8/4.3
+- 20 g migdale — 116 & 4.2/10.0/4.3/2.5
 
 **🌙 Cină — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
 
-- 190 g piept de pui
-- 100 g broccoli
-- 60 g morcov
-- 50 g ceapă
-- 60 g ardei
-- 220 g cartof dulce
-- 12 g tahini
-- 3 g usturoi
-- 10 ml suc de lămâie
-- 9 g ulei de măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 100 g broccoli — 34 & 2.8/0.4/6.6/2.6
+- 60 g morcov — 25 & 0.5/0.1/5.8/1.7
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 60 g ardei — 16 & 0.6/0.2/3.6/1.3
+- 220 g cartof dulce — 189 & 3.5/0.2/44.2/6.6
+- 12 g tahini — 71 & 2.0/6.5/2.5/1.1
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
 
 ### Marți 🏋️
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
-- 200 g skyr
-- 70 g fulgi de ovăz
-- 100 g fructe de pădure
-- 10 g chia
-- 15 g nuci
-- 100 ml lapte 1,5%
+- 200 g skyr — 118 & 20.4/0.8/7.2/0.0
+- 70 g fulgi de ovăz — 265 & 9.2/4.5/47.4/7.1
+- 100 g fructe de pădure — 47 & 0.9/0.4/11.4/3.6
+- 10 g chia — 49 & 1.6/3.1/4.2/3.4
+- 15 g nuci — 98 & 2.3/9.8/2.1/1.0
+- 100 ml lapte 1,5% — 46 & 3.3/1.5/4.8/0.0
 
 **🍲 Prânz — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
 
-- 190 g piept de pui
-- 100 g broccoli
-- 60 g morcov
-- 50 g ceapă
-- 60 g ardei
-- 220 g cartof dulce
-- 12 g tahini
-- 3 g usturoi
-- 10 ml suc de lămâie
-- 9 g ulei de măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 100 g broccoli — 34 & 2.8/0.4/6.6/2.6
+- 60 g morcov — 25 & 0.5/0.1/5.8/1.7
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 60 g ardei — 16 & 0.6/0.2/3.6/1.3
+- 220 g cartof dulce — 189 & 3.5/0.2/44.2/6.6
+- 12 g tahini — 71 & 2.0/6.5/2.5/1.1
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
-- 200 g skyr
-- 200 ml lapte 1,5%
-- 1 banană
-- 15 g unt de arahide
+- 200 g skyr — 118 & 20.4/0.8/7.2/0.0
+- 200 ml lapte 1,5% — 92 & 6.6/3.0/9.6/0.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
+- 15 g unt de arahide — 90 & 3.3/7.7/3.3/0.8
 
 **🌙 Cină — Doradă la cuptor cu fasole verde cu usturoi, salată de rucola, quinoa și sos de lămâie cu mărar 🐟**
 
-- 240 g doradă
-- 150 g fasole verde
-- 40 g rucola
-- 80 g roșii
-- 3 g usturoi
-- 60 g quinoa
-- 10 ml suc de lămâie
-- 2 g usturoi
-- 12 g ulei de măsline
+- 240 g doradă — 233 & 44.2/4.8/0.0/0.0
+- 150 g fasole verde — 46 & 2.7/0.3/10.5/4.0
+- 40 g rucola — 10 & 1.0/0.3/1.5/0.6
+- 80 g roșii — 14 & 0.7/0.2/3.1/1.0
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 60 g quinoa — 221 & 8.5/3.7/38.5/4.2
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 2 g usturoi — 3 & 0.1/0.0/0.7/0.0
+- 12 g ulei de măsline — 106 & 0.0/12.0/0.0/0.0
 
 ### Miercuri 🥚
 
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
 
-- 3 ouă
-- 120 g brânză de vaci
-- 100 g roșii
-- 100 g castravete
-- 20 g rucola
-- 50 g pâine integrală
-- 50 g avocado
-- 1 măr
+- 3 ouă — 236 & 20.8/15.7/1.2/0.0
+- 120 g brânză de vaci — 97 & 12.6/2.8/5.8/0.0
+- 100 g roșii — 18 & 0.9/0.2/3.9/1.2
+- 100 g castravete — 15 & 0.7/0.1/3.6/0.5
+- 20 g rucola — 5 & 0.5/0.1/0.7/0.3
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 50 g avocado — 80 & 1.0/7.3/4.2/3.4
+- 1 măr — 94 & 0.5/0.4/24.8/4.3
 
 **🍲 Prânz — Salată de ton cu năut, legume crude și vinegretă de muștar 🐟**
 
-- 140 g ton (conservă, scurs)
-- 70 g castravete
-- 50 g ardei
-- 80 g roșii
-- 50 g salată verde
-- 20 g ceapă
-- 180 g năut
-- 8 g muștar
-- 10 ml suc de lămâie
-- 10 g ulei de măsline
-- 15 g măsline
-- 40 g pâine integrală
+- 140 g ton (conservă, scurs) — 162 & 35.7/1.1/0.0/0.0
+- 70 g castravete — 10 & 0.5/0.1/2.5/0.3
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 80 g roșii — 14 & 0.7/0.2/3.1/1.0
+- 50 g salată verde — 8 & 0.7/0.1/1.4/0.7
+- 20 g ceapă — 8 & 0.2/0.0/1.9/0.3
+- 180 g năut — 250 & 12.8/5.0/40.5/11.5
+- 8 g muștar — 5 & 0.3/0.3/0.5/0.3
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 10 g ulei de măsline — 88 & 0.0/10.0/0.0/0.0
+- 15 g măsline — 17 & 0.1/1.6/0.9/0.2
+- 40 g pâine integrală — 101 & 5.0/1.4/17.1/2.4
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
-- 200 g brânză de vaci
-- 50 g pâine integrală
-- 50 g castravete
-- 50 g ardei
-- 50 g morcov
+- 200 g brânză de vaci — 162 & 21.0/4.6/9.6/0.0
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 50 g castravete — 8 & 0.3/0.1/1.8/0.2
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
 
 **🌙 Cină — Tocăniță de vită cu ciuperci, mămăligă și salată de varză roșie cu mere**
 
-- 200 g vită slabă
-- 80 g ciuperci
-- 50 g ceapă
-- 50 g morcov
-- 40 g ardei
-- 100 g varză
-- 0.222222 mere
-- 70 g mălai
-- 100 g roșii pasate
-- 12 g ulei de măsline
+- 200 g vită slabă — 242 & 46.8/6.0/0.0/0.0
+- 80 g ciuperci — 18 & 2.5/0.2/2.6/0.8
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
+- 40 g ardei — 10 & 0.4/0.1/2.4/0.8
+- 100 g varză — 25 & 1.3/0.1/5.8/2.5
+- 0.222222 mere — 21 & 0.1/0.1/5.5/1.0
+- 70 g mălai — 253 & 5.7/2.5/53.8/5.1
+- 100 g roșii pasate — 38 & 1.7/0.2/9.0/1.9
+- 12 g ulei de măsline — 106 & 0.0/12.0/0.0/0.0
 
 ### Joi 🏋️
 
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
-- 200 g iaurt grec
-- 50 g fulgi de ovăz
-- 1 banană
-- 50 g afine
-- 20 g unt de arahide
-- 10 g in măcinat
+- 200 g iaurt grec — 146 & 20.0/3.8/7.8/0.0
+- 50 g fulgi de ovăz — 190 & 6.6/3.2/33.9/5.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
+- 50 g afine — 28 & 0.3/0.1/7.2/1.2
+- 20 g unt de arahide — 120 & 4.4/10.3/4.5/1.0
+- 10 g in măcinat — 53 & 1.8/4.2/2.9/2.7
 
 **🍲 Prânz — Tocăniță de vită cu ciuperci, mămăligă și salată de varză roșie cu mere**
 
-- 200 g vită slabă
-- 80 g ciuperci
-- 50 g ceapă
-- 50 g morcov
-- 40 g ardei
-- 100 g varză
-- 0.222222 mere
-- 70 g mălai
-- 100 g roșii pasate
-- 12 g ulei de măsline
+- 200 g vită slabă — 242 & 46.8/6.0/0.0/0.0
+- 80 g ciuperci — 18 & 2.5/0.2/2.6/0.8
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
+- 40 g ardei — 10 & 0.4/0.1/2.4/0.8
+- 100 g varză — 25 & 1.3/0.1/5.8/2.5
+- 0.222222 mere — 21 & 0.1/0.1/5.5/1.0
+- 70 g mălai — 253 & 5.7/2.5/53.8/5.1
+- 100 g roșii pasate — 38 & 1.7/0.2/9.0/1.9
+- 12 g ulei de măsline — 106 & 0.0/12.0/0.0/0.0
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
-- 200 g skyr
-- 200 ml lapte 1,5%
-- 1 banană
-- 15 g unt de arahide
+- 200 g skyr — 118 & 20.4/0.8/7.2/0.0
+- 200 ml lapte 1,5% — 92 & 6.6/3.0/9.6/0.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
+- 15 g unt de arahide — 90 & 3.3/7.7/3.3/0.8
 
 **🌙 Cină — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
 
-- 190 g piept de pui
-- 150 g dovlecel
-- 40 g ceapă
-- 40 g rucola
-- 80 g roșii
-- 75 g paste integrale
-- 150 g roșii pasate
-- 9 g ulei de măsline
-- 15 g măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 150 g dovlecel — 26 & 1.8/0.5/4.7/1.5
+- 40 g ceapă — 16 & 0.4/0.0/3.7/0.7
+- 40 g rucola — 10 & 1.0/0.3/1.5/0.6
+- 80 g roșii — 14 & 0.7/0.2/3.1/1.0
+- 75 g paste integrale — 264 & 10.4/2.2/55.0/6.9
+- 150 g roșii pasate — 57 & 2.5/0.3/13.5/2.9
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
+- 15 g măsline — 17 & 0.1/1.6/0.9/0.2
 
 ### Vineri 🥚
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
-- 3 ouă
-- 120 g brânză de vaci
-- 50 g spanac
-- 60 g roșii
-- 50 g ciuperci
-- 20 g ceapă verde
-- 50 g pâine integrală
-- 5 g ulei de măsline
-- 1 banană
+- 3 ouă — 236 & 20.8/15.7/1.2/0.0
+- 120 g brânză de vaci — 97 & 12.6/2.8/5.8/0.0
+- 50 g spanac — 12 & 1.4/0.2/1.8/1.1
+- 60 g roșii — 11 & 0.5/0.1/2.3/0.7
+- 50 g ciuperci — 11 & 1.6/0.1/1.6/0.5
+- 20 g ceapă verde — 6 & 0.4/0.0/1.5/0.5
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 5 g ulei de măsline — 44 & 0.0/5.0/0.0/0.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
 
 **🍲 Prânz — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
 
-- 190 g piept de pui
-- 150 g dovlecel
-- 40 g ceapă
-- 40 g rucola
-- 80 g roșii
-- 75 g paste integrale
-- 150 g roșii pasate
-- 9 g ulei de măsline
-- 15 g măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 150 g dovlecel — 26 & 1.8/0.5/4.7/1.5
+- 40 g ceapă — 16 & 0.4/0.0/3.7/0.7
+- 40 g rucola — 10 & 1.0/0.3/1.5/0.6
+- 80 g roșii — 14 & 0.7/0.2/3.1/1.0
+- 75 g paste integrale — 264 & 10.4/2.2/55.0/6.9
+- 150 g roșii pasate — 57 & 2.5/0.3/13.5/2.9
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
+- 15 g măsline — 17 & 0.1/1.6/0.9/0.2
 
 **🍎 Gustare — Skyr cu măr și migdale**
 
-- 250 g skyr
-- 1 măr
-- 20 g migdale
+- 250 g skyr — 148 & 25.5/1.0/9.0/0.0
+- 1 măr — 94 & 0.5/0.4/24.8/4.3
+- 20 g migdale — 116 & 4.2/10.0/4.3/2.5
 
 **🌙 Cină — Cotlet de porc cu piure de conopidă și morcov, cartofi copți și salată de varză**
 
-- 190 g cotlet de porc
-- 150 g conopidă
-- 80 g morcov
-- 120 g varză
-- 210 g cartofi
-- 8 g muștar
-- 12 g ulei de măsline
+- 190 g cotlet de porc — 241 & 42.6/6.5/0.0/0.0
+- 150 g conopidă — 38 & 2.9/0.5/7.5/3.0
+- 80 g morcov — 33 & 0.7/0.2/7.7/2.2
+- 120 g varză — 30 & 1.6/0.1/7.0/3.0
+- 210 g cartofi — 162 & 4.4/0.2/36.8/4.4
+- 8 g muștar — 5 & 0.3/0.3/0.5/0.3
+- 12 g ulei de măsline — 106 & 0.0/12.0/0.0/0.0
 
 ### Sâmbătă
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
-- 200 g skyr
-- 70 g fulgi de ovăz
-- 100 g fructe de pădure
-- 10 g chia
-- 15 g nuci
-- 100 ml lapte 1,5%
+- 200 g skyr — 118 & 20.4/0.8/7.2/0.0
+- 70 g fulgi de ovăz — 265 & 9.2/4.5/47.4/7.1
+- 100 g fructe de pădure — 47 & 0.9/0.4/11.4/3.6
+- 10 g chia — 49 & 1.6/3.1/4.2/3.4
+- 15 g nuci — 98 & 2.3/9.8/2.1/1.0
+- 100 ml lapte 1,5% — 46 & 3.3/1.5/4.8/0.0
 
 **🍲 Prânz — Cotlet de porc cu piure de conopidă și morcov, cartofi copți și salată de varză**
 
-- 190 g cotlet de porc
-- 150 g conopidă
-- 80 g morcov
-- 120 g varză
-- 210 g cartofi
-- 8 g muștar
-- 12 g ulei de măsline
+- 190 g cotlet de porc — 241 & 42.6/6.5/0.0/0.0
+- 150 g conopidă — 38 & 2.9/0.5/7.5/3.0
+- 80 g morcov — 33 & 0.7/0.2/7.7/2.2
+- 120 g varză — 30 & 1.6/0.1/7.0/3.0
+- 210 g cartofi — 162 & 4.4/0.2/36.8/4.4
+- 8 g muștar — 5 & 0.3/0.3/0.5/0.3
+- 12 g ulei de măsline — 106 & 0.0/12.0/0.0/0.0
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
-- 200 g brânză de vaci
-- 50 g pâine integrală
-- 50 g castravete
-- 50 g ardei
-- 50 g morcov
+- 200 g brânză de vaci — 162 & 21.0/4.6/9.6/0.0
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 50 g castravete — 8 & 0.3/0.1/1.8/0.2
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
 
 **🌙 Cină — Curry de pui cu conopidă, spanac și năut, orez basmati**
 
-- 190 g piept de pui
-- 120 g conopidă
-- 80 g spanac
-- 50 g ceapă
-- 60 g roșii
-- 60 g orez basmati
-- 80 g năut
-- 60 ml lapte de cocos light
-- 6 g ulei de măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 120 g conopidă — 30 & 2.3/0.4/6.0/2.4
+- 80 g spanac — 18 & 2.3/0.3/2.9/1.8
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 60 g roșii — 11 & 0.5/0.1/2.3/0.7
+- 60 g orez basmati — 219 & 4.3/0.4/48.0/0.8
+- 80 g năut — 111 & 5.7/2.2/18.0/5.1
+- 60 ml lapte de cocos light — 42 & 0.3/3.9/1.2/0.0
+- 6 g ulei de măsline — 53 & 0.0/6.0/0.0/0.0
 
 ### Duminică 🥚
 
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
 
-- 3 ouă
-- 120 g brânză de vaci
-- 100 g roșii
-- 100 g castravete
-- 20 g rucola
-- 50 g pâine integrală
-- 50 g avocado
-- 1 măr
+- 3 ouă — 236 & 20.8/15.7/1.2/0.0
+- 120 g brânză de vaci — 97 & 12.6/2.8/5.8/0.0
+- 100 g roșii — 18 & 0.9/0.2/3.9/1.2
+- 100 g castravete — 15 & 0.7/0.1/3.6/0.5
+- 20 g rucola — 5 & 0.5/0.1/0.7/0.3
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 50 g avocado — 80 & 1.0/7.3/4.2/3.4
+- 1 măr — 94 & 0.5/0.4/24.8/4.3
 
 **🍲 Prânz — Curry de pui cu conopidă, spanac și năut, orez basmati**
 
-- 190 g piept de pui
-- 120 g conopidă
-- 80 g spanac
-- 50 g ceapă
-- 60 g roșii
-- 60 g orez basmati
-- 80 g năut
-- 60 ml lapte de cocos light
-- 6 g ulei de măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 120 g conopidă — 30 & 2.3/0.4/6.0/2.4
+- 80 g spanac — 18 & 2.3/0.3/2.9/1.8
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 60 g roșii — 11 & 0.5/0.1/2.3/0.7
+- 60 g orez basmati — 219 & 4.3/0.4/48.0/0.8
+- 80 g năut — 111 & 5.7/2.2/18.0/5.1
+- 60 ml lapte de cocos light — 42 & 0.3/3.9/1.2/0.0
+- 6 g ulei de măsline — 53 & 0.0/6.0/0.0/0.0
 
 **🍎 Gustare — Skyr cu măr și migdale**
 
-- 250 g skyr
-- 1 măr
-- 20 g migdale
+- 250 g skyr — 148 & 25.5/1.0/9.0/0.0
+- 1 măr — 94 & 0.5/0.4/24.8/4.3
+- 20 g migdale — 116 & 4.2/10.0/4.3/2.5
 
 **🌙 Cină — Chiftele de pui la cuptor cu salată grecească, orez brun și sos de tahini**
 
-- 190 g piept de pui
-- 15 g fulgi de ovăz
-- 100 g roșii
-- 100 g castravete
-- 30 g ceapă
-- 50 g ardei
-- 60 g orez brun
-- 12 g tahini
-- 10 ml suc de lămâie
-- 3 g usturoi
-- 20 g măsline
-- 9 g ulei de măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 15 g fulgi de ovăz — 57 & 2.0/1.0/10.2/1.5
+- 100 g roșii — 18 & 0.9/0.2/3.9/1.2
+- 100 g castravete — 15 & 0.7/0.1/3.6/0.5
+- 30 g ceapă — 12 & 0.3/0.0/2.8/0.5
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 60 g orez brun — 220 & 4.5/1.9/45.8/2.2
+- 12 g tahini — 71 & 2.0/6.5/2.5/1.1
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 20 g măsline — 23 & 0.2/2.2/1.2/0.3
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
 
 
 ## Săptămâna 2
@@ -323,317 +323,317 @@
 
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
-- 200 g iaurt grec
-- 50 g fulgi de ovăz
-- 1 banană
-- 50 g afine
-- 20 g unt de arahide
-- 10 g in măcinat
+- 200 g iaurt grec — 146 & 20.0/3.8/7.8/0.0
+- 50 g fulgi de ovăz — 190 & 6.6/3.2/33.9/5.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
+- 50 g afine — 28 & 0.3/0.1/7.2/1.2
+- 20 g unt de arahide — 120 & 4.4/10.3/4.5/1.0
+- 10 g in măcinat — 53 & 1.8/4.2/2.9/2.7
 
 **🍲 Prânz — Chiftele de pui la cuptor cu salată grecească, orez brun și sos de tahini**
 
-- 190 g piept de pui
-- 15 g fulgi de ovăz
-- 100 g roșii
-- 100 g castravete
-- 30 g ceapă
-- 50 g ardei
-- 60 g orez brun
-- 12 g tahini
-- 10 ml suc de lămâie
-- 3 g usturoi
-- 20 g măsline
-- 9 g ulei de măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 15 g fulgi de ovăz — 57 & 2.0/1.0/10.2/1.5
+- 100 g roșii — 18 & 0.9/0.2/3.9/1.2
+- 100 g castravete — 15 & 0.7/0.1/3.6/0.5
+- 30 g ceapă — 12 & 0.3/0.0/2.8/0.5
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 60 g orez brun — 220 & 4.5/1.9/45.8/2.2
+- 12 g tahini — 71 & 2.0/6.5/2.5/1.1
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 20 g măsline — 23 & 0.2/2.2/1.2/0.3
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
-- 200 g brânză de vaci
-- 50 g pâine integrală
-- 50 g castravete
-- 50 g ardei
-- 50 g morcov
+- 200 g brânză de vaci — 162 & 21.0/4.6/9.6/0.0
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 50 g castravete — 8 & 0.3/0.1/1.8/0.2
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
 
 **🌙 Cină — Mușchi de porc la grătar cu piure de broccoli și dovlecel, hrișcă și sos de roșii cu busuioc**
 
-- 200 g mușchi de porc
-- 150 g broccoli
-- 120 g dovlecel
-- 30 g ceapă
-- 60 g hrișcă
-- 100 g roșii pasate
-- 10 g ulei de măsline
-- 10 g semințe de dovleac
+- 200 g mușchi de porc — 218 & 42.0/4.4/0.0/0.0
+- 150 g broccoli — 51 & 4.2/0.6/9.9/3.9
+- 120 g dovlecel — 20 & 1.4/0.4/3.7/1.2
+- 30 g ceapă — 12 & 0.3/0.0/2.8/0.5
+- 60 g hrișcă — 208 & 7.0/1.6/45.0/6.2
+- 100 g roșii pasate — 38 & 1.7/0.2/9.0/1.9
+- 10 g ulei de măsline — 88 & 0.0/10.0/0.0/0.0
+- 10 g semințe de dovleac — 56 & 3.0/4.9/1.1/0.6
 
 ### Marți 🥚🏋️
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
-- 3 ouă
-- 120 g brânză de vaci
-- 50 g spanac
-- 60 g roșii
-- 50 g ciuperci
-- 20 g ceapă verde
-- 50 g pâine integrală
-- 5 g ulei de măsline
-- 1 banană
+- 3 ouă — 236 & 20.8/15.7/1.2/0.0
+- 120 g brânză de vaci — 97 & 12.6/2.8/5.8/0.0
+- 50 g spanac — 12 & 1.4/0.2/1.8/1.1
+- 60 g roșii — 11 & 0.5/0.1/2.3/0.7
+- 50 g ciuperci — 11 & 1.6/0.1/1.6/0.5
+- 20 g ceapă verde — 6 & 0.4/0.0/1.5/0.5
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 5 g ulei de măsline — 44 & 0.0/5.0/0.0/0.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
 
 **🍲 Prânz — Mușchi de porc la grătar cu piure de broccoli și dovlecel, hrișcă și sos de roșii cu busuioc**
 
-- 200 g mușchi de porc
-- 150 g broccoli
-- 120 g dovlecel
-- 30 g ceapă
-- 60 g hrișcă
-- 100 g roșii pasate
-- 10 g ulei de măsline
-- 10 g semințe de dovleac
+- 200 g mușchi de porc — 218 & 42.0/4.4/0.0/0.0
+- 150 g broccoli — 51 & 4.2/0.6/9.9/3.9
+- 120 g dovlecel — 20 & 1.4/0.4/3.7/1.2
+- 30 g ceapă — 12 & 0.3/0.0/2.8/0.5
+- 60 g hrișcă — 208 & 7.0/1.6/45.0/6.2
+- 100 g roșii pasate — 38 & 1.7/0.2/9.0/1.9
+- 10 g ulei de măsline — 88 & 0.0/10.0/0.0/0.0
+- 10 g semințe de dovleac — 56 & 3.0/4.9/1.1/0.6
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
-- 200 g skyr
-- 200 ml lapte 1,5%
-- 1 banană
-- 15 g unt de arahide
+- 200 g skyr — 118 & 20.4/0.8/7.2/0.0
+- 200 ml lapte 1,5% — 92 & 6.6/3.0/9.6/0.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
+- 15 g unt de arahide — 90 & 3.3/7.7/3.3/0.8
 
 **🌙 Cină — Păstrăv la cuptor cu legume ratatouille, cartofi și sos de lămâie cu usturoi 🐟**
 
-- 220 g păstrăv
-- 80 g vinete
-- 80 g dovlecel
-- 60 g ardei
-- 40 g ceapă
-- 60 g roșii
-- 280 g cartofi
-- 10 ml suc de lămâie
-- 3 g usturoi
-- 12 g ulei de măsline
+- 220 g păstrăv — 310 & 43.8/13.6/0.0/0.0
+- 80 g vinete — 20 & 0.8/0.2/4.7/2.4
+- 80 g dovlecel — 14 & 1.0/0.2/2.5/0.8
+- 60 g ardei — 16 & 0.6/0.2/3.6/1.3
+- 40 g ceapă — 16 & 0.4/0.0/3.7/0.7
+- 60 g roșii — 11 & 0.5/0.1/2.3/0.7
+- 280 g cartofi — 216 & 5.9/0.3/49.0/5.9
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 12 g ulei de măsline — 106 & 0.0/12.0/0.0/0.0
 
 ### Miercuri
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
-- 200 g skyr
-- 70 g fulgi de ovăz
-- 100 g fructe de pădure
-- 10 g chia
-- 15 g nuci
-- 100 ml lapte 1,5%
+- 200 g skyr — 118 & 20.4/0.8/7.2/0.0
+- 70 g fulgi de ovăz — 265 & 9.2/4.5/47.4/7.1
+- 100 g fructe de pădure — 47 & 0.9/0.4/11.4/3.6
+- 10 g chia — 49 & 1.6/3.1/4.2/3.4
+- 15 g nuci — 98 & 2.3/9.8/2.1/1.0
+- 100 ml lapte 1,5% — 46 & 3.3/1.5/4.8/0.0
 
 **🍲 Prânz — Salată de ton cu năut, legume crude și vinegretă de muștar 🐟**
 
-- 140 g ton (conservă, scurs)
-- 70 g castravete
-- 50 g ardei
-- 80 g roșii
-- 50 g salată verde
-- 20 g ceapă
-- 180 g năut
-- 8 g muștar
-- 10 ml suc de lămâie
-- 10 g ulei de măsline
-- 15 g măsline
-- 40 g pâine integrală
+- 140 g ton (conservă, scurs) — 162 & 35.7/1.1/0.0/0.0
+- 70 g castravete — 10 & 0.5/0.1/2.5/0.3
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 80 g roșii — 14 & 0.7/0.2/3.1/1.0
+- 50 g salată verde — 8 & 0.7/0.1/1.4/0.7
+- 20 g ceapă — 8 & 0.2/0.0/1.9/0.3
+- 180 g năut — 250 & 12.8/5.0/40.5/11.5
+- 8 g muștar — 5 & 0.3/0.3/0.5/0.3
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 10 g ulei de măsline — 88 & 0.0/10.0/0.0/0.0
+- 15 g măsline — 17 & 0.1/1.6/0.9/0.2
+- 40 g pâine integrală — 101 & 5.0/1.4/17.1/2.4
 
 **🍎 Gustare — Skyr cu măr și migdale**
 
-- 250 g skyr
-- 1 măr
-- 20 g migdale
+- 250 g skyr — 148 & 25.5/1.0/9.0/0.0
+- 1 măr — 94 & 0.5/0.4/24.8/4.3
+- 20 g migdale — 116 & 4.2/10.0/4.3/2.5
 
 **🌙 Cină — Stir-fry de vită cu broccoli, ardei, ciuperci și varză, orez basmati, sos soia-ghimbir, caju**
 
-- 190 g vită slabă
-- 100 g broccoli
-- 70 g ardei
-- 50 g ciuperci
-- 60 g varză
-- 20 g ceapă verde
-- 60 g orez basmati
-- 15 ml sos de soia
-- 3 g usturoi
-- 8 g ulei de măsline
-- 20 g caju
+- 190 g vită slabă — 230 & 44.5/5.7/0.0/0.0
+- 100 g broccoli — 34 & 2.8/0.4/6.6/2.6
+- 70 g ardei — 18 & 0.7/0.2/4.2/1.5
+- 50 g ciuperci — 11 & 1.6/0.1/1.6/0.5
+- 60 g varză — 15 & 0.8/0.1/3.5/1.5
+- 20 g ceapă verde — 6 & 0.4/0.0/1.5/0.5
+- 60 g orez basmati — 219 & 4.3/0.4/48.0/0.8
+- 15 ml sos de soia — 8 & 1.2/0.1/0.7/0.1
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 8 g ulei de măsline — 71 & 0.0/8.0/0.0/0.0
+- 20 g caju — 111 & 3.6/8.8/6.0/0.7
 
 ### Joi 🥚🏋️
 
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
 
-- 3 ouă
-- 120 g brânză de vaci
-- 100 g roșii
-- 100 g castravete
-- 20 g rucola
-- 50 g pâine integrală
-- 50 g avocado
-- 1 măr
+- 3 ouă — 236 & 20.8/15.7/1.2/0.0
+- 120 g brânză de vaci — 97 & 12.6/2.8/5.8/0.0
+- 100 g roșii — 18 & 0.9/0.2/3.9/1.2
+- 100 g castravete — 15 & 0.7/0.1/3.6/0.5
+- 20 g rucola — 5 & 0.5/0.1/0.7/0.3
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 50 g avocado — 80 & 1.0/7.3/4.2/3.4
+- 1 măr — 94 & 0.5/0.4/24.8/4.3
 
 **🍲 Prânz — Stir-fry de vită cu broccoli, ardei, ciuperci și varză, orez basmati, sos soia-ghimbir, caju**
 
-- 190 g vită slabă
-- 100 g broccoli
-- 70 g ardei
-- 50 g ciuperci
-- 60 g varză
-- 20 g ceapă verde
-- 60 g orez basmati
-- 15 ml sos de soia
-- 3 g usturoi
-- 8 g ulei de măsline
-- 20 g caju
+- 190 g vită slabă — 230 & 44.5/5.7/0.0/0.0
+- 100 g broccoli — 34 & 2.8/0.4/6.6/2.6
+- 70 g ardei — 18 & 0.7/0.2/4.2/1.5
+- 50 g ciuperci — 11 & 1.6/0.1/1.6/0.5
+- 60 g varză — 15 & 0.8/0.1/3.5/1.5
+- 20 g ceapă verde — 6 & 0.4/0.0/1.5/0.5
+- 60 g orez basmati — 219 & 4.3/0.4/48.0/0.8
+- 15 ml sos de soia — 8 & 1.2/0.1/0.7/0.1
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 8 g ulei de măsline — 71 & 0.0/8.0/0.0/0.0
+- 20 g caju — 111 & 3.6/8.8/6.0/0.7
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
-- 200 g skyr
-- 200 ml lapte 1,5%
-- 1 banană
-- 15 g unt de arahide
+- 200 g skyr — 118 & 20.4/0.8/7.2/0.0
+- 200 ml lapte 1,5% — 92 & 6.6/3.0/9.6/0.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
+- 15 g unt de arahide — 90 & 3.3/7.7/3.3/0.8
 
 **🌙 Cină — Chili de linte cu pui tocat, avocado și salată de castraveți**
 
-- 190 g piept de pui tocat
-- 50 g ceapă
-- 60 g ardei
-- 50 g morcov
-- 100 g castravete
-- 75 g linte
-- 150 g roșii pasate
-- 5 ml suc de lămâie
-- 6 g ulei de măsline
-- 50 g avocado
+- 190 g piept de pui tocat — 228 & 42.8/4.9/0.0/0.0
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 60 g ardei — 16 & 0.6/0.2/3.6/1.3
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
+- 100 g castravete — 15 & 0.7/0.1/3.6/0.5
+- 75 g linte — 264 & 18.4/0.8/47.5/8.0
+- 150 g roșii pasate — 57 & 2.5/0.3/13.5/2.9
+- 5 ml suc de lămâie — 1 & 0.0/0.0/0.3/0.0
+- 6 g ulei de măsline — 53 & 0.0/6.0/0.0/0.0
+- 50 g avocado — 80 & 1.0/7.3/4.2/3.4
 
 ### Vineri
 
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
-- 200 g iaurt grec
-- 50 g fulgi de ovăz
-- 1 banană
-- 50 g afine
-- 20 g unt de arahide
-- 10 g in măcinat
+- 200 g iaurt grec — 146 & 20.0/3.8/7.8/0.0
+- 50 g fulgi de ovăz — 190 & 6.6/3.2/33.9/5.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
+- 50 g afine — 28 & 0.3/0.1/7.2/1.2
+- 20 g unt de arahide — 120 & 4.4/10.3/4.5/1.0
+- 10 g in măcinat — 53 & 1.8/4.2/2.9/2.7
 
 **🍲 Prânz — Chili de linte cu pui tocat, avocado și salată de castraveți**
 
-- 190 g piept de pui tocat
-- 50 g ceapă
-- 60 g ardei
-- 50 g morcov
-- 100 g castravete
-- 75 g linte
-- 150 g roșii pasate
-- 5 ml suc de lămâie
-- 6 g ulei de măsline
-- 50 g avocado
+- 190 g piept de pui tocat — 228 & 42.8/4.9/0.0/0.0
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 60 g ardei — 16 & 0.6/0.2/3.6/1.3
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
+- 100 g castravete — 15 & 0.7/0.1/3.6/0.5
+- 75 g linte — 264 & 18.4/0.8/47.5/8.0
+- 150 g roșii pasate — 57 & 2.5/0.3/13.5/2.9
+- 5 ml suc de lămâie — 1 & 0.0/0.0/0.3/0.0
+- 6 g ulei de măsline — 53 & 0.0/6.0/0.0/0.0
+- 50 g avocado — 80 & 1.0/7.3/4.2/3.4
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
-- 200 g brânză de vaci
-- 50 g pâine integrală
-- 50 g castravete
-- 50 g ardei
-- 50 g morcov
+- 200 g brânză de vaci — 162 & 21.0/4.6/9.6/0.0
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 50 g castravete — 8 & 0.3/0.1/1.8/0.2
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
 
 **🌙 Cină — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
 
-- 190 g piept de pui
-- 100 g broccoli
-- 60 g morcov
-- 50 g ceapă
-- 60 g ardei
-- 220 g cartof dulce
-- 12 g tahini
-- 3 g usturoi
-- 10 ml suc de lămâie
-- 9 g ulei de măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 100 g broccoli — 34 & 2.8/0.4/6.6/2.6
+- 60 g morcov — 25 & 0.5/0.1/5.8/1.7
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 60 g ardei — 16 & 0.6/0.2/3.6/1.3
+- 220 g cartof dulce — 189 & 3.5/0.2/44.2/6.6
+- 12 g tahini — 71 & 2.0/6.5/2.5/1.1
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
 
 ### Sâmbătă 🥚
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
-- 3 ouă
-- 120 g brânză de vaci
-- 50 g spanac
-- 60 g roșii
-- 50 g ciuperci
-- 20 g ceapă verde
-- 50 g pâine integrală
-- 5 g ulei de măsline
-- 1 banană
+- 3 ouă — 236 & 20.8/15.7/1.2/0.0
+- 120 g brânză de vaci — 97 & 12.6/2.8/5.8/0.0
+- 50 g spanac — 12 & 1.4/0.2/1.8/1.1
+- 60 g roșii — 11 & 0.5/0.1/2.3/0.7
+- 50 g ciuperci — 11 & 1.6/0.1/1.6/0.5
+- 20 g ceapă verde — 6 & 0.4/0.0/1.5/0.5
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 5 g ulei de măsline — 44 & 0.0/5.0/0.0/0.0
+- 1 banană — 107 & 1.3/0.4/27.4/3.1
 
 **🍲 Prânz — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
 
-- 190 g piept de pui
-- 100 g broccoli
-- 60 g morcov
-- 50 g ceapă
-- 60 g ardei
-- 220 g cartof dulce
-- 12 g tahini
-- 3 g usturoi
-- 10 ml suc de lămâie
-- 9 g ulei de măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 100 g broccoli — 34 & 2.8/0.4/6.6/2.6
+- 60 g morcov — 25 & 0.5/0.1/5.8/1.7
+- 50 g ceapă — 20 & 0.6/0.1/4.7/0.8
+- 60 g ardei — 16 & 0.6/0.2/3.6/1.3
+- 220 g cartof dulce — 189 & 3.5/0.2/44.2/6.6
+- 12 g tahini — 71 & 2.0/6.5/2.5/1.1
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
 
 **🍎 Gustare — Skyr cu măr și migdale**
 
-- 250 g skyr
-- 1 măr
-- 20 g migdale
+- 250 g skyr — 148 & 25.5/1.0/9.0/0.0
+- 1 măr — 94 & 0.5/0.4/24.8/4.3
+- 20 g migdale — 116 & 4.2/10.0/4.3/2.5
 
 **🌙 Cină — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
 
-- 190 g piept de pui
-- 150 g dovlecel
-- 40 g ceapă
-- 40 g rucola
-- 80 g roșii
-- 75 g paste integrale
-- 150 g roșii pasate
-- 9 g ulei de măsline
-- 15 g măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 150 g dovlecel — 26 & 1.8/0.5/4.7/1.5
+- 40 g ceapă — 16 & 0.4/0.0/3.7/0.7
+- 40 g rucola — 10 & 1.0/0.3/1.5/0.6
+- 80 g roșii — 14 & 0.7/0.2/3.1/1.0
+- 75 g paste integrale — 264 & 10.4/2.2/55.0/6.9
+- 150 g roșii pasate — 57 & 2.5/0.3/13.5/2.9
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
+- 15 g măsline — 17 & 0.1/1.6/0.9/0.2
 
 ### Duminică
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
-- 200 g skyr
-- 70 g fulgi de ovăz
-- 100 g fructe de pădure
-- 10 g chia
-- 15 g nuci
-- 100 ml lapte 1,5%
+- 200 g skyr — 118 & 20.4/0.8/7.2/0.0
+- 70 g fulgi de ovăz — 265 & 9.2/4.5/47.4/7.1
+- 100 g fructe de pădure — 47 & 0.9/0.4/11.4/3.6
+- 10 g chia — 49 & 1.6/3.1/4.2/3.4
+- 15 g nuci — 98 & 2.3/9.8/2.1/1.0
+- 100 ml lapte 1,5% — 46 & 3.3/1.5/4.8/0.0
 
 **🍲 Prânz — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
 
-- 190 g piept de pui
-- 150 g dovlecel
-- 40 g ceapă
-- 40 g rucola
-- 80 g roșii
-- 75 g paste integrale
-- 150 g roșii pasate
-- 9 g ulei de măsline
-- 15 g măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 150 g dovlecel — 26 & 1.8/0.5/4.7/1.5
+- 40 g ceapă — 16 & 0.4/0.0/3.7/0.7
+- 40 g rucola — 10 & 1.0/0.3/1.5/0.6
+- 80 g roșii — 14 & 0.7/0.2/3.1/1.0
+- 75 g paste integrale — 264 & 10.4/2.2/55.0/6.9
+- 150 g roșii pasate — 57 & 2.5/0.3/13.5/2.9
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0
+- 15 g măsline — 17 & 0.1/1.6/0.9/0.2
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
 
-- 200 g brânză de vaci
-- 50 g pâine integrală
-- 50 g castravete
-- 50 g ardei
-- 50 g morcov
+- 200 g brânză de vaci — 162 & 21.0/4.6/9.6/0.0
+- 50 g pâine integrală — 126 & 6.2/1.8/21.4/3.0
+- 50 g castravete — 8 & 0.3/0.1/1.8/0.2
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 50 g morcov — 20 & 0.5/0.1/4.8/1.4
 
 **🌙 Cină — Chiftele de pui la cuptor cu salată grecească, orez brun și sos de tahini**
 
-- 190 g piept de pui
-- 15 g fulgi de ovăz
-- 100 g roșii
-- 100 g castravete
-- 30 g ceapă
-- 50 g ardei
-- 60 g orez brun
-- 12 g tahini
-- 10 ml suc de lămâie
-- 3 g usturoi
-- 20 g măsline
-- 9 g ulei de măsline
+- 190 g piept de pui — 228 & 42.8/4.9/0.0/0.0
+- 15 g fulgi de ovăz — 57 & 2.0/1.0/10.2/1.5
+- 100 g roșii — 18 & 0.9/0.2/3.9/1.2
+- 100 g castravete — 15 & 0.7/0.1/3.6/0.5
+- 30 g ceapă — 12 & 0.3/0.0/2.8/0.5
+- 50 g ardei — 13 & 0.5/0.1/3.0/1.1
+- 60 g orez brun — 220 & 4.5/1.9/45.8/2.2
+- 12 g tahini — 71 & 2.0/6.5/2.5/1.1
+- 10 ml suc de lămâie — 2 & 0.0/0.0/0.7/0.0
+- 3 g usturoi — 4 & 0.2/0.0/1.0/0.1
+- 20 g măsline — 23 & 0.2/2.2/1.2/0.3
+- 9 g ulei de măsline — 80 & 0.0/9.0/0.0/0.0

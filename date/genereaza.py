@@ -109,7 +109,7 @@ def menu_zilnic(who, size):
     MEALS = ("🌅 Mic dejun","🍲 Prânz","🍎 Gustare","🌙 Cină")
     o=[]
     o.append(f"# 📋 Meniu zilnic — {who} (vizualizare rapidă)\n")
-    o.append(f"> Doar de citit rapid: o zi sub alta, rețetele mesei cu ingredientele pe rânduri separate — **fără tabel, fără calcule**.\n> Sursa de adevăr (porții exacte, kcal, macro, fibre) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.\n")
+    o.append(f"> Doar de citit rapid: o zi sub alta, rețetele mesei cu ingredientele pe rânduri separate — **fără tabel**. La fiecare ingredient: **kcal & P/G/C/Fibre** pentru cantitatea de pe rând.\n> Sursa de adevăr (porții exacte, totalul pe masă/zi) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.\n")
     col = 1 if size=="S" else 2
     for w in (0,1):
         o.append(f"\n## Săptămâna {w+1}\n")
@@ -121,7 +121,9 @@ def menu_zilnic(who, size):
                 for label,items in r["comp"]:
                     for it in items:
                         k,g = it[0],it[col]
-                        if g>0: o.append(f"- {qty(k,g)}")
+                        if g>0:
+                            kcal,p,gr,c,f = [v*g/100 for v in DB[k]]
+                            o.append(f"- {qty(k,g)} — {kcal:.0f} & {p:.1f}/{gr:.1f}/{c:.1f}/{f:.1f}")
                 o.append("")
     return "\n".join(o)
 W("ema/4b_meniu_zilnic.md", menu_zilnic("Ema","S"))
