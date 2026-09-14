@@ -1,6 +1,6 @@
 # 📋 Meniu zilnic — Adi (vizualizare rapidă)
 
-> Doar de citit rapid: o zi sub alta, rețetele mesei una sub alta. Un ingredient pe rând (**un singur rând pe ingredient**, niciodată mai multe înghesuite laolaltă), cu **P/G/C/Fibre** și **kcal** pe coloane separate, și un rând de total la finalul fiecărei mese.
+> Doar de citit rapid: o zi sub alta, rețetele mesei una sub alta. Sub numele fiecărui fel: **totalul mesei** (kcal, P/G/C/Fibre — identic cu `4_meniu.md`). Dedesubt, un ingredient pe rând (**un singur rând pe ingredient**, niciodată mai multe înghesuite laolaltă), cu **P/G/C/Fibre** și **kcal** pe coloane separate.
 > Sursa de adevăr (porții exacte) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.
 
 
@@ -9,6 +9,8 @@
 ### Luni 🥚
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
+
+**Total masă — 730 kcal** (P:52g, G:31g, C:63g, Fibre:9g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -21,9 +23,10 @@
 | 50 g pâine integrală | 6.2/1.8/21.4/3.0 | 126 |
 | 5 g ulei de măsline | 0.0/5.0/0.0/0.0 | 44 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
-| **Total masă** | **51.8/31.3/63.3/9.0** | **728** |
 
 **🍲 Prânz — Chili de linte cu pui tocat, avocado și salată de castraveți**
+
+**Total masă — 755 kcal** (P:67g, G:20g, C:82g, Fibre:18g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -37,18 +40,20 @@
 | 5 ml suc de lămâie | 0.0/0.0/0.3/0.0 | 1 |
 | 6 g ulei de măsline | 0.0/6.0/0.0/0.0 | 53 |
 | 50 g avocado | 1.0/7.3/4.2/3.4 | 80 |
-| **Total masă** | **67.1/19.9/82.3/18.2** | **754** |
 
 **🍎 Gustare — Skyr cu măr și migdale**
+
+**Total masă — 355 kcal** (P:30g, G:11g, C:38g, Fibre:7g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 250 g skyr | 25.5/1.0/9.0/0.0 | 148 |
 | 1 măr | 0.5/0.4/24.8/4.3 | 94 |
 | 20 g migdale | 4.2/10.0/4.3/2.5 | 116 |
-| **Total masă** | **30.3/11.3/38.2/6.8** | **357** |
 
 **🌙 Cină — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
+
+**Total masă — 670 kcal** (P:53g, G:21g, C:69g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -62,13 +67,14 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 10 ml suc de lămâie | 0.0/0.0/0.7/0.0 | 2 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
-| **Total masă** | **53.0/21.4/69.1/14.2** | **669** |
 
 **Total zi — 2510 kcal** (P:202g, G:84g, C:253g, Fibre:48g)
 
 ### Marți 🏋️
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
+
+**Total masă — 625 kcal** (P:38g, G:20g, C:77g, Fibre:15g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -78,9 +84,10 @@
 | 10 g chia | 1.6/3.1/4.2/3.4 | 49 |
 | 15 g nuci | 2.3/9.8/2.1/1.0 | 98 |
 | 100 ml lapte 1,5% | 3.3/1.5/4.8/0.0 | 46 |
-| **Total masă** | **37.8/20.1/77.1/15.1** | **623** |
 
 **🍲 Prânz — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
+
+**Total masă — 670 kcal** (P:53g, G:21g, C:69g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -94,9 +101,10 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 10 ml suc de lămâie | 0.0/0.0/0.7/0.0 | 2 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
-| **Total masă** | **53.0/21.4/69.1/14.2** | **669** |
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
+
+**Total masă — 405 kcal** (P:32g, G:12g, C:48g, Fibre:4g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -104,9 +112,10 @@
 | 200 ml lapte 1,5% | 6.6/3.0/9.6/0.0 | 92 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
 | 15 g unt de arahide | 3.3/7.7/3.3/0.8 | 90 |
-| **Total masă** | **31.6/11.9/47.5/3.9** | **406** |
 
 **🌙 Cină — Doradă la cuptor cu fasole verde cu usturoi, salată de rucola, quinoa și sos de lămâie cu mărar 🐟**
+
+**Total masă — 640 kcal** (P:57g, G:21g, C:56g, Fibre:10g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -119,13 +128,14 @@
 | 10 ml suc de lămâie | 0.0/0.0/0.7/0.0 | 2 |
 | 2 g usturoi | 0.1/0.0/0.7/0.0 | 3 |
 | 12 g ulei de măsline | 0.0/12.0/0.0/0.0 | 106 |
-| **Total masă** | **57.4/21.2/56.0/10.0** | **640** |
 
 **Total zi — 2340 kcal** (P:180g, G:75g, C:250g, Fibre:43g)
 
 ### Miercuri 🥚
 
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
+
+**Total masă — 750 kcal** (P:50g, G:34g, C:66g, Fibre:13g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -137,9 +147,10 @@
 | 50 g pâine integrală | 6.2/1.8/21.4/3.0 | 126 |
 | 50 g avocado | 1.0/7.3/4.2/3.4 | 80 |
 | 1 măr | 0.5/0.4/24.8/4.3 | 94 |
-| **Total masă** | **50.2/33.6/66.0/12.7** | **749** |
 
 **🍲 Prânz — Salată de ton cu năut, legume crude și vinegretă de muștar 🐟**
+
+**Total masă — 680 kcal** (P:57g, G:20g, C:72g, Fibre:18g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -155,9 +166,10 @@
 | 10 g ulei de măsline | 0.0/10.0/0.0/0.0 | 88 |
 | 15 g măsline | 0.1/1.6/0.9/0.2 | 17 |
 | 40 g pâine integrală | 5.0/1.4/17.1/2.4 | 101 |
-| **Total masă** | **56.6/20.0/71.6/17.9** | **680** |
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
+
+**Total masă — 330 kcal** (P:29g, G:7g, C:41g, Fibre:6g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -166,9 +178,10 @@
 | 50 g castravete | 0.3/0.1/1.8/0.2 | 8 |
 | 50 g ardei | 0.5/0.1/3.0/1.1 | 13 |
 | 50 g morcov | 0.5/0.1/4.8/1.4 | 20 |
-| **Total masă** | **28.6/6.6/40.5/5.7** | **329** |
 
 **🌙 Cină — Tocăniță de vită cu ciuperci, mămăligă și salată de varză roșie cu mere**
+
+**Total masă — 755 kcal** (P:59g, G:21g, C:89g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -182,13 +195,14 @@
 | 70 g mălai | 5.7/2.5/53.8/5.1 | 253 |
 | 100 g roșii pasate | 1.7/0.2/9.0/1.9 | 38 |
 | 12 g ulei de măsline | 0.0/12.0/0.0/0.0 | 106 |
-| **Total masă** | **59.5/21.4/88.6/14.4** | **754** |
 
 **Total zi — 2510 kcal** (P:195g, G:82g, C:267g, Fibre:51g)
 
 ### Joi 🏋️
 
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
+
+**Total masă — 645 kcal** (P:35g, G:22g, C:84g, Fibre:13g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -198,9 +212,10 @@
 | 50 g afine | 0.3/0.1/7.2/1.2 | 28 |
 | 20 g unt de arahide | 4.4/10.3/4.5/1.0 | 120 |
 | 10 g in măcinat | 1.8/4.2/2.9/2.7 | 53 |
-| **Total masă** | **34.5/22.1/83.6/13.1** | **644** |
 
 **🍲 Prânz — Tocăniță de vită cu ciuperci, mămăligă și salată de varză roșie cu mere**
+
+**Total masă — 755 kcal** (P:59g, G:21g, C:89g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -214,9 +229,10 @@
 | 70 g mălai | 5.7/2.5/53.8/5.1 | 253 |
 | 100 g roșii pasate | 1.7/0.2/9.0/1.9 | 38 |
 | 12 g ulei de măsline | 0.0/12.0/0.0/0.0 | 106 |
-| **Total masă** | **59.5/21.4/88.6/14.4** | **754** |
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
+
+**Total masă — 405 kcal** (P:32g, G:12g, C:48g, Fibre:4g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -224,9 +240,10 @@
 | 200 ml lapte 1,5% | 6.6/3.0/9.6/0.0 | 92 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
 | 15 g unt de arahide | 3.3/7.7/3.3/0.8 | 90 |
-| **Total masă** | **31.6/11.9/47.5/3.9** | **406** |
 
 **🌙 Cină — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
+
+**Total masă — 710 kcal** (P:60g, G:19g, C:82g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -239,13 +256,14 @@
 | 150 g roșii pasate | 2.5/0.3/13.5/2.9 | 57 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
 | 15 g măsline | 0.1/1.6/0.9/0.2 | 17 |
-| **Total masă** | **59.8/19.0/82.4/13.8** | **712** |
 
 **Total zi — 2515 kcal** (P:186g, G:74g, C:302g, Fibre:45g)
 
 ### Vineri 🥚
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
+
+**Total masă — 730 kcal** (P:52g, G:31g, C:63g, Fibre:9g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -258,9 +276,10 @@
 | 50 g pâine integrală | 6.2/1.8/21.4/3.0 | 126 |
 | 5 g ulei de măsline | 0.0/5.0/0.0/0.0 | 44 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
-| **Total masă** | **51.8/31.3/63.3/9.0** | **728** |
 
 **🍲 Prânz — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
+
+**Total masă — 710 kcal** (P:60g, G:19g, C:82g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -273,18 +292,20 @@
 | 150 g roșii pasate | 2.5/0.3/13.5/2.9 | 57 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
 | 15 g măsline | 0.1/1.6/0.9/0.2 | 17 |
-| **Total masă** | **59.8/19.0/82.4/13.8** | **712** |
 
 **🍎 Gustare — Skyr cu măr și migdale**
+
+**Total masă — 355 kcal** (P:30g, G:11g, C:38g, Fibre:7g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 250 g skyr | 25.5/1.0/9.0/0.0 | 148 |
 | 1 măr | 0.5/0.4/24.8/4.3 | 94 |
 | 20 g migdale | 4.2/10.0/4.3/2.5 | 116 |
-| **Total masă** | **30.3/11.3/38.2/6.8** | **357** |
 
 **🌙 Cină — Cotlet de porc cu piure de conopidă și morcov, cartofi copți și salată de varză**
+
+**Total masă — 615 kcal** (P:52g, G:20g, C:59g, Fibre:13g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -295,13 +316,14 @@
 | 210 g cartofi | 4.4/0.2/36.8/4.4 | 162 |
 | 8 g muștar | 0.3/0.3/0.5/0.3 | 5 |
 | 12 g ulei de măsline | 0.0/12.0/0.0/0.0 | 106 |
-| **Total masă** | **52.4/19.7/59.4/13.0** | **614** |
 
 **Total zi — 2410 kcal** (P:194g, G:81g, C:243g, Fibre:43g)
 
 ### Sâmbătă
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
+
+**Total masă — 625 kcal** (P:38g, G:20g, C:77g, Fibre:15g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -311,9 +333,10 @@
 | 10 g chia | 1.6/3.1/4.2/3.4 | 49 |
 | 15 g nuci | 2.3/9.8/2.1/1.0 | 98 |
 | 100 ml lapte 1,5% | 3.3/1.5/4.8/0.0 | 46 |
-| **Total masă** | **37.8/20.1/77.1/15.1** | **623** |
 
 **🍲 Prânz — Cotlet de porc cu piure de conopidă și morcov, cartofi copți și salată de varză**
+
+**Total masă — 615 kcal** (P:52g, G:20g, C:59g, Fibre:13g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -324,9 +347,10 @@
 | 210 g cartofi | 4.4/0.2/36.8/4.4 | 162 |
 | 8 g muștar | 0.3/0.3/0.5/0.3 | 5 |
 | 12 g ulei de măsline | 0.0/12.0/0.0/0.0 | 106 |
-| **Total masă** | **52.4/19.7/59.4/13.0** | **614** |
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
+
+**Total masă — 330 kcal** (P:29g, G:7g, C:41g, Fibre:6g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -335,9 +359,10 @@
 | 50 g castravete | 0.3/0.1/1.8/0.2 | 8 |
 | 50 g ardei | 0.5/0.1/3.0/1.1 | 13 |
 | 50 g morcov | 0.5/0.1/4.8/1.4 | 20 |
-| **Total masă** | **28.6/6.6/40.5/5.7** | **329** |
 
 **🌙 Cină — Curry de pui cu conopidă, spanac și năut, orez basmati**
+
+**Total masă — 730 kcal** (P:59g, G:18g, C:83g, Fibre:12g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -350,13 +375,14 @@
 | 80 g năut | 5.7/2.2/18.0/5.1 | 111 |
 | 60 ml lapte de cocos light | 0.3/3.9/1.2/0.0 | 42 |
 | 6 g ulei de măsline | 0.0/6.0/0.0/0.0 | 53 |
-| **Total masă** | **58.7/18.4/83.1/11.6** | **732** |
 
 **Total zi — 2300 kcal** (P:177g, G:65g, C:260g, Fibre:45g)
 
 ### Duminică 🥚
 
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
+
+**Total masă — 750 kcal** (P:50g, G:34g, C:66g, Fibre:13g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -368,9 +394,10 @@
 | 50 g pâine integrală | 6.2/1.8/21.4/3.0 | 126 |
 | 50 g avocado | 1.0/7.3/4.2/3.4 | 80 |
 | 1 măr | 0.5/0.4/24.8/4.3 | 94 |
-| **Total masă** | **50.2/33.6/66.0/12.7** | **749** |
 
 **🍲 Prânz — Curry de pui cu conopidă, spanac și năut, orez basmati**
+
+**Total masă — 730 kcal** (P:59g, G:18g, C:83g, Fibre:12g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -383,18 +410,20 @@
 | 80 g năut | 5.7/2.2/18.0/5.1 | 111 |
 | 60 ml lapte de cocos light | 0.3/3.9/1.2/0.0 | 42 |
 | 6 g ulei de măsline | 0.0/6.0/0.0/0.0 | 53 |
-| **Total masă** | **58.7/18.4/83.1/11.6** | **732** |
 
 **🍎 Gustare — Skyr cu măr și migdale**
+
+**Total masă — 355 kcal** (P:30g, G:11g, C:38g, Fibre:7g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 250 g skyr | 25.5/1.0/9.0/0.0 | 148 |
 | 1 măr | 0.5/0.4/24.8/4.3 | 94 |
 | 20 g migdale | 4.2/10.0/4.3/2.5 | 116 |
-| **Total masă** | **30.3/11.3/38.2/6.8** | **357** |
 
 **🌙 Cină — Chiftele de pui la cuptor cu salată grecească, orez brun și sos de tahini**
+
+**Total masă — 745 kcal** (P:54g, G:26g, C:75g, Fibre:8g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -410,7 +439,6 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 20 g măsline | 0.2/2.2/1.2/0.3 | 23 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
-| **Total masă** | **54.1/26.0/74.7/8.5** | **744** |
 
 **Total zi — 2585 kcal** (P:193g, G:89g, C:262g, Fibre:40g)
 
@@ -421,6 +449,8 @@
 
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
+**Total masă — 645 kcal** (P:35g, G:22g, C:84g, Fibre:13g)
+
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 200 g iaurt grec | 20.0/3.8/7.8/0.0 | 146 |
@@ -429,9 +459,10 @@
 | 50 g afine | 0.3/0.1/7.2/1.2 | 28 |
 | 20 g unt de arahide | 4.4/10.3/4.5/1.0 | 120 |
 | 10 g in măcinat | 1.8/4.2/2.9/2.7 | 53 |
-| **Total masă** | **34.5/22.1/83.6/13.1** | **644** |
 
 **🍲 Prânz — Chiftele de pui la cuptor cu salată grecească, orez brun și sos de tahini**
+
+**Total masă — 745 kcal** (P:54g, G:26g, C:75g, Fibre:8g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -447,9 +478,10 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 20 g măsline | 0.2/2.2/1.2/0.3 | 23 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
-| **Total masă** | **54.1/26.0/74.7/8.5** | **744** |
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
+
+**Total masă — 330 kcal** (P:29g, G:7g, C:41g, Fibre:6g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -458,9 +490,10 @@
 | 50 g castravete | 0.3/0.1/1.8/0.2 | 8 |
 | 50 g ardei | 0.5/0.1/3.0/1.1 | 13 |
 | 50 g morcov | 0.5/0.1/4.8/1.4 | 20 |
-| **Total masă** | **28.6/6.6/40.5/5.7** | **329** |
 
 **🌙 Cină — Mușchi de porc la grătar cu piure de broccoli și dovlecel, hrișcă și sos de roșii cu busuioc**
+
+**Total masă — 690 kcal** (P:60g, G:22g, C:71g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -472,13 +505,14 @@
 | 100 g roșii pasate | 1.7/0.2/9.0/1.9 | 38 |
 | 10 g ulei de măsline | 0.0/10.0/0.0/0.0 | 88 |
 | 10 g semințe de dovleac | 3.0/4.9/1.1/0.6 | 56 |
-| **Total masă** | **59.7/22.1/71.5/14.3** | **691** |
 
 **Total zi — 2410 kcal** (P:177g, G:77g, C:270g, Fibre:42g)
 
 ### Marți 🥚🏋️
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
+
+**Total masă — 730 kcal** (P:52g, G:31g, C:63g, Fibre:9g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -491,9 +525,10 @@
 | 50 g pâine integrală | 6.2/1.8/21.4/3.0 | 126 |
 | 5 g ulei de măsline | 0.0/5.0/0.0/0.0 | 44 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
-| **Total masă** | **51.8/31.3/63.3/9.0** | **728** |
 
 **🍲 Prânz — Mușchi de porc la grătar cu piure de broccoli și dovlecel, hrișcă și sos de roșii cu busuioc**
+
+**Total masă — 690 kcal** (P:60g, G:22g, C:71g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -505,9 +540,10 @@
 | 100 g roșii pasate | 1.7/0.2/9.0/1.9 | 38 |
 | 10 g ulei de măsline | 0.0/10.0/0.0/0.0 | 88 |
 | 10 g semințe de dovleac | 3.0/4.9/1.1/0.6 | 56 |
-| **Total masă** | **59.7/22.1/71.5/14.3** | **691** |
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
+
+**Total masă — 405 kcal** (P:32g, G:12g, C:48g, Fibre:4g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -515,9 +551,10 @@
 | 200 ml lapte 1,5% | 6.6/3.0/9.6/0.0 | 92 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
 | 15 g unt de arahide | 3.3/7.7/3.3/0.8 | 90 |
-| **Total masă** | **31.6/11.9/47.5/3.9** | **406** |
 
 **🌙 Cină — Păstrăv la cuptor cu legume ratatouille, cartofi și sos de lămâie cu usturoi 🐟**
+
+**Total masă — 715 kcal** (P:53g, G:27g, C:68g, Fibre:12g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -531,13 +568,14 @@
 | 10 ml suc de lămâie | 0.0/0.0/0.7/0.0 | 2 |
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 12 g ulei de măsline | 0.0/12.0/0.0/0.0 | 106 |
-| **Total masă** | **53.2/26.7/67.5/11.8** | **715** |
 
 **Total zi — 2540 kcal** (P:196g, G:92g, C:250g, Fibre:39g)
 
 ### Miercuri
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
+
+**Total masă — 625 kcal** (P:38g, G:20g, C:77g, Fibre:15g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -547,9 +585,10 @@
 | 10 g chia | 1.6/3.1/4.2/3.4 | 49 |
 | 15 g nuci | 2.3/9.8/2.1/1.0 | 98 |
 | 100 ml lapte 1,5% | 3.3/1.5/4.8/0.0 | 46 |
-| **Total masă** | **37.8/20.1/77.1/15.1** | **623** |
 
 **🍲 Prânz — Salată de ton cu năut, legume crude și vinegretă de muștar 🐟**
+
+**Total masă — 680 kcal** (P:57g, G:20g, C:72g, Fibre:18g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -565,18 +604,20 @@
 | 10 g ulei de măsline | 0.0/10.0/0.0/0.0 | 88 |
 | 15 g măsline | 0.1/1.6/0.9/0.2 | 17 |
 | 40 g pâine integrală | 5.0/1.4/17.1/2.4 | 101 |
-| **Total masă** | **56.6/20.0/71.6/17.9** | **680** |
 
 **🍎 Gustare — Skyr cu măr și migdale**
+
+**Total masă — 355 kcal** (P:30g, G:11g, C:38g, Fibre:7g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 250 g skyr | 25.5/1.0/9.0/0.0 | 148 |
 | 1 măr | 0.5/0.4/24.8/4.3 | 94 |
 | 20 g migdale | 4.2/10.0/4.3/2.5 | 116 |
-| **Total masă** | **30.3/11.3/38.2/6.8** | **357** |
 
 **🌙 Cină — Stir-fry de vită cu broccoli, ardei, ciuperci și varză, orez basmati, sos soia-ghimbir, caju**
+
+**Total masă — 725 kcal** (P:60g, G:24g, C:73g, Fibre:8g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -591,13 +632,14 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 | 20 g caju | 3.6/8.8/6.0/0.7 | 111 |
-| **Total masă** | **60.0/23.9/73.2/8.2** | **727** |
 
 **Total zi — 2385 kcal** (P:185g, G:75g, C:260g, Fibre:48g)
 
 ### Joi 🥚🏋️
 
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
+
+**Total masă — 750 kcal** (P:50g, G:34g, C:66g, Fibre:13g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -609,9 +651,10 @@
 | 50 g pâine integrală | 6.2/1.8/21.4/3.0 | 126 |
 | 50 g avocado | 1.0/7.3/4.2/3.4 | 80 |
 | 1 măr | 0.5/0.4/24.8/4.3 | 94 |
-| **Total masă** | **50.2/33.6/66.0/12.7** | **749** |
 
 **🍲 Prânz — Stir-fry de vită cu broccoli, ardei, ciuperci și varză, orez basmati, sos soia-ghimbir, caju**
+
+**Total masă — 725 kcal** (P:60g, G:24g, C:73g, Fibre:8g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -626,9 +669,10 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 | 20 g caju | 3.6/8.8/6.0/0.7 | 111 |
-| **Total masă** | **60.0/23.9/73.2/8.2** | **727** |
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
+
+**Total masă — 405 kcal** (P:32g, G:12g, C:48g, Fibre:4g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -636,9 +680,10 @@
 | 200 ml lapte 1,5% | 6.6/3.0/9.6/0.0 | 92 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
 | 15 g unt de arahide | 3.3/7.7/3.3/0.8 | 90 |
-| **Total masă** | **31.6/11.9/47.5/3.9** | **406** |
 
 **🌙 Cină — Chili de linte cu pui tocat, avocado și salată de castraveți**
+
+**Total masă — 755 kcal** (P:67g, G:20g, C:82g, Fibre:18g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -652,13 +697,14 @@
 | 5 ml suc de lămâie | 0.0/0.0/0.3/0.0 | 1 |
 | 6 g ulei de măsline | 0.0/6.0/0.0/0.0 | 53 |
 | 50 g avocado | 1.0/7.3/4.2/3.4 | 80 |
-| **Total masă** | **67.1/19.9/82.3/18.2** | **754** |
 
 **Total zi — 2635 kcal** (P:209g, G:89g, C:269g, Fibre:43g)
 
 ### Vineri
 
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
+
+**Total masă — 645 kcal** (P:35g, G:22g, C:84g, Fibre:13g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -668,9 +714,10 @@
 | 50 g afine | 0.3/0.1/7.2/1.2 | 28 |
 | 20 g unt de arahide | 4.4/10.3/4.5/1.0 | 120 |
 | 10 g in măcinat | 1.8/4.2/2.9/2.7 | 53 |
-| **Total masă** | **34.5/22.1/83.6/13.1** | **644** |
 
 **🍲 Prânz — Chili de linte cu pui tocat, avocado și salată de castraveți**
+
+**Total masă — 755 kcal** (P:67g, G:20g, C:82g, Fibre:18g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -684,9 +731,10 @@
 | 5 ml suc de lămâie | 0.0/0.0/0.3/0.0 | 1 |
 | 6 g ulei de măsline | 0.0/6.0/0.0/0.0 | 53 |
 | 50 g avocado | 1.0/7.3/4.2/3.4 | 80 |
-| **Total masă** | **67.1/19.9/82.3/18.2** | **754** |
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
+
+**Total masă — 330 kcal** (P:29g, G:7g, C:41g, Fibre:6g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -695,9 +743,10 @@
 | 50 g castravete | 0.3/0.1/1.8/0.2 | 8 |
 | 50 g ardei | 0.5/0.1/3.0/1.1 | 13 |
 | 50 g morcov | 0.5/0.1/4.8/1.4 | 20 |
-| **Total masă** | **28.6/6.6/40.5/5.7** | **329** |
 
 **🌙 Cină — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
+
+**Total masă — 670 kcal** (P:53g, G:21g, C:69g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -711,13 +760,14 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 10 ml suc de lămâie | 0.0/0.0/0.7/0.0 | 2 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
-| **Total masă** | **53.0/21.4/69.1/14.2** | **669** |
 
 **Total zi — 2395 kcal** (P:183g, G:70g, C:276g, Fibre:51g)
 
 ### Sâmbătă 🥚
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
+
+**Total masă — 730 kcal** (P:52g, G:31g, C:63g, Fibre:9g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -730,9 +780,10 @@
 | 50 g pâine integrală | 6.2/1.8/21.4/3.0 | 126 |
 | 5 g ulei de măsline | 0.0/5.0/0.0/0.0 | 44 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
-| **Total masă** | **51.8/31.3/63.3/9.0** | **728** |
 
 **🍲 Prânz — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
+
+**Total masă — 670 kcal** (P:53g, G:21g, C:69g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -746,18 +797,20 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 10 ml suc de lămâie | 0.0/0.0/0.7/0.0 | 2 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
-| **Total masă** | **53.0/21.4/69.1/14.2** | **669** |
 
 **🍎 Gustare — Skyr cu măr și migdale**
+
+**Total masă — 355 kcal** (P:30g, G:11g, C:38g, Fibre:7g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 250 g skyr | 25.5/1.0/9.0/0.0 | 148 |
 | 1 măr | 0.5/0.4/24.8/4.3 | 94 |
 | 20 g migdale | 4.2/10.0/4.3/2.5 | 116 |
-| **Total masă** | **30.3/11.3/38.2/6.8** | **357** |
 
 **🌙 Cină — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
+
+**Total masă — 710 kcal** (P:60g, G:19g, C:82g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -770,13 +823,14 @@
 | 150 g roșii pasate | 2.5/0.3/13.5/2.9 | 57 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
 | 15 g măsline | 0.1/1.6/0.9/0.2 | 17 |
-| **Total masă** | **59.8/19.0/82.4/13.8** | **712** |
 
 **Total zi — 2465 kcal** (P:195g, G:83g, C:253g, Fibre:44g)
 
 ### Duminică
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
+
+**Total masă — 625 kcal** (P:38g, G:20g, C:77g, Fibre:15g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -786,9 +840,10 @@
 | 10 g chia | 1.6/3.1/4.2/3.4 | 49 |
 | 15 g nuci | 2.3/9.8/2.1/1.0 | 98 |
 | 100 ml lapte 1,5% | 3.3/1.5/4.8/0.0 | 46 |
-| **Total masă** | **37.8/20.1/77.1/15.1** | **623** |
 
 **🍲 Prânz — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
+
+**Total masă — 710 kcal** (P:60g, G:19g, C:82g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -801,9 +856,10 @@
 | 150 g roșii pasate | 2.5/0.3/13.5/2.9 | 57 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
 | 15 g măsline | 0.1/1.6/0.9/0.2 | 17 |
-| **Total masă** | **59.8/19.0/82.4/13.8** | **712** |
 
 **🍎 Gustare — Brânză de vaci cu pâine integrală și legume crude**
+
+**Total masă — 330 kcal** (P:29g, G:7g, C:41g, Fibre:6g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -812,9 +868,10 @@
 | 50 g castravete | 0.3/0.1/1.8/0.2 | 8 |
 | 50 g ardei | 0.5/0.1/3.0/1.1 | 13 |
 | 50 g morcov | 0.5/0.1/4.8/1.4 | 20 |
-| **Total masă** | **28.6/6.6/40.5/5.7** | **329** |
 
 **🌙 Cină — Chiftele de pui la cuptor cu salată grecească, orez brun și sos de tahini**
+
+**Total masă — 745 kcal** (P:54g, G:26g, C:75g, Fibre:8g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -830,6 +887,5 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 20 g măsline | 0.2/2.2/1.2/0.3 | 23 |
 | 9 g ulei de măsline | 0.0/9.0/0.0/0.0 | 80 |
-| **Total masă** | **54.1/26.0/74.7/8.5** | **744** |
 
 **Total zi — 2410 kcal** (P:180g, G:72g, C:275g, Fibre:43g)

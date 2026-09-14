@@ -109,7 +109,7 @@ def menu_zilnic(who, size):
     MEALS = ("🌅 Mic dejun","🍲 Prânz","🍎 Gustare","🌙 Cină")
     o=[]
     o.append(f"# 📋 Meniu zilnic — {who} (vizualizare rapidă)\n")
-    o.append(f"> Doar de citit rapid: o zi sub alta, rețetele mesei una sub alta. Un ingredient pe rând (**un singur rând pe ingredient**, niciodată mai multe înghesuite laolaltă), cu **P/G/C/Fibre** și **kcal** pe coloane separate, și un rând de total la finalul fiecărei mese.\n> Sursa de adevăr (porții exacte) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.\n")
+    o.append(f"> Doar de citit rapid: o zi sub alta, rețetele mesei una sub alta. Sub numele fiecărui fel: **totalul mesei** (kcal, P/G/C/Fibre — identic cu `4_meniu.md`). Dedesubt, un ingredient pe rând (**un singur rând pe ingredient**, niciodată mai multe înghesuite laolaltă), cu **P/G/C/Fibre** și **kcal** pe coloane separate.\n> Sursa de adevăr (porții exacte) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.\n")
     col = 1 if size=="S" else 2
     T = totals(size)
     for w in (0,1):
@@ -118,17 +118,16 @@ def menu_zilnic(who, size):
             o.append(f"### {d[0]} {d[1]}".strip()+"\n")
             for lbl,id in zip(MEALS,d[2:]):
                 r=R[id]
+                mm=macro(r[size])
                 o.append(f"**{lbl} — {r['nume']}**\n")
+                o.append(f"**Total masă — {r5(mm[0])} kcal** (P:{mm[1]:.0f}g, G:{mm[2]:.0f}g, C:{mm[3]:.0f}g, Fibre:{mm[4]:.0f}g)\n")
                 o.append("| Ingredient | P/G/C/Fibre | kcal |\n|:---|:---|:---|")
-                mtot=[0.0]*5
                 for label,items in r["comp"]:
                     for it in items:
                         k,g = it[0],it[col]
                         if g>0:
                             kcal,p,gr,c,f = [v*g/100 for v in DB[k]]
                             o.append(f"| {qty(k,g)} | {p:.1f}/{gr:.1f}/{c:.1f}/{f:.1f} | {kcal:.0f} |")
-                            mtot[0]+=kcal; mtot[1]+=p; mtot[2]+=gr; mtot[3]+=c; mtot[4]+=f
-                o.append(f"| **Total masă** | **{mtot[1]:.1f}/{mtot[2]:.1f}/{mtot[3]:.1f}/{mtot[4]:.1f}** | **{mtot[0]:.0f}** |")
                 o.append("")
             o.append(f"**Total zi — {r5(t[0])} kcal** (P:{t[1]:.0f}g, G:{t[2]:.0f}g, C:{t[3]:.0f}g, Fibre:{t[4]:.0f}g)\n")
     return "\n".join(o)
