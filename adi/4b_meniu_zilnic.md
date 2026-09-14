@@ -6,7 +6,7 @@
 
 ## Săptămâna 1
 
-### ──────── Luni 🥚 ────────
+## Luni 🥚
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
@@ -70,7 +70,7 @@
 
 **Total zi — 2510 kcal** (P:202g, G:84g, C:253g, Fibre:48g)
 
-### ──────── Marți 🏋️ ────────
+## Marți 🏋️
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
@@ -131,7 +131,7 @@
 
 **Total zi — 2340 kcal** (P:180g, G:75g, C:250g, Fibre:43g)
 
-### ──────── Miercuri 🥚 ────────
+## Miercuri 🥚
 
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
 
@@ -198,7 +198,7 @@
 
 **Total zi — 2510 kcal** (P:195g, G:82g, C:267g, Fibre:51g)
 
-### ──────── Joi 🏋️ ────────
+## Joi 🏋️
 
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
@@ -259,7 +259,7 @@
 
 **Total zi — 2515 kcal** (P:186g, G:74g, C:302g, Fibre:45g)
 
-### ──────── Vineri 🥚 ────────
+## Vineri 🥚
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
@@ -319,7 +319,7 @@
 
 **Total zi — 2410 kcal** (P:194g, G:81g, C:243g, Fibre:43g)
 
-### ──────── Sâmbătă ────────
+## Sâmbătă
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
@@ -378,7 +378,7 @@
 
 **Total zi — 2300 kcal** (P:177g, G:65g, C:260g, Fibre:45g)
 
-### ──────── Duminică 🥚 ────────
+## Duminică 🥚
 
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
 
@@ -445,7 +445,7 @@
 
 ## Săptămâna 2
 
-### ──────── Luni ────────
+## Luni
 
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
@@ -508,7 +508,7 @@
 
 **Total zi — 2410 kcal** (P:177g, G:77g, C:270g, Fibre:42g)
 
-### ──────── Marți 🥚🏋️ ────────
+## Marți 🥚🏋️
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
@@ -571,7 +571,7 @@
 
 **Total zi — 2540 kcal** (P:196g, G:92g, C:250g, Fibre:39g)
 
-### ──────── Miercuri ────────
+## Miercuri
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
@@ -635,7 +635,7 @@
 
 **Total zi — 2385 kcal** (P:185g, G:75g, C:260g, Fibre:48g)
 
-### ──────── Joi 🥚🏋️ ────────
+## Joi 🥚🏋️
 
 **🌅 Mic dejun — Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr**
 
@@ -700,7 +700,7 @@
 
 **Total zi — 2635 kcal** (P:209g, G:89g, C:269g, Fibre:43g)
 
-### ──────── Vineri ────────
+## Vineri
 
 **🌅 Mic dejun — Bol de iaurt grec cu banană, unt de arahide, ovăz și in**
 
@@ -763,7 +763,7 @@
 
 **Total zi — 2395 kcal** (P:183g, G:70g, C:276g, Fibre:51g)
 
-### ──────── Sâmbătă 🥚 ────────
+## Sâmbătă 🥚
 
 **🌅 Mic dejun — Omletă cu legume și brânză de vaci, pâine integrală + banană**
 
@@ -826,7 +826,7 @@
 
 **Total zi — 2465 kcal** (P:195g, G:83g, C:253g, Fibre:44g)
 
-### ──────── Duminică ────────
+## Duminică
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 

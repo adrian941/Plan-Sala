@@ -116,7 +116,7 @@ def menu_zilnic(who, size):
         o.append(f"\n## Săptămâna {w+1}\n")
         for d,t in zip(PLAN[w*7:w*7+7], T[w*7:w*7+7]):
             zi_lbl = f"{d[0]} {d[1]}".strip()
-            o.append(f"### ──────── {zi_lbl} ────────\n")
+            o.append(f"## {zi_lbl}\n")
             for lbl,id in zip(MEALS,d[2:]):
                 r=R[id]
                 mm=macro(r[size])
