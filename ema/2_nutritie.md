@@ -3,25 +3,25 @@
 > Se completează după ce [`1_profil.md`](./1_profil.md) are datele reale. Principiile de fond: [Gym-Rules.md](../Gym-Rules.md).
 
 ## Bază de calcul (Mifflin-St Jeor)
-- BMR ≈ **1950 kcal** · TDEE (×1.375, activitate ușoară) ≈ **2680 kcal**
-- Deficit ~580 kcal → **țintă ≈ 2100 kcal/zi** (~0,5–0,6 kg/săpt.)
+- BMR ≈ **2010 kcal** · TDEE (×1.375, activitate ușoară) ≈ **2765 kcal**
+- Deficit ~565 kcal → **țintă ≈ 2200 kcal/zi** (~0,5–0,6 kg/săpt.)
 - Detalii formulă & double-check: [`1_profil.md`](./1_profil.md)
 
 ## Ținte zilnice
 
 | Macro | Cantitate | Calorii | Rațiune |
 |-------|----------:|--------:|---------|
-| Proteine | **150 g** | 600 | ~1,9 g/kg greutate-țintă (~80 kg). Calculat pe masă slabă, NU pe 110 kg. Păstrare mușchi + sațietate. |
+| Proteine | **150 g** | 600 | ~1,9 g/kg greutate-țintă (~80 kg). Calculat pe masă slabă, NU pe 116 kg. Păstrare mușchi + sațietate. |
 | Grăsimi | **65 g** | 585 | ~28% din calorii; prag minim hormonal. |
-| Carbohidrați | **230 g** | 920 | Energie antrenament + fibre. |
+| Carbohidrați | **255 g** | 1020 | Energie antrenament + fibre. |
 | **Fibre** | **25–30 g** | — | Sațietate, glicemie stabilă, tranzit, microbiom. Ținta OMS pentru femei adulte. |
-| **TOTAL** | | **≈ 2105 kcal** | |
+| **TOTAL** | | **≈ 2205 kcal** | |
 
 - **Proteină distribuită**: ~30–40 g × 4 mese.
 - Fibrele se urmăresc ca macro de rang egal (apar în fiecare fișă de rețetă) — surse: [`comun/1_ingrediente.md`](../comun/1_ingrediente.md#-conținut-de-fibre--referință).
 
 ## Principii personalizate
-- Proteina se calculează pe **greutatea-țintă/masa slabă**, nu pe cele 110 kg (evită supraestimarea — greșeala planului vechi cu 200g).
+- Proteina se calculează pe **greutatea-țintă/masa slabă**, nu pe cele 116 kg (evită supraestimarea — greșeala planului vechi cu 200g).
 - Grăsimile nu coboară mult sub 60 g/zi (sănătate hormonală feminină).
 - Țintă fixă zilnică acum (mai ușor de urmărit); ciclare calorii opțional mai târziu.
 - Recalibrăm ținta la 2–3 săpt. în funcție de trendul real al cântarului (±150 kcal).

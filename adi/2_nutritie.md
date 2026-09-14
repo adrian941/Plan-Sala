@@ -4,21 +4,26 @@
 > Aceste ținte decid **porția lui** din rețetele comune.
 
 ## Bază de calcul (Mifflin-St Jeor)
-*(Blocat — lipsesc datele din profil.)*
+Detalii formulă: [`1_profil.md`](./1_profil.md) · ghid: [`wiki/calorii.md`](../wiki/calorii.md)
 
-- **BMR** = ⟨…⟩
-- **TDEE** = ⟨…⟩
-- **Țintă calorică** = ⟨…⟩
+- **BMR** ≈ **2125 kcal** (M, 32 ani, 192 cm, 108 kg)
+- **TDEE** ≈ **2920 kcal** (×1.375, 2 antrenamente/săpt.)
+- Deficit ~520 kcal → **țintă ≈ 2400 kcal/zi** (~0,5–0,6 kg/săpt.)
 
 ## Ținte zilnice
 
 | Macro | Cantitate | Calorii | Rațiune |
 |-------|----------:|--------:|---------|
-| Proteine | ⟨… g⟩ | | |
-| Grăsimi | ⟨… g⟩ | | |
-| Carbohidrați | ⟨… g⟩ | | |
-| **Fibre** | ⟨… g⟩ | — | *(orientativ 30–38 g/zi la bărbați)* |
-| **TOTAL** | | ⟨… kcal⟩ | |
+| Proteine | **180 g** | 720 | ~1,9 g/kg greutate-țintă (~93 kg). Calculat pe ținta, NU pe 108 kg. Cheia recompoziției: păstrează/construiește mușchi în deficit + sațietate. |
+| Grăsimi | **75 g** | 675 | ~28% din calorii; ~0,8 g/kg greutate-țintă, prag pentru testosteron. |
+| Carbohidrați | **250 g** | 1000 | Energie pentru forță + fibre. Mai mulți în zilele de sală. |
+| **Fibre** | **30–38 g** | — | Sațietate, glicemie, tranzit. Ținta pentru bărbați adulți. |
+| **TOTAL** | | **≈ 2395 kcal** |
 
 ## Principii personalizate
-*(De stabilit.)*
+- **Recompoziție, nu doar slăbit**: proteina e nenegociabilă (~35–45 g × 4 mese), iar sala trebuie să fie **forță progresivă** — fără stimul, deficitul taie și din mușchi.
+- Proteina pe **greutatea-țintă (~93 kg)**, nu pe cea actuală.
+- Grăsimile nu coboară sub ~65 g/zi (hormonal).
+- **Zi de sală vs. zi liberă** (opțional, mai târziu): +40 g carbohidrați în ziua de sală, −40 g în zi liberă; media rămâne 2400.
+- Gustarea post-antrenament: proteină + carbohidrați (același principiu ca la Ema).
+- Recalibrare la 2–3 săpt. după trendul cântarului (±150 kcal). Dacă talia scade dar cântarul stă → merge bine, nu tăia calorii.

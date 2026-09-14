@@ -9,7 +9,7 @@
 
 Două lucruri separate:
 
-**Lista de alimente** — [`1_ingrediente.md`](./1_ingrediente.md). Ce se poate mânca, pe categorii, cu cât are fiecare fibre. E o listă despre *mâncare*, nu despre oameni: nu scrie nimeni în ea cui îi place ce.
+**Lista de alimente** — [`1_ingrediente.md`](./1_ingrediente.md). **Sursa unică de adevăr pentru valori nutriționale**: fiecare aliment cu kcal, proteine, grăsimi, carbohidrați, fibre per 100 g, din USDA FoodData Central (cu ID). Orice ingredient nou intră întâi aici, apoi în rețete. E o listă despre *mâncare*, nu despre oameni: nu scrie nimeni în ea cui îi place ce.
 
 **Ce vrea și ce-i trebuie fiecăruia** — în folderul lui:
 
@@ -48,7 +48,7 @@ Ce fac de fiecare dată, fără să mai întreb:
 
 **Ce-mi ajută să știu:** ingrediente și cantități · cum se face · cât durează · câte porții ies · cui îi place și cui nu · la ce masă se mănâncă · ține la frigider câteva zile?
 
-Apoi, **meniul săptămânal** se face separat pentru fiecare (`ema/4_meniu.md`, `adi/4_meniu.md`): de multe ori aceeași rețetă, dar **porții diferite**, fiindcă nevoile diferă.
+Apoi, **meniul** se face separat pentru fiecare (`ema/4_meniu.md`, `adi/4_meniu.md`): aceeași rețetă, dar **porție S sau M**, fiindcă nevoile diferă. **Ce rețetă în ce zi și când se gătește** stă într-un singur loc, comun: [`4_calendar.md`](./4_calendar.md).
 
 ---
 

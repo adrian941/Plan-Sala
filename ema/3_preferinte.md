@@ -23,11 +23,12 @@
 
 ## ❌ Nu-i plac
 
-*(Niciuna semnalată încă. Se completează pe măsură ce apar rețete.)*
+*(Se completează pe măsură ce apar rețete.)*
 
 | Aliment / grupă | Notă |
 |-----------------|------|
-| — | |
+| **Ridichi** | Lui Adi îi plac → în rețetele comune ridichile se adaugă doar la porția lui |
+| **Curcan, fructe de mare, alți pești** | Nu se gătesc. Carne: **pui, porc (mușchi, cotlet; ceafă rar), vită**. Pește: **chefal, păstrăv, doradă, ton**; somon mai rar |
 
 ## 🟡 Tolerate / ❔ de testat
 
@@ -43,6 +44,7 @@
 |--------|---------|
 | **Pește 2×/săptămână** | Fix. Prioritar **pește gras** (somon, macrou, sardine, hering, păstrăv) pentru omega-3 |
 | **Ouă: 3 la două zile** | O zi da / o zi pauză. În zilele fără ouă → altă sursă de proteină |
+| **Fără lactate cu carne/pește, fără ouă cu carne** | În aceeași masă. Lactatele merg la micul dejun (cu ouă e ok) și la gustări; la felurile cu carne, sosurile sunt fără iaurt/brânză |
 | Legume | Se rotesc grupele, nu se repetă aceleași zile la rând |
 
 ## Preferințe culinare

@@ -39,6 +39,8 @@ Toate în **limba română**, cu ton cald, direct, fără jargon inutil, dar cu 
 - **Sănătatea pe primul loc.** Niciun plan agresiv nedumeritor. Deficit/surplus rezonabil, sustenabil, fără carențe.
 - **Personalizat.** Fiecare recomandare se raportează la profilul real: [`ema/1_profil.md`](./ema/1_profil.md), [`adi/1_profil.md`](./adi/1_profil.md). Nu amesteca țintele — porțiile diferă chiar și când rețeta e aceeași.
 - **Documentează deciziile.** Când stabilim ceva împreună, îl scrii în modulul potrivit și notezi în jurnalul din `Gym-Rules.md` (§ Jurnal iterații).
+- **Profilul e sursa de adevăr pentru nevoi; recalculezi la fiecare schimbare.** Țintele (calorii, macro, fibre) se derivă mereu din `1_profil.md` → `2_nutritie.md`. Orice modificare — o rețetă schimbată, o porție, o greutate nouă în profil — înseamnă: recalculezi macro-urile și fibrele, verifici că zilele ies la țintă pentru amândoi și regenerezi meniurile. Nu lași niciodată un meniu cu cifre vechi.
+- **Regula casei la masă: nu amestecăm lactatele cu carnea/peștele, nici ouăle cu carnea, în aceeași masă.** Lactatele stau la micul dejun (cu ouă e ok) și la gustări; la felurile cu carne, sosurile și piureurile sunt fără lactate.
 
 ---
 
@@ -50,7 +52,7 @@ Trei pași, în ordine, descriși pe larg în **[`comun/0_pipeline.md`](./comun/
 2. **Rețetele** → `comun/2_retete.md` → meniul fiecăruia în `ema/4_meniu.md`, `adi/4_meniu.md`
 3. **Cumpărăturile** → `comun/3_cumparaturi.md`
 
-**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat**: rețeta în `comun/2_retete.md`, cu calorii/macro/fibre pe porție; verdictele în `ema/3_preferinte.md` și `adi/3_preferinte.md`; ingredientele noi în lista de alimente.
+**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat**: **întâi** ingredientele noi în `comun/1_ingrediente.md` (valori per 100 g din **USDA FoodData Central**, cu ID — sursa unică de adevăr pentru orice calcul); apoi rețeta în `comun/2_retete.md`, pe structura farfuriei 40/40/20, cu calorii/macro/fibre pe porție calculate **exclusiv** din acel tabel; verdictele în `ema/3_preferinte.md` și `adi/3_preferinte.md`.
 
 **Ordinea contează:** nimic nu ajunge pe lista de cumpărături dacă nu vine dintr-o rețetă pusă în meniu, și nicio rețetă nu intră în meniul cuiva dacă are în ea ceva ce el nu poate mânca.
 
@@ -71,7 +73,14 @@ comun/                  ← ce ține de mâncare, pentru amândoi
 ├── 0_pipeline.md      → cum lucrăm: cei 3 pași
 ├── 1_ingrediente.md   → lista de alimente pe categorii + fibre
 ├── 2_retete.md        → rețetele, cu ce iese pe porție
-└── 3_cumparaturi.md   → lista de cumpărături + magazinele
+├── 3_cumparaturi.md   → lista de cumpărături + magazinele
+└── 4_calendar.md      → ce rețetă în ce zi, când se gătește (comun)
+
+date/                   ← baza de date + calculatorul (Python)
+├── ingrediente_db.py  → valorile USDA per 100 g (sursa pentru 1_ingrediente.md)
+├── retete.py          → rețetele cu cantități S/M, calendarul, țintele
+├── genereaza.py       → scrie 1_ingrediente, 2_retete și cele două meniuri
+└── usda/              → baza oficială USDA SR Legacy (zip)
 
 ema/
 ├── 1_profil.md        → date, activitate, sănătate, obiectiv

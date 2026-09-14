@@ -14,8 +14,10 @@
 | Pas | Fișier | Ce conține | Status |
 |-----|--------|-----------|--------|
 | Cum lucrăm | [`comun/0_pipeline.md`](./comun/0_pipeline.md) | Cei 3 pași + ce înseamnă semnele | 🟢 |
-| 1️⃣ Alimente | [`comun/1_ingrediente.md`](./comun/1_ingrediente.md) | Lista pe categorii, rol pe farfurie, fibre | 🟢 |
-| 2️⃣ Rețete | [`comun/2_retete.md`](./comun/2_retete.md) | Rețetele + ce iese pe porție | ⚪ aștept prima rețetă |
+| 1️⃣ Alimente | [`comun/1_ingrediente.md`](./comun/1_ingrediente.md) | **Sursa unică**: ~100 alimente cu kcal/P/G/C/fibre per 100 g, din USDA (cu ID) | 🟢 USDA SR Legacy |
+| 2️⃣ Rețete | [`comun/2_retete.md`](./comun/2_retete.md) | Rețetele + ce iese pe porție | 🟢 19 rețete pe farfuria 40/40/20 (proteină · legume · amidon · sos), porții S/M, calculate din USDA — toate ❔ netestate |
+| 📅 Calendar | [`comun/4_calendar.md`](./comun/4_calendar.md) | Ce rețetă în ce zi, când se gătește, pe 2 săptămâni (generat din `date/`) | 🟢 ciclu de 2 săpt. · sală marți+joi (de confirmat) |
+| 🧮 Baza de date | [`date/`](./date/README.md) | `ingrediente_db.py` (USDA) + `retete.py` + `genereaza.py` → regenerează ingredientele, rețetele și meniurile | 🟢 |
 | 3️⃣ Cumpărături | [`comun/3_cumparaturi.md`](./comun/3_cumparaturi.md) | Lista + magazinele | ⚪ blocat: lipsesc magazinele |
 
 ## 🧍 Ema
@@ -23,9 +25,9 @@
 | Modul | Fișier | Ce conține | Status |
 |-------|--------|-----------|--------|
 | Profil & obiective | [`ema/1_profil.md`](./ema/1_profil.md) | Date, activitate, sănătate, obiectiv | 🟡 lipsesc talie/șold, job, somn, loc antrenament |
-| Nutriție | [`ema/2_nutritie.md`](./ema/2_nutritie.md) | Calorii, macro, fibre | 🟢 2100 kcal · P150/G65/C230 · fibre 25–30 g |
+| Nutriție | [`ema/2_nutritie.md`](./ema/2_nutritie.md) | Calorii, macro, fibre | 🟢 2200 kcal · P150/G65/C255 · fibre 25–30 g |
 | Preferințe | [`ema/3_preferinte.md`](./ema/3_preferinte.md) | Ce-i place, ce nu, frecvențe | 🟡 lipsesc preferințele culinare (metode, condimentare) |
-| Meniu | [`ema/4_meniu.md`](./ema/4_meniu.md) | Meniul săptămânal + porții | ⚪ după rețete |
+| Meniu | [`ema/4_meniu.md`](./ema/4_meniu.md) | Meniul pe 2 săpt. + porțiile | 🟢 porție S · cantități exacte · medie 2150 kcal · P158/G67/C246 · 40 plante/săpt. |
 | Sală | [`ema/5_sala.md`](./ema/5_sala.md) | Split, exerciții, progresie | ⚪ blocat: unde antrenează |
 | Sănătate | [`ema/6_sanatate.md`](./ema/6_sanatate.md) | Somn, stres, mobilitate, monitorizare | ⚪ după profil |
 
@@ -33,10 +35,10 @@
 
 | Modul | Fișier | Ce conține | Status |
 |-------|--------|-----------|--------|
-| Profil | [`adi/1_profil.md`](./adi/1_profil.md) | Datele de care am nevoie | 🔴 gol |
-| Nutriție | [`adi/2_nutritie.md`](./adi/2_nutritie.md) | Calorii, macro, fibre | 🔴 blocat de profil |
-| Preferințe | [`adi/3_preferinte.md`](./adi/3_preferinte.md) | Ce-i place, ce nu, ce nu poate | 🔴 gol |
-| Meniu | [`adi/4_meniu.md`](./adi/4_meniu.md) | Meniul săptămânal + porții | ⚪ după rețete |
+| Profil | [`adi/1_profil.md`](./adi/1_profil.md) | Date, activitate, sănătate, obiectiv | 🟢 complet (opțional: talie, pași, somn) |
+| Nutriție | [`adi/2_nutritie.md`](./adi/2_nutritie.md) | Calorii, macro, fibre | 🟢 2400 kcal · P180/G75/C250 · fibre 30–38 g |
+| Preferințe | [`adi/3_preferinte.md`](./adi/3_preferinte.md) | Ce-i place, ce nu, ce nu poate | 🟡 lipsesc preferințele culinare (ore, metode, condimentare) |
+| Meniu | [`adi/4_meniu.md`](./adi/4_meniu.md) | Meniul pe 2 săpt. + porțiile | 🟢 porție M · cantități exacte · medie 2420 kcal · P186/G76/C263 · 40 plante/săpt. |
 
 Legendă: 🟢 stabil · 🟡 în lucru · ⚪ neînceput · 🔴 blocat
 
@@ -45,6 +47,7 @@ Legendă: 🟢 stabil · 🟡 în lucru · ⚪ neînceput · 🔴 blocat
 | Fișier | Ce conține | Status |
 |--------|-----------|--------|
 | [`wiki/fesieri.md`](./wiki/fesieri.md) | Anatomie + exerciții pentru izolarea fesierilor fără hipertrofierea picioarelor | 🟢 |
+| [`wiki/calorii.md`](./wiki/calorii.md) | Cum se calculează BMR (Mifflin-St Jeor, Katch-McArdle), factorii de activitate → TDEE, deficit/surplus, recalibrare | 🟢 |
 
 ---
 
@@ -73,8 +76,8 @@ Acestea sunt reguli generale de plecare; le personalizăm pe măsură ce apar da
 
 **Pipeline culinar (cele 3 etape cerute de utilizator):**
 
-1. **Alimente + preferințe + ținte (calorii, macro, fibre).** ⬅️ *suntem aici* — lista de alimente e gata, Ema e completă; Adi urmează.
-2. **Rețete** — utilizatorul dă rețete cu detalii + cui îi place; eu le scriu, le calculez pe porție și le trec în cuprins.
+1. **Alimente + preferințe + ținte (calorii, macro, fibre).** 🟢 gata pentru amândoi.
+2. **Rețete + meniu** ⬅️ *suntem aici* — 19 rețete propuse și puse în calendar pe 2 săptămâni; urmează testarea lor (verdicte în preferințe). Rețete noi de la utilizator se adaugă oricând.
 3. **Lista de cumpărături** — generată din meniuri, grupată pe magazine.
 
 **În paralel, doar pentru Ema:**
@@ -99,3 +102,13 @@ Acestea sunt reguli generale de plecare; le personalizăm pe măsură ce apar da
 | 2026-09-10 | **Separate lucrurile care se amestecau:** lista de alimente și rețetele rămân comune și fără nume de oameni, iar gusturile trec la fiecare, în `3_preferinte.md`, scrise scurt (doar ce iese din tipar — restul se înțelege că e ok). Motivul: altfel, la fiecare om nou trebuia rescris tot. Preferințele alimentare scoase din profil (se dublau). | toate |
 | 2026-09-10 | **Simplificare.** Prima variantă a acestei separări o dusesem în zona tehnică — foldere `persoane/`, șabloane de copiat, script de verificare. Scoase toate: rămân trei foldere citibile — `comun/`, `ema/`, `adi/` — și fișiere .md scrise pe înțelesul oricui. Rețetele stau într-un singur fișier (`comun/2_retete.md`) până se adună multe. | toate |
 | 2026-09-13 | Adăugat folder **`wiki/`** pentru ghiduri de antrenament generale (nu personalizate, valabile pentru oricine antrenează). Primul fișier: `wiki/fesieri.md` — anatomie + exerciții pentru izolarea fesierilor fără hipertrofierea picioarelor. Linkat din `ema/5_sala.md`. | wiki |
+| 2026-09-14 | **Corecție greutate Ema: 110 → 118 kg.** Recalculat: BMR ≈ 2030 · TDEE ≈ 2790 · **țintă 2200 kcal** (deficit ~590). Macro: **P 150 / G 65 / C 255**. Date de bază Adi: M, 32 ani, 192 cm, 108 kg → **BMR ≈ 2125**; TDEE și țintă blocate până aflăm activitatea și obiectivul. | ema/1_profil, ema/2_nutritie, ema/4_meniu, adi/1_profil, adi/2_nutritie |
+| 2026-09-14 | Confirmat: amândoi **2 antrenamente/săpt.** → factor 1.375. Adi: TDEE ≈ **2920**; ținta rămâne blocată de obiectiv. Creat **`wiki/calorii.md`** — formulele BMR, tabelul factorilor de activitate, deficit/surplus, recalibrare. | adi/1_profil, adi/2_nutritie, wiki |
+| 2026-09-14 | **Obiectiv Adi**: slăbit max 15 kg (108 → ~93) + dezvoltare musculară → recompoziție. Deficit moderat ~520 → **țintă 2400 kcal**. Macro: **P 180 / G 75 / C 250**, fibre 30–38 g. Proteina pe greutatea-țintă. Orizont ~6–8 luni. | adi/1_profil, adi/2_nutritie |
+| 2026-09-14 | Profil Adi închis: fără probleme medicale, fără alergii, fără accidentări. Job mixt (2 zile fizice + acasă) → păstrăm 1.375 (conservator la greutate mare), cu opțiunea +200 kcal în zilele fizice dacă slăbește prea repede. | adi/1_profil |
+| 2026-09-14 | Preferințe Adi: fără restricții, fără dezgusturi; **ouă și pește la fel ca Ema** (3 la 2 zile / 2×/săpt.). Singura divergență: **ridichile** — ⭐ Adi, ❌ Ema → se adaugă doar la porția lui. Notat în ambele `3_preferinte.md`. | adi/3_preferinte, ema/3_preferinte |
+| 2026-09-14 | **Plan alimentar pe 2 săptămâni, gătit la comun.** 19 rețete propuse în `comun/2_retete.md` (4 mic dejun, 3 gustări, 12 principale), fiecare cu porție **S** (Ema) și **M** (Adi) — diferă doar carnea și amidonul, legumele/sosul identice → o singură oală. Creat `comun/4_calendar.md`: cina de azi = prânzul de mâine (×4 porții), pește marți (cuptor) + miercuri (conservă), ouă alternate, chili ×8 cu jumătate la congelator. Meniuri: Ema ≈ 2105 kcal · P156/G61/C231 · fibre 42; Adi ≈ 2440 · P188/G72/C257 · fibre 46 (medii pe 14 zile, calculate din cantități). Presupus sală marți+joi. | comun/2_retete, comun/4_calendar, ema/4_meniu, adi/4_meniu |
+| 2026-09-14 | **Corecție greutate Ema: 118 → 116 kg.** BMR ≈ 2010 · TDEE ≈ 2765. **Ținta rămâne 2200 kcal** (deficit ~565, tot în intervalul 500–650) → macro și meniul neschimbate. Actualizat exemplul din `wiki/calorii.md`. | ema/1_profil, ema/2_nutritie, ema/4_meniu, wiki |
+| 2026-09-14 | **`comun/1_ingrediente.md` devine sursa unică de adevăr.** Tabel cu ~100 alimente (kcal, P, G, C, fibre per 100 g) din **USDA FoodData Central SR Legacy**, fiecare cu ID și link; regulă permanentă în CLAUDE.md: ingredient nou → întâi în tabel, apoi în rețetă. La verificare a ieșit că valorile de carne folosite înainte erau pentru carne **gătită** — recalculat tot pe crud (porțiile de carne au crescut ~40 g). **Rețetele refăcute pe farfuria 40/40/20**: proteină · legume (min. 3, la tavă / piure / salată) · amidon + sos; piureuri de legume (conopidă-morcov, broccoli-dovlecel), ratatouille, salate cu dressing de iaurt. American Gut Project: **40 plante/săpt.** Meniurile arată acum **cantitatea exactă a fiecărui ingredient** și caloriile calculate: Ema 2170 · P161/G67/C246; Adi 2440 · P188/G78/C264. | comun/1_ingrediente, comun/2_retete, comun/4_calendar, ema/4_meniu, adi/4_meniu, CLAUDE.md, 0_pipeline |
+| 2026-09-14 | **Regula casei: fără lactate cu carne/pește, fără ouă cu carne în aceeași masă** (notată în CLAUDE.md, ambele `3_preferinte.md`, rețete, meniuri). Sosurile la carne refăcute fără iaurt: tahini-lămâie, lămâie-usturoi-ulei, vinegretă de muștar; piureurile cu ulei de măsline; scoase telemeaua și parmezanul din felurile cu carne; avocado peste chili. **Recalculat tot**: Ema 2160 · P155/G70/C245 · fibre 42; Adi 2430 · P182/G80/C263 · fibre 45; 41 plante/săpt. **Regulă permanentă în CLAUDE.md:** profilul e sursa de adevăr pentru nevoi → la orice schimbare se recalculează și se regenerează. Creat **`date/`** (baza de ingrediente USDA, rețetele cu cantități, generatorul de fișiere, zip-ul USDA) — copie a scratchpad-ului, acum în repo. | CLAUDE.md, date/, comun/2_retete, ema+adi/3_preferinte, ema+adi/4_meniu |
+| 2026-09-14 | **Carnea și peștele restrânse la ce gătesc ei:** pui, porc (mușchi, cotlet; ceafă rar), vită · chefal, păstrăv, doradă, ton, somon rar. Scoase din bază și rețete: curcan, sardine, macrou, cod, creveți. Rețete: chili → **piept de pui tocat**; „curcan cu piure" → **mușchi de porc la grătar**; somon → **doradă la cuptor** (USDA n-are doradă → sea bass ca proxy, notat); salată de sardine → **salată de ton**. Calendar reordonat ca să rămână max. 2 feluri de carne roșie/săpt. Recalculat: Ema 2150 · P158/G67/C246; Adi 2420 · P186/G76/C263; 40 plante/săpt. `4_calendar.md` se generează acum din `date/`. `copiaza.cmd` nu mai copiază `date/` și e urmărit de git. | date/, comun/*, ema+adi/3_preferinte, ema+adi/4_meniu, copiaza.cmd |
