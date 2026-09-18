@@ -86,7 +86,8 @@ ema/
 ├── 1_profil.md        → date, activitate, sănătate, obiectiv
 ├── 2_nutritie.md      → calorii, macro, fibre pe zi
 ├── 3_preferinte.md    → ce-i place, ce nu, ce nu poate
-├── 4_meniu.md         → meniul săptămânal + porțiile ei
+├── 4_meniu.md         → meniul săptămânal + porțiile ei (sursa de adevăr, cu tabele și calcule)
+├── 4b_meniu_zilnic.md → ACELAȘI meniu, doar de citit rapid: o zi sub alta, ingredientele pe rânduri, fără tabel
 ├── 5_sala.md          → programul de antrenament
 └── 6_sanatate.md      → somn, stres, mobilitate, monitorizare
 
@@ -94,8 +95,11 @@ adi/                    (de completat)
 ├── 1_profil.md
 ├── 2_nutritie.md
 ├── 3_preferinte.md
-└── 4_meniu.md
+├── 4_meniu.md
+└── 4b_meniu_zilnic.md → ca la Ema: aceeași informație, doar formatată pentru citit rapid
 ```
+
+**Regulă permanentă — cele două fișiere de meniu ale fiecăruia merg mereu împreună.** `4_meniu.md` (tabele, kcal/macro) și `4b_meniu_zilnic.md` (aceeași rețete, format vizual rapid) descriu **același meniu**, doar afișat diferit. Amândouă se generează din `date/genereaza.py` (vezi `date/README.md`) — nu se editează niciunul manual. **Orice modificare la meniul cuiva** (rețetă schimbată, poziție în calendar, porție) înseamnă: se schimbă sursa în `date/`, se rulează `python genereaza.py`, și se verifică că **ambele** fișiere (`4_meniu.md` + `4b_meniu_zilnic.md`, pentru persoana afectată) au ieșit actualizate — niciodată doar unul.
 
 Fișierele sunt numerotate în ordinea în care le completăm. Când adaugi ceva nou, păstrează numerotarea și linkează din `Gym-Rules.md`.
 

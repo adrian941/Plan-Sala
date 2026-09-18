@@ -50,6 +50,8 @@ Ce fac de fiecare dată, fără să mai întreb:
 
 Apoi, **meniul** se face separat pentru fiecare (`ema/4_meniu.md`, `adi/4_meniu.md`): aceeași rețetă, dar **porție S sau M**, fiindcă nevoile diferă. **Ce rețetă în ce zi și când se gătește** stă într-un singur loc, comun: [`4_calendar.md`](./4_calendar.md).
 
+Fiecare `4_meniu.md` are și o variantă **`4b_meniu_zilnic.md`**: aceleași rețete și cantități, dar afișate o zi sub alta, ingredientele pe rânduri separate în loc de tabel — doar pentru citit rapid, fără calorii/macro. Cele două fișiere se generează împreună, din `date/genereaza.py`; **orice schimbare la meniul cuiva actualizează automat ambele**, niciodată doar tabelul cu calcule.
+
 ---
 
 ## Pasul 3 — Cumpărăturile
