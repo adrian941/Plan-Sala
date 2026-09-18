@@ -23,6 +23,10 @@
   --adi-soft: #DDE8FF;
 
   --radius: 14px;
+  /* mărimea comenzilor din antet: o singură valoare pentru toate, ca să iasă uniform */
+  --h: 40px;    /* înălțimea oricărui buton/capsulă din zona de sus */
+  --gap: 8px;   /* rostul dintre ele, pe orizontală și pe verticală */
+  --pad: 3px;   /* rama capsulelor segmentate */
   --font: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* marginile pe care ecranul telefonului le „mănâncă” (crestătură, colțuri, bara de
@@ -76,109 +80,134 @@ button, input, fieldset { font: inherit; color: inherit; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 code { font: 600 0.9em var(--font); color: var(--mute); }
 
-/* ---------- antet ---------- */
+/* ---------- antet ----------
+   Regula zonei de sus: TOATE comenzile au aceeași înălțime (--h), același colț și același
+   rost (--gap). Așa arată ca un singur set de butoane, nu ca trei rânduri desenate separat.
+
+   Pe telefon sunt două rânduri:
+     1. paginile (Meniu / Rețete / Alimente) + butonul de opțiuni
+     2. al cui meniu (Ema / Amândoi / Adi) + săptămâna (S1 / S2)
+   Macro, Ingrediente și PDF se folosesc rar, deci stau într-un panou care se deschide din
+   butonul de opțiuni — înainte ocupau un rând întreg din ecran degeaba.
+   Pe ecran mare (≥640px) apare titlul, iar panoul se desface direct în rând. */
 .top {
   max-width: 2200px;
   margin: 0 auto;
-  padding: 18px 0 10px;
+  padding: 10px 0 8px;
   display: grid;
-  gap: 14px;
-  grid-template-columns: 1fr;
-  align-items: center;
+  gap: var(--gap);
 }
-.brand h1 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
-.brand .sub { margin: 4px 0 0; color: var(--mute); font-size: 12.5px; }
+.rand { display: flex; align-items: center; gap: var(--gap); min-width: 0; }
+.title { display: none; }   /* pe telefon capsula de pagini ține locul titlului */
+.title h1 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.title .sub { margin: 4px 0 0; color: var(--mute); font-size: 12.5px; }
 
-/* comutatorul-capsulă: elementul principal al paginii */
-.who {
+/* ---- capsulele segmentate: pagini, persoană, săptămână — o singură rețetă pentru toate ---- */
+.seg {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  background: var(--card);
-  border: 1px solid var(--line-2);
-  border-radius: 999px;
-  padding: 4px;
+  /* coloanele se împart după text, apoi spațiul rămas se dă în mod egal: „Amândoi” primește
+     cât îi trebuie, „Ema” și „Adi” rămân strânse — la trei coloane egale nu încăpea pe
+     telefoanele înguste. */
+  display: grid; grid-auto-flow: column; grid-auto-columns: auto;
+  height: var(--h); min-width: 0; padding: var(--pad);
+  background: var(--card); border: 1px solid var(--line-2); border-radius: 999px;
   isolation: isolate;
 }
-.who label { position: relative; z-index: 1; cursor: pointer; }
-.who input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-.who span {
-  display: block;
-  text-align: center;
-  padding: 9px 12px;
-  border-radius: 999px;
-  font-weight: 600;
-  color: var(--mute);
-  transition: color .25s;
-}
-.who input:checked + span { color: #fff; }
-.who input:focus-visible + span { outline: 2px solid var(--p); outline-offset: 2px; }
-.who .thumb {
-  position: absolute;
-  z-index: 0;
-  top: 4px; bottom: 4px; left: 4px;
-  width: calc((100% - 8px) / 3);
-  border-radius: 999px;
-  background: var(--acc);
-  transform: translateX(var(--x, 100%));
-  transition: transform .35s cubic-bezier(.3, 1.2, .35, 1), background .35s;
-}
-body.v-ema   .who .thumb { --x: 0%; }
-.v-comun .who .thumb { --x: 100%; background: linear-gradient(100deg, var(--ema) 10%, var(--adi) 90%); }
-body.v-adi   .who .thumb { --x: 200%; }
-
-.tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
-@media (max-width: 639px) {
-  /* capsula de pagini ține locul titlului — un rând în minus, nu unul în plus */
-  .brand .title { display: none; }
-  .pages { margin-left: 0; width: 100%; }
-  .top { gap: 10px; }
-}
-@media (max-width: 480px) {
-  /* pe telefon: totul pe un singur rând, mai mic */
-  .tools { flex-wrap: nowrap; gap: 6px; }
-  .tools .week { padding: 2px; }
-  .tools .week span { padding: 5px 9px; font-size: 0; }
-  .tools .week span::before { content: attr(data-short); font-size: 11.5px; }   /* „S1” / „S2” în loc de „Săpt. 1” */
-  .tools .ingbtn { padding: 6px 9px; font-size: 11.5px; }
-  .tools .right { gap: 4px; flex-shrink: 0; }
-}
-.week {
-  display: inline-grid; grid-template-columns: 1fr 1fr;
-  background: var(--card); border: 1px solid var(--line-2); border-radius: 999px; padding: 3px;
-}
-.week label { position: relative; cursor: pointer; }
-.week input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-.week span {
-  display: block; padding: 6px 14px; border-radius: 999px;
-  font-size: 12.5px; font-weight: 600; color: var(--mute); white-space: nowrap;
-}
-.week input:checked + span { background: var(--ink); color: var(--bg); }
-.week input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
-.tools .right { display: flex; gap: 6px; }
-.ingbtn {
-  border: 1px solid var(--line-2); background: var(--card); border-radius: 999px;
-  padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: var(--mute); cursor: pointer;
-}
-.ingbtn.pdf { text-decoration: none; color: var(--ink); border-color: var(--ink); display: inline-flex; align-items: center; }
-.ingbtn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.ingbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-
-/* ---------- navigația între pagini ----------
-   Stă în rândul titlului: pe telefon ia chiar locul titlului, ca să nu fure niciun pixel
-   pe verticală (pe ecranul mic contează fiecare rând). Pe ecran mare stă lângă titlu. */
-.pages {
-  display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr;
-  margin-left: auto; flex-shrink: 0;
-  background: var(--card); border: 1px solid var(--line-2); border-radius: 999px; padding: 3px;
-}
-.pages button {
-  border: 0; background: none; border-radius: 999px; cursor: pointer;
-  padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: var(--mute); white-space: nowrap;
+.seg label { position: relative; z-index: 1; display: block; height: 100%; min-width: 0; cursor: pointer; }
+.seg input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.seg button, .seg span {
+  display: flex; align-items: center; justify-content: center;
+  height: 100%; padding: 0 10px;
+  border: 0; background: none; border-radius: 999px;
+  font-size: 13px; font-weight: 600; color: var(--mute);
+  white-space: nowrap; cursor: pointer;
   transition: background .2s, color .2s;
 }
+.seg button:focus-visible, .seg input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: -1px; }
+
+/* paginile: butonul activ e plin */
+.pages { flex: 1 1 auto; }
 .pages button.on { background: var(--ink); color: var(--bg); }
-.pages button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* persoana: pastila colorată alunecă sub eticheta aleasă */
+.who { flex: 1 1 auto; }
+.who input:checked + span { color: #fff; }
+.who input:focus-visible + span { outline-color: var(--p); }
+/* pastila alunecă sub eticheta aleasă; lățimea și poziția vin din app.js (mutaPastila),
+   pentru că etichetele nu mai au lățimi egale */
+.who .thumb {
+  position: absolute; z-index: 0;
+  top: var(--pad); bottom: var(--pad); left: var(--pad);
+  width: 33%;
+  border-radius: 999px;
+  background: var(--acc);
+  transition: transform .35s cubic-bezier(.3, 1.2, .35, 1), width .35s cubic-bezier(.3, 1.2, .35, 1), background .35s;
+}
+.v-comun .who .thumb { background: linear-gradient(100deg, var(--ema) 10%, var(--adi) 90%); }
+
+/* săptămâna: pe telefon scurtat la „S1 / S2”, ca să încapă lângă persoană */
+.week { flex: 0 0 auto; }
+.week input:checked + span { background: var(--ink); color: var(--bg); }
+.week span { font-size: 0; padding: 0 13px; }
+.week span::before { content: attr(data-short); font-size: 13px; font-weight: 600; }
+
+/* telefoane înguste (≤379px): litere și margini puțin mai mici, ca „Amândoi” să încapă
+   întreg în capsulă, fără să se lipească de vecini */
+@media (max-width: 379px) {
+  /* atenție: la .week textul lung stă ascuns cu font-size 0 și se afișează „S1/S2” din
+     ::before — deci aici se micșorează ::before, nu span-ul */
+  .seg button, .who span { font-size: 12px; }
+  .seg button, .seg span { padding: 0 6px; }
+  .week span::before { font-size: 12px; }
+  .week span { padding: 0 10px; }
+}
+
+/* ---- butonul și panoul de opțiuni (Macro / Ingrediente / PDF) ---- */
+.opts { position: relative; flex: 0 0 auto; }
+.ico {
+  position: relative;
+  width: var(--h); height: var(--h); padding: 0;
+  display: grid; place-items: center;
+  background: var(--card); border: 1px solid var(--line-2); border-radius: 999px;
+  color: var(--mute); cursor: pointer;
+}
+.ico svg { width: 18px; height: 18px; }
+.ico[aria-expanded="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.ico:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+/* bulină cât timp e pornit ceva din panou: se vede că sunt opțiuni active și când e închis */
+.opts.activ .ico::after {
+  content: ""; position: absolute; top: -1px; right: -1px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--acc); border: 2px solid var(--bg);
+}
+
+.opts-panel {
+  display: none;
+  position: absolute; z-index: 20; top: calc(100% + 6px); right: 0;
+  min-width: 208px; padding: 6px;
+  background: var(--card); border: 1px solid var(--line-2); border-radius: 16px;
+  box-shadow: 0 14px 34px rgba(16, 14, 32, .22);
+}
+.opts.open .opts-panel { display: grid; gap: 2px; }
+.ingbtn {
+  border: 0; background: none; border-radius: 10px;
+  width: 100%; min-height: 38px; padding: 0 10px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-size: 13.5px; font-weight: 600; color: var(--ink); text-align: left; cursor: pointer;
+}
+/* pătrățelul de bifă: doar butoanele care se pot aprinde (Macro, Ingrediente) îl au */
+.ingbtn[aria-pressed]::after {
+  content: "✓"; flex: 0 0 auto;
+  display: grid; place-items: center;
+  width: 20px; height: 20px; border-radius: 7px;
+  border: 1.5px solid var(--line-2); color: transparent; font-size: 12px; font-weight: 800;
+}
+.ingbtn[aria-pressed="true"] { color: var(--acc-ink); }
+.ingbtn[aria-pressed="true"]::after { background: var(--acc); border-color: var(--acc); color: #fff; }
+.ingbtn.pdf { margin-top: 4px; border-top: 1px solid var(--line); border-radius: 0 0 10px 10px; }
+.ingbtn.install { color: var(--acc-ink); }
+.ingbtn.install[hidden] { display: none; }
+.ingbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
 
 /* ce se vede pe fiecare pagină */
 body.pg-retete .only-meniu, body.pg-alimente .only-meniu,
@@ -381,10 +410,33 @@ body.no-macro .ing ul.two { grid-template-columns: repeat(4, max-content) 1fr; }
 /* ---------- ecrane mai mari ---------- */
 @media (min-width: 640px) {
   body { font-size: 13px; }
+  :root { --h: 36px; }
   .mh .nm { -webkit-line-clamp: 3; }
-  .top { grid-template-columns: auto 1fr auto; }
-  .who { width: 340px; justify-self: center; }
   .chips { display: none; }
+  /* antet pe ecran mare: titlu + pagini + opțiunile direct în rând (fără panou), iar
+     persoana și săptămâna centrate pe rândul al doilea */
+  .title { display: block; flex: 1 1 auto; min-width: 0; }
+  .pages, .who { flex: 0 0 auto; }
+  .who { width: 340px; }
+  .r2 { justify-content: center; }
+  .week span { font-size: 13px; }
+  .week span::before { content: none; }
+  .ico { display: none; }
+  .opts-panel, .opts.open .opts-panel {
+    display: flex; gap: 6px;
+    position: static; min-width: 0; padding: 0;
+    background: none; border: 0; box-shadow: none;
+  }
+  .opts-panel .ingbtn {
+    width: auto; height: var(--h); min-height: 0; padding: 0 14px;
+    justify-content: center; border-radius: 999px;
+    border: 1px solid var(--line-2); background: var(--card);
+    font-size: 12.5px; color: var(--mute);
+  }
+  .opts-panel .ingbtn::after { display: none; }
+  .opts-panel .ingbtn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .opts-panel .pdf { margin-top: 0; color: var(--ink); border-color: var(--ink); }
+  .opts-panel .install { background: var(--acc); border-color: var(--acc); color: #fff; }
   .wk {
     grid-auto-flow: row;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -441,14 +493,14 @@ body::before {
   z-index: 10;
   pointer-events: none;
 }
-.top { padding-top: calc(18px + var(--sus)); }
+.top { padding-top: calc(10px + var(--sus)); }
 .chips { top: var(--sus); }
 body.print-look { padding-top: calc(12px + var(--sus)); }
 
 /* senzația de aplicație: fără sclipirea gri la atingere, fără lupă la dublu-tap,
    fără selectarea din greșeală a etichetelor când derulezi */
 body { -webkit-tap-highlight-color: transparent; }
-button, .who label, .week label, .chips button, .brand {
+button, .seg label, .chips button, .title {
   touch-action: manipulation;
   -webkit-user-select: none;
   user-select: none;
@@ -456,17 +508,6 @@ button, .who label, .week label, .chips button, .brand {
 }
 /* derularea pe orizontală a zilelor nu mai trage și pagina (sau gestul de „înapoi”) */
 .wk { overscroll-behavior-x: contain; }
-
-/* butonul „Instalează” — stă lângă titlu (nu în bara de unelte, ca aceea să rămână
-   pe un singur rând pe telefon) și apare doar când browserul chiar oferă instalarea */
-.brand { display: flex; align-items: center; gap: 10px; }
-.brand .title { min-width: 0; }
-.ingbtn.install {
-  margin-left: auto; flex-shrink: 0;
-  background: var(--acc); border-color: var(--acc); color: #fff;
-  padding: 7px 13px;
-}
-.ingbtn.install[hidden] { display: none; }
 
 /* ---------- printare (Ctrl+P): caietul de 4 pagini din #print ---------- */
 @media print {
