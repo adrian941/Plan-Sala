@@ -24,6 +24,13 @@
 
   --radius: 14px;
   --font: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* marginile pe care ecranul telefonului le „mănâncă” (crestătură, colțuri, bara de
+     jos). În browser pe calculator sunt 0, deci nu schimbă nimic. */
+  --sus: env(safe-area-inset-top, 0px);
+  --jos: env(safe-area-inset-bottom, 0px);
+  --stg: env(safe-area-inset-left, 0px);
+  --drt: env(safe-area-inset-right, 0px);
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -63,7 +70,7 @@ body {
   color: var(--ink);
   font: 400 14px/1.35 var(--font);
   font-variant-numeric: tabular-nums;
-  padding: 0 16px calc(24px + env(safe-area-inset-bottom));
+  padding: 0 calc(16px + var(--drt)) calc(24px + var(--jos)) calc(16px + var(--stg));
 }
 button, input, fieldset { font: inherit; color: inherit; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
@@ -314,11 +321,58 @@ body.print-look .wk + .wk { margin-top: 14px; }
 body.print-look .mh .nm { -webkit-line-clamp: unset; }
 body.print-look .wt { display: block; grid-column: 1 / -1; margin: 0 0 -2px; font-size: 12px; font-weight: 600; color: var(--mute); }
 
+/* ---------- instalată pe telefon (PWA): tot ecranul, ca o aplicație ----------
+   Manifestul cere „fullscreen”: pe Android nu mai există bară de sus sau de jos.
+   Pe iPhone rămâne bara de sus, transparentă peste pagină — de asta antetul și
+   cipurile își iau singure înălțimea ei din --sus.
+   În browser obișnuit --sus/--jos/--stg/--drt sunt 0, deci nimic nu se schimbă. */
+
+html { background: var(--bg); }
+/* fără „elasticul” de la capăt de pagină și fără trasul în jos pentru reîncărcare */
+html, body { overscroll-behavior: none; }
+
+/* fâșia de sub bara de stare: opacă, ca textul să nu se vadă prin ea când derulezi */
+body::before {
+  content: "";
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--sus);
+  background: var(--bg);
+  z-index: 10;
+  pointer-events: none;
+}
+.top { padding-top: calc(18px + var(--sus)); }
+.chips { top: var(--sus); }
+body.print-look { padding-top: calc(12px + var(--sus)); }
+
+/* senzația de aplicație: fără sclipirea gri la atingere, fără lupă la dublu-tap,
+   fără selectarea din greșeală a etichetelor când derulezi */
+body { -webkit-tap-highlight-color: transparent; }
+button, .who label, .week label, .chips button, .brand {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+/* derularea pe orizontală a zilelor nu mai trage și pagina (sau gestul de „înapoi”) */
+.wk { overscroll-behavior-x: contain; }
+
+/* butonul „Instalează” — stă lângă titlu (nu în bara de unelte, ca aceea să rămână
+   pe un singur rând pe telefon) și apare doar când browserul chiar oferă instalarea */
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand .title { min-width: 0; }
+.ingbtn.install {
+  margin-left: auto; flex-shrink: 0;
+  background: var(--acc); border-color: var(--acc); color: #fff;
+  padding: 7px 13px;
+}
+.ingbtn.install[hidden] { display: none; }
+
 /* ---------- printare (Ctrl+P): caietul de 4 pagini din #print ---------- */
 @media print {
   @page { size: A4 landscape; margin: 6mm; }
   body { background: #fff; padding: 0; font-size: 7pt; line-height: 1.2; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .top, .chips, #days { display: none !important; }
+  body::before { display: none; }
   #print[hidden] { display: block; }
 
   /* culorile: secțiunea „Ema + Adi” are roz/albastru; secțiunile individuale, verdele */

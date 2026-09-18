@@ -69,12 +69,15 @@ Trei pași, în ordine, descriși pe larg în **[`comun/0_pipeline.md`](./comun/
 CLAUDE.md              ← acest fișier (STABIL)
 Gym-Rules.md           ← ce e la zi, se updatează mereu
 index.html             ← site-ul (doar afișare, fără backend): meniul pe zile, Ema / Amândoi / Adi
+manifest.webmanifest   ← datele aplicației instalabile (nume, iconițe, „fullscreen”)
+sw.js                  ← service worker: face site-ul instalabil și îl ține funcțional fără internet
 .nojekyll              ← ca GitHub Pages să servească și folderul _site/ (Jekyll ignoră folderele cu „_")
 
 _site/                  ← tot ce ține de site (nu se pune nimic de site în altă parte)
 ├── style.css          → stilul; verde la Ema / Adi, roz + albastru doar la „Amândoi”; include CSS-ul de print
 ├── app.js             → citește 4b_meniu_zilnic.md (ema + adi) și le desenează
-└── data.js            → GENERAT de date/genereaza.py: copia celor două 4b, ca site-ul să meargă și deschis din fișier
+├── data.js            → GENERAT de date/genereaza.py: copia celor două 4b, ca site-ul să meargă și deschis din fișier
+└── icons/             → iconițele aplicației, GENERATE de icons/genereaza_icon.py (nu se editează PNG-urile de mână)
 
 comun/                  ← ce ține de mâncare, pentru amândoi
 ├── 0_pipeline.md      → cum lucrăm: cei 3 pași
@@ -113,6 +116,12 @@ adi/                    (de completat)
 2. Se verifică că `_site/data.js` s-a schimbat odată cu `4b` (`git status` trebuie să le arate pe amândouă).
 3. Dacă s-a schimbat **formatul** fișierelor `4b` (o linie nouă, alt tabel, altă structură de titluri), se adaptează și parserul din `_site/app.js` și se verifică în browser că site-ul afișează corect toate cele 14 zile, pentru Ema, Adi și Amândoi.
 Site-ul nu se editează niciodată cu date „de mână" — el nu are conținut propriu, doar afișează fișierele `4b`.
+
+**Regulă permanentă — site-ul e o aplicație instalabilă (PWA).** Se adaugă pe ecranul principal și pornește pe tot ecranul, fără barele browserului.
+- **`manifest.webmanifest` și `sw.js` stau în rădăcină**, nu în `_site/`. Nu e o scăpare: un service worker poate controla doar folderul lui și ce e sub el, deci din `_site/` n-ar putea controla `index.html`. Restul (stil, cod, iconițe) rămâne în `_site/`.
+- **Iconița se generează, nu se desenează de mână:** `python _site/icons/genereaza_icon.py` scrie din SVG toate PNG-urile din manifest. Vrei altă iconiță → schimbi desenul în scriptul acela și îl rulezi; nu atingi PNG-urile.
+- **Când schimbi `index.html`, `_site/style.css` sau `_site/app.js`, crești `VERSIUNE` din `sw.js`** (`plan-sala-v1` → `v2`). Altfel telefoanele care au deja aplicația instalată pot rămâne cu copia veche.
+- **Marginile ecranului** (crestătura de sus, bara de jos) se iau din variabilele `--sus / --jos / --stg / --drt` din `_site/style.css`. Orice element lipit de marginea ecranului le folosește — nu se scriu valori fixe.
 
 Fișierele sunt numerotate în ordinea în care le completăm. Când adaugi ceva nou, păstrează numerotarea și linkează din `Gym-Rules.md`.
 

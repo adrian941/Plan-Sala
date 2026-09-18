@@ -2,9 +2,25 @@
 <html lang="ro">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Meniul — Ema & Adi</title>
 <meta name="color-scheme" content="light dark">
+
+<!-- PWA: aplicație instalabilă, pe tot ecranul. Manifestul și sw.js stau în rădăcină
+     (un service worker controlează doar folderul lui și ce e sub el). -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="application-name" content="Meniul">
+<meta name="theme-color" content="#F4F3F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14121F" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Meniul">
+<!-- „black-translucent”: pagina intră sub bara de sus, iar CSS-ul o ferește cu safe-area -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/png" sizes="32x32" href="_site/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="_site/icons/favicon-16.png">
+<link rel="icon" type="image/svg+xml" href="_site/icons/icon.svg">
+<link rel="apple-touch-icon" href="_site/icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -17,8 +33,12 @@
 
 <header class="top">
   <div class="brand">
-    <h1>Meniul</h1>
-    <p class="sub">2 săptămâni, aceleași rețete, porții diferite</p>
+    <div class="title">
+      <h1>Meniul</h1>
+      <p class="sub">2 săptămâni, aceleași rețete, porții diferite</p>
+    </div>
+    <!-- apare doar când browserul chiar poate instala aplicația -->
+    <button class="ingbtn install" id="install" type="button" hidden title="Adaugă aplicația pe ecranul principal">Instalează</button>
   </div>
 
   <fieldset class="who" aria-label="Al cui meniu">
@@ -50,5 +70,26 @@
 <div id="print" hidden aria-hidden="true"></div>
 
 <script>document.write('<script src="_site/data.js?t=' + Date.now() + '"><\/script><script src="_site/app.js?t=' + Date.now() + '"><\/script>');</script>
+
+<script>
+/* PWA: pornim service worker-ul (doar prin http/https — din fișier nu are cum) și
+   arătăm butonul „Instalează” doar dacă browserul chiar oferă instalarea. */
+(function () {
+  "use strict";
+  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+    addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
+  }
+  var btn = document.getElementById("install"), invitatie = null;
+  addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault(); invitatie = e; btn.hidden = false;
+  });
+  btn.addEventListener("click", function () {
+    if (!invitatie) return;
+    invitatie.prompt();
+    invitatie.userChoice.finally(function () { invitatie = null; btn.hidden = true; });
+  });
+  addEventListener("appinstalled", function () { invitatie = null; btn.hidden = true; });
+})();
+</script>
 </body>
 </html>
