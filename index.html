@@ -8,7 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="_site/style.css">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<!-- CSS-ul și JS-urile se încarcă mereu proaspete: parametru unic la fiecare deschidere, ca browserul să nu țină versiuni vechi -->
+<script>document.write('<link rel="stylesheet" href="_site/style.css?t=' + Date.now() + '">');</script>
+<noscript><link rel="stylesheet" href="_site/style.css"></noscript>
 </head>
 <body class="v-ema">
 
@@ -46,7 +49,6 @@
 
 <div id="print" hidden aria-hidden="true"></div>
 
-<script src="_site/data.js"></script>
-<script src="_site/app.js"></script>
+<script>document.write('<script src="_site/data.js?t=' + Date.now() + '"><\/script><script src="_site/app.js?t=' + Date.now() + '"><\/script>');</script>
 </body>
 </html>
