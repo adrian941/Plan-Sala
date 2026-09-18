@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import io
-from retete import R, PLAN, TARGET, macro, r5, qty, totals, plants, SHORT
+from retete import R, PLAN, TARGET, macro, r5, qty, totals, plants, SHORT, PIECE
 from ingrediente_db import ING, DB, NAME
 
 import os
@@ -10,6 +10,7 @@ def m5(t): return f"{r5(t[0])} | {t[1]:.0f} | {t[2]:.0f} | {t[3]:.0f} | {t[4]:.0
 
 # ================= 1. INGREDIENTE =================
 ROL = {"Carne & pește":"P","Ouă":"P","Lactate":"P","Cereale & amidon":"A","Leguminoase":"P + A","Legume":"L","Grăsimi":"G","Fructe":"F","Condimente":"—"}
+SHORT_ZI = {"Luni":"Lu","Marți":"Ma","Miercuri":"Mi","Joi":"Jo","Vineri":"Vi","Sâmbătă":"Sâ","Duminică":"Du"}
 ICON = {"Carne & pește":"🥩","Ouă":"🥚","Lactate":"🥛","Cereale & amidon":"🍚","Leguminoase":"🫘","Legume":"🥦","Grăsimi":"🥑","Fructe":"🍓","Condimente":"🧂"}
 o = []
 o.append("# 🥦 Lista de alimente — sursa unică de adevăr pentru valori nutriționale\n")
@@ -192,9 +193,65 @@ W("comun/4_calendar.md", "\n".join(o))
 # Site-ul (index.html + _site/) citește 4b_meniu_zilnic.md. Deschis direct din fișier (file://) nu poate
 # face fetch, așa că primește aici o copie a celor două fișiere. Se scrie la FIECARE rulare —
 # meniul și site-ul nu pot rămâne desincronizate (regulă în CLAUDE.md §3).
+# Tot aici pleacă spre site și cele două pagini de referință: rețetele (cu cantități S/M) și
+# lista de alimente pe categorii. Site-ul n-are conținut propriu — totul vine de aici.
 import json
 _md = {w: io.open(ROOT+f"{w}/4b_meniu_zilnic.md", encoding="utf-8").read() for w in ("ema","adi")}
-W("_site/data.js", "// generat de date/genereaza.py — nu se editează manual\nwindow.MENU_MD = " + json.dumps(_md, ensure_ascii=False) + ";\n")
+
+def cant(k, g):
+    """Doar cantitatea, fără numele alimentului (numele stă în coloana lui)."""
+    if g <= 0: return ""
+    if k in PIECE:
+        w,_pl,_sg = PIECE[k]; n = g/w
+        if round(n*2,6)%1 == 0:
+            return f"{f'{n:g}'.replace('.5','½')} buc."
+    if k in ("lapte","cocos_light","soia","lamaie"): return f"{g:g} ml"
+    return f"{g:g} g"
+
+def nume_ing(k):
+    return (SHORT[k].capitalize() if k in SHORT else NAME[k].split(",")[0])
+
+GRUP = {"MD":"Mic dejun", "G":"Gustări", "P":"Feluri principale"}
+def grup(id):
+    return GRUP["MD"] if id.startswith("MD") else GRUP["G"] if id.startswith("G") else GRUP["P"]
+
+_retete = []
+for id, r in R.items():
+    s_,m_ = macro(r["S"]), macro(r["M"])
+    _retete.append({
+        "id": id, "nume": r["nume"], "scurt": r["scurt"], "grup": grup(id),
+        "masa": r["masa"], "timp": r["timp"], "tine": r["tine"],
+        "kcal": {"s": r5(s_[0]), "m": r5(m_[0])},
+        "comp": [{"eticheta": lbl.strip(),
+                  "items": [{"nume": nume_ing(k), "s": cant(k,gs), "m": cant(k,gm)}
+                            for k,gs,gm in items if gs > 0 or gm > 0]}
+                 for lbl, items in r["comp"]],
+    })
+
+# în ce zile apare fiecare rețetă (Lu…Du, săpt. 1 / 2) — util ca reper pe pagina de rețete
+_zile = {}
+for wi in (0,1):
+    for d in PLAN[wi*7:wi*7+7]:
+        for id in d[2:]:
+            _zile.setdefault(id, []).append(f"{SHORT_ZI[d[0]]}{wi+1}")
+for r in _retete:
+    r["zile"] = _zile.get(r["id"], [])
+
+# alimentele folosite efectiv în plan — marcate pe pagina de alimente
+_in_plan = {k for r in R.values() for k,_ in r["S"]} | {k for r in R.values() for k,_ in r["M"]}
+_alimente = []
+for c in cats:
+    _alimente.append({
+        "cat": c, "icon": ICON[c], "rol": ROL[c],
+        "items": [{"nume": n, "kcal": kcal, "p": p, "g": g, "c": cb, "f": f, "plan": k in _in_plan}
+                  for k,n,cc,kcal,p,g,cb,f,src,note in ING if cc == c],
+    })
+
+W("_site/data.js",
+  "// generat de date/genereaza.py — nu se editează manual\n"
+  "window.MENU_MD = " + json.dumps(_md, ensure_ascii=False) + ";\n"
+  "window.RETETE = " + json.dumps(_retete, ensure_ascii=False) + ";\n"
+  "window.ALIMENTE = " + json.dumps(_alimente, ensure_ascii=False) + ";\n")
 
 print("OK")
 for size in ("S","M"):

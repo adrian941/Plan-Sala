@@ -128,6 +128,12 @@ body.v-ema   .who .thumb { --x: 0%; }
 body.v-adi   .who .thumb { --x: 200%; }
 
 .tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+@media (max-width: 639px) {
+  /* capsula de pagini ține locul titlului — un rând în minus, nu unul în plus */
+  .brand .title { display: none; }
+  .pages { margin-left: 0; width: 100%; }
+  .top { gap: 10px; }
+}
 @media (max-width: 480px) {
   /* pe telefon: totul pe un singur rând, mai mic */
   .tools { flex-wrap: nowrap; gap: 6px; }
@@ -157,6 +163,95 @@ body.v-adi   .who .thumb { --x: 200%; }
 .ingbtn.pdf { text-decoration: none; color: var(--ink); border-color: var(--ink); display: inline-flex; align-items: center; }
 .ingbtn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .ingbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ---------- navigația între pagini ----------
+   Stă în rândul titlului: pe telefon ia chiar locul titlului, ca să nu fure niciun pixel
+   pe verticală (pe ecranul mic contează fiecare rând). Pe ecran mare stă lângă titlu. */
+.pages {
+  display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+  margin-left: auto; flex-shrink: 0;
+  background: var(--card); border: 1px solid var(--line-2); border-radius: 999px; padding: 3px;
+}
+.pages button {
+  border: 0; background: none; border-radius: 999px; cursor: pointer;
+  padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: var(--mute); white-space: nowrap;
+  transition: background .2s, color .2s;
+}
+.pages button.on { background: var(--ink); color: var(--bg); }
+.pages button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ce se vede pe fiecare pagină */
+body.pg-retete .only-meniu, body.pg-alimente .only-meniu,
+body.pg-retete .chips,      body.pg-alimente .chips { display: none; }
+
+/* ---------- paginile „Rețete” și „Alimente” ---------- */
+.pane { max-width: 1100px; margin: 0 auto; }
+.hint { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 14px; font-size: 12px; color: var(--mute); }
+.hint b { color: var(--ink); font-weight: 700; }
+.pill {
+  border: 1px solid var(--line-2); background: var(--card); border-radius: 999px;
+  padding: 5px 11px; font-size: 11.5px; font-weight: 600; color: var(--mute); cursor: pointer;
+}
+.pill[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.grup { margin: 0 0 20px; }
+.gt { margin: 0 0 8px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); }
+.gt small { font-weight: 600; opacity: .65; }
+
+/* rețetele, una sub alta */
+.rlist, .alist {
+  list-style: none; margin: 0; padding: 0;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+}
+.rec + .rec { border-top: 1px solid var(--line); }
+.rec.open { background: var(--soft); }
+.rh {
+  position: relative; width: 100%; text-align: left; border: 0; background: none; cursor: pointer;
+  display: grid; grid-template-columns: 1fr auto; column-gap: 10px; row-gap: 2px; align-items: baseline;
+  padding: 11px 30px 11px 13px;
+}
+.rh:hover { background: color-mix(in srgb, var(--line) 40%, transparent); }
+.rh:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
+.rh::after {
+  content: ""; position: absolute; right: 13px; top: 16px; width: 6px; height: 6px;
+  border-right: 2px solid var(--mute); border-bottom: 2px solid var(--mute);
+  transform: rotate(45deg); transition: transform .2s;
+}
+.rec.open .rh::after { transform: rotate(-135deg); }
+.rn { font-size: 13.5px; font-weight: 600; line-height: 1.3; }
+.rec.open .rn { color: var(--acc-ink); }
+.rk { font-size: 12.5px; font-weight: 800; color: var(--ink); white-space: nowrap; }
+.rk small { font-weight: 400; color: var(--mute); }
+.rm { grid-column: 1 / -1; font-size: 11px; color: var(--mute); }
+.rb { display: none; padding: 0 13px 13px; }
+.rec.open .rb { display: block; }
+/* ingredientele: nume + cantitatea la S și la M. Atât — fără calorii pe ingredient. */
+.ring {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr max-content max-content; column-gap: 16px; row-gap: 4px;
+  font-size: 12.5px; align-items: baseline;
+}
+.ring li { display: contents; }
+.ring .s, .ring .m { text-align: right; font-weight: 600; white-space: nowrap; }
+.ring .s { color: var(--ema-ink); }
+.ring .m { color: var(--adi-ink); }
+.ring .hd > span {
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--mute);
+  border-bottom: 1px solid var(--line-2); padding-bottom: 3px;
+}
+.ring .el > span { padding-top: 7px; }
+.ring .el .n { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); }
+
+/* alimentele pe categorii */
+.alist { display: grid; grid-template-columns: 1fr; }
+.alist li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 7px 12px; font-size: 12.5px; border-top: 1px solid var(--line); }
+.alist li:first-child { border-top: 0; }
+.alist .k { color: var(--mute); font-size: 11px; white-space: nowrap; }
+.alist .out { display: none; }                          /* implicit: doar ce intră în meniu */
+.cat.vid { display: none; }
+#pane-alimente.tot .alist .out { display: flex; }
+#pane-alimente.tot .alist .out .n { color: var(--mute); }
+#pane-alimente.tot .cat.vid { display: block; }
 
 /* ---------- cipuri de zile (doar telefon) ---------- */
 .chips {
@@ -297,6 +392,12 @@ body.no-macro .ing ul.two { grid-template-columns: repeat(4, max-content) 1fr; }
     padding-top: 8px;
   }
 }
+@media (min-width: 700px) {
+  .alist { grid-template-columns: 1fr 1fr; }
+  .alist li:nth-child(2) { border-top: 0; }
+  /* pe ecran lat, cantitățile stau lângă nume, nu tocmai la marginea din dreapta */
+  .ring { grid-template-columns: minmax(0, 460px) 5.5rem 5.5rem; justify-content: start; }
+}
 @media (min-width: 1000px) { .wk { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (min-width: 1360px) {
   .wk { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
@@ -371,7 +472,7 @@ button, .who label, .week label, .chips button, .brand {
 @media print {
   @page { size: A4 landscape; margin: 6mm; }
   body { background: #fff; padding: 0; font-size: 7pt; line-height: 1.2; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .top, .chips, #days { display: none !important; }
+  .top, .chips, #days, .pane { display: none !important; }
   body::before { display: none; }
   #print[hidden] { display: block; }
 
@@ -395,22 +496,36 @@ button, .who label, .week label, .chips button, .brand {
   #print .p-det .ing .tot .e { grid-column: 1 / 3; border-top: 0; }   /* sub cantități nu e linie */
   #print .p-det .ing .tot .n { grid-column: 3; }
   #print .p-det .ing .tot .k b { color: var(--ink); }
-  .ps.p-det { min-height: 196mm; display: flex; flex-direction: column; justify-content: center; }
-  .ps.p-det .wt { font-size: 11pt; font-weight: 800; color: var(--ink); margin-bottom: 0.5mm; }
+  .p-det .wt { font-size: 11pt; font-weight: 800; color: var(--ink); margin-bottom: 0.5mm; }
   #print .p-macro .ing { display: none; }
   #print .p-macro .bars { display: grid; }
   #print .p-macro .mt { display: flex; }
   #print .p-macro .dh .dt, #print .p-macro .mh .kc { display: flex; }
 
-  /* paginare + centrare pe verticală */
-  .ps { break-before: page; }
-  .ps.p-blank { min-height: 100mm; }   /* pagină goală după Ema */
+  /* Paginare: o secțiune `.ps` = exact o foaie, iar tot conținutul ei stă într-un singur `.pg`.
+     `.pg` e „pânza”, mereu în format vedere: se desenează mai mare decât foaia și se micșorează
+     apoi cu `--fit`, ca fiecare pagină să intre întreagă. (Înainte, caietul se revărsa pe 17
+     pagini în loc de 13 — două pagini de mese și una de ingrediente curgeau pe o a doua foaie
+     aproape goală.) Tot `.pg` e și cel care se rotește 90° când hârtia iese în picioare — vezi
+     blocul „orientation: portrait” de la sfârșitul fișierului. */
+  .ps { position: relative; width: 284mm; height: 196mm; overflow: hidden; break-before: page; break-inside: avoid; }
   .ps:first-child { break-before: auto; }
-  .ps.p-macro { min-height: 196mm; display: flex; flex-direction: column; justify-content: center; }
-  .ps.p-ing .wk { min-height: 190mm; align-content: center; }
-  .ps.p-ing .wk + .wk { break-before: page; }
+  .pg {
+    /* Măsurat (cea mai înaltă pagină e „mesele cu macronutrienți”): la 0,9 ajunge la 187 mm din
+       198 disponibili, deci mai rămâne aer și dacă se lungesc numele rețetelor. Se remăsoară
+       desenând paginile la lățimea `284mm / --fit` și verificând că niciuna nu trece de 198 mm. */
+    --fit: 0.9;
+    position: absolute; top: 0; left: 0;
+    width: calc(284mm / var(--fit));
+    min-height: calc(196mm / var(--fit));
+    transform-origin: 0 0;
+    transform: scale(var(--fit));
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .p-blank .pg { min-height: 0; }   /* pagină goală după Ema */
+  .p-ing .wk { align-content: center; }
   .pt { margin: 0 0 2mm; font-size: 11pt; font-weight: 800; letter-spacing: -0.01em; }
-  .ps.p-ing .wt { font-size: 11pt; font-weight: 800; color: var(--ink); margin-bottom: 0.5mm; }
+  .p-ing .wt { font-size: 11pt; font-weight: 800; color: var(--ink); margin-bottom: 0.5mm; }
 
   .wk {
     display: grid !important; grid-auto-flow: row; grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
@@ -436,4 +551,23 @@ button, .who label, .week label, .chips button, .brand {
   .ing ul { font-size: 6.8pt; row-gap: 0.3mm; line-height: 1.15; padding-left: 1mm; }
   .ing .u { padding: 0 1.2mm 0 0.3mm; }
   .ing .k { padding-left: 1.5mm; }
+}
+
+/* ---------- PDF pe telefon: A4 întors chiar și când hârtia iese în picioare ----------
+   Chrome și Samsung Internet pe Android ignoră `@page { size: A4 landscape }` — foaia
+   rămâne portret și caietul iese îngrămădit sus (exact ce se vedea în PDF-ul de pe Samsung).
+   Aici întoarcem noi conținutul: fiecare foaie (`.ps`) devine o cutie cât pagina, iar pânza
+   dinăuntru (`.pg`), care e în format vedere, se rotește cu 90°. Iese același A4 întors.
+   Pe calculator, unde `@page` chiar e respectat, foaia e deja „landscape” — blocul ăsta nu
+   se potrivește și nu schimbă nimic. */
+@media print and (orientation: portrait) {
+  @page { size: A4; margin: 0; }
+  /* 279 mm = înălțimea foii Letter; așa intră pe o singură pagină și pe A4, și pe Letter */
+  .ps { width: 210mm; height: 279mm; }
+  .pg {
+    /* aceeași pânză „vedere” (266 × 197 mm, cu 6 mm margine de jur împrejur), doar culcată */
+    width: calc(266mm / var(--fit));
+    min-height: calc(197mm / var(--fit));
+    transform: translate(203mm, 6mm) rotate(90deg) scale(var(--fit));   /* 203 = 197 (înălțimea pânzei) + 6 */
+  }
 }
