@@ -49,7 +49,10 @@
   }
 
   // ---------- stare ----------
-  const state = { page: "meniu", view: "ema", week: 0, allIng: false, macro: false, printLook: false };
+  // Cum arată la prima deschidere (până când cineva atinge butoanele): meniul Emei,
+  // cu Macro pornit și Ingredientele oprite. Pe urmă contează ce a ales el, salvat în browser.
+  const IMPLICIT = { view: "ema", macro: true, ing: false };
+  const state = { page: "meniu", view: IMPLICIT.view, week: 0, allIng: IMPLICIT.ing, macro: IMPLICIT.macro, printLook: false };
   const PAGES = ["meniu", "retete", "alimente"];
   // ordinea meselor pe card: mic dejun, prânz, cină, apoi (cu spațiu) gustarea
   const ORDER = { "Mic dejun": 0, "Prânz": 1, "Cină": 2, "Gustare": 3 };
@@ -67,8 +70,10 @@
   };
   function readHash() {
     const saved = store.get("view");
-    state.macro = store.get("macro") === "1";
-    state.allIng = store.get("ing") === "1";
+    // „null” = n-a fost atins niciodată butonul → rămâne valoarea implicită
+    const salvat = (k, implicit) => { const v = store.get(k); return v === null ? implicit : v === "1"; };
+    state.macro = salvat("macro", IMPLICIT.macro);
+    state.allIng = salvat("ing", IMPLICIT.ing);
     if (saved && PEOPLE[saved] || saved === "comun") state.view = saved;
     // #ema/2 = persoana + săptămâna; opțional /i (ingrediente) /m (macro) /p (doar cardurile, ambele săptămâni — pentru printat/poză)
     const m = /^#(ema|adi|comun)(?:\/([12]))?((?:\/[imp])*)/.exec(location.hash);
@@ -318,8 +323,9 @@
     opts().classList.remove("open");
     $("#opts-btn").setAttribute("aria-expanded", "false");
   }
-  // bulina de pe buton: se vede că e ceva pornit chiar și cu panoul închis
-  const markOpts = () => opts().classList.toggle("activ", state.macro || state.allIng);
+  // bulina de pe buton: se aprinde doar când afișarea e schimbată față de cea implicită
+  // (Macro pornit, Ingrediente oprite) — altfel ar fi aprinsă mereu și n-ar mai spune nimic
+  const markOpts = () => opts().classList.toggle("activ", state.macro !== IMPLICIT.macro || state.allIng !== IMPLICIT.ing);
 
   function bind() {
     $("#opts-btn").addEventListener("click", (e) => {

@@ -204,7 +204,14 @@ code { font: 600 0.9em var(--font); color: var(--mute); }
 }
 .ingbtn[aria-pressed="true"] { color: var(--acc-ink); }
 .ingbtn[aria-pressed="true"]::after { background: var(--acc); border-color: var(--acc); color: #fff; }
-.ingbtn.pdf { margin-top: 4px; border-top: 1px solid var(--line); border-radius: 0 0 10px 10px; }
+/* PDF: în panou stă ca celelalte rânduri — textul la stânga, iconița în dreapta, în
+   dreptul pătrățelelor de bifă (de aceea rândul e întors); pe ecran mare, în pastilă,
+   iese firesc „⤓ PDF”. */
+.ingbtn.pdf {
+  margin-top: 4px; border-top: 1px solid var(--line); border-radius: 0 0 10px 10px;
+  flex-direction: row-reverse;
+}
+.ingbtn svg { width: 17px; height: 17px; flex: 0 0 auto; }
 .ingbtn.install { color: var(--acc-ink); }
 .ingbtn.install[hidden] { display: none; }
 .ingbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
@@ -435,7 +442,7 @@ body.no-macro .ing ul.two { grid-template-columns: repeat(4, max-content) 1fr; }
   }
   .opts-panel .ingbtn::after { display: none; }
   .opts-panel .ingbtn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-  .opts-panel .pdf { margin-top: 0; color: var(--ink); border-color: var(--ink); }
+  .opts-panel .pdf { margin-top: 0; color: var(--ink); border-color: var(--ink); flex-direction: row; gap: 7px; }
   .opts-panel .install { background: var(--acc); border-color: var(--acc); color: #fff; }
   .wk {
     grid-auto-flow: row;

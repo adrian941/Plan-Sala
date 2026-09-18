@@ -78,7 +78,13 @@
       <div class="opts-panel" id="opts-panel">
         <button class="ingbtn" id="toggle-macro" type="button" aria-pressed="false">Macro</button>
         <button class="ingbtn" id="toggle-ing" type="button" aria-pressed="false">Ingrediente</button>
-        <button class="ingbtn pdf" id="pdf" type="button" title="Salvează ca PDF / printează">PDF</button>
+        <button class="ingbtn pdf" id="pdf" type="button" title="Salvează ca PDF / printează">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v11m0 0 4-4m-4 4-4-4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/>
+          </svg>
+          <span>PDF</span>
+        </button>
         <!-- apare doar când browserul chiar poate instala aplicația -->
         <button class="ingbtn install" id="install" type="button" hidden>Instalează aplicația</button>
       </div>
