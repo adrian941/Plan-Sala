@@ -121,9 +121,14 @@ body.v-ema   .who .thumb { --x: 0%; }
 body.v-adi   .who .thumb { --x: 200%; }
 
 .tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
-@media (max-width: 430px) {
-  .week span, .ingbtn { padding-inline: 10px; font-size: 12px; }
-  .tools .right { gap: 5px; }
+@media (max-width: 480px) {
+  /* pe telefon: totul pe un singur rând, mai mic */
+  .tools { flex-wrap: nowrap; gap: 6px; }
+  .tools .week { padding: 2px; }
+  .tools .week span { padding: 5px 9px; font-size: 0; }
+  .tools .week span::before { content: attr(data-short); font-size: 11.5px; }   /* „S1” / „S2” în loc de „Săpt. 1” */
+  .tools .ingbtn { padding: 6px 9px; font-size: 11.5px; }
+  .tools .right { gap: 4px; flex-shrink: 0; }
 }
 .week {
   display: inline-grid; grid-template-columns: 1fr 1fr;
