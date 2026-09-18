@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22CBA6"/>
+      <stop offset=".52" stop-color="#0E8A7A"/>
+      <stop offset="1" stop-color="#075F55"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".28" cy=".2" r=".85">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".30"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="plate" x1=".2" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E9F4F1"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/><rect width="512" height="512" rx="112" fill="url(#glow)"/>
+  <ellipse cx="256" cy="266.0" rx="168.0" ry="168.0" fill="#04443C" opacity=".28"/>
+  <circle cx="256" cy="256" r="168.0" fill="url(#plate)"/>
+  <circle cx="256" cy="256" r="142.0" fill="none" stroke="#0E8A7A" stroke-opacity=".16" stroke-width="6.0"/>
+  <g transform="rotate(-12 256 312.0)">
+  <rect x="168.0" y="297.0" width="176.0" height="30.0" rx="15.0" fill="#0C6257"/>
+  <rect x="172.0" y="260.0" width="36.0" height="104.0" rx="15.1" fill="#0C6257"/>
+  <rect x="304.0" y="260.0" width="36.0" height="104.0" rx="15.1" fill="#0C6257"/>
+  <rect x="139.0" y="278.0" width="26.0" height="68.0" rx="10.9" fill="#0C6257"/>
+  <rect x="347.0" y="278.0" width="26.0" height="68.0" rx="10.9" fill="#0C6257"/>
+  </g>
+  <path d="M 256 224.0 q -6.0 28.0 4.0 52.0" stroke="#0C6257" stroke-width="10.0" stroke-linecap="round" fill="none"/>
+  <g transform="translate(251.0 224.0) rotate(-36)"><path d="M 0 0 C -31.0 -21, -27 -52, 0 -70.0 C 27 -52, 31.0 -21, 0 0 Z" fill="#2FB877"/><path d="M 0 -6 L 0 -57" stroke="#0C6257" stroke-width="4" stroke-linecap="round" fill="none" opacity=".55"/></g>
+  <g transform="translate(261.0 224.0) rotate(36)"><path d="M 0 0 C -35.0 -26, -31 -64, 0 -86.0 C 31 -64, 35.0 -26, 0 0 Z" fill="#45D08C"/><path d="M 0 -7 L 0 -71" stroke="#0C6257" stroke-width="5" stroke-linecap="round" fill="none" opacity=".55"/></g>
+</svg>
