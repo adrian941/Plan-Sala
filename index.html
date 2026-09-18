@@ -49,41 +49,54 @@
 <body class="v-ema pg-meniu">
 
 <header class="top">
-  <!-- Rândul de sus e și navigația între pagini: pe telefon capsula ia locul titlului, ca să
-       nu fure niciun pixel pe verticală; pe ecran mare stă lângă titlu. -->
-  <div class="brand">
+  <!-- Zona de sus, pe telefon: DOUĂ rânduri, toate butoanele la aceeași înălțime.
+       (1) paginile + butonul de opțiuni · (2) al cui meniu + ce săptămână.
+       Macro / Ingrediente / PDF sunt folosite rar, deci stau într-un panou care se
+       deschide din butonul de opțiuni — nu mai mănâncă un rând întreg pe verticală.
+       Pe ecran mare apar titlul și, direct în rând, aceleași butoane de opțiuni. -->
+  <div class="rand">
     <div class="title">
       <h1>Meniul</h1>
       <p class="sub">2 săptămâni, aceleași rețete, porții diferite</p>
     </div>
-    <nav class="pages" id="pages" aria-label="Pagini">
+
+    <nav class="seg pages" id="pages" aria-label="Pagini">
       <button type="button" data-page="meniu" class="on" aria-current="page">Meniu</button>
       <button type="button" data-page="retete">Rețete</button>
       <button type="button" data-page="alimente">Alimente</button>
     </nav>
-    <!-- apare doar când browserul chiar poate instala aplicația -->
-    <button class="ingbtn install" id="install" type="button" hidden title="Adaugă aplicația pe ecranul principal">Instalează</button>
+
+    <div class="opts only-meniu" id="opts">
+      <button class="ico" id="opts-btn" type="button" aria-expanded="false" aria-controls="opts-panel"
+              aria-label="Opțiuni de afișare" title="Opțiuni de afișare">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M3 8h9M17 8h4M3 16h5M13 16h8"/>
+          <circle cx="14.5" cy="8" r="2.2"/><circle cx="10.5" cy="16" r="2.2"/>
+        </svg>
+      </button>
+      <div class="opts-panel" id="opts-panel">
+        <button class="ingbtn" id="toggle-macro" type="button" aria-pressed="false">Macro</button>
+        <button class="ingbtn" id="toggle-ing" type="button" aria-pressed="false">Ingrediente</button>
+        <button class="ingbtn pdf" id="pdf" type="button" title="Salvează ca PDF / printează">PDF</button>
+        <!-- apare doar când browserul chiar poate instala aplicația -->
+        <button class="ingbtn install" id="install" type="button" hidden>Instalează aplicația</button>
+      </div>
+    </div>
   </div>
 
-  <div class="only-meniu">
-    <fieldset class="who" aria-label="Al cui meniu">
+  <div class="rand r2 only-meniu">
+    <fieldset class="seg who" aria-label="Al cui meniu">
       <i class="thumb" aria-hidden="true"></i>
       <label><input type="radio" name="who" value="ema" checked><span>Ema</span></label>
       <label><input type="radio" name="who" value="comun"><span>Amândoi</span></label>
       <label><input type="radio" name="who" value="adi"><span>Adi</span></label>
     </fieldset>
 
-    <div class="tools">
-      <fieldset class="week" aria-label="Săptămâna">
-        <label><input type="radio" name="week" value="0" checked><span data-short="S1">Săpt. 1</span></label>
-        <label><input type="radio" name="week" value="1"><span data-short="S2">Săpt. 2</span></label>
-      </fieldset>
-      <div class="right">
-        <button class="ingbtn" id="toggle-macro" type="button" aria-pressed="false">Macro</button>
-        <button class="ingbtn" id="toggle-ing" type="button" aria-pressed="false">Ingrediente</button>
-        <button class="ingbtn pdf" id="pdf" type="button" title="Salvează ca PDF / printează">PDF</button>
-      </div>
-    </div>
+    <fieldset class="seg week" aria-label="Săptămâna">
+      <label><input type="radio" name="week" value="0" checked><span data-short="S1">Săpt. 1</span></label>
+      <label><input type="radio" name="week" value="1"><span data-short="S2">Săpt. 2</span></label>
+    </fieldset>
   </div>
 </header>
 

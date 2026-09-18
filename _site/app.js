@@ -268,6 +268,7 @@
     });
     if (state.page === "retete" && !$("#pane-retete").innerHTML) $("#pane-retete").innerHTML = reteteHtml();
     if (state.page === "alimente" && !$("#pane-alimente").innerHTML) $("#pane-alimente").innerHTML = alimenteHtml();
+    mutaPastila();
     scrollTo(0, 0);
     writeHash();
   }
@@ -289,14 +290,54 @@
   }
 
   // ---------- evenimente ----------
+  // Pastila colorată de sub „Ema / Amândoi / Adi”: etichetele nu au lățimi egale (altfel
+  // „Amândoi” nu încape pe telefoanele înguste), deci îi măsurăm de fiecare dată lățimea și
+  // poziția etichetei bifate. Se recalculează și la rotirea ecranului și după ce se încarcă
+  // fontul, pentru că atunci se schimbă lățimile.
+  let pastilaGata = false;
+  function mutaPastila() {
+    const seg = $(".who"), th = seg && seg.querySelector(".thumb");
+    if (!th || seg.offsetParent === null) return;          // capsula e ascunsă (altă pagină)
+    const primul = seg.querySelector("label");
+    const bifat = seg.querySelector("input:checked");
+    const ales = bifat ? bifat.closest("label") : primul;
+    if (!ales || !primul) return;
+    if (!pastilaGata) {   // prima așezare e instantanee, nu alunecă de la lățimea din CSS
+      pastilaGata = true;
+      th.style.transition = "none";
+      requestAnimationFrame(() => { th.style.transition = ""; });
+    }
+    th.style.width = ales.offsetWidth + "px";
+    th.style.transform = `translateX(${ales.offsetLeft - primul.offsetLeft}px)`;
+  }
+
+  // panoul de opțiuni (Macro / Ingrediente / PDF): pe telefon se deschide din butonul cu
+  // linii, pe ecran mare e mereu desfăcut în rând (butonul e ascuns din CSS).
+  const opts = () => $("#opts");
+  function closeOpts() {
+    opts().classList.remove("open");
+    $("#opts-btn").setAttribute("aria-expanded", "false");
+  }
+  // bulina de pe buton: se vede că e ceva pornit chiar și cu panoul închis
+  const markOpts = () => opts().classList.toggle("activ", state.macro || state.allIng);
+
   function bind() {
-    document.querySelectorAll('input[name="who"]').forEach((r) => r.addEventListener("change", () => { state.view = r.value; store.set("view", r.value); render(); }));
+    $("#opts-btn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = opts().classList.toggle("open");
+      e.currentTarget.setAttribute("aria-expanded", String(open));
+    });
+    document.addEventListener("click", (e) => { if (!opts().contains(e.target)) closeOpts(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeOpts(); });
+
+    document.querySelectorAll('input[name="who"]').forEach((r) => r.addEventListener("change", () => { state.view = r.value; store.set("view", r.value); mutaPastila(); render(); }));
     document.querySelectorAll('input[name="week"]').forEach((r) => r.addEventListener("change", () => { state.week = +r.value; render(); }));
     $("#toggle-ing").addEventListener("click", (e) => {
       state.allIng = !state.allIng;
       e.currentTarget.setAttribute("aria-pressed", String(state.allIng));
       document.body.classList.toggle("all-ing", state.allIng);
       store.set("ing", state.allIng ? "1" : "0");
+      markOpts();
       // butonul global comandă tot: uită ce era deschis/închis pe fiecare masă în parte
       document.querySelectorAll(".meal.open").forEach((li) => { li.classList.remove("open"); li.querySelector(".mh").setAttribute("aria-expanded", "false"); });
     });
@@ -305,6 +346,7 @@
       e.currentTarget.setAttribute("aria-pressed", String(state.macro));
       document.body.classList.toggle("no-macro", !state.macro);
       store.set("macro", state.macro ? "1" : "0");
+      markOpts();
     });
     $("#chips").addEventListener("click", (e) => {
       const b = e.target.closest("button"); if (!b) return;
@@ -318,10 +360,10 @@
       btn.setAttribute("aria-expanded", String(open));
     });
     // butonul PDF = Ctrl+P: browserul face PDF-ul din blocul #print, mereu din datele curente
-    $("#pdf").addEventListener("click", () => window.print());
+    $("#pdf").addEventListener("click", () => { closeOpts(); window.print(); });
     $("#pages").addEventListener("click", (e) => {
       const b = e.target.closest("button"); if (!b) return;
-      state.page = b.dataset.page; applyPage();
+      state.page = b.dataset.page; closeOpts(); applyPage();
     });
     $("#pane-retete").addEventListener("click", (e) => {
       const btn = e.target.closest(".rh"); if (!btn) return;
@@ -334,6 +376,8 @@
       b.setAttribute("aria-pressed", String(doar));
       $("#pane-alimente").classList.toggle("tot", !doar);
     });
+    addEventListener("resize", mutaPastila);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(mutaPastila);
     window.addEventListener("hashchange", () => { readHash(); syncControls(); render(); applyPage(); });
   }
   function syncControls() {
@@ -341,6 +385,8 @@
     $("#toggle-ing").setAttribute("aria-pressed", String(state.allIng));
     $("#toggle-macro").setAttribute("aria-pressed", String(state.macro));
     const wk = document.querySelector(`input[name="week"][value="${state.week}"]`); if (wk) wk.checked = true;
+    markOpts();
+    mutaPastila();
   }
 
   // ---------- start ----------
