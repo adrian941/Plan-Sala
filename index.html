@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meniul — Ema & Adi</title>
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_site/style.css">
+</head>
+<body class="v-ema">
+
+<header class="top">
+  <div class="brand">
+    <h1>Meniul</h1>
+    <p class="sub">2 săptămâni, aceleași rețete, porții diferite</p>
+  </div>
+
+  <fieldset class="who" aria-label="Al cui meniu">
+    <i class="thumb" aria-hidden="true"></i>
+    <label><input type="radio" name="who" value="ema" checked><span>Ema</span></label>
+    <label><input type="radio" name="who" value="comun"><span>Amândoi</span></label>
+    <label><input type="radio" name="who" value="adi"><span>Adi</span></label>
+  </fieldset>
+
+  <div class="tools">
+    <fieldset class="week" aria-label="Săptămâna">
+      <label><input type="radio" name="week" value="0" checked><span>Săpt. 1</span></label>
+      <label><input type="radio" name="week" value="1"><span>Săpt. 2</span></label>
+    </fieldset>
+    <div class="right">
+      <button class="ingbtn" id="toggle-macro" type="button" aria-pressed="false">Macro</button>
+      <button class="ingbtn" id="toggle-ing" type="button" aria-pressed="false">Ingrediente</button>
+      <button class="ingbtn pdf" id="pdf" type="button" title="Salvează ca PDF / printează">PDF</button>
+    </div>
+  </div>
+</header>
+
+<nav class="chips" id="chips" aria-label="Zilele săptămânii"></nav>
+
+<main class="days" id="days" aria-live="polite">
+  <p class="loading">Se încarcă meniul…</p>
+</main>
+
+<div id="print" hidden aria-hidden="true"></div>
+
+<script src="_site/data.js"></script>
+<script src="_site/app.js"></script>
+</body>
+</html>

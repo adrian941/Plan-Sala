@@ -188,6 +188,14 @@ o.append(f"| Plante diferite (AGP ≥30) | {len(plants(0))} ✅ | {len(plants(1)
 o.append("## Organizare bucătărie\n\n- **Cutii:** 8 cutii de 1 L cu capac (4 pentru prânzurile de a doua zi, 4 pentru congelator). Se marchează S / M pe capac.\n- **Congelator:** chili-ul și tocănița de vită se congelează perfect. Se scot dimineața, se reîncălzesc seara.\n- **Staples de ținut în casă mereu:** ovăz, orez basmati, orez brun, paste integrale, quinoa, hrișcă, linte, năut conservă, ton conservă, roșii pasate, mălai, ulei de măsline, tahini, muștar, chia, in, nuci/migdale/caju, semințe de dovleac, condimente (boia afumată, chimion, curry, oregano, turmeric, cimbru), fructe de pădure congelate, fasole verde congelată, spanac congelat.\n- **Proaspăt, de 2× pe săptămână:** carne/pește, lactate, legume, fructe, pâine.\n- **Cântar de bucătărie** — obligatoriu primele 2 săptămâni, până se învață porțiile din ochi.\n")
 W("comun/4_calendar.md", "\n".join(o))
 
+# ================= 5. SITE (_site/data.js) =================
+# Site-ul (index.html + _site/) citește 4b_meniu_zilnic.md. Deschis direct din fișier (file://) nu poate
+# face fetch, așa că primește aici o copie a celor două fișiere. Se scrie la FIECARE rulare —
+# meniul și site-ul nu pot rămâne desincronizate (regulă în CLAUDE.md §3).
+import json
+_md = {w: io.open(ROOT+f"{w}/4b_meniu_zilnic.md", encoding="utf-8").read() for w in ("ema","adi")}
+W("_site/data.js", "// generat de date/genereaza.py — nu se editează manual\nwindow.MENU_MD = " + json.dumps(_md, ensure_ascii=False) + ";\n")
+
 print("OK")
 for size in ("S","M"):
     T=totals(size); avg=[sum(x[i] for x in T)/14 for i in range(5)]

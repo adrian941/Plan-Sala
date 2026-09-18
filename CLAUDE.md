@@ -68,6 +68,13 @@ Trei pași, în ordine, descriși pe larg în **[`comun/0_pipeline.md`](./comun/
 ```
 CLAUDE.md              ← acest fișier (STABIL)
 Gym-Rules.md           ← ce e la zi, se updatează mereu
+index.html             ← site-ul (doar afișare, fără backend): meniul pe zile, Ema / Amândoi / Adi
+.nojekyll              ← ca GitHub Pages să servească și folderul _site/ (Jekyll ignoră folderele cu „_")
+
+_site/                  ← tot ce ține de site (nu se pune nimic de site în altă parte)
+├── style.css          → stilul; verde la Ema / Adi, roz + albastru doar la „Amândoi”; include CSS-ul de print
+├── app.js             → citește 4b_meniu_zilnic.md (ema + adi) și le desenează
+└── data.js            → GENERAT de date/genereaza.py: copia celor două 4b, ca site-ul să meargă și deschis din fișier
 
 comun/                  ← ce ține de mâncare, pentru amândoi
 ├── 0_pipeline.md      → cum lucrăm: cei 3 pași
@@ -100,6 +107,12 @@ adi/                    (de completat)
 ```
 
 **Regulă permanentă — cele două fișiere de meniu ale fiecăruia merg mereu împreună.** `4_meniu.md` (tabele, kcal/macro) și `4b_meniu_zilnic.md` (aceeași rețete, format vizual rapid) descriu **același meniu**, doar afișat diferit. Amândouă se generează din `date/genereaza.py` (vezi `date/README.md`) — nu se editează niciunul manual. **Orice modificare la meniul cuiva** (rețetă schimbată, poziție în calendar, porție) înseamnă: se schimbă sursa în `date/`, se rulează `python genereaza.py`, și se verifică că **ambele** fișiere (`4_meniu.md` + `4b_meniu_zilnic.md`, pentru persoana afectată) au ieșit actualizate — niciodată doar unul.
+
+**Regulă permanentă, EXTREM DE IMPORTANTĂ — site-ul e mereu sincronizat cu meniurile.** Site-ul (`index.html` + `_site/`) afișează exact `ema/4b_meniu_zilnic.md` și `adi/4b_meniu_zilnic.md`. **De fiecare dată** când se actualizează meniul cuiva (orice motiv: rețetă, porție, calendar, profil), se actualizează și site-ul, în aceeași iterație — nu există „meniul da, site-ul mai târziu". Concret:
+1. Se modifică sursa în `date/` și se rulează `python genereaza.py` — asta regenerează `4_meniu.md`, `4b_meniu_zilnic.md`, **și `_site/data.js`** (copia pe care o citește site-ul când e deschis din fișier). PDF-ul nu e un fișier: butonul „PDF” / Ctrl+P îl face browserul pe loc, din CSS-ul de print, mereu din datele curente.
+2. Se verifică că `_site/data.js` s-a schimbat odată cu `4b` (`git status` trebuie să le arate pe amândouă).
+3. Dacă s-a schimbat **formatul** fișierelor `4b` (o linie nouă, alt tabel, altă structură de titluri), se adaptează și parserul din `_site/app.js` și se verifică în browser că site-ul afișează corect toate cele 14 zile, pentru Ema, Adi și Amândoi.
+Site-ul nu se editează niciodată cu date „de mână" — el nu are conținut propriu, doar afișează fișierele `4b`.
 
 Fișierele sunt numerotate în ordinea în care le completăm. Când adaugi ceva nou, păstrează numerotarea și linkează din `Gym-Rules.md`.
 

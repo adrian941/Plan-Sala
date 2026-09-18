@@ -1,0 +1,263 @@
+/* Meniul — citește ema/4b_meniu_zilnic.md și adi/4b_meniu_zilnic.md și le afișează pe zile.
+   Sursa: fetch din repo (când site-ul e servit prin http), altfel _site/data.js (copie generată de date/genereaza.py). */
+(function () {
+  "use strict";
+
+  const SHORT = { Luni: "Lu", Marți: "Ma", Miercuri: "Mi", Joi: "Jo", Vineri: "Vi", Sâmbătă: "Sâ", Duminică: "Du" };
+  const PEOPLE = { ema: "Ema", adi: "Adi" };
+
+  // ---------- parsare markdown 4b ----------
+  const RX = {
+    week: /^## Săptămâna (\d+)/,
+    day: /^## (Luni|Marți|Miercuri|Joi|Vineri|Sâmbătă|Duminică)\s*(.*)$/,
+    meal: /^\*\*(\S+) (Mic dejun|Prânz|Gustare|Cină) — (.+?)\*\*$/,
+    mealTotal: /^\*\*Total masă — (\d+) kcal\*\* \(P:(\d+)g, G:(\d+)g, C:(\d+)g, Fibre:(\d+)g\)/,
+    dayTotal: /^\*\*Total zi — (\d+) kcal\*\* \(P:(\d+)g, G:(\d+)g, C:(\d+)g, Fibre:(\d+)g\)/,
+    ing: /^\| (.+?) \| ([\d.]+)\/([\d.]+)\/([\d.]+)\/([\d.]+) \| (\d+) \|$/,
+    qty: /^(\d+(?:[.,]\d+)?\s*(?:g|ml|buc\.?)?)\s+(.+)$/
+  };
+  const tot = (m) => ({ k: +m[1], p: +m[2], g: +m[3], c: +m[4], f: +m[5] });
+
+  function parse(md) {
+    const weeks = [];
+    let week = null, day = null, meal = null;
+    for (const raw of md.split("\n")) {
+      const line = raw.trim();
+      let m;
+      if ((m = RX.week.exec(line))) { week = { n: +m[1], days: [] }; weeks.push(week); continue; }
+      if ((m = RX.day.exec(line))) { day = { name: m[1], tags: m[2].trim(), meals: [], total: null }; week.days.push(day); meal = null; continue; }
+      if ((m = RX.meal.exec(line))) { meal = { icon: m[1], type: m[2], name: m[3], total: null, ing: [] }; day.meals.push(meal); continue; }
+      if ((m = RX.mealTotal.exec(line))) { meal.total = tot(m); continue; }
+      if ((m = RX.dayTotal.exec(line))) { day.total = tot(m); continue; }
+      if ((m = RX.ing.exec(line)) && meal) {
+        const q = RX.qty.exec(m[1]);
+        const qu = /^([\d.,½]+)\s*(g|ml)?$/.exec(q ? q[1] : "") || [];
+        meal.ing.push({ qty: qu[1] || "", unit: qu[2] || "", name: q ? q[2] : m[1], p: +m[2], g: +m[3], c: +m[4], f: +m[5], k: +m[6] });
+      }
+    }
+    weeks.forEach((w) => w.days.forEach((d) => d.meals.sort((a, b) => (ORDER[a.type] ?? 9) - (ORDER[b.type] ?? 9))));
+    return weeks;
+  }
+
+  // ---------- încărcare ----------
+  async function loadMd(who) {
+    try {
+      const r = await fetch(`${who}/4b_meniu_zilnic.md`, { cache: "no-cache" });
+      if (r.ok) { const t = await r.text(); if (/^## Săptămâna/m.test(t)) return t; }
+    } catch (_) { /* file:// sau offline → cădem pe data.js */ }
+    return (window.MENU_MD && window.MENU_MD[who]) || "";
+  }
+
+  // ---------- stare ----------
+  const state = { view: "ema", week: 0, allIng: false, macro: false, printLook: false };
+  // ordinea meselor pe card: mic dejun, prânz, cină, apoi (cu spațiu) gustarea
+  const ORDER = { "Mic dejun": 0, "Prânz": 1, "Cină": 2, "Gustare": 3 };
+  const g = (x) => `${+x}g`;
+  const macroLong = (t) => `Pr:<b>${g(t.p)}</b>, Gr:<b>${g(t.g)}</b>, Ca:<b>${g(t.c)}</b>, Fi:<b>${g(t.f)}</b>`;
+  const macroShort = (t) => `P:${g(t.p)}, G:${g(t.g)}, C:${g(t.c)}, F:${g(t.f)}`;
+  const data = {};
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  // al cui meniu se deschide: hash-ul din link > ultima alegere salvată în browser > Ema
+  const store = {
+    get(k) { try { return localStorage.getItem("meniu." + k); } catch (_) { return null; } },
+    set(k, v) { try { localStorage.setItem("meniu." + k, v); } catch (_) { /* browser fără storage */ } }
+  };
+  function readHash() {
+    const saved = store.get("view");
+    state.macro = store.get("macro") === "1";
+    state.allIng = store.get("ing") === "1";
+    if (saved && PEOPLE[saved] || saved === "comun") state.view = saved;
+    // #ema/2 = persoana + săptămâna; opțional /i (ingrediente) /m (macro) /p (doar cardurile, ambele săptămâni — pentru printat/poză)
+    const m = /^#(ema|adi|comun)(?:\/([12]))?((?:\/[imp])*)/.exec(location.hash);
+    if (m) {
+      state.view = m[1]; if (m[2]) state.week = +m[2] - 1;
+      if (m[3]) { state.allIng = m[3].includes("i"); state.macro = m[3].includes("m"); state.printLook = m[3].includes("p"); }
+    }
+  }
+  function writeHash() { if (!state.printLook) history.replaceState(null, "", `#${state.view}/${state.week + 1}`); }
+
+  // ---------- randare ----------
+  const persons = () => (state.view === "comun" ? ["ema", "adi"] : [state.view]);
+
+  function bar(t, who) {
+    const kp = t.p * 4, kg = t.g * 9, kc = t.c * 4, s = kp + kg + kc || 1;
+    return `<div class="brow p-${who}">
+      <div class="bar" title="${PEOPLE[who]}: proteine / grăsimi / carbohidrați">
+        <i style="width:${(kp / s * 100).toFixed(1)}%"></i><i style="width:${(kg / s * 100).toFixed(1)}%"></i><i style="width:${(kc / s * 100).toFixed(1)}%"></i>
+      </div>
+      <div class="mac"><span>P <b>${t.p}</b></span><span>G <b>${t.g}</b></span><span>C <b>${t.c}</b></span><span>F <b>${t.f}</b></span></div>
+    </div>`;
+  }
+
+  function ingredientRow(rows, ps, detail) {
+    // rows: [{who, ing}] — aceeași poziție în listă la fiecare persoană
+    const first = rows.find((r) => r.ing) || {};
+    const name = first.ing ? first.ing.name : "";
+    if (ps.length === 1) {
+      const i = first.ing;
+      if (detail) return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="c">${+i.p}</span><span class="c">${+i.g}</span><span class="c">${+i.c}</span><span class="c">${+i.f}</span><span class="k"><b>${i.k}</b></span></li>`;
+      return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="k"><b>${i.k}</b></span><span class="m">${macroShort(i)}</span></li>`;
+    }
+    const q = rows.map((r) => `<span class="q p-${r.who}">${r.ing ? esc(r.ing.qty) : "—"}</span><span class="u p-${r.who}">${r.ing ? r.ing.unit : ""}</span>`).join("");
+    const k = rows.map((r) => `<b class="p-${r.who}">${r.ing ? r.ing.k : "—"}</b>`).join(" / ");
+    const tip = rows.map((r) => r.ing ? `${PEOPLE[r.who]}: ${macroShort(r.ing)}` : "").filter(Boolean).join(" | ");
+    return `<li title="${esc(tip)}">${q}<span class="n">${esc(name)}</span><span class="k">${k}</span></li>`;
+  }
+
+  function mealHtml(idx, ps, days, detail) {
+    const ref = days[ps[0]].meals[idx];
+    if (!ref) return "";
+    const kc = ps.map((w) => { const m = days[w].meals[idx]; return `<b class="p-${w}">${m ? m.total.k : "—"}</b>`; }).join("");
+    const mt = ps.map((w) => { const m = days[w].meals[idx]; if (!m) return ""; const t = m.total;
+      return `<span class="p-${w}">${macroLong(t)}</span>`; }).join("");
+    const n = Math.max(...ps.map((w) => (days[w].meals[idx] || { ing: [] }).ing.length));
+    let rows = "";
+    for (let i = 0; i < n; i++) {
+      const cells = ps.map((w) => {
+        const m = days[w].meals[idx];
+        let ing = m && m.ing[i];
+        // dacă ordinea diferă între persoane, caută după nume
+        if (ing && m !== ref && ref.ing[i] && ing.name !== ref.ing[i].name) ing = m.ing.find((x) => x.name === ref.ing[i].name) || ing;
+        return { who: w, ing };
+      });
+      rows += ingredientRow(cells, ps, detail);
+    }
+    // în modul detaliat, un rând de cap de tabel pentru coloanele de macro
+    if (detail) {
+      const t = ref.total;
+      rows = `<li class="hd"><span></span><span></span><span class="n"></span><span class="c">P</span><span class="c">G</span><span class="c">C</span><span class="c">F</span><span class="k">kcal</span></li>` + rows
+        + `<li class="tot"><span class="e"></span><span class="n">Total</span><span class="c">${t.p}</span><span class="c">${t.g}</span><span class="c">${t.c}</span><span class="c">${t.f}</span><span class="k"><b>${t.k}</b></span></li>`;
+    }
+    return `<li class="meal t-${ORDER[ref.type] ?? 9}">
+      <button class="mh" type="button" aria-expanded="false">
+        <span class="nm" title="${esc(ref.type)}">${esc(ref.name)}</span>
+        <span class="kc">${kc}</span>
+        <span class="mt">${mt}</span>
+      </button>
+      <div class="ing"><ul class="${ps.length > 1 ? "two" : detail ? "det" : ""}">${rows}</ul></div>
+    </li>`;
+  }
+
+  function dayHtml(d, wi, ps, detail) {
+    const days = {}; ps.forEach((w) => { days[w] = data[w][wi].days[d]; });
+    const ref = days[ps[0]];
+    const kc = ps.map((w) => `<span class="kc p-${w}"><b>${days[w].total.k}</b> <small>kcal</small></span>`).join("");
+    const bars = ps.map((w) => bar(days[w].total, w)).join("");
+    const n = Math.max(...ps.map((w) => days[w].meals.length));
+    let meals = "";
+    for (let i = 0; i < n; i++) meals += mealHtml(i, ps, days, detail);
+    return `<article class="day" id="day-${wi}-${d}" data-i="${d}">
+      <header class="dh"><h2>${ref.name}${ref.tags ? ` <span class="tags">${esc(ref.tags)}</span>` : ""}</h2><div class="dt">${kc}</div></header>
+      <div class="bars">${bars}</div>
+      <ol class="meals">${meals}</ol>
+    </article>`;
+  }
+
+  function weekHtml(wi, ps, hidden, prefix = "", range, detail) {
+    const w = data[ps[0]][wi];
+    const idx = w.days.map((_, i) => i).filter((i) => !range || (i >= range[0] && i <= range[1]));
+    const sufix = range ? ` — ${SHORT[w.days[range[0]].name]}–${SHORT[w.days[range[1]].name]}` : "";
+    return `<section class="wk" data-w="${wi}"${hidden ? " hidden" : ""}><h2 class="wt">${prefix}Săptămâna ${wi + 1}${sufix}</h2>${idx.map((i) => dayHtml(i, wi, ps, detail)).join("")}</section>`;
+  }
+  // Ctrl+P tipărește mereu același caiet, indiferent de ce e bifat pe ecran:
+  // 1–2: Ema + Adi cu ingrediente (o săptămână pe pagină) · 3: Adi cu macro · 4: Ema cu macro
+  // 5+: „Ema — Săptămâna 1 — Detaliat”: ingredientele cu macro pe coloane, zilele împărțite Lu–Jo / Vi–Du (o pagină fiecare)
+  function detailPages(who) {
+    return data[who].map((_, wi) => [[0, 3], [4, 6]].map((range) =>
+      `<section class="ps v-one p-det">${weekHtml(wi, [who], false, `${PEOPLE[who]} — Detaliat — `, range, true)}</section>`).join("")).join("");
+  }
+  function printHtml() {
+    const weeksOf = (ps, prefix) => data[ps[0]].map((_, wi) => weekHtml(wi, ps, false, prefix)).join("");
+    // ordinea: ingredientele pentru cumpărături (amândoi), apoi fiecare persoană: mesele cu macro, apoi paginile detaliate
+    const person = (who) => `<section class="ps v-one p-macro"><h1 class="pt">${PEOPLE[who]} — mese și macronutrienți</h1>${weeksOf([who])}</section>${detailPages(who)}`;
+    return `<section class="ps v-comun p-ing">${weeksOf(["ema", "adi"], "Ema + Adi — Ingrediente pentru cumpărături — ")}</section>${person("ema")}<section class="ps p-blank"></section>${person("adi")}`;   // pagină goală între Ema și Adi (pentru print față-verso)
+  }
+
+  function render() {
+    document.body.className = `v-${state.view}${state.allIng ? " all-ing" : ""}${state.macro ? "" : " no-macro"}${state.printLook ? " print-look" : ""}`;
+    const weeks = data[persons()[0]];
+    const w = weeks[state.week];
+    if (!w) { $("#days").innerHTML = `<p class="loading">Nu găsesc săptămâna ${state.week + 1} în fișier.</p>`; return; }
+    // toate săptămânile sunt în pagină: pe ecran se vede doar cea aleasă (/p în link le arată pe toate)
+    $("#days").innerHTML = weeks.map((_, wi) => weekHtml(wi, persons(), wi !== state.week)).join("");
+    $("#print").innerHTML = printHtml();
+    $("#chips").innerHTML = w.days.map((d, i) =>
+      `<button type="button" data-i="${i}"${i === 0 ? ' class="on"' : ""}>${SHORT[d.name] || d.name}<small>${d.total.k}</small></button>`).join("");
+    currentWeekEl().scrollTo({ left: 0 });
+    watchDays();
+    writeHash();
+  }
+
+  // ---------- navigare pe telefon ----------
+  let io = null;
+  const currentWeekEl = () => document.querySelector(`.wk[data-w="${state.week}"]`);
+  function watchDays() {
+    if (io) io.disconnect();
+    const root = currentWeekEl();
+    io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const i = e.target.dataset.i;
+        document.querySelectorAll("#chips button").forEach((b) => b.classList.toggle("on", b.dataset.i === i));
+      });
+    }, { root, threshold: 0.6 });
+    root.querySelectorAll(".day").forEach((el) => io.observe(el));
+  }
+
+  // ---------- evenimente ----------
+  function bind() {
+    document.querySelectorAll('input[name="who"]').forEach((r) => r.addEventListener("change", () => { state.view = r.value; store.set("view", r.value); render(); }));
+    document.querySelectorAll('input[name="week"]').forEach((r) => r.addEventListener("change", () => { state.week = +r.value; render(); }));
+    $("#toggle-ing").addEventListener("click", (e) => {
+      state.allIng = !state.allIng;
+      e.currentTarget.setAttribute("aria-pressed", String(state.allIng));
+      document.body.classList.toggle("all-ing", state.allIng);
+      store.set("ing", state.allIng ? "1" : "0");
+      // butonul global comandă tot: uită ce era deschis/închis pe fiecare masă în parte
+      document.querySelectorAll(".meal.open").forEach((li) => { li.classList.remove("open"); li.querySelector(".mh").setAttribute("aria-expanded", "false"); });
+    });
+    $("#toggle-macro").addEventListener("click", (e) => {
+      state.macro = !state.macro;
+      e.currentTarget.setAttribute("aria-pressed", String(state.macro));
+      document.body.classList.toggle("no-macro", !state.macro);
+      store.set("macro", state.macro ? "1" : "0");
+    });
+    $("#chips").addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      const el = document.getElementById(`day-${state.week}-${b.dataset.i}`);
+      if (el) el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", inline: "start", block: "nearest" });
+    });
+    $("#days").addEventListener("click", (e) => {
+      const btn = e.target.closest(".mh"); if (!btn) return;
+      const li = btn.closest(".meal");
+      const open = li.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(open));
+    });
+    // butonul PDF = Ctrl+P: browserul face PDF-ul din blocul #print (4 pagini), mereu din datele curente
+    $("#pdf").addEventListener("click", () => window.print());
+    window.addEventListener("hashchange", () => { readHash(); syncControls(); render(); });
+  }
+  function syncControls() {
+    const who = document.querySelector(`input[name="who"][value="${state.view}"]`); if (who) who.checked = true;
+    $("#toggle-ing").setAttribute("aria-pressed", String(state.allIng));
+    $("#toggle-macro").setAttribute("aria-pressed", String(state.macro));
+    const wk = document.querySelector(`input[name="week"][value="${state.week}"]`); if (wk) wk.checked = true;
+  }
+
+  // ---------- start ----------
+  (async function init() {
+    readHash();
+    syncControls();
+    document.body.className = `v-${state.view}${state.allIng ? " all-ing" : ""}${state.macro ? "" : " no-macro"}${state.printLook ? " print-look" : ""}`;
+    const [ema, adi] = await Promise.all([loadMd("ema"), loadMd("adi")]);
+    data.ema = parse(ema); data.adi = parse(adi);
+    if (!data.ema.length || !data.adi.length) {
+      $("#days").innerHTML = `<p class="loading">Nu am putut citi meniurile. Rulează <code>python date/genereaza.py</code> ca să regenerezi <code>_site/data.js</code>.</p>`;
+      return;
+    }
+    bind();
+    render();
+  })();
+})();

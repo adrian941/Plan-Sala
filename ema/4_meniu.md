@@ -25,10 +25,10 @@
 | **Miercuri** 🥚 | Mic dejun | **Ochiuri cu avocado** — 3 ouă + 100 g brânză de vaci · 100 g roșii + 100 g castravete + 20 g rucola · 50 g pâine integrală · 50 g avocado · 1 măr | 655 | 41 | 28 | 65 | 13 |
 |  | Prânz | **Salată de ton** — 110 g ton (conservă, scurs) · 70 g castravete + 50 g ardei + 80 g roșii + 50 g salată verde + 20 g ceapă · 150 g năut · 8 g muștar + 10 ml suc de lămâie · 10 g ulei de măsline + 15 g măsline · 40 g pâine integrală | 605 | 47 | 19 | 65 | 16 |
 |  | Gustare | **Brânză de vaci cu pâine** — 150 g brânză de vaci · 40 g pâine integrală · 50 g castravete + 50 g ardei + 50 g morcov | 265 | 22 | 5 | 34 | 5 |
-|  | Cină | **Tocăniță de vită cu mămăligă** — 160 g vită slabă · 80 g ciuperci + 50 g ceapă + 50 g morcov + 40 g ardei + 100 g varză + 0.222222 mere · 65 g mălai · 100 g roșii pasate · 10 g ulei de măsline | 670 | 50 | 18 | 85 | 14 |
+|  | Cină | **Tocăniță de vită cu mămăligă** — 160 g vită slabă · 80 g ciuperci + 50 g ceapă + 50 g morcov + 40 g ardei + 100 g varză + 40 g măr · 65 g mălai · 100 g roșii pasate · 10 g ulei de măsline | 670 | 50 | 18 | 85 | 14 |
 | | **Total zi** | | **2190** | **160** | **70** | **248** | **48** |
 | **Joi** 🏋️ | Mic dejun | **Bol de iaurt grec** — 200 g iaurt grec · 40 g fulgi de ovăz · 1 banană + 50 g afine · 15 g unt de arahide + 10 g in măcinat | 575 | 32 | 19 | 76 | 12 |
-|  | Prânz | **Tocăniță de vită cu mămăligă** — 160 g vită slabă · 80 g ciuperci + 50 g ceapă + 50 g morcov + 40 g ardei + 100 g varză + 0.222222 mere · 65 g mălai · 100 g roșii pasate · 10 g ulei de măsline | 670 | 50 | 18 | 85 | 14 |
+|  | Prânz | **Tocăniță de vită cu mămăligă** — 160 g vită slabă · 80 g ciuperci + 50 g ceapă + 50 g morcov + 40 g ardei + 100 g varză + 40 g măr · 65 g mălai · 100 g roșii pasate · 10 g ulei de măsline | 670 | 50 | 18 | 85 | 14 |
 |  | Gustare | **Shake post-sală** — 150 g skyr · 200 ml lapte 1,5% · 1 banană · 10 g unt de arahide | 345 | 25 | 9 | 45 | 4 |
 |  | Cină | **Paste cu pui și dovlecel** — 150 g piept de pui · 150 g dovlecel + 40 g ceapă + 40 g rucola + 80 g roșii · 70 g paste integrale · 150 g roșii pasate · 8 g ulei de măsline + 15 g măsline | 635 | 50 | 17 | 79 | 13 |
 | | **Total zi** | | **2230** | **157** | **63** | **284** | **43** |

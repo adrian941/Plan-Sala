@@ -36,6 +36,7 @@ NOT_PLANT = {"ulei","unt","cocos_light"}
 def qty(k,g):
     if k in PIECE:
         w,pl,sg=PIECE[k]; n=g/w
+        if round(n*2,6)%1!=0: return f"{g:g} g {SHORT[k]}"   # nu iese bucată întreagă / jumătate → grame (ex. 40 g măr în tocăniță)
         n_s = f"{n:g}".replace(".5","½")
         return f"{n_s} {sg if n==1 else pl}"
     if k in ("lapte","cocos_light","soia","lamaie"): return f"{g:g} ml {SHORT[k]}"

@@ -1,0 +1,380 @@
+/* Meniul — Ema & Adi. Culoarea interfeței este persoana: roz = Ema, albastru = Adi. */
+
+:root {
+  --bg: #F4F3F8;
+  --card: #FFFFFF;
+  --ink: #201C36;
+  --mute: #7B7791;
+  --line: #E4E2EC;
+  --line-2: #D4D1E0;
+  --soft: #EBEAF1;
+  --acc: #0E8A7A;
+  --acc-ink: #0B6E62;
+  --acc-soft: #E1F3EF;
+  --warm: #7A5F0E;   /* ocru închis: cald, dar lizibil și la print */
+  --mute-2: #55516B; /* gri mai închis, pentru etichetele de macro */
+
+  --ema: #F0609A;
+  --ema-ink: #B8215F;
+  --ema-soft: #FFE0EC;
+
+  --adi: #3A74F2;
+  --adi-ink: #1E4FBF;
+  --adi-soft: #DDE8FF;
+
+  --radius: 14px;
+  --font: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14121F;
+    --card: #1E1B2C;
+    --ink: #F1EFF8;
+    --mute: #9B97B0;
+    --line: #2C2A3D;
+    --line-2: #3A3750;
+    --soft: #2A2839;
+    --acc: #45C9B6;
+    --acc-ink: #7ADCCD;
+    --acc-soft: #173430;
+    --warm: #D6B85A;
+    --mute-2: #B3AFC6;
+    --ema: #FF7AB3;
+    --ema-ink: #FF9CC6;
+    --ema-soft: #3A1E2C;
+    --adi: #6E9BFF;
+    --adi-ink: #9DBBFF;
+    --adi-soft: #1C2842;
+  }
+}
+
+/* Ema sau Adi singuri: paleta neutră (grafit). Roz / albastru apar doar la „Amândoi”, unde deosebesc porțiile. */
+/* cifrele rămân în cerneală; verdele doar pe antetul zilei și pe comutator */
+body { --p: var(--ink); --p-ink: var(--ink); --p-soft: var(--acc-soft); }
+.v-comun { --p-soft: linear-gradient(105deg, var(--ema-soft) 0 48%, var(--adi-soft) 52% 100%); }
+.v-comun .p-ema { --p: var(--ema); --p-ink: var(--ema-ink); --p-soft: var(--ema-soft); }
+.v-comun .p-adi { --p: var(--adi); --p-ink: var(--adi-ink); --p-soft: var(--adi-soft); }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 14px/1.35 var(--font);
+  font-variant-numeric: tabular-nums;
+  padding: 0 16px calc(24px + env(safe-area-inset-bottom));
+}
+button, input, fieldset { font: inherit; color: inherit; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+code { font: 600 0.9em var(--font); color: var(--mute); }
+
+/* ---------- antet ---------- */
+.top {
+  max-width: 2200px;
+  margin: 0 auto;
+  padding: 18px 0 10px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+.brand h1 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.brand .sub { margin: 4px 0 0; color: var(--mute); font-size: 12.5px; }
+
+/* comutatorul-capsulă: elementul principal al paginii */
+.who {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--card);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 4px;
+  isolation: isolate;
+}
+.who label { position: relative; z-index: 1; cursor: pointer; }
+.who input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.who span {
+  display: block;
+  text-align: center;
+  padding: 9px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--mute);
+  transition: color .25s;
+}
+.who input:checked + span { color: #fff; }
+.who input:focus-visible + span { outline: 2px solid var(--p); outline-offset: 2px; }
+.who .thumb {
+  position: absolute;
+  z-index: 0;
+  top: 4px; bottom: 4px; left: 4px;
+  width: calc((100% - 8px) / 3);
+  border-radius: 999px;
+  background: var(--acc);
+  transform: translateX(var(--x, 100%));
+  transition: transform .35s cubic-bezier(.3, 1.2, .35, 1), background .35s;
+}
+body.v-ema   .who .thumb { --x: 0%; }
+.v-comun .who .thumb { --x: 100%; background: linear-gradient(100deg, var(--ema) 10%, var(--adi) 90%); }
+body.v-adi   .who .thumb { --x: 200%; }
+
+.tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+@media (max-width: 430px) {
+  .week span, .ingbtn { padding-inline: 10px; font-size: 12px; }
+  .tools .right { gap: 5px; }
+}
+.week {
+  display: inline-grid; grid-template-columns: 1fr 1fr;
+  background: var(--card); border: 1px solid var(--line-2); border-radius: 999px; padding: 3px;
+}
+.week label { position: relative; cursor: pointer; }
+.week input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.week span {
+  display: block; padding: 6px 14px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600; color: var(--mute); white-space: nowrap;
+}
+.week input:checked + span { background: var(--ink); color: var(--bg); }
+.week input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
+.tools .right { display: flex; gap: 6px; }
+.ingbtn {
+  border: 1px solid var(--line-2); background: var(--card); border-radius: 999px;
+  padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: var(--mute); cursor: pointer;
+}
+.ingbtn.pdf { text-decoration: none; color: var(--ink); border-color: var(--ink); display: inline-flex; align-items: center; }
+.ingbtn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.ingbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ---------- cipuri de zile (doar telefon) ---------- */
+.chips {
+  position: sticky; top: 0; z-index: 5;
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+  padding: 8px 0 10px;
+  background: var(--bg);
+}
+.chips button {
+  border: 0; background: transparent; border-radius: 10px;
+  padding: 6px 0; font-size: 12px; font-weight: 600; color: var(--mute); cursor: pointer;
+  line-height: 1.1;
+}
+.chips button small { display: block; font-size: 10px; font-weight: 400; margin-top: 2px; }
+.chips button.on { background: var(--p-soft); color: var(--p-ink); }
+.chips button:focus-visible { outline: 2px solid var(--p); outline-offset: 1px; }
+
+/* ---------- zilele ---------- */
+.days { max-width: 2200px; margin: 0 auto; }
+.wk {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+.wk::-webkit-scrollbar { display: none; }
+.wk[hidden] { display: none; }
+.wt { display: none; }
+.loading { color: var(--mute); padding: 40px 0; text-align: center; grid-column: 1 / -1; }
+
+.day {
+  scroll-snap-align: start;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  min-width: 0;
+}
+.dh {
+  background: var(--p-soft);
+  padding: 10px 12px 8px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+}
+.dh h2 { margin: 0; font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
+.dh .tags { font-size: 12px; font-weight: 400; margin-left: 4px; }
+.dh .dt { display: flex; gap: 8px; align-items: baseline; }
+.dh .kc { color: var(--p-ink); font-size: 12px; white-space: nowrap; }
+.dh .kc b { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; }
+.dh .kc small { font-size: 11px; }
+
+/* macro pe zi: o bară de trei segmente (P / G / C după kcal) + cifrele */
+.bars { padding: 8px 12px 6px; display: grid; gap: 5px; border-bottom: 1px solid var(--line); }
+.brow { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
+.bar { display: flex; height: 5px; border-radius: 4px; overflow: hidden; background: var(--line); }
+.bar i { display: block; height: 100%; background: var(--acc); }
+.v-comun .bar i { background: var(--p); }
+.bar i:nth-child(2) { opacity: .55; }
+.bar i:nth-child(3) { opacity: .25; }
+.mac { font-size: 11px; color: var(--mute); white-space: nowrap; display: flex; gap: 7px; }
+.mac b { color: var(--ink); font-weight: 600; }
+.v-comun .mac b { color: var(--p-ink); }
+
+/* mesele */
+.meals { list-style: none; margin: 0; padding: 0 0 4px; }
+.meal + .meal { border-top: 1px solid var(--line); }
+/* gustarea stă mai jos, despărțită de mesele principale printr-un spațiu */
+.meal.t-3 { margin-top: 12px; }
+.mh {
+  width: 100%; text-align: left; border: 0; cursor: pointer;
+  background: none;
+  display: grid; grid-template-columns: 1fr auto; column-gap: 10px; row-gap: 2px; align-items: center;
+  padding: 8px 12px;
+}
+.mh .kc { grid-column: 2; grid-row: 1; align-self: center; }
+/* gustarea: mai discretă + eticheta mică „gustare” */
+.meal.t-3 .mh .nm { font-weight: 400; font-size: 12.5px; color: var(--warm); }
+.meal.t-3 .mh .nm::before { content: "gustare"; font-size: 10.5px; margin-right: 6px; opacity: .8; }
+.mh:hover { background: color-mix(in srgb, var(--line) 40%, transparent); }
+.mh:focus-visible { outline: 2px solid var(--p); outline-offset: -2px; }
+.mh .nm {
+  font-size: 13px; font-weight: 500; line-height: 1.3;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meal.open .mh .nm, body.all-ing .mh .nm { -webkit-line-clamp: unset; }
+.mh .kc { display: flex; flex-direction: column; align-items: flex-end; font-size: 12.5px; font-weight: 800; line-height: 1.25; }
+.mh .kc b { color: var(--p-ink); font-weight: 800; }
+
+.ing { display: none; padding: 2px 12px 10px; }
+.mt:empty { display: none; }
+.meal.open .ing, body.all-ing .ing { display: block; }
+.mt { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 11px; font-weight: 400; color: var(--ink); }
+.mt b { font-weight: 600; }
+.v-comun .mt span { color: var(--p-ink); }
+.mt span::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--acc); margin-right: 5px; }
+.v-comun .mt span::before { background: var(--p); }
+/* ingredientele: un grid pe toată masa, ca să se alinieze coloanele (cantități la dreapta, nume, kcal) */
+.ing ul {
+  list-style: none; margin: 0; padding: 0 0 0 6px;
+  display: grid; grid-template-columns: max-content max-content 1fr auto; column-gap: 0; row-gap: 3px;
+  font-size: 12px; line-height: 1.25; align-items: baseline;
+}
+.ing ul.two { grid-template-columns: repeat(4, max-content) 1fr auto; }
+.ing li { display: contents; }
+.ing .q { font-weight: 600; color: var(--acc-ink); white-space: nowrap; text-align: right; }
+.ing .u { font-weight: 600; color: var(--acc-ink); padding: 0 8px 0 1px; }
+.v-comun .ing .q, .v-comun .ing .u { color: var(--p-ink); }
+.ing .k { padding-left: 8px; }
+.ing .n { min-width: 0; overflow-wrap: break-word; }
+.ing .m { grid-column: 1 / -1; color: var(--mute); font-size: 10.5px; margin: -2px 0 3px; }
+/* butonul Macro oprit: rămâne doar meniul, fără kcal și fără macro */
+body.no-macro .bars, body.no-macro .mt, body.no-macro .ing .m,
+body.no-macro .dh .dt, body.no-macro .mh .kc, body.no-macro .ing .k, body.no-macro .chips small { display: none; }
+/* fără coloana de kcal, grila ingredientelor are cu o coloană mai puțin */
+body.no-macro .ing ul { grid-template-columns: max-content max-content 1fr; }
+body.no-macro .ing ul.two { grid-template-columns: repeat(4, max-content) 1fr; }
+.ing .k { color: var(--mute); text-align: right; white-space: nowrap; }
+.ing .k b { color: var(--acc-ink); font-weight: 600; }
+.v-comun .ing .k b { color: var(--p-ink); }
+
+
+/* ---------- ecrane mai mari ---------- */
+@media (min-width: 640px) {
+  body { font-size: 13px; }
+  .mh .nm { -webkit-line-clamp: 3; }
+  .top { grid-template-columns: auto 1fr auto; }
+  .who { width: 340px; justify-self: center; }
+  .chips { display: none; }
+  .wk {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible; scroll-snap-type: none;
+    padding-top: 8px;
+  }
+}
+@media (min-width: 1000px) { .wk { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 1360px) {
+  .wk { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
+  .dh { padding: 9px 10px 7px; }
+  .bars { padding-left: 10px; padding-right: 10px; }
+  .v-comun .dh .kc small { display: none; }
+  /* la 7 coloane, rândul cu două cantități renunță la kcal (rămân în vizualizarea individuală) */
+  .ing ul.two { grid-template-columns: repeat(4, max-content) 1fr; }
+  .ing ul.two .k { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .who .thumb, .who span { transition: none; }
+  .wk { scroll-behavior: auto; }
+}
+
+/* /p în link: doar cardurile, ambele săptămâni, pe ecran (pentru o poză) */
+body.print-look { padding-top: 12px; }
+body.print-look .top, body.print-look .chips { display: none !important; }
+body.print-look .wk[hidden] { display: grid; }
+body.print-look .wk + .wk { margin-top: 14px; }
+body.print-look .mh .nm { -webkit-line-clamp: unset; }
+body.print-look .wt { display: block; grid-column: 1 / -1; margin: 0 0 -2px; font-size: 12px; font-weight: 600; color: var(--mute); }
+
+/* ---------- printare (Ctrl+P): caietul de 4 pagini din #print ---------- */
+@media print {
+  @page { size: A4 landscape; margin: 6mm; }
+  body { background: #fff; padding: 0; font-size: 7pt; line-height: 1.2; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .top, .chips, #days { display: none !important; }
+  #print[hidden] { display: block; }
+
+  /* culorile: secțiunea „Ema + Adi” are roz/albastru; secțiunile individuale, verdele */
+  #print .v-one, #print .v-one .p-ema, #print .v-one .p-adi { --p: var(--acc); --p-ink: var(--ink); --p-soft: var(--acc-soft); }
+
+  /* ce se arată în fiecare secțiune, indiferent de butoanele de pe ecran */
+  #print .p-ing .ing { display: block; }
+  #print .p-ing .mt, #print .p-ing .bars, #print .p-ing .dh .dt, #print .p-ing .mh .kc, #print .p-ing .ing .k, #print .p-ing .ing .m { display: none; }
+  #print .p-ing .ing ul.two { grid-template-columns: repeat(4, max-content) 1fr; }
+  /* paginile detaliate: 4 zile pe pagină, ingredientele cu P/G/C/F + kcal pe coloane, în același font ca numele */
+  #print .p-det .wk { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  #print .p-det .ing { display: block; }
+  #print .p-det .mt, #print .p-det .bars, #print .p-det .dh .dt, #print .p-det .mh .kc, #print .p-det .ing .m { display: none; }
+  #print .p-det .ing ul.det { grid-template-columns: max-content max-content 1fr repeat(4, max-content) max-content; }
+  #print .p-det .ing .c { text-align: right; padding-left: 2.2mm; color: var(--ink); }
+  #print .p-det .ing .k { display: inline; padding-left: 2.2mm; }
+  #print .p-det .ing .hd { color: var(--mute); font-weight: 600; }
+  #print .p-det .ing .hd .k { color: var(--mute); }
+  #print .p-det .ing .tot > span { font-weight: 600; border-top: 0.3pt solid var(--line-2); padding-top: 0.5mm; margin-top: 0.3mm; }
+  #print .p-det .ing .tot .e { grid-column: 1 / 3; border-top: 0; }   /* sub cantități nu e linie */
+  #print .p-det .ing .tot .n { grid-column: 3; }
+  #print .p-det .ing .tot .k b { color: var(--ink); }
+  .ps.p-det { min-height: 196mm; display: flex; flex-direction: column; justify-content: center; }
+  .ps.p-det .wt { font-size: 11pt; font-weight: 800; color: var(--ink); margin-bottom: 0.5mm; }
+  #print .p-macro .ing { display: none; }
+  #print .p-macro .bars { display: grid; }
+  #print .p-macro .mt { display: flex; }
+  #print .p-macro .dh .dt, #print .p-macro .mh .kc { display: flex; }
+
+  /* paginare + centrare pe verticală */
+  .ps { break-before: page; }
+  .ps.p-blank { min-height: 100mm; }   /* pagină goală după Ema */
+  .ps:first-child { break-before: auto; }
+  .ps.p-macro { min-height: 196mm; display: flex; flex-direction: column; justify-content: center; }
+  .ps.p-ing .wk { min-height: 190mm; align-content: center; }
+  .ps.p-ing .wk + .wk { break-before: page; }
+  .pt { margin: 0 0 2mm; font-size: 11pt; font-weight: 800; letter-spacing: -0.01em; }
+  .ps.p-ing .wt { font-size: 11pt; font-weight: 800; color: var(--ink); margin-bottom: 0.5mm; }
+
+  .wk {
+    display: grid !important; grid-auto-flow: row; grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    gap: 2mm !important; overflow: visible; padding: 0;
+  }
+  .wk + .wk { margin-top: 3mm; }
+  .wt { display: block; grid-column: 1 / -1; margin: 0 0 -0.5mm; font-size: 7.5pt; font-weight: 600; color: var(--mute); }
+  .day { border: 0.4pt solid #C9C6D4; border-radius: 2mm; break-inside: avoid; }
+  .dh { padding: 1.2mm 1.8mm 1mm; }
+  .dh h2 { font-size: 9pt; } .dh .tags { font-size: 7pt; }
+  .dh .kc { font-size: 7pt; } .dh .kc b { font-size: 9pt; }
+  .bars { padding: 1.2mm 2mm 1mm; gap: 0.8mm; }
+  .bar { height: 1.2mm; } .mac { font-size: 6.5pt; gap: 1.5mm; }
+  .mh { padding: 1.1mm 1.8mm; row-gap: 0.3mm; column-gap: 1.5mm; }
+  .mh .nm { font-size: 7pt; font-weight: 700; line-height: 1.2; -webkit-line-clamp: unset; }
+  .mh .kc { font-size: 7.5pt; }
+  .mt { font-size: 6.5pt; gap: 0.5mm 2mm; }
+  .mt span::before { width: 1.4mm; height: 1.4mm; margin-right: 1mm; }
+  .meal.t-3 { margin-top: 1.5mm; }
+  .meal.t-3 .mh .nm { font-size: 7pt; }
+  .meal.t-3 .mh .nm::before { font-size: 6pt; }
+  .ing { padding: 0.2mm 1.8mm 1.1mm; }
+  .ing ul { font-size: 6.8pt; row-gap: 0.3mm; line-height: 1.15; padding-left: 1mm; }
+  .ing .u { padding: 0 1.2mm 0 0.3mm; }
+  .ing .k { padding-left: 1.5mm; }
+}

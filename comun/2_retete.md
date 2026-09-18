@@ -260,7 +260,7 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 |  | Morcov | 50 g | 50 g |
 |  | Ardei | 40 g | 40 g |
 |  | Varză | 100 g | 100 g |
-|  | Măr | 0.222222 mere | 0.222222 mere |
+|  | Măr | 40 g | 40 g |
 | **Amidon** | Mălai | 65 g | 70 g |
 | **Sos** | Roșii pasate | 100 g | 100 g |
 | **Grăsimi** | Ulei de măsline | 10 g | 12 g |
