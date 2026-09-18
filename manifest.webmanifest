@@ -7,11 +7,11 @@
   "dir": "ltr",
   "start_url": "./",
   "scope": "./",
-  "display": "fullscreen",
-  "display_override": ["fullscreen", "standalone", "minimal-ui"],
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "any",
-  "theme_color": "#0E8A7A",
-  "background_color": "#F4F3F8",
+  "theme_color": "#14121F",
+  "background_color": "#14121F",
   "categories": ["health", "fitness", "food"],
   "icons": [
     { "src": "_site/icons/icon-72.png",  "sizes": "72x72",   "type": "image/png", "purpose": "any" },
@@ -29,6 +29,8 @@
   "shortcuts": [
     { "name": "Meniul Emei",   "short_name": "Ema",     "url": "./#ema" },
     { "name": "Amândoi",       "short_name": "Amândoi", "url": "./#comun" },
-    { "name": "Meniul lui Adi","short_name": "Adi",     "url": "./#adi" }
+    { "name": "Meniul lui Adi","short_name": "Adi",     "url": "./#adi" },
+    { "name": "Rețete",        "short_name": "Rețete",  "url": "./#retete" },
+    { "name": "Alimente",      "short_name": "Alimente","url": "./#alimente" }
   ]
 }

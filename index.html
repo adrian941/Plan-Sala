@@ -3,13 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Meniul — Ema & Adi</title>
+<title>Meniul — Ema &amp; Adi</title>
 <meta name="color-scheme" content="light dark">
 
-<!-- PWA: aplicație instalabilă, pe tot ecranul. Manifestul și sw.js stau în rădăcină
+<!-- PWA: aplicație instalabilă. Manifestul și sw.js stau în rădăcină
      (un service worker controlează doar folderul lui și ce e sub el). -->
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="application-name" content="Meniul">
+<!-- Bara de sus a telefonului ia exact culoarea fundalului aplicației, ca să nu mai existe
+     „bărbia” neagră la pornire. Aceleași valori sunt și în manifest (folosit înainte să se
+     încarce pagina) și în CSS-ul critic de mai jos (folosit din prima imagine desenată). -->
 <meta name="theme-color" content="#F4F3F8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14121F" media="(prefers-color-scheme: dark)">
 <meta name="mobile-web-app-capable" content="yes">
@@ -21,6 +24,20 @@
 <link rel="icon" type="image/png" sizes="16x16" href="_site/icons/favicon-16.png">
 <link rel="icon" type="image/svg+xml" href="_site/icons/icon.svg">
 <link rel="apple-touch-icon" href="_site/icons/apple-touch-icon.png">
+
+<!-- CSS critic, în pagină: fundalul e corect din PRIMA imagine desenată, înainte să apuce
+     browserul să ceară style.css. Fără el, telefonul desenează întâi negru („bărbia”) și
+     abia apoi culoarea aplicației — de aceea sărea culoarea la pornire vs. la revenire. -->
+<style>
+  html { background: #F4F3F8; }
+  body { margin: 0; background: #F4F3F8; color: #201C36; }
+  @media (prefers-color-scheme: dark) {
+    html { background: #14121F; }
+    body { background: #14121F; color: #F1EFF8; }
+  }
+  html, body { overscroll-behavior: none; }
+</style>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -29,42 +46,55 @@
 <script>document.write('<link rel="stylesheet" href="_site/style.css?t=' + Date.now() + '">');</script>
 <noscript><link rel="stylesheet" href="_site/style.css"></noscript>
 </head>
-<body class="v-ema">
+<body class="v-ema pg-meniu">
 
 <header class="top">
+  <!-- Rândul de sus e și navigația între pagini: pe telefon capsula ia locul titlului, ca să
+       nu fure niciun pixel pe verticală; pe ecran mare stă lângă titlu. -->
   <div class="brand">
     <div class="title">
       <h1>Meniul</h1>
       <p class="sub">2 săptămâni, aceleași rețete, porții diferite</p>
     </div>
+    <nav class="pages" id="pages" aria-label="Pagini">
+      <button type="button" data-page="meniu" class="on" aria-current="page">Meniu</button>
+      <button type="button" data-page="retete">Rețete</button>
+      <button type="button" data-page="alimente">Alimente</button>
+    </nav>
     <!-- apare doar când browserul chiar poate instala aplicația -->
     <button class="ingbtn install" id="install" type="button" hidden title="Adaugă aplicația pe ecranul principal">Instalează</button>
   </div>
 
-  <fieldset class="who" aria-label="Al cui meniu">
-    <i class="thumb" aria-hidden="true"></i>
-    <label><input type="radio" name="who" value="ema" checked><span>Ema</span></label>
-    <label><input type="radio" name="who" value="comun"><span>Amândoi</span></label>
-    <label><input type="radio" name="who" value="adi"><span>Adi</span></label>
-  </fieldset>
-
-  <div class="tools">
-    <fieldset class="week" aria-label="Săptămâna">
-      <label><input type="radio" name="week" value="0" checked><span data-short="S1">Săpt. 1</span></label>
-      <label><input type="radio" name="week" value="1"><span data-short="S2">Săpt. 2</span></label>
+  <div class="only-meniu">
+    <fieldset class="who" aria-label="Al cui meniu">
+      <i class="thumb" aria-hidden="true"></i>
+      <label><input type="radio" name="who" value="ema" checked><span>Ema</span></label>
+      <label><input type="radio" name="who" value="comun"><span>Amândoi</span></label>
+      <label><input type="radio" name="who" value="adi"><span>Adi</span></label>
     </fieldset>
-    <div class="right">
-      <button class="ingbtn" id="toggle-macro" type="button" aria-pressed="false">Macro</button>
-      <button class="ingbtn" id="toggle-ing" type="button" aria-pressed="false">Ingrediente</button>
-      <button class="ingbtn pdf" id="pdf" type="button" title="Salvează ca PDF / printează">PDF</button>
+
+    <div class="tools">
+      <fieldset class="week" aria-label="Săptămâna">
+        <label><input type="radio" name="week" value="0" checked><span data-short="S1">Săpt. 1</span></label>
+        <label><input type="radio" name="week" value="1"><span data-short="S2">Săpt. 2</span></label>
+      </fieldset>
+      <div class="right">
+        <button class="ingbtn" id="toggle-macro" type="button" aria-pressed="false">Macro</button>
+        <button class="ingbtn" id="toggle-ing" type="button" aria-pressed="false">Ingrediente</button>
+        <button class="ingbtn pdf" id="pdf" type="button" title="Salvează ca PDF / printează">PDF</button>
+      </div>
     </div>
   </div>
 </header>
 
 <nav class="chips" id="chips" aria-label="Zilele săptămânii"></nav>
 
-<main class="days" id="days" aria-live="polite">
-  <p class="loading">Se încarcă meniul…</p>
+<main>
+  <div class="days" id="days" aria-live="polite">
+    <p class="loading">Se încarcă meniul…</p>
+  </div>
+  <div class="pane" id="pane-retete" hidden></div>
+  <div class="pane" id="pane-alimente" hidden></div>
 </main>
 
 <div id="print" hidden aria-hidden="true"></div>

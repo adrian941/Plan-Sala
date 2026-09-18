@@ -49,7 +49,8 @@
   }
 
   // ---------- stare ----------
-  const state = { view: "ema", week: 0, allIng: false, macro: false, printLook: false };
+  const state = { page: "meniu", view: "ema", week: 0, allIng: false, macro: false, printLook: false };
+  const PAGES = ["meniu", "retete", "alimente"];
   // ordinea meselor pe card: mic dejun, prânz, cină, apoi (cu spațiu) gustarea
   const ORDER = { "Mic dejun": 0, "Prânz": 1, "Cină": 2, "Gustare": 3 };
   const g = (x) => `${+x}g`;
@@ -72,11 +73,19 @@
     // #ema/2 = persoana + săptămâna; opțional /i (ingrediente) /m (macro) /p (doar cardurile, ambele săptămâni — pentru printat/poză)
     const m = /^#(ema|adi|comun)(?:\/([12]))?((?:\/[imp])*)/.exec(location.hash);
     if (m) {
+      state.page = "meniu";
       state.view = m[1]; if (m[2]) state.week = +m[2] - 1;
       if (m[3]) { state.allIng = m[3].includes("i"); state.macro = m[3].includes("m"); state.printLook = m[3].includes("p"); }
+      return;
     }
+    // #retete / #alimente — celelalte două pagini
+    const pg = /^#(retete|alimente)/.exec(location.hash);
+    state.page = pg ? pg[1] : "meniu";
   }
-  function writeHash() { if (!state.printLook) history.replaceState(null, "", `#${state.view}/${state.week + 1}`); }
+  function writeHash() {
+    if (state.printLook) return;
+    history.replaceState(null, "", state.page === "meniu" ? `#${state.view}/${state.week + 1}` : `#${state.page}`);
+  }
 
   // ---------- randare ----------
   const persons = () => (state.view === "comun" ? ["ema", "adi"] : [state.view]);
@@ -162,21 +171,29 @@
     return `<section class="wk" data-w="${wi}"${hidden ? " hidden" : ""}><h2 class="wt">${prefix}Săptămâna ${wi + 1}${sufix}</h2>${idx.map((i) => dayHtml(i, wi, ps, detail)).join("")}</section>`;
   }
   // Ctrl+P tipărește mereu același caiet, indiferent de ce e bifat pe ecran:
-  // 1–2: Ema + Adi cu ingrediente (o săptămână pe pagină) · 3: Adi cu macro · 4: Ema cu macro
-  // 5+: „Ema — Săptămâna 1 — Detaliat”: ingredientele cu macro pe coloane, zilele împărțite Lu–Jo / Vi–Du (o pagină fiecare)
+  // Ema + Adi cu ingrediente (o săptămână pe pagină) · fiecare persoană cu macro · paginile detaliate.
+  // REGULA STRUCTURII: o secțiune `.ps` = exact o foaie tipărită, iar conținutul ei stă într-un
+  // singur `.pg`. Așa, când imprimanta ne dă hârtia în picioare (telefoanele Android nu respectă
+  // `@page size: landscape`), CSS-ul poate să rotească `.pg` cu 90° și tot iese A4 întors.
+  const page = (cls, inner) => `<section class="ps ${cls}"><div class="pg">${inner}</div></section>`;
   function detailPages(who) {
     return data[who].map((_, wi) => [[0, 3], [4, 6]].map((range) =>
-      `<section class="ps v-one p-det">${weekHtml(wi, [who], false, `${PEOPLE[who]} — Detaliat — `, range, true)}</section>`).join("")).join("");
+      page("v-one p-det", weekHtml(wi, [who], false, `${PEOPLE[who]} — Detaliat — `, range, true))).join("")).join("");
   }
   function printHtml() {
-    const weeksOf = (ps, prefix) => data[ps[0]].map((_, wi) => weekHtml(wi, ps, false, prefix)).join("");
+    const ingPages = () => data.ema.map((_, wi) =>
+      page("v-comun p-ing", weekHtml(wi, ["ema", "adi"], false, "Ema + Adi — Ingrediente pentru cumpărături — "))).join("");
+    const macroPage = (who) => page("v-one p-macro",
+      `<h1 class="pt">${PEOPLE[who]} — mese și macronutrienți</h1>` + data[who].map((_, wi) => weekHtml(wi, [who], false)).join(""));
     // ordinea: ingredientele pentru cumpărături (amândoi), apoi fiecare persoană: mesele cu macro, apoi paginile detaliate
-    const person = (who) => `<section class="ps v-one p-macro"><h1 class="pt">${PEOPLE[who]} — mese și macronutrienți</h1>${weeksOf([who])}</section>${detailPages(who)}`;
-    return `<section class="ps v-comun p-ing">${weeksOf(["ema", "adi"], "Ema + Adi — Ingrediente pentru cumpărături — ")}</section>${person("ema")}<section class="ps p-blank"></section>${person("adi")}`;   // pagină goală între Ema și Adi (pentru print față-verso)
+    const person = (who) => macroPage(who) + detailPages(who);
+    return ingPages() + person("ema") + page("p-blank", "") + person("adi");   // pagină goală între Ema și Adi (pentru print față-verso)
   }
 
+  const bodyClass = () => `pg-${state.page} v-${state.view}${state.allIng ? " all-ing" : ""}${state.macro ? "" : " no-macro"}${state.printLook ? " print-look" : ""}`;
   function render() {
-    document.body.className = `v-${state.view}${state.allIng ? " all-ing" : ""}${state.macro ? "" : " no-macro"}${state.printLook ? " print-look" : ""}`;
+    document.body.className = bodyClass();
+    if (!data.ema || !data.ema.length || !data.adi.length) return;   // meniul n-a putut fi citit — mesajul e deja pe ecran
     const weeks = data[persons()[0]];
     const w = weeks[state.week];
     if (!w) { $("#days").innerHTML = `<p class="loading">Nu găsesc săptămâna ${state.week + 1} în fișier.</p>`; return; }
@@ -187,6 +204,71 @@
       `<button type="button" data-i="${i}"${i === 0 ? ' class="on"' : ""}>${SHORT[d.name] || d.name}<small>${d.total.k}</small></button>`).join("");
     currentWeekEl().scrollTo({ left: 0 });
     watchDays();
+    writeHash();
+  }
+
+  // ---------- pagina „Rețete” ----------
+  // Lista tuturor rețetelor, una sub alta. La apăsare se deschid ingredientele cu cantitatea
+  // (S = porția standard, M = porția mare) — atât, fără calorii pe ingredient.
+  const GRUPE = ["Mic dejun", "Gustări", "Feluri principale"];
+  function reteteHtml() {
+    const R = window.RETETE || [];
+    if (!R.length) return `<p class="loading">Nu găsesc rețetele. Rulează <code>python date/genereaza.py</code> ca să regenerezi <code>_site/data.js</code>.</p>`;
+    const grupuri = GRUPE.filter((gr) => R.some((r) => r.grup === gr));
+    return `<p class="hint"><span><b>S</b> = porție standard (Ema) · <b>M</b> = porție mare (Adi). Apasă o rețetă ca să vezi ingredientele.</span></p>` +
+      grupuri.map((gr) => `<section class="grup">
+        <h2 class="gt">${esc(gr)} <small>${R.filter((r) => r.grup === gr).length}</small></h2>
+        <ul class="rlist">${R.filter((r) => r.grup === gr).map(retetaHtml).join("")}</ul>
+      </section>`).join("");
+  }
+  function retetaHtml(r) {
+    const linii = r.comp.map((c) => `<li class="el"><span class="n">${esc(c.eticheta)}</span><span class="s"></span><span class="m"></span></li>` +
+      c.items.map((i) => `<li><span class="n">${esc(i.nume)}</span><span class="s">${esc(i.s) || "—"}</span><span class="m">${esc(i.m) || "—"}</span></li>`).join("")).join("");
+    const zile = (r.zile || []).join(" · ");
+    return `<li class="rec" id="r-${esc(r.id)}">
+      <button class="rh" type="button" aria-expanded="false">
+        <span class="rn">${esc(r.nume)}</span>
+        <span class="rk">${r.kcal.s} <small>/</small> ${r.kcal.m}<small> kcal</small></span>
+        <span class="rm">${esc(r.timp)}${zile ? ` · ${esc(zile)}` : ""}</span>
+      </button>
+      <div class="rb"><ul class="ring">
+        <li class="hd"><span class="n"></span><span class="s">S</span><span class="m">M</span></li>
+        ${linii}
+      </ul></div>
+    </li>`;
+  }
+
+  // ---------- pagina „Alimente” ----------
+  // Lista de alimente pe categorii (comun/1_ingrediente.md). Doar numele, cu kcal/100 g discret.
+  function alimenteHtml() {
+    const A = window.ALIMENTE || [];
+    if (!A.length) return `<p class="loading">Nu găsesc lista de alimente. Rulează <code>python date/genereaza.py</code>.</p>`;
+    const n = A.reduce((t, c) => t + c.items.filter((i) => i.plan).length, 0);
+    const tot = A.reduce((t, c) => t + c.items.length, 0);
+    return `<p class="hint"><button class="pill" id="doar-plan" type="button" aria-pressed="true">Doar din meniu</button>
+        <span><b>${n}</b> din ${tot} alimente · kcal la 100 g</span></p>` +
+      A.map((c) => `<section class="grup cat${c.items.some((i) => i.plan) ? "" : " vid"}">
+        <h2 class="gt">${c.icon} ${esc(c.cat)} <small>${c.items.filter((i) => i.plan).length}/${c.items.length}</small></h2>
+        <ul class="alist">${c.items.map((i) =>
+          `<li class="${i.plan ? "in" : "out"}"><span class="n">${esc(i.nume)}</span><span class="k">${i.kcal}</span></li>`).join("")}</ul>
+      </section>`).join("");
+  }
+
+  // ---------- comutarea între pagini ----------
+  function applyPage() {
+    document.body.classList.remove("pg-meniu", "pg-retete", "pg-alimente");
+    document.body.classList.add("pg-" + state.page);
+    $("#pane-retete").hidden = state.page !== "retete";
+    $("#pane-alimente").hidden = state.page !== "alimente";
+    $("#days").hidden = state.page !== "meniu";
+    document.querySelectorAll("#pages button").forEach((b) => {
+      const on = b.dataset.page === state.page;
+      b.classList.toggle("on", on);
+      if (on) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+    });
+    if (state.page === "retete" && !$("#pane-retete").innerHTML) $("#pane-retete").innerHTML = reteteHtml();
+    if (state.page === "alimente" && !$("#pane-alimente").innerHTML) $("#pane-alimente").innerHTML = alimenteHtml();
+    scrollTo(0, 0);
     writeHash();
   }
 
@@ -235,9 +317,24 @@
       const open = li.classList.toggle("open");
       btn.setAttribute("aria-expanded", String(open));
     });
-    // butonul PDF = Ctrl+P: browserul face PDF-ul din blocul #print (4 pagini), mereu din datele curente
+    // butonul PDF = Ctrl+P: browserul face PDF-ul din blocul #print, mereu din datele curente
     $("#pdf").addEventListener("click", () => window.print());
-    window.addEventListener("hashchange", () => { readHash(); syncControls(); render(); });
+    $("#pages").addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      state.page = b.dataset.page; applyPage();
+    });
+    $("#pane-retete").addEventListener("click", (e) => {
+      const btn = e.target.closest(".rh"); if (!btn) return;
+      const open = btn.closest(".rec").classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(open));
+    });
+    $("#pane-alimente").addEventListener("click", (e) => {
+      const b = e.target.closest("#doar-plan"); if (!b) return;
+      const doar = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", String(doar));
+      $("#pane-alimente").classList.toggle("tot", !doar);
+    });
+    window.addEventListener("hashchange", () => { readHash(); syncControls(); render(); applyPage(); });
   }
   function syncControls() {
     const who = document.querySelector(`input[name="who"][value="${state.view}"]`); if (who) who.checked = true;
@@ -250,14 +347,16 @@
   (async function init() {
     readHash();
     syncControls();
-    document.body.className = `v-${state.view}${state.allIng ? " all-ing" : ""}${state.macro ? "" : " no-macro"}${state.printLook ? " print-look" : ""}`;
+    document.body.className = bodyClass();
     const [ema, adi] = await Promise.all([loadMd("ema"), loadMd("adi")]);
     data.ema = parse(ema); data.adi = parse(adi);
     if (!data.ema.length || !data.adi.length) {
       $("#days").innerHTML = `<p class="loading">Nu am putut citi meniurile. Rulează <code>python date/genereaza.py</code> ca să regenerezi <code>_site/data.js</code>.</p>`;
+      bind(); applyPage();   // Rețete și Alimente merg oricum — ele nu depind de meniuri
       return;
     }
     bind();
     render();
+    applyPage();
   })();
 })();
