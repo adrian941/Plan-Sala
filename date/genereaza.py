@@ -15,8 +15,8 @@ Textul explicativ (regulile, cum e gândit calendarul, organizarea bucătăriei)
 import io, json, os, sys
 
 import db
-from calcule import (macro_reteta, r5, r0, r1, numar, qty, cant, parte_qty, nume_ing,
-                     totals, medie, plants, saptamani, zile_din)
+from calcule import (macro_reteta, macro_suma, micro_suma, mic, r5, r0, r1, numar, qty, cant,
+                     parte_qty, nume_ing, totals, medie, plants, saptamani, zile_din)
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..") + "/"
@@ -30,7 +30,30 @@ def m5(t):
     return f"{r5(t[0])} | {t[1]:.0f} | {t[2]:.0f} | {t[3]:.0f} | {t[4]:.0f}"
 
 
+# ---------------------------------------------------------------------------
+#  Micronutrienții care se afișează, în ordinea în care apar. Restul rămân în bază.
+#  `VITAMINE` = linia scurtă de sub fiecare rețetă din caietul de print;
+#  `MICRO` = tot ce se deschide din butonul „Vitamine & minerale" de la Alimente.
+# ---------------------------------------------------------------------------
+VITAMINE = [(1106, "A"), (1162, "C"), (1114, "D"), (1109, "E"),
+            (1185, "K"), (1175, "B6"), (1177, "Folat"), (1178, "B12")]
+MICRO = [(1106, "Vitamina A"), (1162, "Vitamina C"), (1114, "Vitamina D"), (1109, "Vitamina E"),
+         (1185, "Vitamina K"), (1165, "B1 tiamină"), (1166, "B2 riboflavină"), (1167, "B3 niacină"),
+         (1170, "B5 pantotenic"), (1175, "Vitamina B6"), (1177, "Folat"), (1178, "Vitamina B12"),
+         (1180, "Colină"),
+         (1087, "Calciu"), (1089, "Fier"), (1090, "Magneziu"), (1091, "Fosfor"), (1092, "Potasiu"),
+         (1093, "Sodiu"), (1095, "Zinc"), (1098, "Cupru"), (1101, "Mangan"), (1103, "Seleniu")]
+UNITATI = {"MG": "mg", "UG": "µg", "IU": "UI", "G": "g", "KCAL": "kcal"}
+
+
 plan = db.incarca()
+
+
+def unit(nid):
+    """Unitatea nutrientului, scrisă cum o citesc oamenii: MG → mg, UG → µg."""
+    return UNITATI.get(plan.nutrienti[nid].unitate, plan.nutrienti[nid].unitate)
+
+
 ING = list(plan.ingrediente.values())
 R = plan.retete
 SAPT = saptamani(plan)
@@ -78,7 +101,7 @@ def comp_table(r):
 o = []
 o.append("# 🍽️ Rețete\n")
 o.append("> **Pasul 2** din [cum lucrăm](./0_pipeline.md). Toate valorile de mai jos sunt calculate din [`1_ingrediente.md`](./1_ingrediente.md) (USDA), pe cantități **crude**.\n> De aici pleacă [`3_cumparaturi.md`](./3_cumparaturi.md). Ce rețetă în ce zi: [`4_calendar.md`](./4_calendar.md).\n")
-o.append("## Cum adăugăm o rețetă\n\nÎmi dai rețeta cu ce detalii ai (ingrediente, cum se face, timp, câte porții ies, **cui îi place și cui nu**). Eu: (1) adaug ingredientele noi în `1_ingrediente.md` din USDA, (2) o scriu aici pe structura farfuriei, (3) calculez S și M, (4) trec verdictele în preferințele fiecăruia.\n\n**Semne:** ⭐ favorit · ✅ îi place · 🟡 neutru · ❌ nu-i place · ⛔ nu poate · ❔ netestat\n")
+o.append("## Cum adăugăm o rețetă\n\nÎmi dai rețeta cu ce detalii ai (ingrediente, cum se face, timp, câte porții ies, **cui îi place și cui nu**). Eu: (1) adaug ingredientele noi în `1_ingrediente.md` din USDA, (2) o scriu aici pe structura farfuriei, cu **modul de preparare pas cu pas**, (3) calculez S și M, (4) trec verdictele în preferințele fiecăruia.\n\n**Semne:** ⭐ favorit · ✅ îi place · 🟡 neutru · ❌ nu-i place · ⛔ nu poate · ❔ netestat\n")
 o.append("## Farfuria 40/40/20 — cum e construit fiecare fel principal\n\nFiecare fel principal are **trei elemente vizibile + un sos**:\n\n| Element | Cât din farfurie | Ce e |\n|---|:-:|---|\n| **Proteină** | 40% | carne, pește, ouă, lactate |\n| **Legume** | 40% | carbohidrați fibroși: legume la tavă, piureuri de legume, salate, legume sotate — **cel puțin 3 legume diferite** pe farfurie |\n| **Amidon** | 20% | orez, cartof, quinoa, hrișcă, paste, mămăligă, leguminoase |\n| **Sos** | — | pe bază de iaurt (usturoi, mărar, lămâie, muștar), roșii pasate cu busuioc, soia-ghimbir — gust fără calorii goale |\n\n**Regula casei: nu amestecăm lactatele cu carnea/peștele, nici ouăle cu carnea, în aceeași masă.** De aceea sosurile la felurile cu carne sunt fără iaurt (tahini-lămâie, lămâie-usturoi-ulei, vinegretă de muștar, roșii-busuioc, soia-ghimbir), piureurile se fac cu ulei de măsline, iar lactatele stau la micul dejun și la gustări.\n\nProcentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult ca proporțiile (American Gut Project: **≥30 de plante diferite pe săptămână** — planul are ~40).\n")
 o.append("## Două mărimi de porție\n\n**S (standard)** și **M (mare)**: diferă proteina și amidonul; legumele, sosul și condimentele sunt identice → o singură oală/tavă. Cine mănâncă ce mărime: `ema/4_meniu.md`, `adi/4_meniu.md`. Felurile principale se gătesc **×4 = 2 S + 2 M** (cina de azi + prânzul de mâine).\n")
 o.append("---\n\n## Cuprins\n")
@@ -97,7 +120,12 @@ for grup, titlu in GRUPE:
         s, m = macro_reteta(plan, r, "S"), macro_reteta(plan, r, "M")
         o.append(f'<a id="{rid.lower()}"></a>\n### {rid} · {r.nume}\n**{r.masa.capitalize()} · {r.timp} · ține: {r.tine}**\n')
         o.append(comp_table(r) + "\n")
-        o.append(f"**Cum se face:** {r.cum}\n")
+        o.append(f"**Cum se face (pe scurt):** {r.cum}\n")
+        if r.pasi:
+            o.append("**Mod de preparare**\n")
+            o.append("\n".join(f"{i}. {pas}" for i, pas in enumerate(r.pasi, 1)) + "\n")
+        if r.sfat:
+            o.append(f"**De ce așa:** {r.sfat}\n")
         o.append(f"| Pe porție | kcal | P | G | C | Fibre |\n|---|--:|--:|--:|--:|--:|\n| **S** | {m5(s)} |\n| **M** | {m5(m)} |\n")
         if r.varianta:
             o.append(f"**Variante:** {r.varianta}\n")
@@ -288,15 +316,26 @@ for zi in plan.zile:
 _retete = []
 for rid, r in R.items():
     s_, m_ = macro_reteta(plan, r, "S"), macro_reteta(plan, r, "M")
+    # oala pentru amândoi: cantitățile S (Ema) + M (Adi) adunate. Din ele ies și linia
+    # de macro-uri, și vitaminele de pe pagina de rețete din caietul de print.
+    t_ = macro_suma(plan, r)
+    vit, fara_date = micro_suma(plan, r, [i for i, _e in VITAMINE])
     _retete.append({
         "id": rid, "nume": r.nume, "scurt": r.scurt, "grup": r.grup,
         "masa": r.masa, "timp": r.timp, "tine": r.tine,
         "kcal": {"s": r5(s_[0]), "m": r5(m_[0])},
         "comp": [{"eticheta": lbl.strip(),
                   "items": [{"nume": nume_ing(plan.ingrediente[k]),
-                             "s": cant(plan.ingrediente[k], gs), "m": cant(plan.ingrediente[k], gm)}
+                             "s": cant(plan.ingrediente[k], gs), "m": cant(plan.ingrediente[k], gm),
+                             "sm": cant(plan.ingrediente[k], gs + gm)}
                             for k, gs, gm in items if gs > 0 or gm > 0]}
                  for lbl, items in r.comp],
+        "pasi": r.pasi,
+        "sfat": r.sfat,
+        "varianta": r.varianta,
+        "total": {"k": r5(t_[0]), "p": r0(t_[1]), "g": r0(t_[2]), "c": r0(t_[3]), "f": r0(t_[4])},
+        "vit": [{"n": et, "v": mic(vit[i]), "u": unit(i)} for i, et in VITAMINE],
+        "vitPartial": fara_date,   # câte ingrediente n-au valori în USDA (deci lipsesc din sumă)
         "zile": _zile.get(rid, []),
     })
 
@@ -305,15 +344,25 @@ _in_plan = {k for r in R.values() for portie in ("S", "M") for k, _g in r.ingred
 _alimente = [{
     "cat": cat.nume, "icon": cat.icon, "rol": cat.rol,
     "items": [{"nume": i.nume, "kcal": numar(i.kcal), "p": numar(i.proteine), "g": numar(i.grasimi),
-               "c": numar(i.carbo), "f": numar(i.fibre), "plan": i.cheie in _in_plan}
+               "c": numar(i.carbo), "f": numar(i.fibre), "plan": i.cheie in _in_plan,
+               # valorile din coloanele MICRO, în aceeași ordine; null la cele trei alimente
+               # care n-au corespondent în USDA (laptele 1,5%, cocosul light, mixul de fructe)
+               "micro": [mic(i.micro.get(nid, 0.0)) for nid, _e in MICRO] if i.micro else None}
               for i in cat.ingrediente],
 } for cat in plan.categorii]
+
+# capul de tabel al micronutrienților: o singură dată, nu la fiecare aliment
+_micro_cap = [{"n": et, "u": unit(nid),
+               "g": "vitamina" if nid in (1106, 1162, 1114, 1109, 1185, 1165, 1166, 1167,
+                                          1170, 1175, 1177, 1178, 1180) else "mineral"}
+              for nid, et in MICRO]
 
 W("_site/data.js",
   "// generat de date/genereaza.py din date/plan.db — nu se editează manual\n"
   "window.MENIU = " + json.dumps(_meniu, ensure_ascii=False) + ";\n"
   "window.RETETE = " + json.dumps(_retete, ensure_ascii=False) + ";\n"
-  "window.ALIMENTE = " + json.dumps(_alimente, ensure_ascii=False) + ";\n")
+  "window.ALIMENTE = " + json.dumps(_alimente, ensure_ascii=False) + ";\n"
+  "window.MICRO = " + json.dumps(_micro_cap, ensure_ascii=False) + ";\n")
 
 # ================= 6. DUMP-UL BAZEI (pentru git) =================
 db.scrie_dump()

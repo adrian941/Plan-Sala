@@ -121,3 +121,49 @@ def saptamani(plan):
 
 def zile_din(plan, saptamana):
     return [z for z in plan.zile if z.saptamana == saptamana]
+
+
+# ---------------------------------------------------------------------------
+#  Micronutrienții (minerale, vitamine) — aceeași socoteală ca la macro-uri,
+#  doar că valorile vin din `ingredient.micro` (importate din USDA), nu din
+#  cele cinci de pe farfurie. Trei alimente n-au corespondent în USDA
+#  (lapte 1,5%, lapte de cocos light, mix de fructe de pădure), deci fiecare
+#  total spune și câte ingrediente au lipsit din socoteală.
+# ---------------------------------------------------------------------------
+
+def micro(plan, items, ids):
+    """items = [(cheie, grame), …] → ({nutrient_id: total}, câte ingrediente n-au date)."""
+    t = {i: 0.0 for i in ids}
+    fara = 0
+    for cheie, g in items:
+        ing = plan.ingrediente[cheie]
+        if not ing.micro:
+            fara += 1
+            continue
+        for i in ids:
+            t[i] += ing.micro.get(i, 0.0) * g / 100
+    return t, fara
+
+
+def micro_reteta(plan, reteta, portie, ids):
+    return micro(plan, reteta.ingrediente(portie), ids)
+
+
+def micro_suma(plan, reteta, ids):
+    """Cât iese din oală pentru amândoi: cantitățile S (Ema) + M (Adi), la un loc."""
+    items = reteta.ingrediente("S") + reteta.ingrediente("M")
+    return micro(plan, items, ids)
+
+
+def macro_suma(plan, reteta):
+    """Macro-urile pe cantitățile adunate: porția S + porția M."""
+    return macro(plan, reteta.ingrediente("S") + reteta.ingrediente("M"))
+
+
+def mic(x):
+    """Cum se scrie o valoare de micronutrient: zecimală doar unde chiar contează."""
+    if x >= 100:
+        return f"{x:.0f}"
+    if x >= 10:
+        return f"{x:.1f}".replace(".0", "")
+    return f"{x:.2f}".rstrip("0").rstrip(".") or "0"

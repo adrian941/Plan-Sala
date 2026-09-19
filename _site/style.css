@@ -278,16 +278,64 @@ body.pg-retete .chips,      body.pg-alimente .chips { display: none; }
 .ring .el > span { padding-top: 7px; }
 .ring .el .n { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); }
 
+/* modul de preparare, sub ingrediente */
+.prep { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line-2); }
+.prep h3 {
+  margin: 0 0 6px; font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--mute);
+}
+.pasi { margin: 0; padding-left: 18px; font-size: 12.5px; line-height: 1.45; }
+.pasi li { margin-bottom: 5px; }
+.pasi li::marker { color: var(--acc-ink); font-weight: 700; }
+.sfat, .varn { margin: 9px 0 0; font-size: 12px; line-height: 1.45; color: var(--mute-2); }
+.sfat { padding: 8px 10px; border-radius: 10px; background: var(--acc-soft); color: var(--ink); }
+.sfat b { color: var(--acc-ink); }
+.varn b { color: var(--ink); }
+
+/* „Minimizează rețeta" — închide rețeta fără să cauți înapoi capul ei */
+.rfoot { margin-top: 10px; }
+.mini {
+  border: 1px solid var(--line-2); background: var(--card); border-radius: 999px;
+  padding: 5px 12px; font-size: 11.5px; font-weight: 600; color: var(--mute); cursor: pointer;
+}
+.mini:hover { color: var(--ink); border-color: var(--mute); }
+.mini:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+
 /* alimentele pe categorii */
 .alist { display: grid; grid-template-columns: 1fr; }
-.alist li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 7px 12px; font-size: 12.5px; border-top: 1px solid var(--line); }
+.alist li { border-top: 1px solid var(--line); }
 .alist li:first-child { border-top: 0; }
+.ah {
+  width: 100%; border: 0; background: none; cursor: pointer; text-align: left;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  padding: 7px 12px; font-size: 12.5px; color: inherit;
+}
+.ah:hover { background: color-mix(in srgb, var(--line) 40%, transparent); }
+.ah:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
 .alist .k { color: var(--mute); font-size: 11px; white-space: nowrap; }
+.alist .k small { font-size: 10px; }
 .alist .out { display: none; }                          /* implicit: doar ce intră în meniu */
 .cat.vid { display: none; }
-#pane-alimente.tot .alist .out { display: flex; }
+#pane-alimente.tot .alist .out { display: block; }
 #pane-alimente.tot .alist .out .n { color: var(--mute); }
 #pane-alimente.tot .cat.vid { display: block; }
+
+/* restul valorilor: vitaminele și mineralele din USDA, ascunse până le ceri */
+.mic { display: none; padding: 2px 12px 11px; }
+.alist li.open { background: var(--soft); }
+.alist li.open .mic, #pane-alimente.micro .mic { display: block; }
+.alist li.open .n { color: var(--acc-ink); font-weight: 600; }
+.mgrid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 0 16px; font-size: 11.5px;
+}
+/* o pereche „nume … valoare" pe rând; câte încap pe lățime, atâtea coloane */
+.mrow { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 3px 0; border-bottom: 1px dotted var(--line); }
+.mn { color: var(--mute); }
+.mn.vitamina { color: var(--acc-ink); }
+.mv { font-weight: 600; white-space: nowrap; }
+.mv small { font-weight: 400; color: var(--mute); margin-left: 2px; }
+.mnota { margin: 7px 0 0; font-size: 10.5px; color: var(--mute); }
 
 /* ---------- cipuri de zile (doar telefon) ---------- */
 .chips {
@@ -454,6 +502,12 @@ body.no-macro .ing ul.two { grid-template-columns: repeat(4, max-content) 1fr; }
 @media (min-width: 700px) {
   .alist { grid-template-columns: 1fr 1fr; }
   .alist li:nth-child(2) { border-top: 0; }
+  /* alimentul deschis ia rândul lui întreg: altfel tabelul de vitamine împinge în sus
+     vecinul de pe coloana cealaltă și rămâne o jumătate de rând goală */
+  .alist li.open { grid-column: 1 / -1; }
+  /* „Vitamine & minerale" le deschide pe toate → o singură coloană, ca fiecare tabel să aibă loc */
+  #pane-alimente.micro .alist { grid-template-columns: 1fr; }
+  #pane-alimente.micro .alist li:nth-child(2) { border-top: 1px solid var(--line); }
   /* pe ecran lat, cantitățile stau lângă nume, nu tocmai la marginea din dreapta */
   .ring { grid-template-columns: minmax(0, 460px) 5.5rem 5.5rem; justify-content: start; }
 }
@@ -599,6 +653,39 @@ button, .seg label, .chips button, .title {
   .ing ul { font-size: 6.8pt; row-gap: 0.3mm; line-height: 1.15; padding-left: 1mm; }
   .ing .u { padding: 0 1.2mm 0 0.3mm; }
   .ing .k { padding-left: 1.5mm; }
+
+  /* ---- paginile de rețete, la sfârșitul caietului ----
+     Fiecare foaie se împarte în 6 căsuțe (3 coloane × 2 rânduri), iar rețetele se împart egal
+     pe foi, ca să nu rămână ultima aproape goală. Într-o căsuță: numele, o singură linie cu
+     kcal / macro-uri / vitamine și, dedesubt, ingredientele (cantitatea adunată Ema + Adi,
+     adică exact cât pui în oală) lângă pașii de preparare. Nimic altceva. */
+  .p-ret .pg { justify-content: flex-start; }
+  .rgrid {
+    display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr;
+    gap: 3mm; flex: 1;
+  }
+  .rp { border: 0.4pt solid #C9C6D4; border-radius: 2mm; padding: 1.8mm 2.2mm; overflow: hidden; break-inside: avoid; }
+  .rp h2 { margin: 0 0 1mm; font-size: 9pt; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+  .rl {
+    margin: 0 0 1.2mm; padding-bottom: 1mm; border-bottom: 0.3pt solid var(--line-2);
+    font-size: 7pt; line-height: 1.4; color: var(--ink);
+  }
+  .rl b { font-weight: 800; }
+  /* vitaminele: pe aceeași linie, dar în plan secundar */
+  .rl .vt { color: var(--mute-2); }
+  .rl .vt span { margin-left: 1mm; white-space: nowrap; }
+  .rl .vt span:first-child::before { content: "vit. "; }
+  .rl .vt b { font-weight: 700; color: var(--ink); }
+  /* ingredientele la stânga (coloană îngustă), pașii la dreapta — ies două coloane de înălțimi apropiate */
+  .rc { display: grid; grid-template-columns: 29mm 1fr; gap: 2.5mm; align-items: start; }
+  .ri { list-style: none; margin: 0; padding: 0; font-size: 7pt; line-height: 1.3; }
+  .ri li { display: flex; gap: 1mm; }
+  .ri .q { font-weight: 700; color: var(--acc-ink); white-space: nowrap; }
+  .ri .n { min-width: 0; overflow-wrap: break-word; }
+  .rs { margin: 0; padding-left: 3.4mm; font-size: 7pt; line-height: 1.35; }
+  .rs li { margin-bottom: 0.7mm; }
+  .rs li::marker { font-weight: 700; color: var(--acc-ink); }
+  .rnota { margin: 1.5mm 0 0; font-size: 6pt; color: var(--mute); }
 }
 
 /* ---------- PDF pe telefon: A4 întors chiar și când hârtia iese în picioare ----------

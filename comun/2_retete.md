@@ -5,7 +5,7 @@
 
 ## Cum adăugăm o rețetă
 
-Îmi dai rețeta cu ce detalii ai (ingrediente, cum se face, timp, câte porții ies, **cui îi place și cui nu**). Eu: (1) adaug ingredientele noi în `1_ingrediente.md` din USDA, (2) o scriu aici pe structura farfuriei, (3) calculez S și M, (4) trec verdictele în preferințele fiecăruia.
+Îmi dai rețeta cu ce detalii ai (ingrediente, cum se face, timp, câte porții ies, **cui îi place și cui nu**). Eu: (1) adaug ingredientele noi în `1_ingrediente.md` din USDA, (2) o scriu aici pe structura farfuriei, cu **modul de preparare pas cu pas**, (3) calculez S și M, (4) trec verdictele în preferințele fiecăruia.
 
 **Semne:** ⭐ favorit · ✅ îi place · 🟡 neutru · ❌ nu-i place · ⛔ nu poate · ❔ netestat
 
@@ -77,7 +77,18 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 | **Grăsimi** | Ulei de măsline | 5 g | 5 g |
 | **Fruct** | Banană | 1 | 1 |
 
-**Cum se face:** Ciupercile și ceapa verde 3 min în ulei, spanacul și roșiile 1 min, ouăle bătute deasupra, amestecat până se leagă. Brânza de vaci alături. Banana la final.
+**Cum se face (pe scurt):** Ciupercile și ceapa verde 3 min în ulei, spanacul și roșiile 1 min, ouăle bătute deasupra, amestecat până se leagă. Brânza de vaci alături. Banana la final.
+
+**Mod de preparare**
+
+1. Taie ciupercile felii subțiri, roșiile cuburi, ceapa verde inele; spală spanacul. Bate ouăle cu furculița, cu sare și piper, până sunt omogene (nu spumă).
+2. Încinge tigaia la foc mediu cu uleiul de măsline și călește ciupercile și ceapa verde 3 min, întinse, nu îngrămădite — ciupercile trebuie să lase apa și să prindă culoare.
+3. Adaugă roșiile și spanacul, 1 min, cât să cadă spanacul. Dacă legumele au lăsat zeamă, las-o să scadă — altfel omleta iese apoasă.
+4. Dă focul mic, toarnă ouăle peste legume și amestecă lent cu spatula, trăgând marginile spre centru, 2–3 min, până se leagă dar rămâne cremoasă la mijloc.
+5. Oprește focul cu 30 de secunde mai devreme: omleta se termină singură în tigaia fierbinte.
+6. Prăjește pâinea uscat (fără unt). Brânza de vaci alături, cu mărar sau boia, sare și piper. Banana la final.
+
+**De ce așa:** Ouăle la foc mic rămân moi; la foc mare proteina se strânge, elimină apa și omleta devine cauciucată. Vitamina C din roșii și ardei ajută absorbția fierului din gălbenuș. Brânza stă alături, nu în omletă — lactatele merg cu ouă, dar niciodată cu carne sau pește (regula casei).
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -100,7 +111,16 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 |  | Nuci | 10 g | 15 g |
 | **Sos** | Lapte 1,5% | 100 ml | 100 ml |
 
-**Cum se face:** Totul într-un borcan, amestecat, la frigider peste noapte. Nucile deasupra dimineața. Scorțișoară.
+**Cum se face (pe scurt):** Totul într-un borcan, amestecat, la frigider peste noapte. Nucile deasupra dimineața. Scorțișoară.
+
+**Mod de preparare**
+
+1. Seara, într-un borcan de 500 ml: fulgii de ovăz, chia, skyr-ul și laptele. Amestecă bine, până nu mai rămâne ovăz uscat pe fund.
+2. Adaugă fructele de pădure (merg direct congelate — se dezgheață peste noapte) și un vârf de scorțișoară. Amestecă scurt.
+3. Închide borcanul și ține-l la frigider minimum 6 ore. Chia se umflă și leagă compoziția ca un budincă.
+4. Dimineața presară nucile tocate grosier, chiar înainte de a mânca. Dacă e prea gros, subțiază cu 1–2 linguri de lapte.
+
+**De ce așa:** Nucile se pun la final ca să rămână crocante și ca grăsimile lor să nu se oxideze peste noapte. Ovăzul ținut la rece formează amidon rezistent — hrană pentru bacteriile din colon și o creștere mai lină a glicemiei decât la ovăzul fiert. Se face pentru 2–3 zile deodată.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -123,7 +143,16 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 | **Grăsimi** | Unt de arahide | 15 g | 20 g |
 |  | In măcinat | 10 g | 10 g |
 
-**Cum se face:** Iaurtul în bol, banana felii și afinele, ovăzul și inul deasupra, untul de arahide picurat. Scorțișoară.
+**Cum se face (pe scurt):** Iaurtul în bol, banana felii și afinele, ovăzul și inul deasupra, untul de arahide picurat. Scorțișoară.
+
+**Mod de preparare**
+
+1. Pune iaurtul grec în bol și întinde-l ușor cu dosul lingurii.
+2. Taie banana felii și așaz-o cu afinele pe jumătate din suprafață.
+3. Presară fulgii de ovăz și inul măcinat pe cealaltă jumătate. Inul trebuie măcinat — sămânța întreagă trece nedigerată.
+4. Picură untul de arahide deasupra; dacă e prea tare, amestecă-l întâi cu o lingură de apă caldă, ca să curgă. Pudrează cu scorțișoară.
+
+**De ce așa:** Inul măcinat pe loc (10 secunde în râșnița de cafea) își păstrează omega-3; măcinat din comerț se oxidează în câteva săptămâni. Untul de arahide: doar cel cu 100% arahide, fără zahăr și fără ulei de palmier. Banana mai coaptă înseamnă mai dulce, fără să adaugi nimic.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -146,7 +175,17 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 | **Grăsimi** | Avocado | 50 g | 50 g |
 | **Fruct** | Măr | 1 | 1 |
 
-**Cum se face:** Avocado zdrobit cu lămâie pe pâine, ouăle (ochiuri sau fierte moi) deasupra, rucola, roșiile, castravetele și brânza alături.
+**Cum se face (pe scurt):** Avocado zdrobit cu lămâie pe pâine, ouăle (ochiuri sau fierte moi) deasupra, rucola, roșiile, castravetele și brânza alături.
+
+**Mod de preparare**
+
+1. Prăjește feliile de pâine uscat, în tigaie sau prăjitor, până sunt crocante — așa suportă avocado fără să se înmoaie.
+2. Zdrobește avocado cu furculița, cu suc de lămâie, sare și piper. Lămâia nu e doar pentru gust: ține avocado verde.
+3. Ouăle: fie ochiuri în apă (apă la fiert mic, o lingură de oțet, oul spart întâi într-o cană și lăsat ușor în apă, 3 min), fie în tigaie la foc mic, cu capac, ca să nu se ardă marginile.
+4. Întinde avocado pe pâine, așază ouăle deasupra, sare și piper.
+5. Alături: rucola, roșiile felii, castravetele și brânza de vaci cu mărar. Un strop de lămâie peste salată.
+
+**De ce așa:** Gălbenușul lăsat moale păstrează mai bine colina și vitaminele A, D și E, care se degradează la gătire lungă. Grăsimea din avocado ajută la absorbția vitaminelor liposolubile din gălbenuș și a carotenoizilor din roșii și rucola.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -167,7 +206,15 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 | **Fruct** | Măr | 1 | 1 |
 | **Grăsimi** | Migdale | 15 g | 20 g |
 
-**Cum se face:** Se mănâncă împreună sau separat. Scorțișoară pe măr.
+**Cum se face (pe scurt):** Se mănâncă împreună sau separat. Scorțișoară pe măr.
+
+**Mod de preparare**
+
+1. Pune skyr-ul în bol.
+2. Taie mărul cubulețe, cu coajă cu tot — acolo sunt fibrele și polifenolii. Presară scorțișoară peste el.
+3. Adaugă migdalele, întregi sau tocate grosier, alături sau deasupra.
+
+**De ce așa:** Proteina din skyr plus fibra din măr țin de foame ~3 ore — exact ce trebuie la 16:00, ca să nu ajungi flămând la cină. Migdalele întregi se mestecă mai mult și se digeră mai lent decât cele măcinate; ~15 g ajung, sunt dense caloric.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -187,7 +234,15 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 |  | Ardei | 50 g | 50 g |
 |  | Morcov | 50 g | 50 g |
 
-**Cum se face:** Brânza pe pâine cu sare, piper, mărar sau boia; legumele crude, bețe, alături.
+**Cum se face (pe scurt):** Brânza pe pâine cu sare, piper, mărar sau boia; legumele crude, bețe, alături.
+
+**Mod de preparare**
+
+1. Amestecă brânza de vaci cu sare, piper și mărar tocat (sau boia afumată, dacă vrei alt gust).
+2. Întinde-o pe feliile de pâine integrală.
+3. Taie castravetele, ardeiul și morcovul bețe și pune-le alături — se mănâncă crude, cu mâna.
+
+**De ce așa:** Brânza de vaci e în cea mai mare parte cazeină, proteină cu digestie lentă: gustarea ține până la cină. Legumele tăiate bețe se mănâncă în cantitate mai mare decât aceleași legume tocate în salată — e o diferență reală de câteva sute de grame pe săptămână.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -208,7 +263,16 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 | **Fruct** | Banană | 1 | 1 |
 | **Grăsimi** | Unt de arahide | 10 g | 15 g |
 
-**Cum se face:** Totul la blender; cacao sau scorțișoară opțional. Fără blender: skyr + banană tăiată + laptele băut alături.
+**Cum se face (pe scurt):** Totul la blender; cacao sau scorțișoară opțional. Fără blender: skyr + banană tăiată + laptele băut alături.
+
+**Mod de preparare**
+
+1. Pune în blender laptele, skyr-ul, banana și untul de arahide.
+2. Blender 30–40 de secunde, până e omogen. Cacao neîndulcită sau scorțișoară, opțional.
+3. Bea-l în prima oră după antrenament.
+4. Fără blender: skyr-ul cu banana tăiată mărunt și zdrobită cu furculița, iar laptele băut alături.
+
+**De ce așa:** După antrenamentul de forță contează combinația proteină + carbohidrați: skyr-ul și laptele dau ~30 g proteine bogate în leucină, banana reface glicogenul. Untul de arahide rămâne la 10–15 g — grăsimea încetinește golirea stomacului, adică exact opusul a ce vrei acum.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -240,7 +304,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 |  | Suc de lămâie | 10 ml | 10 ml |
 | **Grăsimi** | Ulei de măsline | 7 g | 9 g |
 
-**Cum se face:** Cartoful dulce cuburi + morcovul cu ½ din ulei și boia afumată, 20 min la 200 °C. Se adaugă puiul (oregano, usturoi, lămâie), broccoli, ceapa și ardeiul cu restul de ulei, încă 20–25 min. Sos: tahini + lămâie + usturoi pisat + 2 linguri apă + sare, amestecat până e cremos.
+**Cum se face (pe scurt):** Cartoful dulce cuburi + morcovul cu ½ din ulei și boia afumată, 20 min la 200 °C. Se adaugă puiul (oregano, usturoi, lămâie), broccoli, ceapa și ardeiul cu restul de ulei, încă 20–25 min. Sos: tahini + lămâie + usturoi pisat + 2 linguri apă + sare, amestecat până e cremos.
+
+**Mod de preparare**
+
+1. Încinge cuptorul la 200 °C. Taie cartoful dulce cuburi de 2 cm și morcovul rondele groase; amestecă-le într-un bol cu jumătate din ulei, boia afumată, sare și piper.
+2. Întinde-le pe tavă cu hârtie de copt, într-un singur strat, fără să se atingă — înghesuite se aburesc în loc să se rumenească. 20 min.
+3. Între timp condimentează pieptul de pui cu oregano, usturoi pisat, coajă și suc de lămâie, sare și piper. Taie broccoli buchețele, ceapa felii groase, ardeiul fâșii și amestecă-le cu restul de ulei.
+4. Scoate tava, împinge cartofii într-o parte, adaugă puiul și legumele verzi. Încă 20–25 min, până puiul ajunge la 74 °C la mijloc (sau până zeama iese limpede).
+5. Sosul: amestecă tahini cu sucul de lămâie și usturoiul pisat — se va strânge și se va face pastă. Adaugă 2 linguri de apă rece, lingură cu lingură, bătând cu furculița, până devine cremos ca o smântână. Sare.
+6. Lasă puiul 5 min înainte să-l tai. Sosul se toarnă în farfurie, nu la cuptor.
+
+**De ce așa:** Broccoli intră în a doua parte a coacerii ca să nu-și piardă culoarea și sulforafanul. Puiul scos la 74 °C rămâne suculent — peste, se usucă și devine făinos. Sosul de tahini ține locul celui de iaurt la masa cu carne (regula casei) și aduce calciu, magneziu și seleniu.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -265,7 +340,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 | **Sos** | Roșii pasate | 100 g | 100 g |
 | **Grăsimi** | Ulei de măsline | 10 g | 12 g |
 
-**Cum se face:** Vita rumenită în ½ ulei, ceapa + morcovul 5 min, ciupercile + ardeiul, roșiile pasate + apă cât să acopere, boia, cimbru, dafin. La foc mic 60 min (25 la oala sub presiune). Mămăliga proaspăt, 10 min. Salata: varză roșie tăiată fin frecată cu sare + oțet, mere julienne, restul de ulei.
+**Cum se face (pe scurt):** Vita rumenită în ½ ulei, ceapa + morcovul 5 min, ciupercile + ardeiul, roșiile pasate + apă cât să acopere, boia, cimbru, dafin. La foc mic 60 min (25 la oala sub presiune). Mămăliga proaspăt, 10 min. Salata: varză roșie tăiată fin frecată cu sare + oțet, mere julienne, restul de ulei.
+
+**Mod de preparare**
+
+1. Taie vita cuburi de 3 cm și usuc-o cu un șervet: carnea udă nu se rumenește, fierbe. Sare și piper.
+2. Încinge bine oala cu jumătate din ulei și rumenește carnea în două tranșe, 2–3 min pe parte, fără s-o înghesui. Scoate-o deoparte.
+3. În aceeași oală: ceapa și morcovul 5 min, apoi ciupercile și ardeiul, până ciupercile lasă apa și se rumenesc. Dezlipește cu lingura de lemn tot ce s-a prins pe fund — acolo e gustul.
+4. Pune carnea înapoi cu roșiile pasate, boiaua, cimbrul, foaia de dafin și apă cât să acopere. Foc mic, cu capac, 60 min (25 min la oala sub presiune), până carnea se desface cu furculița.
+5. Mămăliga se face proaspăt, la final: apă cu sare la fiert, mălaiul în ploaie, amestecat continuu, 10 min la foc mic.
+6. Salata: varza roșie tăiată foarte fin și frecată cu sare și oțet 2 min (se înmoaie și își aprinde culoarea), mărul julienne, restul de ulei.
+
+**De ce așa:** Fără telemea sau smântână peste mămăligă — e masă cu carne (regula casei). Fierberea lungă la foc mic transformă colagenul din vită în gelatină: de acolo vine textura, nu din grăsime. Varza roșie crudă cu măr adaugă fibre, vitamina C și antociani lângă un fel gătit mult.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -291,7 +377,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 |  | Usturoi | 2 g | 2 g |
 | **Grăsimi** | Ulei de măsline | 12 g | 12 g |
 
-**Cum se face:** Dorada (întreagă, curățată, sau file) cu lămâie + usturoi + ½ din ulei, 18–20 min la 200 °C. Quinoa fiartă 15 min (1:2 apă). Fasolea verde 5 min în apă clocotită, apoi 1 min în tigaie cu usturoi și ulei. Rucola cu roșii cherry și un strop de lămâie. Sos: lămâie + ½ din ulei + mărar tocat + usturoi.
+**Cum se face (pe scurt):** Dorada (întreagă, curățată, sau file) cu lămâie + usturoi + ½ din ulei, 18–20 min la 200 °C. Quinoa fiartă 15 min (1:2 apă). Fasolea verde 5 min în apă clocotită, apoi 1 min în tigaie cu usturoi și ulei. Rucola cu roșii cherry și un strop de lămâie. Sos: lămâie + ½ din ulei + mărar tocat + usturoi.
+
+**Mod de preparare**
+
+1. Cuptorul la 200 °C. Clătește quinoa în sită sub apă rece 30 de secunde (scapi de saponine, gustul amărui), apoi fierbe-o 15 min în dublu volum de apă cu sare, cu capac. La final las-o 5 min deoparte și afâneaz-o cu furculița.
+2. Usucă dorada cu un șervet, crestează pielea de 2–3 ori, sare și piper pe dinăuntru și pe dinafară, felii de lămâie și usturoi în burtă, jumătate din ulei deasupra.
+3. Coace 18–20 min la 200 °C (file: 12–14 min). E gata când carnea e opacă și se desprinde de os.
+4. Fasolea verde: 5 min în apă clocotită cu sare, scursă, apoi 1 min în tigaie cu usturoi feliat și un strop de ulei.
+5. Salata: rucola cu roșiile tăiate în două și un strop de lămâie.
+6. Sosul: suc de lămâie, restul de ulei, mărar tocat și usturoi pisat, bătute cu furculița; se toarnă peste pește la servire.
+
+**De ce așa:** Peștele se coace, nu se prăjește: omega-3 se degradează la temperaturi mari și timp lung. Se gătește proaspăt, în ziua aceea — peștele reîncălzit își pierde textura și capătă miros. Lângă pește nu punem lactate (regula casei), de aceea sosul e pe bază de lămâie și ulei.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -320,7 +417,17 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 |  | Măsline | 15 g | 15 g |
 | **Amidon** | Pâine integrală | 40 g | 40 g |
 
-**Cum se face:** Totul amestecat; tonul scurs, rupt cu furculița deasupra, măslinele felii. Dressing: muștar + lămâie + ulei + mărar, bătute cu furculița. Pâinea alături.
+**Cum se face (pe scurt):** Totul amestecat; tonul scurs, rupt cu furculița deasupra, măslinele felii. Dressing: muștar + lămâie + ulei + mărar, bătute cu furculița. Pâinea alături.
+
+**Mod de preparare**
+
+1. Scurge bine tonul (apasă capacul conservei) și năutul; clătește năutul sub apă rece, ca să scapi de lichidul de conservare.
+2. Taie castravetele, ardeiul și roșiile cuburi, ceapa foarte fin — dacă e iute, ține-o 5 min în apă rece cu oțet. Salata verde se rupe cu mâna, nu se taie.
+3. Vinegreta: muștar, suc de lămâie, ulei de măsline și mărar, bătute cu furculița până se leagă. Sare, piper.
+4. Amestecă legumele cu năutul și dressingul, apoi pune tonul deasupra, rupt cu furculița — nu amestecat, ca să rămână bucăți. Măslinele felii.
+5. Pâinea integrală alături. Dacă o pregătești pentru a doua zi, ține dressingul separat și pune-l la masă.
+
+**De ce așa:** Năutul aduce fibrele și amidonul care lipsesc din ton: împreună ies o masă completă, fără gătit. Tonul e pește slab — omega-3 vine de la doradă și păstrăv, la cinele de marți. Se ține 2 zile la frigider, dar salata verde se adaugă la servire.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -347,7 +454,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 | **Grăsimi** | Ulei de măsline | 5 g | 6 g |
 |  | Avocado | 50 g | 50 g |
 
-**Cum se face:** Carnea rumenită în ulei, ceapa + ardeiul + morcovul 5 min, lintea + roșiile + apă (2 degete peste), chimion, boia afumată, usturoi, oregano, chili. La foc mic 30–35 min. Alături: castravete felii cu lămâie, mărar și sare. Avocado cuburi peste chili la servire.
+**Cum se face (pe scurt):** Carnea rumenită în ulei, ceapa + ardeiul + morcovul 5 min, lintea + roșiile + apă (2 degete peste), chimion, boia afumată, usturoi, oregano, chili. La foc mic 30–35 min. Alături: castravete felii cu lămâie, mărar și sare. Avocado cuburi peste chili la servire.
+
+**Mod de preparare**
+
+1. Încinge oala cu uleiul și rumenește puiul tocat, desfăcându-l cu lingura, până nu mai e roz și prinde puțină culoare.
+2. Adaugă ceapa, ardeiul și morcovul tocate mărunt; 5 min, până se înmoaie.
+3. Pune chimionul, boiaua afumată, oregano, usturoiul și chili și prăjește-le 30–60 de secunde în grăsime — așa își eliberează aromele; puse direct în apă rămân fade.
+4. Adaugă lintea clătită, roșiile pasate și apă cu două degete peste. Foc mic, capac întredeschis, 30–35 min, până lintea e moale dar întreagă.
+5. Sarea se pune la final: pusă devreme, întărește coaja lintei.
+6. Salata: castravete felii cu suc de lămâie, mărar și sare. Avocado cuburi se pune peste chili în farfurie, la servire — nu se fierbe și nu se congelează.
+
+**De ce așa:** Se face ×8 și jumătate merge la congelator: chili-ul se congelează perfect și e mai bun a doua zi. Lintea cu puiul dau ~10 g de fibre pe porție și o proteină completă. Avocado adaugă grăsimi bune și taie din picant — de aceea intră crud, la sfârșit.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -373,7 +491,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 | **Grăsimi** | Ulei de măsline | 8 g | 9 g |
 |  | Măsline | 15 g | 15 g |
 
-**Cum se face:** Puiul fâșii rumenit, scos. Ceapa + dovlecelul 5 min, roșiile pasate, busuioc, oregano, usturoi, 10 min. Puiul înapoi. Pastele al dente, amestecate în sos; măsline felii deasupra. Rucola + roșii cherry cu lămâie alături.
+**Cum se face (pe scurt):** Puiul fâșii rumenit, scos. Ceapa + dovlecelul 5 min, roșiile pasate, busuioc, oregano, usturoi, 10 min. Puiul înapoi. Pastele al dente, amestecate în sos; măsline felii deasupra. Rucola + roșii cherry cu lămâie alături.
+
+**Mod de preparare**
+
+1. Pune apa pentru paste la fiert, sărată ca marea.
+2. Taie puiul fâșii, condimentează-l și rumenește-l 3–4 min în tigaie încinsă cu jumătate din ulei, în strat subțire. Scoate-l — ținut tot timpul în sos, se usucă.
+3. În aceeași tigaie: ceapa și dovlecelul cuburi, 5 min. Adaugă roșiile pasate, usturoiul, busuiocul și oregano și fierbe 10 min la foc mic, până sosul se leagă.
+4. Fierbe pastele al dente — un minut mai puțin decât scrie pe pachet — și păstrează o cană din apa lor.
+5. Pune puiul înapoi în sos, adaugă pastele scurse și 2–3 linguri din apa de la paste; amestecă 1 min pe foc, cât amidonul leagă sosul de paste. Măslinele felii deasupra.
+6. Alături: rucola cu roșii cherry, un strop de lămâie și restul de ulei.
+
+**De ce așa:** Pastele al dente au indice glicemic mai mic decât cele răsfierte; integrale, au de 3–4 ori mai multe fibre decât cele albe. Fără parmezan — e masă cu carne (regula casei); gustul îl dau busuiocul, usturoiul și măslinele.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -395,7 +524,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 | **Sos** | Muștar | 8 g | 8 g |
 | **Grăsimi** | Ulei de măsline | 10 g | 12 g |
 
-**Cum se face:** Conopida + morcovul fierte 15 min, pasate cu ½ din ulei + puțină apă de la fiert + usturoi + nucșoară → piure cremos. Cartofii felii cu rozmarin la cuptor, 25 min la 200 °C. Cotletul bătut subțire, condimentat, 3–4 min pe parte în tigaie încinsă; muștar deasupra. Salata: varză frecată cu sare, oțet, chimen, ulei.
+**Cum se face (pe scurt):** Conopida + morcovul fierte 15 min, pasate cu ½ din ulei + puțină apă de la fiert + usturoi + nucșoară → piure cremos. Cartofii felii cu rozmarin la cuptor, 25 min la 200 °C. Cotletul bătut subțire, condimentat, 3–4 min pe parte în tigaie încinsă; muștar deasupra. Salata: varză frecată cu sare, oțet, chimen, ulei.
+
+**Mod de preparare**
+
+1. Cuptorul la 200 °C. Cartofii feliați de 1 cm, amestecați cu jumătate din ulei, rozmarin și sare, pe tavă într-un singur strat, 25 min, întorși o dată la mijloc.
+2. Fierbe conopida și morcovul 15 min în apă cu puțină sare, până se străpung ușor cu furculița. Scurge-le, dar păstrează puțină apă de la fiert.
+3. Pasează-le cu restul de ulei, usturoi, un vârf de nucșoară, sare și 2–3 linguri din apa de la fiert, până iese un piure cremos. Fără lapte sau unt — e masă cu carne.
+4. Bate cotletul până are grosime uniformă de ~1,5 cm și condimentează-l cu sare, piper și cimbru.
+5. Tigaia foarte bine încinsă: 3–4 min pe fiecare parte, fără să miști carnea în primul minut, ca să se formeze crusta. Apoi las-o 5 min pe un fund de lemn, înainte de tăiere.
+6. Salata: varza tăiată fin, frecată cu sare 1 min, apoi oțet, chimen și puțin ulei. Muștarul se pune peste cotlet, la servire.
+
+**De ce așa:** Piureul de conopidă cu morcov are cam o treime din caloriile unuia de cartofi și de câteva ori mai multe fibre — de aceea cartofii rămân puțini și copți, nu pasați. Carnea odihnită 5 min își ține zeama înăuntru; tăiată imediat, o lasă pe tocător.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -421,7 +561,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 | **Sos** | Lapte de cocos light | 50 ml | 60 ml |
 | **Grăsimi** | Ulei de măsline | 5 g | 6 g |
 
-**Cum se face:** Ceapa + ghimbir + usturoi în ulei, curry + turmeric + chimion 1 min, puiul 5 min, roșiile + laptele de cocos + conopida + năutul, 15 min. Spanacul la final, 2 min. Orezul fiert separat. Coriandru deasupra.
+**Cum se face (pe scurt):** Ceapa + ghimbir + usturoi în ulei, curry + turmeric + chimion 1 min, puiul 5 min, roșiile + laptele de cocos + conopida + năutul, 15 min. Spanacul la final, 2 min. Orezul fiert separat. Coriandru deasupra.
+
+**Mod de preparare**
+
+1. Pune orezul basmati la fiert: 1 parte orez la 1,5 apă, capac, 12 min, apoi încă 5 min deoparte, fără să ridici capacul.
+2. Călește ceapa tocată în ulei 3–4 min, apoi adaugă ghimbirul ras și usturoiul, 30 de secunde.
+3. Pune curry-ul, turmericul și chimionul și prăjește-le 1 min, până miros. Turmericul are nevoie de grăsime și de un praf de piper negru ca să fie absorbit.
+4. Adaugă puiul cubulețe, 5 min, doar cât se albește pe toate părțile.
+5. Toarnă roșiile, laptele de cocos și pune conopida buchețele și năutul scurs; fierbe 15 min la foc mic, fără capac, până conopida e moale și sosul se leagă.
+6. Spanacul la final, 2 min, doar cât cade. Coriandru proaspăt și un strop de lămâie deasupra.
+
+**De ce așa:** Laptele de cocos light dă cremozitate cu o treime din grăsimile celui gras — de aceea sunt suficiente 50–60 g. Conopida și spanacul țin legumele la 40% din farfurie fără să crească caloriile, iar năutul completează orezul cu fibre și proteină vegetală.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -448,7 +599,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 | **Grăsimi** | Măsline | 20 g | 20 g |
 |  | Ulei de măsline | 8 g | 9 g |
 
-**Cum se face:** Pieptul tocat (acasă sau la măcelar) cu ovăz, ceapă rasă, usturoi, pătrunjel → chiftele, 20–25 min la 200 °C. Orezul brun 30 min. Salata: roșii, castravete, ceapă roșie, ardei, măsline, oregano, ulei. Sos: tahini + lămâie + usturoi + apă.
+**Cum se face (pe scurt):** Pieptul tocat (acasă sau la măcelar) cu ovăz, ceapă rasă, usturoi, pătrunjel → chiftele, 20–25 min la 200 °C. Orezul brun 30 min. Salata: roșii, castravete, ceapă roșie, ardei, măsline, oregano, ulei. Sos: tahini + lămâie + usturoi + apă.
+
+**Mod de preparare**
+
+1. Pune orezul brun la fiert — 30 min, are nevoie de cel mai mult timp din toată rețeta.
+2. Cuptorul la 200 °C. Amestecă pieptul tocat cu fulgii de ovăz, ceapa rasă și stoarsă de zeamă, usturoiul, pătrunjelul tocat, sare și piper.
+3. Lasă compoziția 10 min: ovăzul absoarbe apa și chiftelele nu se mai sfărâmă.
+4. Formează bile de ~40 g cu mâinile ude și așază-le pe tavă cu hârtie de copt. 20–25 min, până sunt aurii. La cuptor, nu în tigaie — nu mai intră ulei în plus.
+5. Salata: roșii, castravete și ardei cuburi, ceapă roșie felii subțiri, oregano și ulei de măsline. Măslinele se pun în farfurie, nu în salata comună.
+6. Sosul: tahini cu lămâie și usturoi, subțiat cu apă rece lingură cu lingură, bătut până e cremos.
+
+**De ce așa:** Ovăzul ține locul pesmetului și aduce fibre solubile în loc de amidon rafinat. Chiftelele din piept de pui, coapte, au aproximativ o treime din grăsimea celor din carne tocată grasă, prăjite. Salata grecească e fără brânză: masă cu carne.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -473,7 +635,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 | **Grăsimi** | Ulei de măsline | 8 g | 10 g |
 |  | Semințe de dovleac | 10 g | 10 g |
 
-**Cum se face:** Broccoli + dovlecelul fierte 8 min la abur, pasate cu ½ din ulei, usturoi, lămâie, sare → piure verde. Hrișca fiartă 15 min. Mușchiul de porc medalioane de 2 cm, condimentat (boia, cimbru, usturoi), 3–4 min pe parte pe grătar/tigaie încinsă. Sos: roșii pasate încălzite cu ceapă și busuioc, 5 min. Semințe de dovleac peste piure.
+**Cum se face (pe scurt):** Broccoli + dovlecelul fierte 8 min la abur, pasate cu ½ din ulei, usturoi, lămâie, sare → piure verde. Hrișca fiartă 15 min. Mușchiul de porc medalioane de 2 cm, condimentat (boia, cimbru, usturoi), 3–4 min pe parte pe grătar/tigaie încinsă. Sos: roșii pasate încălzite cu ceapă și busuioc, 5 min. Semințe de dovleac peste piure.
+
+**Mod de preparare**
+
+1. Pune hrișca la fiert: 1 parte la 2 de apă, 15 min cu capac, apoi 5 min deoparte. Dacă o prăjești uscat un minut înainte de a turna apa, capătă gust de alună.
+2. Fierbe broccoli și dovlecelul la abur 8 min — la abur, nu în apă, ca vitaminele să nu rămână în oală. Trebuie să iasă verzi, nu măslinii.
+3. Pasează-le cu jumătate din ulei, usturoi, un strop de lămâie și sare, până iese un piure verde, gros. Dacă e prea tare, o lingură din apa de la abur.
+4. Taie mușchiul medalioane de 2 cm și condimentează-l cu boia, cimbru, usturoi, sare și piper.
+5. Tigaia-grătar foarte încinsă: 3–4 min pe parte, fără să le miști. Apoi 5 min de odihnă.
+6. Sosul: roșiile pasate încălzite cu ceapa tocată mărunt și busuioc, 5 min, până se îngroașă. Semințele de dovleac, prăjite uscat 1 min, se presară peste piure la final.
+
+**De ce așa:** Mușchiul de porc e una dintre cele mai slabe bucăți de carne roșie (sub 3 g grăsime la 100 g): se gătește repede, la foc mare, altfel se usucă. Piureul verde e legume, nu amidon — hrișca e cea care ține cei 20% din farfurie, iar ea aduce și magneziu și rutin.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -501,7 +674,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 | **Grăsimi** | Ulei de măsline | 8 g | 8 g |
 |  | Caju | 15 g | 20 g |
 
-**Cum se face:** Tigaie foarte încinsă; vita fâșii 2 min, scoasă. Broccoli + ardeiul întâi, apoi ciupercile + varza, 5–6 min. Vita înapoi, soia + usturoi + ghimbir, 1 min. Ceapă verde și caju deasupra.
+**Cum se face (pe scurt):** Tigaie foarte încinsă; vita fâșii 2 min, scoasă. Broccoli + ardeiul întâi, apoi ciupercile + varza, 5–6 min. Vita înapoi, soia + usturoi + ghimbir, 1 min. Ceapă verde și caju deasupra.
+
+**Mod de preparare**
+
+1. Fierbe orezul basmati: 1 la 1,5 apă, capac, 12 min, plus 5 min deoparte.
+2. Pregătește tot înainte să aprinzi focul: vita fâșii subțiri tăiate contra fibrei, legumele tăiate, sosul de soia amestecat cu usturoiul și ghimbirul ras. Un stir-fry durează 8 minute — n-ai când să tai pe parcurs.
+3. Tigaia (sau wokul) foarte încinsă, un strop de ulei: vita, în strat subțire, 2 min, întoarsă o singură dată. Scoate-o.
+4. Restul de ulei: broccoli și ardeiul 3 min, apoi ciupercile și varza încă 2–3 min. Legumele trebuie să rămână crocante.
+5. Pune vita înapoi, toarnă sosul de soia cu usturoi și ghimbir și ține totul pe foc încă 1 min, cât se glazurează.
+6. Ceapa verde și caju, prăjit uscat, deasupra, la final.
+
+**De ce așa:** Focul mare și timpul scurt păstrează legumele crocante și vitaminele hidrosolubile (C, din grupul B), care se pierd la fierbere lungă. Sosul de soia e sărat — cele 15 g aduc aproape un gram de sare, deci nu mai punem sare deloc în mâncare.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
@@ -526,7 +710,18 @@ Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2
 |  | Usturoi | 3 g | 3 g |
 | **Grăsimi** | Ulei de măsline | 10 g | 12 g |
 
-**Cum se face:** Cartofii felii cu ½ ulei + rozmarin, 20 min la 200 °C. Legumele cuburi cu restul de ulei + cimbru, în aceeași tavă, + păstrăvul cu lămâie și usturoi deasupra, încă 15–18 min. Sos: lămâie + ulei + usturoi + mărar (se toarnă peste pește la servire).
+**Cum se face (pe scurt):** Cartofii felii cu ½ ulei + rozmarin, 20 min la 200 °C. Legumele cuburi cu restul de ulei + cimbru, în aceeași tavă, + păstrăvul cu lămâie și usturoi deasupra, încă 15–18 min. Sos: lămâie + ulei + usturoi + mărar (se toarnă peste pește la servire).
+
+**Mod de preparare**
+
+1. Cuptorul la 200 °C. Cartofii feliați de 1 cm, cu jumătate din ulei, rozmarin și sare, pe tavă, 20 min.
+2. Taie vinetele, dovlecelul, ardeiul, ceapa și roșiile cuburi de 2 cm și amestecă-le cu restul de ulei, cimbru, sare și piper.
+3. Scoate tava, împinge cartofii într-o parte și adaugă legumele.
+4. Usucă păstrăvul, crestează-l, pune sare, piper, felii de lămâie și usturoi în burtă și așaz-l peste legume.
+5. Încă 15–18 min, până carnea peștelui e opacă și se desprinde ușor de os. Păstrăvul se face repede — mai mult îl usucă.
+6. Sosul: lămâie, ulei, usturoi pisat și mărar, bătute cu furculița și turnate peste pește în farfurie.
+
+**De ce așa:** Peștele și legumele în aceeași tavă lucrează împreună: zeama legumelor ține peștele umed, iar grăsimea lui aromatizează legumele. Păstrăvul e, alături de doradă, sursa de omega-3 a săptămânii — de aceea se gătește proaspăt și blând, la cuptor, nu prăjit.
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|

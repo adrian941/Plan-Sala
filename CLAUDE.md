@@ -52,7 +52,7 @@ Trei pași, în ordine, descriși pe larg în **[`comun/0_pipeline.md`](./comun/
 2. **Rețetele** → `comun/2_retete.md` → meniul fiecăruia în `ema/4_meniu.md`, `adi/4_meniu.md`
 3. **Cumpărăturile** → `comun/3_cumparaturi.md`
 
-**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat — în baza de date, niciodată direct în fișiere**: **întâi** ingredientele noi, cu `python date/usda.py adauga …` (valorile per 100 g vin din **USDA FoodData Central**, cu ID); apoi rețeta în `date/plan.db`, pe structura farfuriei 40/40/20; apoi `python date/genereaza.py`, care recalculează caloriile/macro-urile/fibrele pe porție **exclusiv** din valorile din bază și rescrie fișierele și site-ul. Verdictele („cui i-a plăcut") se scriu de mână în `ema/3_preferinte.md` și `adi/3_preferinte.md` — ele nu sunt încă în bază.
+**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat — în baza de date, niciodată direct în fișiere**: **întâi** ingredientele noi, cu `python date/usda.py adauga …` (valorile per 100 g vin din **USDA FoodData Central**, cu ID); apoi rețeta în `date/plan.db`, pe structura farfuriei 40/40/20, **cu modul de preparare pas cu pas** (coloana `preparare`, un pas pe linie) **și nota „de ce așa"** (coloana `sfat` — tehnica de bucătar plus motivul nutrițional); apoi `python date/genereaza.py`, care recalculează caloriile/macro-urile/fibrele pe porție **exclusiv** din valorile din bază și rescrie fișierele și site-ul. Verdictele („cui i-a plăcut") se scriu de mână în `ema/3_preferinte.md` și `adi/3_preferinte.md` — ele nu sunt încă în bază.
 
 **Ordinea contează:** nimic nu ajunge pe lista de cumpărături dacă nu vine dintr-o rețetă pusă în meniu, și nicio rețetă nu intră în meniul cuiva dacă are în ea ceva ce el nu poate mânca.
 
@@ -70,7 +70,9 @@ CLAUDE.md              ← acest fișier (STABIL)
 Gym-Rules.md           ← ce e la zi, se updatează mereu
 index.html             ← site-ul (doar afișare, fără backend). Trei pagini, comutate din capsula de sus:
                          **Meniu** (zilele, Ema / Amândoi / Adi) · **Rețete** (toate rețetele, cu ingredientele
-                         și cantitățile S/M) · **Alimente** (lista pe categorii)
+                         și cantitățile S/M, iar dedesubt modul de preparare pas cu pas; fiecare rețetă se
+                         închide din butonul „Minimizează rețeta") · **Alimente** (lista pe categorii, cu
+                         vitaminele și mineralele la cerere — butonul „Vitamine & minerale" sau apăsarea unui aliment)
 manifest.webmanifest   ← datele aplicației instalabile (nume, iconițe, „fullscreen”)
 sw.js                  ← service worker: face site-ul instalabil și îl ține funcțional fără internet
 .nojekyll              ← ca GitHub Pages să servească și folderul _site/ (Jekyll ignoră folderele cu „_")
@@ -92,12 +94,15 @@ comun/                  ← ce ține de mâncare, pentru amândoi
 
 date/                   ← BAZA DE DATE (SQLite) + calculatorul (Python). Vezi date/README.md
 ├── plan.db            → **SURSA UNICĂ DE ADEVĂR**: alimente (cu valori nutriționale complete și
-                         perisabilitate), rețete cu cantități S/M, calendar, persoane + ținte, magazine
+                         perisabilitate), rețete cu cantități S/M și modul de preparare, calendar,
+                         persoane + ținte, magazine
 ├── plan.sql           → dump-ul text al bazei, rescris la fiecare rulare — el se vede în `git diff`
 ├── schema.sql         → schema comentată (ce tabele există și de ce)
 ├── db.py              → accesul la bază: `incarca()`, plus `dump` / `reconstruieste` / `verifica`
 ├── calcule.py         → macro-uri, rotunjiri, cantități, totaluri pe zi, numărat plante
-├── genereaza.py       → scrie din bază cele 7 .md + _site/data.js + plan.sql
+├── genereaza.py       → scrie din bază cele 7 .md + _site/data.js + plan.sql. Tot aici se aleg
+                         micronutrienții care se afișează (`VITAMINE` pe pagina de rețete din PDF,
+                         `MICRO` la pagina Alimente) — restul rămân în bază, nearătați
 ├── raport.py          → verifică fără să scrie: ies zilele la țintă?
 ├── usda.py            → caută / aduce valori / adaugă alimente din baza oficială USDA
 └── usda/              → baza oficială USDA SR Legacy (zip) + usda.db local (ignorat de git)
@@ -126,6 +131,8 @@ adi/                    (de completat)
 2. Se verifică că `_site/data.js` și `date/plan.sql` s-au schimbat odată cu `4b` (`git status` trebuie să le arate pe toate).
 3. Dacă s-a schimbat **forma datelor** trimise site-ului (un câmp nou în `window.MENIU`, altă structură), se adaptează și `_site/app.js`, se crește `VERSIUNE` din `sw.js` și se verifică în browser că site-ul afișează corect toate cele 14 zile, pentru Ema, Adi și Amândoi.
 Site-ul nu se editează niciodată cu date „de mână" — el nu are conținut propriu. Toate cele trei pagini (**Meniu**, **Rețete**, **Alimente**) vin din `_site/data.js`, scris de `genereaza.py` din `date/plan.db`. O rețetă sau un aliment nou apare pe site **doar** după ce a intrat în bază și s-a rulat `python genereaza.py`.
+
+**Regulă permanentă — ce conține caietul de print (PDF).** Butonul „PDF” / Ctrl+P scoate mereu același caiet A4 landscape, în ordinea: (1–2) Ema + Adi, ingredientele pentru cumpărături, o săptămână pe pagină · (3) Ema, mesele cu macronutrienți · (4–7) Ema, paginile detaliate · (8) pagină goală · (9–13) Adi, la fel · **(14–17) rețetele**. Paginile de rețete se împart în **6 căsuțe (3 coloane × 2 rânduri)**, iar cele 19 rețete se împart egal pe foi, ca ultima să nu rămână goală. Într-o căsuță intră **doar**: numele rețetei, **o singură linie** cu kcal și macronutrienți și, secundar pe aceeași linie, vitaminele (A, C, D, E, K, B6, Folat, B12), apoi ingredientele cu **cantitatea adunată Ema + Adi** (porția S + porția M, adică exact cât pui în oală) și pașii de preparare. Nimic altceva — fără timp, fără zile, fără note. Când se adaugă rețete noi, se verifică în Chromium că nicio căsuță nu se revarsă (`scrollHeight` vs. `clientHeight` pe `.rp`).
 
 **Regulă permanentă — când utilizatorul zice „dă-mi PDF-ul" (sau ceva similar) în chat.** Nu există un PDF pregenerat de dat — site-ul îl face pe loc, din CSS-ul de print. Tu (Claude) faci același lucru, ca să-l poți trimite direct ca fișier descărcat aici, în conversație:
 1. Deschizi `index.html` local într-un Chromium headless (Playwright — e preinstalat).

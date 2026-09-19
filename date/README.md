@@ -6,7 +6,7 @@ Nu se editează manual `comun/1_ingrediente.md`, `comun/2_retete.md`, `comun/4_c
 
 | Fișier | Ce e |
 |---|---|
-| `plan.db` | **Baza.** Alimente (cu valorile nutriționale complete și perisabilitatea), rețete cu cantități S/M, calendarul pe 14 zile, persoanele și țintele lor, magazinele. |
+| `plan.db` | **Baza.** Alimente (cu valorile nutriționale complete și perisabilitatea), rețete cu cantități S/M și **modul de preparare pas cu pas**, calendarul pe 14 zile, persoanele și țintele lor, magazinele. |
 | `plan.sql` | **Dump-ul text al bazei**, scris automat la fiecare rulare. El e ce se vede în `git diff` (baza e binară): un ingredient nou sau o cantitate schimbată se citesc direct în PR. |
 | `schema.sql` | Schema comentată — ce tabele există și de ce. Din ea se construiește baza de la zero. |
 | `db.py` | Accesul la bază: `incarca()` întoarce planul întreg ca obiecte Python. Din linia de comandă: `dump`, `reconstruieste`, `verifica`. |
@@ -29,9 +29,11 @@ python usda.py adauga 168874 quinoa "Quinoa, crudă" "Cereale & amidon" --scurt 
 python genereaza.py                                                      # 3. apare în lista de alimente și pe site
 ```
 
-`adauga` scrie și cele cinci valori de pe farfurie (kcal, P, G, C, fibre) **și** toate celelalte pe care le are USDA (minerale, vitamine, aminoacizi, acizi grași) — ele stau în `ingredient_nutrient` și nu se afișează încă nicăieri; sunt materia primă pentru „acoperim necesarul de fier / B12?".
+`adauga` scrie și cele cinci valori de pe farfurie (kcal, P, G, C, fibre) **și** toate celelalte pe care le are USDA (minerale, vitamine, aminoacizi, acizi grași) — ele stau în `ingredient_nutrient`. O parte din ele se și văd acum: **13 vitamine + 10 minerale** la pagina Alimente de pe site (butonul „Vitamine & minerale") și **8 vitamine** pe linia fiecărei rețete din caietul de print. Care anume se afișează se alege în `genereaza.py`, în listele `MICRO` și `VITAMINE`; restul rămân în bază, materie primă pentru „acoperim necesarul de fier / B12?".
 
 ### O rețetă nouă, o cantitate schimbată, altă zi în calendar
+
+O rețetă nouă are nevoie, pe lângă ingrediente și cantități, de **`reteta.preparare`** (modul de preparare: un pas pe linie, fără numere — ele se pun la afișare) și de **`reteta.sfat`** (nota „de ce așa": tehnica de bucătar plus motivul nutrițional). Fără ele, rețeta apare goală pe pagina de rețete și în caietul de print.
 
 Se modifică în `plan.db` (cu SQL, sau cu orice unealtă de SQLite — DB Browser for SQLite e cea mai comodă), apoi:
 

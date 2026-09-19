@@ -80,8 +80,9 @@ CREATE INDEX ix_ingredient_cat ON ingredient(categorie_id, pozitie);
 -- ---------------------------------------------------------------------------
 --  nutrient + ingredient_nutrient — valorile nutriționale complete,
 --  importate din baza oficială USDA (SR Legacy) de `usda_import.py`.
---  Per 100 g, ca peste tot. Nimic de aici nu e încă afișat: e materia primă
---  pentru „acoperim necesarul de fier / calciu / B12?".
+--  Per 100 g, ca peste tot. O parte se afișează (vezi listele MICRO și VITAMINE din
+--  genereaza.py: pagina Alimente de pe site și linia fiecărei rețete din caietul de
+--  print); restul rămân materie primă pentru „acoperim necesarul de fier / calciu / B12?".
 -- ---------------------------------------------------------------------------
 CREATE TABLE nutrient (
   id       INTEGER PRIMARY KEY,   -- nutrient_id de la USDA (1008 = Energy, 1003 = Protein…)
@@ -111,7 +112,11 @@ CREATE TABLE reteta (
   masa        TEXT NOT NULL,      -- "prânz/cină", "mic dejun 🥚", "gustare 🏋️"
   timp        TEXT NOT NULL,      -- "45′ (10 activ)"
   tine        TEXT NOT NULL,      -- cât ține la frigider: "3 zile", "nu", "—"
-  cum         TEXT NOT NULL,      -- cum se face
+  cum         TEXT NOT NULL,      -- rezumatul: cum se face, în două-trei fraze
+  -- modul de preparare, pas cu pas: un pas pe linie, fără numerotare (numerele se pun
+  -- la afișare). Aici stau tehnica și ordinea — temperaturi, timpi, ce intră când și de ce.
+  preparare   TEXT NOT NULL DEFAULT '',
+  sfat        TEXT NOT NULL DEFAULT '',   -- „de ce așa" — nota de bucătar / nutriționist
   varianta    TEXT NOT NULL DEFAULT '',  -- „merge și cu…"
 
   -- pentru calendarul de gătit
