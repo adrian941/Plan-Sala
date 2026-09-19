@@ -606,7 +606,24 @@ button, .seg label, .chips button, .title {
   #print .p-det .wk { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
   #print .p-det .ing { display: block; }
   #print .p-det .mt, #print .p-det .bars, #print .p-det .dh .dt, #print .p-det .mh .kc, #print .p-det .ing .m { display: none; }
-  #print .p-det .ing ul.det { grid-template-columns: max-content max-content 1fr repeat(4, max-content) max-content; }
+  /* Coloanele de macro au lățime FIXĂ, nu „max-content”: numai așa cad una sub alta la toate
+     mesele zilei ȘI la totalul de pe banda verde, care e un grid separat (banda și lista de
+     ingrediente au aceeași margine dreaptă, iar coloana de nume e `1fr` la amândouă, deci
+     coloanele fixe se așază de la dreapta la fel în ambele). Lățimile le țin și cifrele mari
+     ale totalului pe zi: macro de 3 cifre, kcal de 4. */
+  #print .p-det { --det-n: 7.6mm; --det-k: 9.4mm; }
+  #print .p-det .ing ul.det { grid-template-columns: max-content max-content 1fr repeat(4, var(--det-n)) var(--det-k); }
+  /* banda verde a zilei: numele zilei la stânga, iar la dreapta totalul zilei pe două rânduri —
+     capul de coloane (P / G / C / F / kcal) și cifrele — exact peste coloanele ingredientelor */
+  #print .p-det .dh {
+    display: grid; grid-template-columns: 1fr repeat(4, var(--det-n)) var(--det-k);
+    align-items: baseline; gap: 0; padding-bottom: 1.2mm;   /* gap: 0 — altfel „gap: 8px” de la varianta flex
+       a benzii ar împinge coloanele cu câțiva px și n-ar mai cădea peste cele ale ingredientelor */
+  }
+  #print .p-det .dh h2 { grid-column: 1; grid-row: 1 / 3; align-self: center; }
+  #print .p-det .dh .c, #print .p-det .dh .k { text-align: right; padding-left: 2.2mm; white-space: nowrap; }
+  #print .p-det .dh .r1 { grid-row: 1; font-size: 6.2pt; font-weight: 600; color: var(--mute); line-height: 1.1; }
+  #print .p-det .dh .r2 { grid-row: 2; font-size: 7.4pt; font-weight: 700; color: var(--ink); line-height: 1.15; }
   #print .p-det .ing .c { text-align: right; padding-left: 2.2mm; color: var(--ink); }
   #print .p-det .ing .k { display: inline; padding-left: 2.2mm; }
   #print .p-det .ing .hd { color: var(--mute); font-weight: 600; }
