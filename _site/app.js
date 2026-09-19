@@ -79,7 +79,8 @@
     const name = first.ing ? first.ing.name : "";
     if (ps.length === 1) {
       const i = first.ing;
-      if (detail) return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="c">${+i.p}</span><span class="c">${+i.g}</span><span class="c">${+i.c}</span><span class="c">${+i.f}</span><span class="k"><b>${i.k}</b></span></li>`;
+      // kcal la fiecare ingredient: verde, dar NEîngroșat — bold rămâne doar la Total (masă/zi)
+      if (detail) return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="c">${+i.p}</span><span class="c">${+i.g}</span><span class="c">${+i.c}</span><span class="c">${+i.f}</span><span class="k">${i.k}</span></li>`;
       return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="k"><b>${i.k}</b></span><span class="m">${macroShort(i)}</span></li>`;
     }
     const q = rows.map((r) => `<span class="q p-${r.who}">${r.ing ? esc(r.ing.qty) : "—"}</span><span class="u p-${r.who}">${r.ing ? r.ing.unit : ""}</span>`).join("");
@@ -130,8 +131,16 @@
     const n = Math.max(...ps.map((w) => days[w].meals.length));
     let meals = "";
     for (let i = 0; i < n; i++) meals += mealHtml(i, ps, days, detail);
+    // În modul detaliat (paginile de print), pe banda verde a zilei stă totalul ei: două rânduri
+    // — capul de coloane (P / G / C / F / kcal) și, dedesubt, cifrele — așezate exact peste
+    // coloanele de macro ale ingredientelor. Alinierea o ține CSS-ul: banda folosește aceleași
+    // lățimi fixe de coloană ca `ul.det` (vezi --det-n / --det-k din style.css).
+    const dtot = detail ? (() => { const t = ref.total;
+      return `<span class="c r1">P</span><span class="c r1">G</span><span class="c r1">C</span><span class="c r1">F</span><span class="k r1">kcal</span>`
+        + `<span class="c r2">${t.p}</span><span class="c r2">${t.g}</span><span class="c r2">${t.c}</span><span class="c r2">${t.f}</span><span class="k r2"><b>${t.k}</b></span>`;
+    })() : "";
     return `<article class="day" id="day-${wi}-${d}" data-i="${d}">
-      <header class="dh"><h2>${ref.name}${ref.tags ? ` <span class="tags">${esc(ref.tags)}</span>` : ""}</h2><div class="dt">${kc}</div></header>
+      <header class="dh"><h2>${ref.name}${ref.tags ? ` <span class="tags">${esc(ref.tags)}</span>` : ""}</h2><div class="dt">${kc}</div>${dtot}</header>
       <div class="bars">${bars}</div>
       <ol class="meals">${meals}</ol>
     </article>`;
