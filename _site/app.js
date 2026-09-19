@@ -153,6 +153,41 @@
     return data[who].map((_, wi) => [[0, 3], [4, 6]].map((range) =>
       page("v-one p-det", weekHtml(wi, [who], false, `${PEOPLE[who]} — Detaliat — `, range, true))).join("")).join("");
   }
+  // Paginile de rețete din caiet: numai numele, ingredientele cu cantitatea pentru amândoi
+  // (Ema + Adi, adică porția S + porția M — cât pui efectiv în oală) și modul de preparare.
+  // Nimic altceva, în afară de o singură linie cu kcal, macro-uri și, secundar, vitaminele.
+  // Pagina se împarte în 6 căsuțe (3 coloane × 2 rânduri); rețetele se împart egal pe pagini,
+  // ca să nu rămână ultima aproape goală (19 rețete → 4 pagini de 5, 5, 5, 4).
+  const PE_PAGINA = 6;
+  function recipeCard(r) {
+    const ing = r.comp.reduce((t, c) => t.concat(c.items), [])
+      .filter((i) => i.sm)
+      .map((i) => `<li><span class="q">${esc(i.sm)}</span><span class="n">${esc(i.nume)}</span></li>`).join("");
+    const t = r.total;
+    // spațiu între ele, nu doar margine: altfel linia n-are unde să se rupă și iese din căsuță
+    const vit = (r.vit || []).map((v) => `<span>${esc(v.n)}&nbsp;<b>${esc(v.v)}</b>${esc(v.u)}</span>`).join(" ");
+    const pasi = (r.pasi || []).map((x) => `<li>${esc(x)}</li>`).join("");
+    return `<article class="rp">
+      <h2>${esc(r.nume)}${r.vitPartial ? " *" : ""}</h2>
+      <p class="rl"><b>${t.k}</b> kcal · P&nbsp;<b>${t.p}</b>g · G&nbsp;<b>${t.g}</b>g · C&nbsp;<b>${t.c}</b>g · Fibre&nbsp;<b>${t.f}</b>g<span class="vt">${vit}</span></p>
+      <div class="rc"><ul class="ri">${ing}</ul><ol class="rs">${pasi}</ol></div>
+    </article>`;
+  }
+  function recipePages() {
+    const R = window.RETETE || [];
+    if (!R.length) return "";
+    const foi = Math.ceil(R.length / PE_PAGINA);
+    const per = Math.ceil(R.length / foi);
+    let out = "";
+    for (let i = 0; i < R.length; i += per) {
+      const grup = R.slice(i, i + per);
+      const stea = grup.some((r) => r.vitPartial);
+      out += page("p-ret", `<h1 class="pt">Rețete — cantitățile pentru amândoi (Ema + Adi), la un loc</h1>
+        <div class="rgrid">${grup.map(recipeCard).join("")}</div>
+        ${stea ? `<p class="rnota">* laptele, laptele de cocos și mixul de fructe de pădure n-au valori în USDA, deci lipsesc din suma de vitamine.</p>` : ""}`);
+    }
+    return out;
+  }
   function printHtml() {
     const ingPages = () => data.ema.map((_, wi) =>
       page("v-comun p-ing", weekHtml(wi, ["ema", "adi"], false, "Ema + Adi — Ingrediente pentru cumpărături — "))).join("");
@@ -160,7 +195,8 @@
       `<h1 class="pt">${PEOPLE[who]} — mese și macronutrienți</h1>` + data[who].map((_, wi) => weekHtml(wi, [who], false)).join(""));
     // ordinea: ingredientele pentru cumpărături (amândoi), apoi fiecare persoană: mesele cu macro, apoi paginile detaliate
     const person = (who) => macroPage(who) + detailPages(who);
-    return ingPages() + person("ema") + page("p-blank", "") + person("adi");   // pagină goală între Ema și Adi (pentru print față-verso)
+    // pagină goală între Ema și Adi (pentru print față-verso); la sfârșit, rețetele
+    return ingPages() + person("ema") + page("p-blank", "") + person("adi") + recipePages();
   }
 
   const bodyClass = () => `pg-${state.page} v-${state.view}${state.allIng ? " all-ing" : ""}${state.macro ? "" : " no-macro"}${state.printLook ? " print-look" : ""}`;
@@ -182,13 +218,14 @@
 
   // ---------- pagina „Rețete” ----------
   // Lista tuturor rețetelor, una sub alta. La apăsare se deschid ingredientele cu cantitatea
-  // (S = porția standard, M = porția mare) — atât, fără calorii pe ingredient.
+  // (S = porția standard, M = porția mare) și, dedesubt, modul de preparare pas cu pas.
+  // Rețeta deschisă se închide fie din capul ei, fie din butonul „Minimizează” de la sfârșit.
   const GRUPE = ["Mic dejun", "Gustări", "Feluri principale"];
   function reteteHtml() {
     const R = window.RETETE || [];
     if (!R.length) return `<p class="loading">Nu găsesc rețetele. Rulează <code>python date/genereaza.py</code> ca să regenerezi <code>_site/data.js</code>.</p>`;
     const grupuri = GRUPE.filter((gr) => R.some((r) => r.grup === gr));
-    return `<p class="hint"><span><b>S</b> = porție standard (Ema) · <b>M</b> = porție mare (Adi). Apasă o rețetă ca să vezi ingredientele.</span></p>` +
+    return `<p class="hint"><span><b>S</b> = porție standard (Ema) · <b>M</b> = porție mare (Adi). Apasă o rețetă ca să vezi ingredientele și modul de preparare.</span></p>` +
       grupuri.map((gr) => `<section class="grup">
         <h2 class="gt">${esc(gr)} <small>${R.filter((r) => r.grup === gr).length}</small></h2>
         <ul class="rlist">${R.filter((r) => r.grup === gr).map(retetaHtml).join("")}</ul>
@@ -204,27 +241,59 @@
         <span class="rk">${r.kcal.s} <small>/</small> ${r.kcal.m}<small> kcal</small></span>
         <span class="rm">${esc(r.timp)}${zile ? ` · ${esc(zile)}` : ""}</span>
       </button>
-      <div class="rb"><ul class="ring">
-        <li class="hd"><span class="n"></span><span class="s">S</span><span class="m">M</span></li>
-        ${linii}
-      </ul></div>
+      <div class="rb">
+        <ul class="ring">
+          <li class="hd"><span class="n"></span><span class="s">S</span><span class="m">M</span></li>
+          ${linii}
+        </ul>
+        ${prepHtml(r)}
+        <div class="rfoot"><button class="mini" type="button">Minimizează rețeta</button></div>
+      </div>
     </li>`;
+  }
+  // modul de preparare, sub ingrediente: pașii numerotați, apoi nota de bucătar / nutriționist
+  function prepHtml(r) {
+    const pasi = r.pasi || [];
+    if (!pasi.length && !r.sfat && !r.varianta) return "";
+    return `<div class="prep">
+      ${pasi.length ? `<h3>Mod de preparare</h3><ol class="pasi">${pasi.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>` : ""}
+      ${r.sfat ? `<p class="sfat"><b>De ce așa:</b> ${esc(r.sfat)}</p>` : ""}
+      ${r.varianta ? `<p class="varn"><b>Variante:</b> ${esc(r.varianta)}</p>` : ""}
+    </div>`;
   }
 
   // ---------- pagina „Alimente” ----------
   // Lista de alimente pe categorii (comun/1_ingrediente.md). Doar numele, cu kcal/100 g discret.
+  // Restul valorilor — vitaminele și mineralele din USDA — stau ascunse sub fiecare aliment:
+  // se deschid la apăsare, sau toate odată, din butonul „Vitamine & minerale”.
   function alimenteHtml() {
     const A = window.ALIMENTE || [];
     if (!A.length) return `<p class="loading">Nu găsesc lista de alimente. Rulează <code>python date/genereaza.py</code>.</p>`;
     const n = A.reduce((t, c) => t + c.items.filter((i) => i.plan).length, 0);
     const tot = A.reduce((t, c) => t + c.items.length, 0);
     return `<p class="hint"><button class="pill" id="doar-plan" type="button" aria-pressed="true">Doar din meniu</button>
-        <span><b>${n}</b> din ${tot} alimente · kcal la 100 g</span></p>` +
+        <button class="pill" id="toti-micro" type="button" aria-pressed="false">Vitamine &amp; minerale</button>
+        <span><b>${n}</b> din ${tot} alimente · valorile sunt la 100 g</span></p>` +
       A.map((c) => `<section class="grup cat${c.items.some((i) => i.plan) ? "" : " vid"}">
         <h2 class="gt">${c.icon} ${esc(c.cat)} <small>${c.items.filter((i) => i.plan).length}/${c.items.length}</small></h2>
-        <ul class="alist">${c.items.map((i) =>
-          `<li class="${i.plan ? "in" : "out"}"><span class="n">${esc(i.nume)}</span><span class="k">${i.kcal}</span></li>`).join("")}</ul>
+        <ul class="alist">${c.items.map(alimentHtml).join("")}</ul>
       </section>`).join("");
+  }
+  function alimentHtml(i) {
+    return `<li class="${i.plan ? "in" : "out"}">
+      <button class="ah" type="button" aria-expanded="false">
+        <span class="n">${esc(i.nume)}</span><span class="k">${i.kcal}<small> kcal</small></span>
+      </button>
+      <div class="mic">${microHtml(i)}</div>
+    </li>`;
+  }
+  // window.MICRO = capul de tabel (nume, unitate, vitamină / mineral);
+  // i.micro = valorile alimentului, în exact aceeași ordine (null = n-are corespondent în USDA)
+  function microHtml(i) {
+    const M = window.MICRO || [];
+    if (!i.micro || !M.length) return `<p class="mnota">Fără valori în USDA — la alimentul ăsta mergem pe eticheta producătorului, care dă doar calorii și macro-uri.</p>`;
+    const cell = (m, k) => `<div class="mrow"><span class="mn ${m.g}">${esc(m.n)}</span><span class="mv">${esc(i.micro[k])}<small>${esc(m.u)}</small></span></div>`;
+    return `<div class="mgrid">${M.map(cell).join("")}</div><p class="mnota">la 100 g, din USDA FoodData Central</p>`;
   }
 
   // ---------- comutarea între pagini ----------
@@ -340,15 +409,44 @@
       state.page = b.dataset.page; closeOpts(); applyPage();
     });
     $("#pane-retete").addEventListener("click", (e) => {
+      // „Minimizează rețeta": o închide și readuce capul ei în ecran, ca să nu sară pagina
+      const mini = e.target.closest(".mini");
+      if (mini) {
+        const rec = mini.closest(".rec");
+        rec.classList.remove("open");
+        rec.querySelector(".rh").setAttribute("aria-expanded", "false");
+        rec.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
+        return;
+      }
       const btn = e.target.closest(".rh"); if (!btn) return;
       const open = btn.closest(".rec").classList.toggle("open");
       btn.setAttribute("aria-expanded", String(open));
     });
     $("#pane-alimente").addEventListener("click", (e) => {
-      const b = e.target.closest("#doar-plan"); if (!b) return;
-      const doar = b.getAttribute("aria-pressed") !== "true";
-      b.setAttribute("aria-pressed", String(doar));
-      $("#pane-alimente").classList.toggle("tot", !doar);
+      const pane = $("#pane-alimente");
+      const b = e.target.closest("#doar-plan");
+      if (b) {
+        const doar = b.getAttribute("aria-pressed") !== "true";
+        b.setAttribute("aria-pressed", String(doar));
+        pane.classList.toggle("tot", !doar);
+        return;
+      }
+      // „Vitamine & minerale": deschide restul valorilor la toate alimentele deodată
+      const mb = e.target.closest("#toti-micro");
+      if (mb) {
+        const on = mb.getAttribute("aria-pressed") !== "true";
+        mb.setAttribute("aria-pressed", String(on));
+        pane.classList.toggle("micro", on);
+        pane.querySelectorAll(".alist li.open").forEach((li) => {
+          li.classList.remove("open");
+          li.querySelector(".ah").setAttribute("aria-expanded", "false");
+        });
+        return;
+      }
+      // un singur aliment, deschis din rândul lui
+      const ah = e.target.closest(".ah"); if (!ah) return;
+      const open = ah.closest("li").classList.toggle("open");
+      ah.setAttribute("aria-expanded", String(open));
     });
     addEventListener("resize", mutaPastila);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(mutaPastila);

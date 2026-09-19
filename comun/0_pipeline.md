@@ -39,7 +39,7 @@ Două lucruri separate:
 
 Ce fac de fiecare dată, fără să mai întreb:
 
-1. Scriu rețeta în [`2_retete.md`](./2_retete.md) — ingrediente, preparare, timp, porții.
+1. Scriu rețeta în [`2_retete.md`](./2_retete.md) — ingrediente, **modul de preparare pas cu pas** (cu nota „de ce așa”: tehnica și motivul nutrițional), timp, porții.
 2. Calculez **calorii, proteine, grăsimi, carbohidrați și fibre pe porție**.
 3. Marchez ingredientele de care se poate renunța (pentru „doar în farfuria lui").
 4. Trec verdictele în `ema/3_preferinte.md` și `adi/3_preferinte.md`.

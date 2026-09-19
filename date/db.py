@@ -27,6 +27,9 @@ class Ingredient:
     sursa: str; fdc_id: int | None; nota: str
     unitate: str; gram_bucata: float | None; bucata_sg: str | None; bucata_pl: str | None
     e_planta: int
+    # valorile complete din USDA, per 100 g: nutrient_id → valoare. Gol la cele trei
+    # alimente care n-au corespondent în USDA (lapte 1,5%, cocos light, mix de fructe de pădure).
+    micro: dict = field(default_factory=dict)
 
     @property
     def valori(self):
@@ -40,6 +43,16 @@ class Ingredient:
 
 
 @dataclass
+class Nutrient:
+    """Un nutrient din USDA: fier, vitamina C… Unitatea e cea în care vin valorile."""
+    id: int; nume: str; nume_ro: str | None; unitate: str; grupa: str | None
+
+    @property
+    def eticheta(self):
+        return self.nume_ro or self.nume
+
+
+@dataclass
 class Categorie:
     id: int; nume: str; icon: str; rol: str
     ingrediente: list = field(default_factory=list)
@@ -48,11 +61,16 @@ class Categorie:
 @dataclass
 class Reteta:
     id: str; pozitie: int; grup: str; nume: str; scurt: str; masa: str; timp: str
-    tine: str; cum: str; varianta: str
+    tine: str; cum: str; preparare: str; sfat: str; varianta: str
     proaspat: int; congelator: int; semn: str
     carne_rosie: str | None; peste: str | None; nota_gatit: str | None
     # comp = [(eticheta, [(cheie, g_s, g_m), …]), …] — elementele farfuriei, în ordine
     comp: list = field(default_factory=list)
+
+    @property
+    def pasi(self):
+        """Modul de preparare, pas cu pas (un pas pe linie în bază)."""
+        return [l for l in self.preparare.split("\n") if l.strip()]
 
     def ingrediente(self, portie):
         """[(cheie, grame), …] pentru porția S sau M — doar ce intră efectiv."""
@@ -89,6 +107,7 @@ class Plan:
     retete: dict             # id → Reteta (în ordinea din liste)
     persoane: list           # [Persoana]
     zile: list               # [Zi], 14, în ordine
+    nutrienti: dict          # id USDA → Nutrient (minerale, vitamine, aminoacizi…)
 
     def persoana(self, cheie):
         return next(p for p in self.persoane if p.cheie == cheie)
@@ -124,10 +143,16 @@ def incarca(cale=DB):
         ingrediente[ing.cheie] = ing
         cat.ingrediente.append(ing)
 
+    nutrienti = {r["id"]: Nutrient(r["id"], r["nume"], r["nume_ro"], r["unitate"], r["grupa"])
+                 for r in c.execute("SELECT * FROM nutrient ORDER BY id")}
+    for r in c.execute("SELECT * FROM ingredient_nutrient"):
+        ingrediente[r["ingredient_cheie"]].micro[r["nutrient_id"]] = r["valoare"]
+
     retete = {}
     for r in c.execute("SELECT * FROM reteta ORDER BY pozitie"):
         retete[r["id"]] = Reteta(r["id"], r["pozitie"], r["grup"], r["nume"], r["scurt"],
-                                 r["masa"], r["timp"], r["tine"], r["cum"], r["varianta"],
+                                 r["masa"], r["timp"], r["tine"], r["cum"],
+                                 r["preparare"], r["sfat"], r["varianta"],
                                  r["proaspat"], r["congelator"], r["semn"],
                                  r["carne_rosie"], r["peste"], r["nota_gatit"])
     # ORDER BY reteta_id, pozitie: în interiorul unei rețete elementele vin în ordinea lor,
@@ -153,7 +178,7 @@ def incarca(cale=DB):
         zile[r["zi_id"]].mese.append((r["tip"], r["icon"], r["reteta_id"]))
 
     c.close()
-    return Plan(categorii, ingrediente, retete, persoane, list(zile.values()))
+    return Plan(categorii, ingrediente, retete, persoane, list(zile.values()), nutrienti)
 
 
 # ============================ dump / reconstruire ============================
