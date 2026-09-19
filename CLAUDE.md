@@ -127,6 +127,12 @@ adi/                    (de completat)
 3. Dacă s-a schimbat **forma datelor** trimise site-ului (un câmp nou în `window.MENIU`, altă structură), se adaptează și `_site/app.js`, se crește `VERSIUNE` din `sw.js` și se verifică în browser că site-ul afișează corect toate cele 14 zile, pentru Ema, Adi și Amândoi.
 Site-ul nu se editează niciodată cu date „de mână" — el nu are conținut propriu. Toate cele trei pagini (**Meniu**, **Rețete**, **Alimente**) vin din `_site/data.js`, scris de `genereaza.py` din `date/plan.db`. O rețetă sau un aliment nou apare pe site **doar** după ce a intrat în bază și s-a rulat `python genereaza.py`.
 
+**Regulă permanentă — când utilizatorul zice „dă-mi PDF-ul" (sau ceva similar) în chat.** Nu există un PDF pregenerat de dat — site-ul îl face pe loc, din CSS-ul de print. Tu (Claude) faci același lucru, ca să-l poți trimite direct ca fișier descărcat aici, în conversație:
+1. Deschizi `index.html` local într-un Chromium headless (Playwright — e preinstalat).
+2. Emulezi `media: print`, ca să se aplice regulile din `@media print` din `_site/style.css`.
+3. Exporți cu `page.pdf({ printBackground: true, preferCSSPageSize: true })` — **`preferCSSPageSize: true` e obligatoriu**, altfel Chromium ignoră `@page { size: A4 landscape }` din CSS și scoate portret. Layout-ul e mereu **A4 landscape**, niciodată portrait.
+4. Trimiți fișierul rezultat cu unealta de livrare de fișiere (nu doar spui că există) și ștergi copia locală din working tree după — PDF-ul nu e un artefact al repo-ului.
+
 **Regulă permanentă — site-ul e o aplicație instalabilă (PWA).** Se adaugă pe ecranul principal și pornește ca aplicație, fără barele browserului.
 - **Modul de afișare e `standalone`, nu `fullscreen`** (`manifest.webmanifest`). Cu `fullscreen`, telefonul intra în aplicație fără bara de sus, dar când reveneai din fundal bara reapărea — de aici „bărbia” care era neagră la pornire și colorată după. Cu `standalone` bara de sus există mereu și ia culoarea aplicației din `theme_color` + `<meta name="theme-color">`; **cele trei locuri unde scrie culoarea fundalului (manifest, meta, CSS-ul critic din `<head>`) trebuie ținute la fel.**
 - **`manifest.webmanifest` și `sw.js` stau în rădăcină**, nu în `_site/`. Nu e o scăpare: un service worker poate controla doar folderul lui și ce e sub el, deci din `_site/` n-ar putea controla `index.html`. Restul (stil, cod, iconițe) rămâne în `_site/`.
