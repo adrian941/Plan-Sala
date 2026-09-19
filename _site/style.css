@@ -602,7 +602,7 @@ button, .seg label, .chips button, .title {
   #print .p-ing .ing { display: block; }
   #print .p-ing .mt, #print .p-ing .bars, #print .p-ing .dh .dt, #print .p-ing .mh .kc, #print .p-ing .ing .k, #print .p-ing .ing .m { display: none; }
   #print .p-ing .ing ul.two { grid-template-columns: repeat(4, max-content) 1fr; }
-  /* paginile detaliate: 4 zile pe pagină, ingredientele cu kcal + P/G/C/F pe coloane, în același font ca numele */
+  /* paginile detaliate: 4 zile pe pagină, ingredientele cu P/G/C/F + kcal pe coloane, în același font ca numele */
   #print .p-det .wk { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
   #print .p-det .ing { display: block; }
   #print .p-det .mt, #print .p-det .bars, #print .p-det .dh .dt, #print .p-det .mh .kc, #print .p-det .ing .m { display: none; }
@@ -612,11 +612,11 @@ button, .seg label, .chips button, .title {
      coloanele fixe se așază de la dreapta la fel în ambele). Lățimile le țin și cifrele mari
      ale totalului pe zi: macro de 3 cifre, kcal de 4. */
   #print .p-det { --det-n: 7.6mm; --det-k: 9.4mm; }
-  #print .p-det .ing ul.det { grid-template-columns: max-content max-content 1fr var(--det-k) repeat(4, var(--det-n)); }
+  #print .p-det .ing ul.det { grid-template-columns: max-content max-content 1fr repeat(4, var(--det-n)) var(--det-k); }
   /* banda verde a zilei: numele zilei la stânga, iar la dreapta totalul zilei pe două rânduri —
-     capul de coloane (kcal / P / G / C / F) și cifrele — exact peste coloanele ingredientelor */
+     capul de coloane (P / G / C / F / kcal) și cifrele — exact peste coloanele ingredientelor */
   #print .p-det .dh {
-    display: grid; grid-template-columns: 1fr var(--det-k) repeat(4, var(--det-n));
+    display: grid; grid-template-columns: 1fr repeat(4, var(--det-n)) var(--det-k);
     align-items: baseline; gap: 0; padding-bottom: 1.2mm;   /* gap: 0 — altfel „gap: 8px” de la varianta flex
        a benzii ar împinge coloanele cu câțiva px și n-ar mai cădea peste cele ale ingredientelor */
   }

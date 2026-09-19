@@ -79,7 +79,7 @@
     const name = first.ing ? first.ing.name : "";
     if (ps.length === 1) {
       const i = first.ing;
-      if (detail) return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="k"><b>${i.k}</b></span><span class="c">${+i.p}</span><span class="c">${+i.g}</span><span class="c">${+i.c}</span><span class="c">${+i.f}</span></li>`;
+      if (detail) return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="c">${+i.p}</span><span class="c">${+i.g}</span><span class="c">${+i.c}</span><span class="c">${+i.f}</span><span class="k"><b>${i.k}</b></span></li>`;
       return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="k"><b>${i.k}</b></span><span class="m">${macroShort(i)}</span></li>`;
     }
     const q = rows.map((r) => `<span class="q p-${r.who}">${r.ing ? esc(r.ing.qty) : "—"}</span><span class="u p-${r.who}">${r.ing ? r.ing.unit : ""}</span>`).join("");
@@ -109,8 +109,8 @@
     // în modul detaliat, un rând de cap de tabel pentru coloanele de macro
     if (detail) {
       const t = ref.total;
-      rows = `<li class="hd"><span></span><span></span><span class="n"></span><span class="k">kcal</span><span class="c">P</span><span class="c">G</span><span class="c">C</span><span class="c">F</span></li>` + rows
-        + `<li class="tot"><span class="e"></span><span class="n">Total</span><span class="k"><b>${t.k}</b></span><span class="c">${t.p}</span><span class="c">${t.g}</span><span class="c">${t.c}</span><span class="c">${t.f}</span></li>`;
+      rows = `<li class="hd"><span></span><span></span><span class="n"></span><span class="c">P</span><span class="c">G</span><span class="c">C</span><span class="c">F</span><span class="k">kcal</span></li>` + rows
+        + `<li class="tot"><span class="e"></span><span class="n">Total</span><span class="c">${t.p}</span><span class="c">${t.g}</span><span class="c">${t.c}</span><span class="c">${t.f}</span><span class="k"><b>${t.k}</b></span></li>`;
     }
     return `<li class="meal t-${ORDER[ref.type] ?? 9}">
       <button class="mh" type="button" aria-expanded="false">
@@ -135,8 +135,8 @@
     // coloanele de macro ale ingredientelor. Alinierea o ține CSS-ul: banda folosește aceleași
     // lățimi fixe de coloană ca `ul.det` (vezi --det-n / --det-k din style.css).
     const dtot = detail ? (() => { const t = ref.total;
-      return `<span class="k r1">kcal</span><span class="c r1">P</span><span class="c r1">G</span><span class="c r1">C</span><span class="c r1">F</span>`
-        + `<span class="k r2"><b>${t.k}</b></span><span class="c r2">${t.p}</span><span class="c r2">${t.g}</span><span class="c r2">${t.c}</span><span class="c r2">${t.f}</span>`;
+      return `<span class="c r1">P</span><span class="c r1">G</span><span class="c r1">C</span><span class="c r1">F</span><span class="k r1">kcal</span>`
+        + `<span class="c r2">${t.p}</span><span class="c r2">${t.g}</span><span class="c r2">${t.c}</span><span class="c r2">${t.f}</span><span class="k r2"><b>${t.k}</b></span>`;
     })() : "";
     return `<article class="day" id="day-${wi}-${d}" data-i="${d}">
       <header class="dh"><h2>${ref.name}${ref.tags ? ` <span class="tags">${esc(ref.tags)}</span>` : ""}</h2><div class="dt">${kc}</div>${dtot}</header>
