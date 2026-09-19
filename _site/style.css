@@ -625,7 +625,9 @@ button, .seg label, .chips button, .title {
   #print .p-det .dh .r1 { grid-row: 1; font-size: 6.2pt; font-weight: 600; color: var(--mute); line-height: 1.1; }
   #print .p-det .dh .r2 { grid-row: 2; font-size: 7.4pt; font-weight: 700; color: var(--ink); line-height: 1.15; }
   #print .p-det .ing .c { text-align: right; padding-left: 2.2mm; color: var(--ink); }
-  #print .p-det .ing .k { display: inline; padding-left: 2.2mm; }
+  /* kcal la fiecare ingredient: verde, dar NEîngroșat (culoarea o ia și „Total" mai jos, prin
+     .tot .k b, dar acolo textul e în plus și `<b>`, deci rămâne gros — vezi mai jos) */
+  #print .p-det .ing .k { display: inline; padding-left: 2.2mm; color: var(--acc-ink); font-weight: 400; }
   #print .p-det .ing .hd { color: var(--mute); font-weight: 600; }
   #print .p-det .ing .hd .k { color: var(--mute); }
   #print .p-det .ing .tot > span { font-weight: 600; border-top: 0.3pt solid var(--line-2); padding-top: 0.5mm; margin-top: 0.3mm; }
