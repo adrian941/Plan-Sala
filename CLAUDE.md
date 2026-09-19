@@ -52,7 +52,7 @@ Trei pași, în ordine, descriși pe larg în **[`comun/0_pipeline.md`](./comun/
 2. **Rețetele** → `comun/2_retete.md` → meniul fiecăruia în `ema/4_meniu.md`, `adi/4_meniu.md`
 3. **Cumpărăturile** → `comun/3_cumparaturi.md`
 
-**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat**: **întâi** ingredientele noi în `comun/1_ingrediente.md` (valori per 100 g din **USDA FoodData Central**, cu ID — sursa unică de adevăr pentru orice calcul); apoi rețeta în `comun/2_retete.md`, pe structura farfuriei 40/40/20, cu calorii/macro/fibre pe porție calculate **exclusiv** din acel tabel; verdictele în `ema/3_preferinte.md` și `adi/3_preferinte.md`.
+**Regula ta permanentă:** când utilizatorul îți dă o rețetă nouă (cu detalii și cu „cui îi place / cui nu"), o **adaugi imediat — în baza de date, niciodată direct în fișiere**: **întâi** ingredientele noi, cu `python date/usda.py adauga …` (valorile per 100 g vin din **USDA FoodData Central**, cu ID); apoi rețeta în `date/plan.db`, pe structura farfuriei 40/40/20; apoi `python date/genereaza.py`, care recalculează caloriile/macro-urile/fibrele pe porție **exclusiv** din valorile din bază și rescrie fișierele și site-ul. Verdictele („cui i-a plăcut") se scriu de mână în `ema/3_preferinte.md` și `adi/3_preferinte.md` — ele nu sunt încă în bază.
 
 **Ordinea contează:** nimic nu ajunge pe lista de cumpărături dacă nu vine dintr-o rețetă pusă în meniu, și nicio rețetă nu intră în meniul cuiva dacă are în ea ceva ce el nu poate mânca.
 
@@ -77,10 +77,10 @@ sw.js                  ← service worker: face site-ul instalabil și îl ține
 
 _site/                  ← tot ce ține de site (nu se pune nimic de site în altă parte)
 ├── style.css          → stilul; verde la Ema / Adi, roz + albastru doar la „Amândoi”; include CSS-ul de print
-├── app.js             → citește 4b_meniu_zilnic.md (ema + adi) și le desenează; tot el desenează paginile
-                         Rețete și Alimente din datele scrise în data.js
-├── data.js            → GENERAT de date/genereaza.py: copia celor două 4b (ca site-ul să meargă și deschis din
-                         fișier) + rețetele (`window.RETETE`) și lista de alimente (`window.ALIMENTE`)
+├── app.js             → desenează cele trei pagini din datele primite în data.js. Nu citește niciun .md și
+                         nu calculează nimic: tot ce afișează vine gata socotit din baza de date
+├── data.js            → GENERAT de date/genereaza.py direct din date/plan.db: meniurile amândurora
+                         (`window.MENIU`), rețetele (`window.RETETE`), lista de alimente (`window.ALIMENTE`)
 └── icons/             → iconițele aplicației, GENERATE de icons/genereaza_icon.py (nu se editează PNG-urile de mână)
 
 comun/                  ← ce ține de mâncare, pentru amândoi
@@ -90,11 +90,17 @@ comun/                  ← ce ține de mâncare, pentru amândoi
 ├── 3_cumparaturi.md   → lista de cumpărături + magazinele
 └── 4_calendar.md      → ce rețetă în ce zi, când se gătește (comun)
 
-date/                   ← baza de date + calculatorul (Python)
-├── ingrediente_db.py  → valorile USDA per 100 g (sursa pentru 1_ingrediente.md)
-├── retete.py          → rețetele cu cantități S/M, calendarul, țintele
-├── genereaza.py       → scrie 1_ingrediente, 2_retete și cele două meniuri
-└── usda/              → baza oficială USDA SR Legacy (zip)
+date/                   ← BAZA DE DATE (SQLite) + calculatorul (Python). Vezi date/README.md
+├── plan.db            → **SURSA UNICĂ DE ADEVĂR**: alimente (cu valori nutriționale complete și
+                         perisabilitate), rețete cu cantități S/M, calendar, persoane + ținte, magazine
+├── plan.sql           → dump-ul text al bazei, rescris la fiecare rulare — el se vede în `git diff`
+├── schema.sql         → schema comentată (ce tabele există și de ce)
+├── db.py              → accesul la bază: `incarca()`, plus `dump` / `reconstruieste` / `verifica`
+├── calcule.py         → macro-uri, rotunjiri, cantități, totaluri pe zi, numărat plante
+├── genereaza.py       → scrie din bază cele 7 .md + _site/data.js + plan.sql
+├── raport.py          → verifică fără să scrie: ies zilele la țintă?
+├── usda.py            → caută / aduce valori / adaugă alimente din baza oficială USDA
+└── usda/              → baza oficială USDA SR Legacy (zip) + usda.db local (ignorat de git)
 
 ema/
 ├── 1_profil.md        → date, activitate, sănătate, obiectiv
@@ -113,13 +119,19 @@ adi/                    (de completat)
 └── 4b_meniu_zilnic.md → ca la Ema: aceeași informație, doar formatată pentru citit rapid
 ```
 
-**Regulă permanentă — cele două fișiere de meniu ale fiecăruia merg mereu împreună.** `4_meniu.md` (tabele, kcal/macro) și `4b_meniu_zilnic.md` (aceeași rețete, format vizual rapid) descriu **același meniu**, doar afișat diferit. Amândouă se generează din `date/genereaza.py` (vezi `date/README.md`) — nu se editează niciunul manual. **Orice modificare la meniul cuiva** (rețetă schimbată, poziție în calendar, porție) înseamnă: se schimbă sursa în `date/`, se rulează `python genereaza.py`, și se verifică că **ambele** fișiere (`4_meniu.md` + `4b_meniu_zilnic.md`, pentru persoana afectată) au ieșit actualizate — niciodată doar unul.
+**Regulă permanentă — cele două fișiere de meniu ale fiecăruia merg mereu împreună.** `4_meniu.md` (tabele, kcal/macro) și `4b_meniu_zilnic.md` (aceeași rețete, format vizual rapid) descriu **același meniu**, doar afișat diferit. Amândouă se generează din `date/plan.db` cu `date/genereaza.py` (vezi `date/README.md`) — nu se editează niciunul manual. **Orice modificare la meniul cuiva** (rețetă schimbată, poziție în calendar, porție) înseamnă: se schimbă datele în `date/plan.db`, se rulează `python genereaza.py`, și se verifică că **ambele** fișiere (`4_meniu.md` + `4b_meniu_zilnic.md`, pentru persoana afectată) au ieșit actualizate — niciodată doar unul.
 
-**Regulă permanentă, EXTREM DE IMPORTANTĂ — site-ul e mereu sincronizat cu meniurile.** Site-ul (`index.html` + `_site/`) afișează exact `ema/4b_meniu_zilnic.md` și `adi/4b_meniu_zilnic.md`. **De fiecare dată** când se actualizează meniul cuiva (orice motiv: rețetă, porție, calendar, profil), se actualizează și site-ul, în aceeași iterație — nu există „meniul da, site-ul mai târziu". Concret:
-1. Se modifică sursa în `date/` și se rulează `python genereaza.py` — asta regenerează `4_meniu.md`, `4b_meniu_zilnic.md`, **și `_site/data.js`** (copia pe care o citește site-ul când e deschis din fișier). PDF-ul nu e un fișier: butonul „PDF” / Ctrl+P îl face browserul pe loc, din CSS-ul de print, mereu din datele curente.
-2. Se verifică că `_site/data.js` s-a schimbat odată cu `4b` (`git status` trebuie să le arate pe amândouă).
-3. Dacă s-a schimbat **formatul** fișierelor `4b` (o linie nouă, alt tabel, altă structură de titluri), se adaptează și parserul din `_site/app.js` și se verifică în browser că site-ul afișează corect toate cele 14 zile, pentru Ema, Adi și Amândoi.
-Site-ul nu se editează niciodată cu date „de mână" — el nu are conținut propriu. Meniul vine din fișierele `4b`, iar paginile **Rețete** și **Alimente** vin din `_site/data.js`, scris tot de `genereaza.py` din `date/retete.py` și `date/ingrediente_db.py`. O rețetă sau un aliment nou apare pe site **doar** după ce a trecut prin `date/` și s-a rulat `python genereaza.py`.
+**Regulă permanentă, EXTREM DE IMPORTANTĂ — site-ul e mereu sincronizat cu baza.** Site-ul (`index.html` + `_site/`) și fișierele `4b_meniu_zilnic.md` arată **același** meniu pentru că ies din **aceeași** bază de date, la aceeași rulare. **De fiecare dată** când se actualizează meniul cuiva (orice motiv: rețetă, porție, calendar, profil), se actualizează și site-ul, în aceeași iterație — nu există „meniul da, site-ul mai târziu". Concret:
+1. Se modifică datele în `date/plan.db` și se rulează `python genereaza.py` — asta regenerează `4_meniu.md`, `4b_meniu_zilnic.md`, **`_site/data.js`** (datele site-ului) și `plan.sql` (dump-ul pentru git). PDF-ul nu e un fișier: butonul „PDF” / Ctrl+P îl face browserul pe loc, din CSS-ul de print, mereu din datele curente.
+2. Se verifică că `_site/data.js` și `date/plan.sql` s-au schimbat odată cu `4b` (`git status` trebuie să le arate pe toate).
+3. Dacă s-a schimbat **forma datelor** trimise site-ului (un câmp nou în `window.MENIU`, altă structură), se adaptează și `_site/app.js`, se crește `VERSIUNE` din `sw.js` și se verifică în browser că site-ul afișează corect toate cele 14 zile, pentru Ema, Adi și Amândoi.
+Site-ul nu se editează niciodată cu date „de mână" — el nu are conținut propriu. Toate cele trei pagini (**Meniu**, **Rețete**, **Alimente**) vin din `_site/data.js`, scris de `genereaza.py` din `date/plan.db`. O rețetă sau un aliment nou apare pe site **doar** după ce a intrat în bază și s-a rulat `python genereaza.py`.
+
+**Regulă permanentă — când utilizatorul zice „dă-mi PDF-ul" (sau ceva similar) în chat.** Nu există un PDF pregenerat de dat — site-ul îl face pe loc, din CSS-ul de print. Tu (Claude) faci același lucru, ca să-l poți trimite direct ca fișier descărcat aici, în conversație:
+1. Deschizi `index.html` local într-un Chromium headless (Playwright — e preinstalat).
+2. Emulezi `media: print`, ca să se aplice regulile din `@media print` din `_site/style.css`.
+3. Exporți cu `page.pdf({ printBackground: true, preferCSSPageSize: true })` — **`preferCSSPageSize: true` e obligatoriu**, altfel Chromium ignoră `@page { size: A4 landscape }` din CSS și scoate portret. Layout-ul e mereu **A4 landscape**, niciodată portrait.
+4. Trimiți fișierul rezultat cu unealta de livrare de fișiere (nu doar spui că există) și ștergi copia locală din working tree după — PDF-ul nu e un artefact al repo-ului.
 
 **Regulă permanentă — site-ul e o aplicație instalabilă (PWA).** Se adaugă pe ecranul principal și pornește ca aplicație, fără barele browserului.
 - **Modul de afișare e `standalone`, nu `fullscreen`** (`manifest.webmanifest`). Cu `fullscreen`, telefonul intra în aplicație fără bara de sus, dar când reveneai din fundal bara reapărea — de aici „bărbia” care era neagră la pornire și colorată după. Cu `standalone` bara de sus există mereu și ia culoarea aplicației din `theme_color` + `<meta name="theme-color">`; **cele trei locuri unde scrie culoarea fundalului (manifest, meta, CSS-ul critic din `<head>`) trebuie ținute la fel.**

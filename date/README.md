@@ -1,24 +1,55 @@
-# 📊 date/ — baza de date și calculatorul planului
+# 📊 date/ — baza de date a aplicației
 
-Aici stă **sursa** din care se generează fișierele de mâncare. Nu se editează manual `comun/1_ingrediente.md`, `comun/2_retete.md`, `ema/4_meniu.md`, `adi/4_meniu.md`, `ema/4b_meniu_zilnic.md`, `adi/4b_meniu_zilnic.md` — se modifică aici și se regenerează.
+Aici stă **plan.db**, baza SQLite din care iese tot: fișierele `.md` și site-ul. E **sursa unică de adevăr**.
+
+Nu se editează manual `comun/1_ingrediente.md`, `comun/2_retete.md`, `comun/4_calendar.md`, `ema/4_meniu.md`, `adi/4_meniu.md`, `ema/4b_meniu_zilnic.md`, `adi/4b_meniu_zilnic.md`, `_site/data.js` — toate se regenerează din bază.
 
 | Fișier | Ce e |
 |---|---|
-| `ingrediente_db.py` | **Baza de ingrediente**: valori per 100 g (kcal, P, G, C, fibre), sursa USDA cu ID. Un ingredient nou = un rând nou aici. |
-| `retete.py` | Rețetele (componentele farfuriei cu cantități S / M), calendarul pe 14 zile, țintele calorice (copiate din `ema/2_nutritie.md` și `adi/2_nutritie.md`). Rulat singur, afișează macro-urile pe rețetă și pe zi. |
-| `genereaza.py` | Scrie `comun/1_ingrediente.md`, `comun/2_retete.md`, `ema/4_meniu.md` + `ema/4b_meniu_zilnic.md`, `adi/4_meniu.md` + `adi/4b_meniu_zilnic.md` din cele două de mai sus, **plus `_site/data.js`** (copia celor două `4b` pe care o citește site-ul). **`4_meniu.md`, `4b_meniu_zilnic.md` și `_site/data.js` se scriu mereu din aceeași rulare** — nu există caz în care unul se actualizează fără celelalte. |
-| `usda_cauta.py` | Caută un aliment în baza USDA locală: `python usda_cauta.py "chicken breast raw"`. |
-| `usda/*.zip` | Baza oficială USDA FoodData Central, SR Legacy (aprilie 2018), descărcată de pe fdc.nal.usda.gov. Se dezarhivează automat la prima căutare în `usda/sr/` (ignorat de git). |
+| `plan.db` | **Baza.** Alimente (cu valorile nutriționale complete și perisabilitatea), rețete cu cantități S/M, calendarul pe 14 zile, persoanele și țintele lor, magazinele. |
+| `plan.sql` | **Dump-ul text al bazei**, scris automat la fiecare rulare. El e ce se vede în `git diff` (baza e binară): un ingredient nou sau o cantitate schimbată se citesc direct în PR. |
+| `schema.sql` | Schema comentată — ce tabele există și de ce. Din ea se construiește baza de la zero. |
+| `db.py` | Accesul la bază: `incarca()` întoarce planul întreg ca obiecte Python. Din linia de comandă: `dump`, `reconstruieste`, `verifica`. |
+| `calcule.py` | Macro-uri, rotunjiri, cantități scrise frumos, totaluri pe zi, numărat plante. Nu atinge baza — primește planul. |
+| `genereaza.py` | **Scrie tot:** cele 7 fișiere `.md`, `_site/data.js` și `plan.sql`. Textul explicativ (regulile, cum e gândit calendarul) stă în el, ca șablon; datele vin exclusiv din bază. |
+| `raport.py` | Verifică fără să scrie nimic: ce iese pe fiecare rețetă, totalurile zilelor față de țintă, plantele pe săptămână. |
+| `usda.py` | Legătura cu baza oficială USDA: caută alimente, aduce valorile complete, adaugă un aliment nou în `plan.db`. |
+| `usda/*.zip` | Baza oficială **USDA FoodData Central, SR Legacy** (aprilie 2018), de pe fdc.nal.usda.gov. La prima folosire se face din ea un `usda/usda.db` local (ignorat de git, se reface oricând). |
 
 ## Cum se lucrează
 
+### Un aliment nou
+
 ```
 cd date
-python usda_cauta.py "quinoa uncooked"     # 1. găsești ingredientul nou + ID-ul
-# 2. îl adaugi în ingrediente_db.py
-# 3. scrii / modifici rețeta în retete.py
-python retete.py                           # 4. verifici că zilele ies la țintă
-python genereaza.py                        # 5. regenerezi fișierele .md + _site/data.js (site-ul)
+python usda.py cauta "quinoa uncooked"                                   # 1. găsești ID-ul oficial
+python usda.py adauga 168874 quinoa "Quinoa, crudă" "Cereale & amidon" --scurt quinoa
+                                                                         # 2. intră în plan.db cu
+                                                                         #    valorile luate din USDA
+python genereaza.py                                                      # 3. apare în lista de alimente și pe site
 ```
 
-**Regulă:** țintele din `retete.py` (`TARGET`) se țin identice cu `ema/2_nutritie.md` și `adi/2_nutritie.md`, care vin din profil. Când se schimbă profilul (greutate, activitate, obiectiv) → se recalculează nutriția → se actualizează `TARGET` → se regenerează.
+`adauga` scrie și cele cinci valori de pe farfurie (kcal, P, G, C, fibre) **și** toate celelalte pe care le are USDA (minerale, vitamine, aminoacizi, acizi grași) — ele stau în `ingredient_nutrient` și nu se afișează încă nicăieri; sunt materia primă pentru „acoperim necesarul de fier / B12?".
+
+### O rețetă nouă, o cantitate schimbată, altă zi în calendar
+
+Se modifică în `plan.db` (cu SQL, sau cu orice unealtă de SQLite — DB Browser for SQLite e cea mai comodă), apoi:
+
+```
+python raport.py        # ies zilele la țintă?
+python genereaza.py     # regenerează cele 7 .md + _site/data.js + plan.sql
+```
+
+### Dacă baza s-a stricat sau a ieșit prost dintr-un merge
+
+```
+python db.py reconstruieste   # plan.db se reface din plan.sql
+python db.py verifica         # schema e cea din schema.sql? tabelele sunt pline?
+```
+
+**Un amănunt de git:** după `reconstruieste`, fișierul binar `plan.db` poate arăta „modificat" chiar dacă datele sunt aceleași (SQLite își rearanjează paginile). **`plan.sql` e cel care spune adevărul** — dacă el nu s-a schimbat, nici datele nu s-au schimbat.
+
+## Două reguli
+
+1. **Valorile de plan nu se rescriu din USDA.** Cele cinci de pe farfurie stau în tabelul `ingredient` și unele sunt ajustate cu bună știință (lapte 1,5% = media dintre 1% și 2%; doradă = valori de la sea bass; mixul de fructe de pădure = media a trei). `python usda.py nutrienti` le lasă în pace — scrie doar alături, în `ingredient_nutrient`.
+2. **Țintele din `persoana` se țin identice cu `ema/2_nutritie.md` și `adi/2_nutritie.md`**, care vin din profil. Când se schimbă profilul (greutate, activitate, obiectiv) → se recalculează nutriția → se actualizează țintele în bază → se regenerează.

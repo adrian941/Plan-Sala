@@ -7,7 +7,7 @@
    ultima dată. Parametrul „?t=…” din index.html e ignorat la salvare, ca să nu se
    adune câte o copie la fiecare deschidere. */
 
-const VERSIUNE = "plan-sala-v4";
+const VERSIUNE = "plan-sala-v5";
 const ESENTIALE = [
   "./",
   "./index.html",
@@ -15,8 +15,6 @@ const ESENTIALE = [
   "./_site/style.css",
   "./_site/app.js",
   "./_site/data.js",
-  "./ema/4b_meniu_zilnic.md",
-  "./adi/4b_meniu_zilnic.md",
   "./_site/icons/icon-192.png",
   "./_site/icons/icon-512.png",
 ];

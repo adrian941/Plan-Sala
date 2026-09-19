@@ -1,17 +1,41 @@
 # -*- coding: utf-8 -*-
-import io
-from retete import R, PLAN, TARGET, macro, r5, qty, totals, plants, SHORT, PIECE
-from ingrediente_db import ING, DB, NAME
+"""Scrie fișierele planului din plan.db. Sursa e baza; astea sunt doar ieșiri.
 
-import os
+    python genereaza.py
+
+Regenerează, dintr-o singură rulare:
+    comun/1_ingrediente.md   comun/2_retete.md   comun/4_calendar.md
+    ema/4_meniu.md + ema/4b_meniu_zilnic.md     adi/4_meniu.md + adi/4b_meniu_zilnic.md
+    _site/data.js            (meniurile, rețetele și alimentele pentru site)
+    date/plan.sql            (dump-ul text al bazei, pentru git)
+
+Textul explicativ (regulile, cum e gândit calendarul, organizarea bucătăriei) stă aici,
+în șabloane. Datele — alimente, rețete, cantități, calendar, ținte — stau exclusiv în plan.db.
+"""
+import io, json, os, sys
+
+import db
+from calcule import (macro_reteta, r5, r0, r1, numar, qty, cant, parte_qty, nume_ing,
+                     totals, medie, plants, saptamani, zile_din)
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..") + "/"
-def W(path, text): io.open(ROOT+path, "w", encoding="utf-8", newline="\n").write(text)
-def m5(t): return f"{r5(t[0])} | {t[1]:.0f} | {t[2]:.0f} | {t[3]:.0f} | {t[4]:.0f}"
+
+
+def W(path, text):
+    io.open(ROOT + path, "w", encoding="utf-8", newline="\n").write(text)
+
+
+def m5(t):
+    return f"{r5(t[0])} | {t[1]:.0f} | {t[2]:.0f} | {t[3]:.0f} | {t[4]:.0f}"
+
+
+plan = db.incarca()
+ING = list(plan.ingrediente.values())
+R = plan.retete
+SAPT = saptamani(plan)
 
 # ================= 1. INGREDIENTE =================
-ROL = {"Carne & pește":"P","Ouă":"P","Lactate":"P","Cereale & amidon":"A","Leguminoase":"P + A","Legume":"L","Grăsimi":"G","Fructe":"F","Condimente":"—"}
-SHORT_ZI = {"Luni":"Lu","Marți":"Ma","Miercuri":"Mi","Joi":"Jo","Vineri":"Vi","Sâmbătă":"Sâ","Duminică":"Du"}
-ICON = {"Carne & pește":"🥩","Ouă":"🥚","Lactate":"🥛","Cereale & amidon":"🍚","Leguminoase":"🫘","Legume":"🥦","Grăsimi":"🥑","Fructe":"🍓","Condimente":"🧂"}
 o = []
 o.append("# 🥦 Lista de alimente — sursa unică de adevăr pentru valori nutriționale\n")
 o.append("> **Pasul 1** din [cum lucrăm](./0_pipeline.md). **Toate calculele din rețete și meniuri pleacă din tabelul de mai jos** — nicio valoare nu se ia din altă parte.\n>\n> Aici nu scriem cui îi place ce. Gusturile fiecăruia stau la el: [`ema/3_preferinte.md`](../ema/3_preferinte.md), [`adi/3_preferinte.md`](../adi/3_preferinte.md).\n")
@@ -22,16 +46,12 @@ o.append("3. **Ingredient nou = rând nou aici, înainte să intre într-o rețe
 o.append("4. Produsele românești de lactate (brânză de vaci, telemea, skyr) variază între producători — valoarea USDA e referința, dar dacă eticheta ta diferă mult, o folosim pe aceea.\n")
 o.append("\n**Rolul pe farfurie** (regula 40/40/20): `P` = proteină (40%) · `L` = legume / carbohidrați fibroși (40%) · `A` = amidon (20%) · `G` = grăsime (nu ocupă felie) · `F` = fruct\n")
 o.append("\n---\n")
-cats = []
-for k,n,c,*_ in ING:
-    if c not in cats: cats.append(c)
-for c in cats:
-    o.append(f"\n## {ICON[c]} {c}\n")
+for cat in plan.categorii:
+    o.append(f"\n## {cat.icon} {cat.nume}\n")
     o.append("| Aliment | Rol | kcal | Proteine | Grăsimi | Carbo | Fibre | Sursă | Notă |\n|---|:-:|--:|--:|--:|--:|--:|---|---|")
-    for k,n,cc,kcal,p,g,cb,f,src,note in ING:
-        if cc!=c: continue
-        srcs = f"[{src}](https://fdc.nal.usda.gov/food-details/{src.split()[1]}/nutrients)" if src.startswith("USDA ") and src.split()[1].isdigit() else src
-        o.append(f"| {n} | {ROL[c]} | {kcal:g} | {p:g} | {g:g} | {cb:g} | {f:g} | {srcs} | {note} |")
+    for i in cat.ingrediente:
+        srcs = f"[{i.sursa}](https://fdc.nal.usda.gov/food-details/{i.fdc_id}/nutrients)" if i.fdc_id else i.sursa
+        o.append(f"| {i.nume} | {cat.rol} | {i.kcal:g} | {i.proteine:g} | {i.grasimi:g} | {i.carbo:g} | {i.fibre:g} | {srcs} | {i.nota} |")
     o.append("")
 o.append("\n---\n\n## Porții uzuale (pentru cântărit din ochi)\n")
 o.append("| Aliment | Porție | ≈ g |\n|---|---|--:|\n| Ou M | 1 buc. | 55 |\n| Banană | 1 buc. medie | 120 |\n| Măr | 1 buc. medie | 180 |\n| Pâine integrală | 1 felie | 40–50 |\n| Ulei de măsline | 1 lingură | 10 |\n| Unt de arahide | 1 lingură | 15 |\n| Semințe chia / in | 1 lingură | 10 |\n| Nuci / migdale | 1 mână mică | 15–20 |\n| Usturoi | 1 cățel | 3 |\n| Orez / quinoa / hrișcă crud | 1 porție 20% | 55–65 |\n| Carne / pește crud | 1 porție 40% | 150–220 |\n")
@@ -39,14 +59,23 @@ o.append("\n## 🌾 De unde vin fibrele — pe scurt\n\nLeguminoase (linte, nău
 W("comun/1_ingrediente.md", "\n".join(o))
 
 # ================= 2. REȚETE =================
+GRUPE = [("Mic dejun", "## 🌅 Mic dejun"), ("Gustări", "## 🍎 Gustări"),
+         ("Feluri principale", "## 🍲 Feluri principale — farfuria 40/40/20")]
+
+
 def comp_table(r):
-    lines=["| Element | Ingredient | S | M |","|---|---|--:|--:|"]
-    for label,items in r["comp"]:
-        for i,(k,gs,gm) in enumerate(items):
-            lab = f"**{label.strip()}**" if i==0 else ""
-            lines.append(f"| {lab} | {NAME[k].split(',')[0] if k not in SHORT else SHORT[k].capitalize()} | {qty(k,gs).replace(SHORT.get(k,''),'').strip() if gs>0 else '—'} | {qty(k,gm).replace(SHORT.get(k,''),'').strip() if gm>0 else '—'} |")
+    lines = ["| Element | Ingredient | S | M |", "|---|---|--:|--:|"]
+    for label, items in r.comp:
+        for i, (k, gs, gm) in enumerate(items):
+            ing = plan.ingrediente[k]
+            lab = f"**{label.strip()}**" if i == 0 else ""
+            cs = qty(ing, gs).replace(ing.scurt, "").strip() if gs > 0 else "—"
+            cm = qty(ing, gm).replace(ing.scurt, "").strip() if gm > 0 else "—"
+            lines.append(f"| {lab} | {nume_ing(ing)} | {cs} | {cm} |")
     return "\n".join(lines)
-o=[]
+
+
+o = []
 o.append("# 🍽️ Rețete\n")
 o.append("> **Pasul 2** din [cum lucrăm](./0_pipeline.md). Toate valorile de mai jos sunt calculate din [`1_ingrediente.md`](./1_ingrediente.md) (USDA), pe cantități **crude**.\n> De aici pleacă [`3_cumparaturi.md`](./3_cumparaturi.md). Ce rețetă în ce zi: [`4_calendar.md`](./4_calendar.md).\n")
 o.append("## Cum adăugăm o rețetă\n\nÎmi dai rețeta cu ce detalii ai (ingrediente, cum se face, timp, câte porții ies, **cui îi place și cui nu**). Eu: (1) adaug ingredientele noi în `1_ingrediente.md` din USDA, (2) o scriu aici pe structura farfuriei, (3) calculez S și M, (4) trec verdictele în preferințele fiecăruia.\n\n**Semne:** ⭐ favorit · ✅ îi place · 🟡 neutru · ❌ nu-i place · ⛔ nu poate · ❔ netestat\n")
@@ -54,206 +83,241 @@ o.append("## Farfuria 40/40/20 — cum e construit fiecare fel principal\n\nFiec
 o.append("## Două mărimi de porție\n\n**S (standard)** și **M (mare)**: diferă proteina și amidonul; legumele, sosul și condimentele sunt identice → o singură oală/tavă. Cine mănâncă ce mărime: `ema/4_meniu.md`, `adi/4_meniu.md`. Felurile principale se gătesc **×4 = 2 S + 2 M** (cina de azi + prânzul de mâine).\n")
 o.append("---\n\n## Cuprins\n")
 o.append("| # | Rețetă | Masă | Timp | kcal S / M | S: P / G / C / Fibre | M: P / G / C / Fibre | Ema | Adi | Frigider |\n|--:|--------|------|-----:|-----------:|---|---|:-:|:-:|:-:|")
-for id,r in R.items():
-    s,m=macro(r["S"]),macro(r["M"])
-    o.append(f"| {id} | [{r['nume']}](#{id.lower()}) | {r['masa']} | {r['timp']} | {r5(s[0])} / {r5(m[0])} | {s[1]:.0f} / {s[2]:.0f} / {s[3]:.0f} / {s[4]:.0f} | {m[1]:.0f} / {m[2]:.0f} / {m[3]:.0f} / {m[4]:.0f} | ❔ | ❔ | {r['tine']} |")
+for rid, r in R.items():
+    s, m = macro_reteta(plan, r, "S"), macro_reteta(plan, r, "M")
+    o.append(f"| {rid} | [{r.nume}](#{rid.lower()}) | {r.masa} | {r.timp} | {r5(s[0])} / {r5(m[0])} | {s[1]:.0f} / {s[2]:.0f} / {s[3]:.0f} / {s[4]:.0f} | {m[1]:.0f} / {m[2]:.0f} / {m[3]:.0f} / {m[4]:.0f} | ❔ | ❔ | {r.tine} |")
 o.append("\n🥚 = zi cu ouă · 🐟 = pește · 🏋️ = post-antrenament. Rotunjiri: kcal la 5, macro la 1 g.\n\n---\n")
-sections=[("## 🌅 Mic dejun",["MD1","MD2","MD3","MD4"]),("## 🍎 Gustări",["G1","G2","G3"]),("## 🍲 Feluri principale — farfuria 40/40/20",["P1","P2","P3","P4","P5","P6","P7","P8","P10","P11","P12","P13"])]
-for title,ids in sections:
-    o.append(f"\n{title}\n")
-    if ids[0]=="P1": o.append("Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2×S + 2×M, restul ×4.\n")
-    for id in ids:
-        r=R[id]; s,m=macro(r["S"]),macro(r["M"])
-        o.append(f'<a id="{id.lower()}"></a>\n### {id} · {r["nume"]}\n**{r["masa"].capitalize()} · {r["timp"]} · ține: {r["tine"]}**\n')
-        o.append(comp_table(r)+"\n")
-        o.append(f"**Cum se face:** {r['cum']}\n")
+for grup, titlu in GRUPE:
+    o.append(f"\n{titlu}\n")
+    if grup == "Feluri principale":
+        o.append("Cantitățile sunt **pe o porție**. Pentru oala de 4: proteina și amidonul = 2×S + 2×M, restul ×4.\n")
+    for rid, r in R.items():
+        if r.grup != grup:
+            continue
+        s, m = macro_reteta(plan, r, "S"), macro_reteta(plan, r, "M")
+        o.append(f'<a id="{rid.lower()}"></a>\n### {rid} · {r.nume}\n**{r.masa.capitalize()} · {r.timp} · ține: {r.tine}**\n')
+        o.append(comp_table(r) + "\n")
+        o.append(f"**Cum se face:** {r.cum}\n")
         o.append(f"| Pe porție | kcal | P | G | C | Fibre |\n|---|--:|--:|--:|--:|--:|\n| **S** | {m5(s)} |\n| **M** | {m5(m)} |\n")
-        if r["var"]: o.append(f"**Variante:** {r['var']}\n")
+        if r.varianta:
+            o.append(f"**Variante:** {r.varianta}\n")
         o.append("")
 o.append("\n---\n\n## De testat\nToate rețetele de mai sus sunt propuse, **nu încă gătite**. După fiecare, verdictul se scrie în preferințele fiecăruia și în coloanele din cuprins.\n\n## Scoase din rotație\n*(Ce n-a mers și de ce — ca să nu le repropun.)*\n")
 W("comun/2_retete.md", "\n".join(o))
 
+
 # ================= 3. MENIURI =================
-def plate(r, size):
-    parts=[]
-    for label,items in r["comp"]:
-        col = 1 if size=="S" else 2
-        xs=[qty(k,it[col]) for k,*_ in [(i[0],) for i in items] for it in [next(j for j in items if j[0]==k)] if it[col]>0]
-        if xs: parts.append(" + ".join(xs))
-    return f"**{r['scurt']}** — "+" · ".join(parts)
-def menu(who, size, pron, tgt, extra):
-    T=totals(size); avg=[sum(x[i] for x in T)/14 for i in range(5)]
-    o=[]
-    o.append(f"# 🍳 Meniu pe 2 săptămâni — {who}\n")
-    o.append(f"> Rețetele sunt comune ([`comun/2_retete.md`](../comun/2_retete.md)), calendarul de gătit e comun ([`comun/4_calendar.md`](../comun/4_calendar.md)).\n> Aici: **exact ce și cât** mănâncă {pron}, cu caloriile și macro-urile calculate din [`comun/1_ingrediente.md`](../comun/1_ingrediente.md) (USDA). Țintele: [`2_nutritie.md`](./2_nutritie.md). Ce-i place: [`3_preferinte.md`](./3_preferinte.md).\n")
-    o.append(f"## Porția: **{size}** ({'standard' if size=='S' else 'mare'}) la toate rețetele\n\nȚinte: **{tgt[0]} kcal · P{tgt[1]} / G{tgt[2]} / C{tgt[3]}**. Cantitățile sunt **crude** (carnea, orezul, lintea înainte de gătit). Mesele principale = farfuria 40/40/20: *proteină · legume · amidon · sos*. **Fără lactate cu carne/pește și fără ouă cu carne în aceeași masă** — lactatele sunt la micul dejun și gustări.\n")
-    for w in (0,1):
-        o.append(f"\n## Săptămâna {w+1}\n")
+def plate(r, portie):
+    col = 1 if portie == "S" else 2
+    parts = []
+    for _label, items in r.comp:
+        xs = [qty(plan.ingrediente[it[0]], it[col]) for it in items if it[col] > 0]
+        if xs:
+            parts.append(" + ".join(xs))
+    return f"**{r.scurt}** — " + " · ".join(parts)
+
+
+def menu(p):
+    T = totals(plan, p.portie)
+    avg = medie(T)
+    tgt = p.tinta
+    o = []
+    o.append(f"# 🍳 Meniu pe 2 săptămâni — {p.nume}\n")
+    o.append(f"> Rețetele sunt comune ([`comun/2_retete.md`](../comun/2_retete.md)), calendarul de gătit e comun ([`comun/4_calendar.md`](../comun/4_calendar.md)).\n> Aici: **exact ce și cât** mănâncă {p.pronume}, cu caloriile și macro-urile calculate din [`comun/1_ingrediente.md`](../comun/1_ingrediente.md) (USDA). Țintele: [`2_nutritie.md`](./2_nutritie.md). Ce-i place: [`3_preferinte.md`](./3_preferinte.md).\n")
+    o.append(f"## Porția: **{p.portie}** ({p.portie_nume}) la toate rețetele\n\nȚinte: **{tgt[0]} kcal · P{tgt[1]} / G{tgt[2]} / C{tgt[3]}**. Cantitățile sunt **crude** (carnea, orezul, lintea înainte de gătit). Mesele principale = farfuria 40/40/20: *proteină · legume · amidon · sos*. **Fără lactate cu carne/pește și fără ouă cu carne în aceeași masă** — lactatele sunt la micul dejun și gustări.\n")
+    for w in SAPT:
+        o.append(f"\n## Săptămâna {w}\n")
         o.append("| Zi | Masa | Ce și cât | kcal | P | G | C | Fibre |\n|---|---|---|--:|--:|--:|--:|--:|")
-        for d,t in zip(PLAN[w*7:w*7+7],T[w*7:w*7+7]):
-            zi=f"**{d[0]}** {d[1]}".strip()
-            for lbl,id in zip(("Mic dejun","Prânz","Gustare","Cină"),d[2:]):
-                mm=macro(R[id][size])
-                o.append(f"| {zi} | {lbl} | {plate(R[id],size)} | {r5(mm[0])} | {mm[1]:.0f} | {mm[2]:.0f} | {mm[3]:.0f} | {mm[4]:.0f} |")
-                zi=""
+        for zi in zile_din(plan, w):
+            t = T[zi.id]
+            eticheta = f"**{zi.nume}** {zi.semne}".strip()
+            for tip, _icon, rid in zi.mese:
+                mm = macro_reteta(plan, R[rid], p.portie)
+                o.append(f"| {eticheta} | {tip} | {plate(R[rid], p.portie)} | {r5(mm[0])} | {mm[1]:.0f} | {mm[2]:.0f} | {mm[3]:.0f} | {mm[4]:.0f} |")
+                eticheta = ""
             o.append(f"| | **Total zi** | | **{r5(t[0])}** | **{t[1]:.0f}** | **{t[2]:.0f}** | **{t[3]:.0f}** | **{t[4]:.0f}** |")
-        p=plants(w); o.append(f"\n*Plante diferite în săptămâna {w+1}: **{len(p)}** (țintă American Gut Project ≥30).*\n")
-    o.append(f"\n## Bilanț pe 14 zile\n\n| | Țintă | Media planului | |\n|---|--:|--:|---|\n| Calorii | {tgt[0]} | **{r5(avg[0])}** | {'✅' if abs(avg[0]-tgt[0])<=110 else '⚠️'} ({avg[0]-tgt[0]:+.0f}) |\n| Proteine | {tgt[1]} g | **{avg[1]:.0f} g** | {'✅' if avg[1]>=tgt[1] else '⚠️'} |\n| Grăsimi | {tgt[2]} g | **{avg[2]:.0f} g** | {'✅' if abs(avg[2]-tgt[2])<=8 else '⚠️'} |\n| Carbohidrați | {tgt[3]} g | **{avg[3]:.0f} g** | {'✅' if abs(avg[3]-tgt[3])<=20 else '⚠️'} |\n| Fibre | {'25–30' if size=='S' else '30–38'} g | **{avg[4]:.0f} g** | ✅ peste țintă — apă {'2,5' if size=='S' else '3'} l/zi, 1–2 săpt. adaptare |\n")
+        pl = plants(plan, w)
+        o.append(f"\n*Plante diferite în săptămâna {w}: **{len(pl)}** (țintă American Gut Project ≥30).*\n")
+    o.append(f"\n## Bilanț pe 14 zile\n\n| | Țintă | Media planului | |\n|---|--:|--:|---|\n| Calorii | {tgt[0]} | **{r5(avg[0])}** | {'✅' if abs(avg[0]-tgt[0])<=110 else '⚠️'} ({avg[0]-tgt[0]:+.0f}) |\n| Proteine | {tgt[1]} g | **{avg[1]:.0f} g** | {'✅' if avg[1]>=tgt[1] else '⚠️'} |\n| Grăsimi | {tgt[2]} g | **{avg[2]:.0f} g** | {'✅' if abs(avg[2]-tgt[2])<=8 else '⚠️'} |\n| Carbohidrați | {tgt[3]} g | **{avg[3]:.0f} g** | {'✅' if abs(avg[3]-tgt[3])<=20 else '⚠️'} |\n| Fibre | {p.fibre_tinta} g | **{avg[4]:.0f} g** | ✅ peste țintă — apă {p.apa} l/zi, 1–2 săpt. adaptare |\n")
     return "\n".join(o)
-extra_e = "- Gustarea: în zilele de sală (marți, joi — *de confirmat*) shake-ul post-sală, ~20 min după antrenament; altfel după-amiaza.\n- Regulile de frecvență (pește 2×/săpt., ouă 3 la două zile) sunt bifate în calendar.\n\n## Cum ajustăm\n- **La 2–3 săptămâni** după media cântarului: 0,5–0,7 kg/săpt. = nimic; sub 0,3 → −150 kcal (scoatem pâinea de la gustare și nucile de la ovăz); peste 1 kg/săpt. după prima săptămână → +150 kcal.\n- Proteina iese ~10 g peste țintă — intenționat (sațietate, păstrarea mușchiului); nu e o problemă.\n- **Dacă o rețetă nu-i place:** se notează în `3_preferinte.md` și se înlocuiește în calendar cu una din aceeași categorie.\n"
-extra_a = "- Gustarea: în zilele de sală (marți, joi — *de confirmat*) shake-ul post-sală; altfel după-amiaza.\n- **Ridichi** ⭐: se adaugă la porția lui la gustarea cu brânză de vaci, la salata de sardine, la păstrăv — nu intră în rețeta comună.\n- Diferența față de porția S: +40–50 g carne/pește și +5–20% amidon la felurile principale; +50 g lactate la gustări. Legumele și sosurile sunt identice.\n\n## Cum ajustăm\n- **Zilele fizice de la job** (2/săpt.): dacă slăbește peste 1 kg/săpt. după prima săptămână sau e flămând în acele zile → **+200 kcal** doar atunci (o felie de pâine în plus la prânz + un fruct).\n- **La 2–3 săptămâni** ne uităm la media cântarului **și la talie**: dacă talia scade și cântarul stă, e recompoziție — nu tăiem calorii.\n- **Post-sală:** shake-ul e obligatoriu în zilele de antrenament.\n- **Dacă o rețetă nu-i place:** se notează în `3_preferinte.md` și se înlocuiește în calendar cu una din aceeași categorie.\n"
-W("ema/4_meniu.md", menu("Ema","S","ea",TARGET["S"],extra_e))
-W("adi/4_meniu.md", menu("Adi","M","el",TARGET["M"],extra_a))
+
+
+for p in plan.persoane:
+    W(f"{p.cheie}/4_meniu.md", menu(p))
+
 
 # ================= 3b. MENIU VIZUAL (rețetele săptămânii, o zi sub alta) =================
-def menu_zilnic(who, size):
-    MEALS = ("🌅 Mic dejun","🍲 Prânz","🍎 Gustare","🌙 Cină")
-    o=[]
-    o.append(f"# 📋 Meniu zilnic — {who} (vizualizare rapidă)\n")
+def menu_zilnic(p):
+    col = 1 if p.portie == "S" else 2
+    T = totals(plan, p.portie)
+    o = []
+    o.append(f"# 📋 Meniu zilnic — {p.nume} (vizualizare rapidă)\n")
     o.append(f"> Doar de citit rapid: o zi sub alta, rețetele mesei una sub alta. Sub numele fiecărui fel: **totalul mesei** (kcal, P/G/C/Fibre — identic cu `4_meniu.md`). Dedesubt, un ingredient pe rând (**un singur rând pe ingredient**, niciodată mai multe înghesuite laolaltă), cu **P/G/C/Fibre** și **kcal** pe coloane separate.\n> Sursa de adevăr (porții exacte) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.\n")
-    col = 1 if size=="S" else 2
-    T = totals(size)
-    for w in (0,1):
-        o.append(f"\n## Săptămâna {w+1}\n")
-        for d,t in zip(PLAN[w*7:w*7+7], T[w*7:w*7+7]):
-            zi_lbl = f"{d[0]} {d[1]}".strip()
-            o.append(f"## {zi_lbl}\n")
-            for lbl,id in zip(MEALS,d[2:]):
-                r=R[id]
-                mm=macro(r[size])
-                o.append(f"**{lbl} — {r['nume']}**\n")
+    for w in SAPT:
+        o.append(f"\n## Săptămâna {w}\n")
+        for zi in zile_din(plan, w):
+            t = T[zi.id]
+            o.append(f"## {f'{zi.nume} {zi.semne}'.strip()}\n")
+            for tip, icon, rid in zi.mese:
+                r = R[rid]
+                mm = macro_reteta(plan, r, p.portie)
+                o.append(f"**{icon} {tip} — {r.nume}**\n")
                 o.append(f"**Total masă — {r5(mm[0])} kcal** (P:{mm[1]:.0f}g, G:{mm[2]:.0f}g, C:{mm[3]:.0f}g, Fibre:{mm[4]:.0f}g)\n")
                 o.append("| Ingredient | P/G/C/Fibre | kcal |\n|:---|:---|:---|")
-                for label,items in r["comp"]:
+                for _label, items in r.comp:
                     for it in items:
-                        k,g = it[0],it[col]
-                        if g>0:
-                            kcal,p,gr,c,f = [v*g/100 for v in DB[k]]
-                            o.append(f"| {qty(k,g)} | {p:.1f}/{gr:.1f}/{c:.1f}/{f:.1f} | {kcal:.0f} |")
+                        ing, g = plan.ingrediente[it[0]], it[col]
+                        if g > 0:
+                            kcal, pr, gr, cb, fi = [v * g / 100 for v in ing.valori]
+                            o.append(f"| {qty(ing, g)} | {pr:.1f}/{gr:.1f}/{cb:.1f}/{fi:.1f} | {kcal:.0f} |")
                 o.append("")
             o.append(f"**Total zi — {r5(t[0])} kcal** (P:{t[1]:.0f}g, G:{t[2]:.0f}g, C:{t[3]:.0f}g, Fibre:{t[4]:.0f}g)\n")
     return "\n".join(o)
-W("ema/4b_meniu_zilnic.md", menu_zilnic("Ema","S"))
-W("adi/4b_meniu_zilnic.md", menu_zilnic("Adi","M"))
+
+
+for p in plan.persoane:
+    W(f"{p.cheie}/4b_meniu_zilnic.md", menu_zilnic(p))
 
 
 # ================= 4. CALENDAR =================
-COOK = {  # ce se gătește în seara respectivă, pe lângă cina ×4
- (0,0):"+ borcane de ovăz peste noapte pt. marți",(0,4):"+ borcane de ovăz pt. sâmbătă",(0,6):"+ cumpărături pt. săpt. 2",
- (1,1):"+ borcane de ovăz pt. miercuri",(1,5):"+ borcane de ovăz pt. duminică",(1,6):"+ **Chili de linte cu pui ×8** pentru ciclul următor",
-}
-FRESH = {"P3","P13"}; FREEZER = {"P5"}
 def cal_rows(w):
-    rows=[]
-    for i,d in enumerate(PLAN[w*7:w*7+7]):
-        zi,em,md,pr,gu,ci = d
-        cina=R[ci]["scurt"]; pranz=R[pr]["scurt"]
-        if i>0 or w>0:
-            prev = PLAN[w*7+i-1][5] if (w*7+i)>0 else None
-            if prev==pr: pranz += " (rest)"
-        elif pr=="P5": pranz += " (rest)"
-        if pr=="P4": pranz += " 🐟"
-        if ci in FRESH: cina += " 🐟"
-        if w==1 and i==3 and ci=="P5":
-            gat = "nimic — se scoate chili-ul din congelator dimineața"
+    rows = []
+    for zi in zile_din(plan, w):
+        md, pr, gu, ci = zi.retete
+        cina, pranz = R[ci].scurt, R[pr].scurt
+        # prânzul de azi = cina de ieri, reîncălzită
+        if zi.id > 0:
+            if plan.zile[zi.id - 1].retete[3] == pr:
+                pranz += " (rest)"
+        elif R[pr].congelator:      # prima zi: felul scos din congelator, gătit înainte de start
+            pranz += " (rest)"
+        if R[pr].semn:
+            pranz += " " + R[pr].semn
+        if R[ci].semn:
+            cina += " " + R[ci].semn
+        if zi.gatit_override:
+            gat = zi.gatit_override
         else:
-            n = "×2" if ci in FRESH else "×4"
-            gat = f"**{R[ci]['scurt']} {n}**" + (" (proaspăt)" if ci in FRESH else "")
-            if ci in FRESH: gat += " + salata de ton asamblată pt. mâine"
-            if ci=="P2": gat += " (60 min la foc mic — se pune la fiert și se face altceva)"
-        gat += " " + COOK.get((w,i),"")
-        rows.append(f"| **{zi[:3]}** {em} | {R[md]['scurt']} | {pranz} | {R[gu]['scurt']} | {cina} | {gat.strip()} |")
+            gat = f"**{R[ci].scurt} {'×2' if R[ci].proaspat else '×4'}**" + (" (proaspăt)" if R[ci].proaspat else "")
+            if R[ci].nota_gatit:
+                gat += " " + R[ci].nota_gatit
+        gat += " " + (zi.nota_gatit or "")
+        rows.append(f"| **{zi.nume[:3]}** {zi.semne} | {R[md].scurt} | {pranz} | {R[gu].scurt} | {cina} | {gat.strip()} |")
     return "\n".join(rows)
-o=[]
+
+
+def reds(w):
+    return " + ".join(R[z.retete[3]].carne_rosie for z in zile_din(plan, w) if R[z.retete[3]].carne_rosie)
+
+
+def fish(w):
+    zile = zile_din(plan, w)
+    return " + ".join([R[z.retete[3]].peste for z in zile if R[z.retete[3]].peste] +
+                      [R[z.retete[1]].peste for z in zile if R[z.retete[1]].peste])
+
+
+o = []
 o.append("# 📅 Calendarul comun — 2 săptămâni\n")
-o.append("> Ce rețetă în ce zi și **când se gătește**, pentru amândoi. Rețetele: [`2_retete.md`](./2_retete.md).\n> Porțiile fiecăruia (S sau M), cantitățile exacte și totalurile zilnice sunt în `ema/4_meniu.md` și `adi/4_meniu.md`.\n> De aici iese lista din [`3_cumparaturi.md`](./3_cumparaturi.md). Generat din `date/retete.py`.\n")
+o.append("> Ce rețetă în ce zi și **când se gătește**, pentru amândoi. Rețetele: [`2_retete.md`](./2_retete.md).\n> Porțiile fiecăruia (S sau M), cantitățile exacte și totalurile zilnice sunt în `ema/4_meniu.md` și `adi/4_meniu.md`.\n> De aici iese lista din [`3_cumparaturi.md`](./3_cumparaturi.md). Generat din `date/plan.db`.\n")
 o.append("## Cum e gândit\n")
 o.append("- **Se mănâncă la fel, la toate mesele.** Diferă doar mărimea porției (S / M) — carnea și amidonul. Legumele, sosul, condimentele: identice.\n- **Cina de azi = prânzul de mâine.** Fiecare fel principal se gătește o dată, ×4 porții (2 S + 2 M). Se gătește doar seara, 25–45 min activ.\n- **Fiecare fel principal = farfuria 40/40/20**: proteină · legume (min. 3 feluri, la tavă / piure / salată) · amidon + un sos. **Fără lactate cu carne/pește, fără ouă cu carne** în aceeași masă.\n- **Carnea:** pui, porc (mușchi, cotlet), vită — max. 2 feluri de carne roșie pe săptămână. **Peștele:** doradă, păstrăv, chefal la cuptor (marți, proaspăt) + ton la salată (miercuri). Somon mai rar, ca variantă.\n- **Ouă: o zi da, o zi nu** — 3 ouă de persoană în ziua cu ouă (🥚), lactate în cealaltă.\n- **Micul dejun fără ouă se pregătește seara** (borcanele de ovăz) sau în 5 min (bolul de iaurt).\n- **Sală: marți și joi** *(presupus — de confirmat)* → gustarea e shake-ul post-sală. În celelalte zile skyr cu măr / brânză de vaci cu pâine la ~16:00.\n- **Diversitate (American Gut Project):** ~40 de plante diferite pe săptămână (țintă ≥30).\n- **Ciclul se repetă** după 2 săptămâni. Ce nu place se scoate din rotație și se înlocuiește.\n")
-HDR="| Zi | Mic dejun | Prânz | Gustare | Cină | Ce se gătește seara |\n|----|-----------|-------|---------|------|---------------------|"
-o.append("## Săptămâna 1\n\n"+HDR+"\n| **Dum 0** | — | — | — | Chili de linte cu pui | **Chili de linte cu pui ×8** (4 la congelator pt. săpt. 2) |\n"+cal_rows(0)+"\n")
-o.append("## Săptămâna 2\n\n"+HDR+"\n"+cal_rows(1)+"\n")
-def reds(w):
-    names={"P2":"vită","P7":"porc","P11":"porc","P12":"vită"}
-    return " + ".join(names[d[5]] for d in PLAN[w*7:w*7+7] if d[5] in names)
-def fish(w):
-    names={"P3":"doradă","P13":"păstrăv"}
-    return " + ".join([names[d[5]] for d in PLAN[w*7:w*7+7] if d[5] in names]+["ton"])
+HDR = "| Zi | Mic dejun | Prânz | Gustare | Cină | Ce se gătește seara |\n|----|-----------|-------|---------|------|---------------------|"
+o.append("## Săptămâna 1\n\n" + HDR + "\n| **Dum 0** | — | — | — | Chili de linte cu pui | **Chili de linte cu pui ×8** (4 la congelator pt. săpt. 2) |\n" + cal_rows(1) + "\n")
+o.append("## Săptămâna 2\n\n" + HDR + "\n" + cal_rows(2) + "\n")
 o.append("## Verificare pe săptămână\n\n| Regulă | Săpt. 1 | Săpt. 2 |\n|---|:-:|:-:|")
-o.append(f"| Pește 2× (cuptor + salată) | {fish(0)} ✅ | {fish(1)} ✅ |")
+o.append(f"| Pește 2× (cuptor + salată) | {fish(1)} ✅ | {fish(2)} ✅ |")
 o.append("| Ouă alternate, 3/zi cu ouă | Lun, Mie, Vin, Dum ✅ | Mar, Joi, Sâm ✅ |")
 o.append("| Lactate zilnic (skyr / iaurt / brânză de vaci) — doar la mic dejun și gustări | ✅ | ✅ |")
 o.append("| Fără lactate cu carne/pește, fără ouă cu carne | ✅ | ✅ |")
-o.append(f"| Carne roșie: max 2 feluri/săpt. | {reds(0)} ✅ | {reds(1)} ✅ |")
+o.append(f"| Carne roșie: max 2 feluri/săpt. | {reds(1)} ✅ | {reds(2)} ✅ |")
 o.append("| Legume: min. 3 feluri pe farfurie, grupe rotite | ✅ | ✅ |")
-o.append(f"| Plante diferite (AGP ≥30) | {len(plants(0))} ✅ | {len(plants(1))} ✅ |\n")
+o.append(f"| Plante diferite (AGP ≥30) | {len(plants(plan, 1))} ✅ | {len(plants(plan, 2))} ✅ |\n")
 o.append("## Organizare bucătărie\n\n- **Cutii:** 8 cutii de 1 L cu capac (4 pentru prânzurile de a doua zi, 4 pentru congelator). Se marchează S / M pe capac.\n- **Congelator:** chili-ul și tocănița de vită se congelează perfect. Se scot dimineața, se reîncălzesc seara.\n- **Staples de ținut în casă mereu:** ovăz, orez basmati, orez brun, paste integrale, quinoa, hrișcă, linte, năut conservă, ton conservă, roșii pasate, mălai, ulei de măsline, tahini, muștar, chia, in, nuci/migdale/caju, semințe de dovleac, condimente (boia afumată, chimion, curry, oregano, turmeric, cimbru), fructe de pădure congelate, fasole verde congelată, spanac congelat.\n- **Proaspăt, de 2× pe săptămână:** carne/pește, lactate, legume, fructe, pâine.\n- **Cântar de bucătărie** — obligatoriu primele 2 săptămâni, până se învață porțiile din ochi.\n")
 W("comun/4_calendar.md", "\n".join(o))
 
+
 # ================= 5. SITE (_site/data.js) =================
-# Site-ul (index.html + _site/) citește 4b_meniu_zilnic.md. Deschis direct din fișier (file://) nu poate
-# face fetch, așa că primește aici o copie a celor două fișiere. Se scrie la FIECARE rulare —
-# meniul și site-ul nu pot rămâne desincronizate (regulă în CLAUDE.md §3).
-# Tot aici pleacă spre site și cele două pagini de referință: rețetele (cu cantități S/M) și
-# lista de alimente pe categorii. Site-ul n-are conținut propriu — totul vine de aici.
-import json
-_md = {w: io.open(ROOT+f"{w}/4b_meniu_zilnic.md", encoding="utf-8").read() for w in ("ema","adi")}
+# Site-ul (index.html + _site/) nu are conținut propriu: tot ce arată vine de aici, adică
+# din plan.db. Înainte citea meniurile din fișierele .md și le spărgea cu regex-uri; acum
+# primește direct structura, aceeași pe care o desenează (zile → mese → ingrediente).
+# Fișierul se scrie la FIECARE rulare — meniul și site-ul nu pot rămâne desincronizate
+# (regulă în CLAUDE.md §3).
 
-def cant(k, g):
-    """Doar cantitatea, fără numele alimentului (numele stă în coloana lui)."""
-    if g <= 0: return ""
-    if k in PIECE:
-        w,_pl,_sg = PIECE[k]; n = g/w
-        if round(n*2,6)%1 == 0:
-            return f"{f'{n:g}'.replace('.5','½')} buc."
-    if k in ("lapte","cocos_light","soia","lamaie"): return f"{g:g} ml"
-    return f"{g:g} g"
+def meniu_site(p):
+    col = 1 if p.portie == "S" else 2
+    T = totals(plan, p.portie)
+    sapt = []
+    for w in SAPT:
+        zile = []
+        for zi in zile_din(plan, w):
+            t = T[zi.id]
+            mese = []
+            for tip, icon, rid in zi.mese:
+                r = R[rid]
+                mm = macro_reteta(plan, r, p.portie)
+                ing = []
+                for _label, items in r.comp:
+                    for it in items:
+                        al, g = plan.ingrediente[it[0]], it[col]
+                        if g <= 0:
+                            continue
+                        kcal, pr, gr, cb, fi = [v * g / 100 for v in al.valori]
+                        q, u, nume = parte_qty(al, g)
+                        ing.append({"qty": q, "unit": u, "name": nume, "p": r1(pr), "g": r1(gr),
+                                    "c": r1(cb), "f": r1(fi), "k": r0(kcal)})
+                mese.append({"icon": icon, "type": tip, "name": r.nume,
+                             "total": {"k": r5(mm[0]), "p": r0(mm[1]), "g": r0(mm[2]),
+                                       "c": r0(mm[3]), "f": r0(mm[4])},
+                             "ing": ing})
+            zile.append({"name": zi.nume, "tags": zi.semne,
+                         "total": {"k": r5(t[0]), "p": r0(t[1]), "g": r0(t[2]),
+                                   "c": r0(t[3]), "f": r0(t[4])},
+                         "meals": mese})
+        sapt.append({"n": w, "days": zile})
+    return sapt
 
-def nume_ing(k):
-    return (SHORT[k].capitalize() if k in SHORT else NAME[k].split(",")[0])
 
-GRUP = {"MD":"Mic dejun", "G":"Gustări", "P":"Feluri principale"}
-def grup(id):
-    return GRUP["MD"] if id.startswith("MD") else GRUP["G"] if id.startswith("G") else GRUP["P"]
+_meniu = {p.cheie: meniu_site(p) for p in plan.persoane}
+
+# în ce zile apare fiecare rețetă (Lu…Du, săpt. 1 / 2) — reper pe pagina de rețete
+_zile = {}
+for zi in plan.zile:
+    for rid in zi.retete:
+        _zile.setdefault(rid, []).append(f"{zi.nume_scurt}{zi.saptamana}")
 
 _retete = []
-for id, r in R.items():
-    s_,m_ = macro(r["S"]), macro(r["M"])
+for rid, r in R.items():
+    s_, m_ = macro_reteta(plan, r, "S"), macro_reteta(plan, r, "M")
     _retete.append({
-        "id": id, "nume": r["nume"], "scurt": r["scurt"], "grup": grup(id),
-        "masa": r["masa"], "timp": r["timp"], "tine": r["tine"],
+        "id": rid, "nume": r.nume, "scurt": r.scurt, "grup": r.grup,
+        "masa": r.masa, "timp": r.timp, "tine": r.tine,
         "kcal": {"s": r5(s_[0]), "m": r5(m_[0])},
         "comp": [{"eticheta": lbl.strip(),
-                  "items": [{"nume": nume_ing(k), "s": cant(k,gs), "m": cant(k,gm)}
-                            for k,gs,gm in items if gs > 0 or gm > 0]}
-                 for lbl, items in r["comp"]],
+                  "items": [{"nume": nume_ing(plan.ingrediente[k]),
+                             "s": cant(plan.ingrediente[k], gs), "m": cant(plan.ingrediente[k], gm)}
+                            for k, gs, gm in items if gs > 0 or gm > 0]}
+                 for lbl, items in r.comp],
+        "zile": _zile.get(rid, []),
     })
-
-# în ce zile apare fiecare rețetă (Lu…Du, săpt. 1 / 2) — util ca reper pe pagina de rețete
-_zile = {}
-for wi in (0,1):
-    for d in PLAN[wi*7:wi*7+7]:
-        for id in d[2:]:
-            _zile.setdefault(id, []).append(f"{SHORT_ZI[d[0]]}{wi+1}")
-for r in _retete:
-    r["zile"] = _zile.get(r["id"], [])
 
 # alimentele folosite efectiv în plan — marcate pe pagina de alimente
-_in_plan = {k for r in R.values() for k,_ in r["S"]} | {k for r in R.values() for k,_ in r["M"]}
-_alimente = []
-for c in cats:
-    _alimente.append({
-        "cat": c, "icon": ICON[c], "rol": ROL[c],
-        "items": [{"nume": n, "kcal": kcal, "p": p, "g": g, "c": cb, "f": f, "plan": k in _in_plan}
-                  for k,n,cc,kcal,p,g,cb,f,src,note in ING if cc == c],
-    })
+_in_plan = {k for r in R.values() for portie in ("S", "M") for k, _g in r.ingrediente(portie)}
+_alimente = [{
+    "cat": cat.nume, "icon": cat.icon, "rol": cat.rol,
+    "items": [{"nume": i.nume, "kcal": numar(i.kcal), "p": numar(i.proteine), "g": numar(i.grasimi),
+               "c": numar(i.carbo), "f": numar(i.fibre), "plan": i.cheie in _in_plan}
+              for i in cat.ingrediente],
+} for cat in plan.categorii]
 
 W("_site/data.js",
-  "// generat de date/genereaza.py — nu se editează manual\n"
-  "window.MENU_MD = " + json.dumps(_md, ensure_ascii=False) + ";\n"
+  "// generat de date/genereaza.py din date/plan.db — nu se editează manual\n"
+  "window.MENIU = " + json.dumps(_meniu, ensure_ascii=False) + ";\n"
   "window.RETETE = " + json.dumps(_retete, ensure_ascii=False) + ";\n"
   "window.ALIMENTE = " + json.dumps(_alimente, ensure_ascii=False) + ";\n")
 
+# ================= 6. DUMP-UL BAZEI (pentru git) =================
+db.scrie_dump()
+
 print("OK")
-for size in ("S","M"):
-    T=totals(size); avg=[sum(x[i] for x in T)/14 for i in range(5)]
-    print(size, [round(a) for a in avg])
+for p in plan.persoane:
+    print(p.portie, [round(a) for a in medie(totals(plan, p.portie))])
