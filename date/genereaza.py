@@ -324,6 +324,8 @@ for rid, r in R.items():
         "id": rid, "nume": r.nume, "scurt": r.scurt, "grup": r.grup,
         "masa": r.masa, "timp": r.timp, "tine": r.tine,
         "kcal": {"s": r5(s_[0]), "m": r5(m_[0])},
+        "macro": {"s": {"p": r0(s_[1]), "g": r0(s_[2]), "c": r0(s_[3]), "f": r0(s_[4])},
+                  "m": {"p": r0(m_[1]), "g": r0(m_[2]), "c": r0(m_[3]), "f": r0(m_[4])}},
         "comp": [{"eticheta": lbl.strip(),
                   "items": [{"nume": nume_ing(plan.ingrediente[k]),
                              "s": cant(plan.ingrediente[k], gs), "m": cant(plan.ingrediente[k], gm),
