@@ -1,51 +1,19 @@
-/* Meniul — citește ema/4b_meniu_zilnic.md și adi/4b_meniu_zilnic.md și le afișează pe zile.
-   Sursa: fetch din repo (când site-ul e servit prin http), altfel _site/data.js (copie generată de date/genereaza.py). */
+/* Meniul, rețetele și alimentele vin din _site/data.js, scris de date/genereaza.py direct din
+   date/plan.db (baza de date a aplicației, sursa unică de adevăr). Site-ul n-are date proprii
+   și nu mai citește fișierele .md: el desenează exact structura primită. */
 (function () {
   "use strict";
 
   const SHORT = { Luni: "Lu", Marți: "Ma", Miercuri: "Mi", Joi: "Jo", Vineri: "Vi", Sâmbătă: "Sâ", Duminică: "Du" };
   const PEOPLE = { ema: "Ema", adi: "Adi" };
 
-  // ---------- parsare markdown 4b ----------
-  const RX = {
-    week: /^## Săptămâna (\d+)/,
-    day: /^## (Luni|Marți|Miercuri|Joi|Vineri|Sâmbătă|Duminică)\s*(.*)$/,
-    meal: /^\*\*(\S+) (Mic dejun|Prânz|Gustare|Cină) — (.+?)\*\*$/,
-    mealTotal: /^\*\*Total masă — (\d+) kcal\*\* \(P:(\d+)g, G:(\d+)g, C:(\d+)g, Fibre:(\d+)g\)/,
-    dayTotal: /^\*\*Total zi — (\d+) kcal\*\* \(P:(\d+)g, G:(\d+)g, C:(\d+)g, Fibre:(\d+)g\)/,
-    ing: /^\| (.+?) \| ([\d.]+)\/([\d.]+)\/([\d.]+)\/([\d.]+) \| (\d+) \|$/,
-    qty: /^(\d+(?:[.,]\d+)?\s*(?:g|ml|buc\.?)?)\s+(.+)$/
-  };
-  const tot = (m) => ({ k: +m[1], p: +m[2], g: +m[3], c: +m[4], f: +m[5] });
-
-  function parse(md) {
-    const weeks = [];
-    let week = null, day = null, meal = null;
-    for (const raw of md.split("\n")) {
-      const line = raw.trim();
-      let m;
-      if ((m = RX.week.exec(line))) { week = { n: +m[1], days: [] }; weeks.push(week); continue; }
-      if ((m = RX.day.exec(line))) { day = { name: m[1], tags: m[2].trim(), meals: [], total: null }; week.days.push(day); meal = null; continue; }
-      if ((m = RX.meal.exec(line))) { meal = { icon: m[1], type: m[2], name: m[3], total: null, ing: [] }; day.meals.push(meal); continue; }
-      if ((m = RX.mealTotal.exec(line))) { meal.total = tot(m); continue; }
-      if ((m = RX.dayTotal.exec(line))) { day.total = tot(m); continue; }
-      if ((m = RX.ing.exec(line)) && meal) {
-        const q = RX.qty.exec(m[1]);
-        const qu = /^([\d.,½]+)\s*(g|ml)?$/.exec(q ? q[1] : "") || [];
-        meal.ing.push({ qty: qu[1] || "", unit: qu[2] || "", name: q ? q[2] : m[1], p: +m[2], g: +m[3], c: +m[4], f: +m[5], k: +m[6] });
-      }
-    }
-    weeks.forEach((w) => w.days.forEach((d) => d.meals.sort((a, b) => (ORDER[a.type] ?? 9) - (ORDER[b.type] ?? 9))));
-    return weeks;
-  }
-
   // ---------- încărcare ----------
-  async function loadMd(who) {
-    try {
-      const r = await fetch(`${who}/4b_meniu_zilnic.md`, { cache: "no-cache" });
-      if (r.ok) { const t = await r.text(); if (/^## Săptămâna/m.test(t)) return t; }
-    } catch (_) { /* file:// sau offline → cădem pe data.js */ }
-    return (window.MENU_MD && window.MENU_MD[who]) || "";
+  // window.MENIU[cine] = [{ n, days:[{ name, tags, total, meals:[{ icon, type, name, total, ing }] }] }]
+  // Totul e gata calculat în Python; aici doar așezăm mesele în ordinea de pe card.
+  function incarca(who) {
+    const sapt = (window.MENIU && window.MENIU[who]) || [];
+    sapt.forEach((w) => w.days.forEach((d) => d.meals.sort((a, b) => (ORDER[a.type] ?? 9) - (ORDER[b.type] ?? 9))));
+    return sapt;
   }
 
   // ---------- stare ----------
@@ -396,12 +364,11 @@
   }
 
   // ---------- start ----------
-  (async function init() {
+  (function init() {
     readHash();
     syncControls();
     document.body.className = bodyClass();
-    const [ema, adi] = await Promise.all([loadMd("ema"), loadMd("adi")]);
-    data.ema = parse(ema); data.adi = parse(adi);
+    data.ema = incarca("ema"); data.adi = incarca("adi");
     if (!data.ema.length || !data.adi.length) {
       $("#days").innerHTML = `<p class="loading">Nu am putut citi meniurile. Rulează <code>python date/genereaza.py</code> ca să regenerezi <code>_site/data.js</code>.</p>`;
       bind(); applyPage();   // Rețete și Alimente merg oricum — ele nu depind de meniuri

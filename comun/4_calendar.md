@@ -2,7 +2,7 @@
 
 > Ce rețetă în ce zi și **când se gătește**, pentru amândoi. Rețetele: [`2_retete.md`](./2_retete.md).
 > Porțiile fiecăruia (S sau M), cantitățile exacte și totalurile zilnice sunt în `ema/4_meniu.md` și `adi/4_meniu.md`.
-> De aici iese lista din [`3_cumparaturi.md`](./3_cumparaturi.md). Generat din `date/retete.py`.
+> De aici iese lista din [`3_cumparaturi.md`](./3_cumparaturi.md). Generat din `date/plan.db`.
 
 ## Cum e gândit
 
