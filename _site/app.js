@@ -305,6 +305,7 @@
         <span class="rm">${esc(r.timp)}${zile ? ` · ${esc(zile)}` : ""}</span>
       </button>
       <div class="rb">
+        ${macroRow(r)}
         <ul class="ring">
           <li class="hd"><span class="n"></span><span class="s">S</span><span class="m">M</span></li>
           ${linii}
@@ -313,6 +314,12 @@
         <div class="rfoot"><button class="mini" type="button">Minimizează rețeta</button></div>
       </div>
     </li>`;
+  }
+  // rândul cu macronutrienți, la rețeta deschisă: câte P/G/C/Fibre la porția S și la porția M
+  function macroRow(r) {
+    if (!r.macro) return "";
+    const parte = (cls, litera, m) => `<span class="${cls}">${litera} <b>P</b>&nbsp;${g(m.p)} · <b>G</b>&nbsp;${g(m.g)} · <b>C</b>&nbsp;${g(m.c)} · <b>Fibre</b>&nbsp;${g(m.f)}</span>`;
+    return `<p class="rmac">${parte("s", "S", r.macro.s)}${parte("m", "M", r.macro.m)}</p>`;
   }
   // modul de preparare, sub ingrediente: pașii numerotați, apoi nota de bucătar / nutriționist
   function prepHtml(r) {
@@ -482,8 +489,18 @@
         return;
       }
       const btn = e.target.closest(".rh"); if (!btn) return;
-      const open = btn.closest(".rec").classList.toggle("open");
+      const rec = btn.closest(".rec");
+      const open = !rec.classList.contains("open");
+      // o singură rețetă maximizată deodată: pe celelalte deschise le micșorează
+      document.querySelectorAll("#pane-retete .rec.open").forEach((el) => {
+        if (el === rec) return;
+        el.classList.remove("open");
+        el.querySelector(".rh").setAttribute("aria-expanded", "false");
+      });
+      rec.classList.toggle("open", open);
       btn.setAttribute("aria-expanded", String(open));
+      // la maximizare, urcă titlul cât mai sus (sau cât încape, dacă pagina e prea scurtă)
+      if (open) rec.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
     });
     $("#pane-alimente").addEventListener("click", (e) => {
       const pane = $("#pane-alimente");

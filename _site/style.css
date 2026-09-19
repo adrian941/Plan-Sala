@@ -272,6 +272,12 @@ body.pg-retete .chips,      body.pg-alimente .chips { display: none; }
 .rm { grid-column: 1 / -1; font-size: 11px; color: var(--mute); }
 .rb { display: none; padding: 0 13px 13px; }
 .rec.open .rb { display: block; }
+/* rândul cu macronutrienți, la rețeta maximizată: porția S (Ema) și porția M (Adi) */
+.rmac { margin: 0 0 10px; font-size: 11.5px; color: var(--mute); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.rmac b { font-weight: 700; color: var(--ink); }
+.rmac .s { color: var(--ema-ink); }
+.rmac .m { color: var(--adi-ink); }
+.rmac .s b, .rmac .m b { color: inherit; }
 /* ingredientele: nume + cantitatea la S și la M. Atât — fără calorii pe ingredient. */
 .ring {
   list-style: none; margin: 0; padding: 0;
