@@ -609,7 +609,16 @@ button, .seg label, .chips button, .title {
      apoi cu `--fit`, ca fiecare pagină să intre întreagă. (Înainte, caietul se revărsa pe 17
      pagini în loc de 13 — două pagini de mese și una de ingrediente curgeau pe o a doua foaie
      aproape goală.) Tot `.pg` e și cel care se rotește 90° când hârtia iese în picioare — vezi
-     blocul „orientation: portrait” de la sfârșitul fișierului. */
+     blocul „orientation: portrait” de la sfârșitul fișierului.
+
+     `.pg` stă în flux normal (`position: static`), NU `absolute` — deși e scos vizual la aceleași
+     dimensiuni oricum, prin `transform-origin: 0 0`. Motivul: Chromium, la export PDF (headless
+     `Page.printToPDF` ȘI „Salvează ca PDF” din dialogul de print — testat 5/5 reproductibil),
+     lasă complet nedesenate anumite pagini quando `.pg` e `position: absolute` într-o foaie
+     landscape — mereu paginile „Detaliat” cu 4 zile (Lu–Jo), niciodată cele cu 3 (Vi–Du); bug
+     confirmat izolat: scoţi `position: absolute`, păstrezi `transform: scale(...)`, dispare complet
+     (testat pe 25 de generări, 0 pagini goale). `overflow: hidden` de pe `.ps` clipează identic
+     conținutul transformat, indiferent de `position` — vizual nu se schimbă nimic. */
   .ps { position: relative; width: 284mm; height: 196mm; overflow: hidden; break-before: page; break-inside: avoid; }
   .ps:first-child { break-before: auto; }
   .pg {
@@ -617,7 +626,7 @@ button, .seg label, .chips button, .title {
        198 disponibili, deci mai rămâne aer și dacă se lungesc numele rețetelor. Se remăsoară
        desenând paginile la lățimea `284mm / --fit` și verificând că niciuna nu trece de 198 mm. */
     --fit: 0.9;
-    position: absolute; top: 0; left: 0;
+    position: static;
     width: calc(284mm / var(--fit));
     min-height: calc(196mm / var(--fit));
     transform-origin: 0 0;
