@@ -29,6 +29,17 @@
   --pad: 3px;   /* rama capsulelor segmentate */
   --font: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 
+  /* Geometria caietului de print. Stă aici, nu în `@media print`, pentru că de ea are nevoie
+     și cutia de măsurat `.rmas`, care lucrează pe ecran (vezi comentariul de la `.rmas`).
+     „Pânza” e foaia desenată mai mare și micșorată apoi cu --fit, ca să intre întreagă. */
+  --fit: 0.9;                /* cât se micșorează pânza; vezi măsurătoarea de la `.pg` */
+  --panza-lat: 284mm;        /* pânza, pe hârtie culcată (A4 landscape, margini de 6 mm) */
+  --panza-inalt: 196mm;
+  --panza-lat-tel: 266mm;    /* pânza, pe hârtie în picioare (telefon) — rotită 90°, deci mai îngustă */
+  --panza-inalt-tel: 197mm;
+  --ret-col: 3;              /* coloane pe pagina de rețete (app.js folosește aceeași valoare) */
+  --ret-gap: 3mm;            /* rostul dintre rețete și dintre coloane */
+
   /* marginile pe care ecranul telefonului le „mănâncă” (crestătură, colțuri, bara de
      jos). În browser pe calculator sunt 0, deci nu schimbă nimic. */
   --sus: env(safe-area-inset-top, 0px);
@@ -622,20 +633,19 @@ button, .seg label, .chips button, .title {
   .ps { position: relative; width: 284mm; height: 196mm; overflow: hidden; break-before: page; break-inside: avoid; }
   .ps:first-child { break-before: auto; }
   .pg {
-    /* Măsurat (cea mai înaltă pagină e „mesele cu macronutrienți”): la 0,9 ajunge la 187 mm din
-       198 disponibili, deci mai rămâne aer și dacă se lungesc numele rețetelor. Se remăsoară
-       desenând paginile la lățimea `284mm / --fit` și verificând că niciuna nu trece de 198 mm. */
-    --fit: 0.9;
+    /* --fit e în `:root`. Măsurat (cea mai înaltă pagină e „mesele cu macronutrienți”): la 0,9
+       ajunge la 187 mm din 198 disponibili, deci mai rămâne aer și dacă se lungesc numele
+       rețetelor. Se remăsoară desenând paginile la lățimea `--panza-lat / --fit` și verificând
+       că niciuna nu trece de 198 mm. */
     position: static;
-    width: calc(284mm / var(--fit));
-    min-height: calc(196mm / var(--fit));
+    width: calc(var(--panza-lat) / var(--fit));
+    min-height: calc(var(--panza-inalt) / var(--fit));
     transform-origin: 0 0;
     transform: scale(var(--fit));
     display: flex; flex-direction: column; justify-content: center;
   }
   .p-blank .pg { min-height: 0; }   /* pagină goală după Ema */
   .p-ing .wk { align-content: center; }
-  .pt { margin: 0 0 2mm; font-size: 11pt; font-weight: 800; letter-spacing: -0.01em; }
   .p-ing .wt { font-size: 11pt; font-weight: 800; color: var(--ink); margin-bottom: 0.5mm; }
 
   .wk {
@@ -664,38 +674,64 @@ button, .seg label, .chips button, .title {
   .ing .k { padding-left: 1.5mm; }
 
   /* ---- paginile de rețete, la sfârșitul caietului ----
-     Fiecare foaie se împarte în 6 căsuțe (3 coloane × 2 rânduri), iar rețetele se împart egal
-     pe foi, ca să nu rămână ultima aproape goală. Într-o căsuță: numele, o singură linie cu
-     kcal / macro-uri / vitamine și, dedesubt, ingredientele (cantitatea adunată Ema + Adi,
-     adică exact cât pui în oală) lângă pașii de preparare. Nimic altceva. */
+     Foaia are 3 coloane, iar fiecare rețetă își ia exact înălțimea ei și stă ÎNTREAGĂ într-o
+     singură coloană — niciodată ruptă între două. Pe o pagină intră câte încap: se umple
+     coloana de sus în jos, când următoarea rețetă nu mai intră întreagă se trece la coloana
+     următoare, iar după a treia coloană se începe o foaie nouă. De aceea paginile au numere
+     diferite de rețete (acum 8 / 6 / 5) — dar nu mai rămâne jumătate de căsuță goală sub
+     rețetele scurte, cum se întâmpla cu grila fixă de 6 căsuțe egale.
+     Împărțirea o face `app.js`, măsurând cardurile (vezi `.rmas` mai jos). */
   .p-ret .pg { justify-content: flex-start; }
-  .rgrid {
-    display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr;
-    gap: 3mm; flex: 1;
+  .rcols {
+    display: grid; grid-template-columns: repeat(var(--ret-col), minmax(0, 1fr));
+    gap: var(--ret-gap); align-items: start; flex: 1;
   }
-  .rp { border: 0.4pt solid #C9C6D4; border-radius: 2mm; padding: 1.8mm 2.2mm; overflow: hidden; break-inside: avoid; }
-  .rp h2 { margin: 0 0 1mm; font-size: 9pt; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
-  .rl {
-    margin: 0 0 1.2mm; padding-bottom: 1mm; border-bottom: 0.3pt solid var(--line-2);
-    font-size: 7pt; line-height: 1.4; color: var(--ink);
-  }
-  .rl b { font-weight: 800; }
-  /* vitaminele: pe aceeași linie, dar în plan secundar */
-  .rl .vt { color: var(--mute-2); }
-  .rl .vt span { margin-left: 1mm; white-space: nowrap; }
-  .rl .vt span:first-child::before { content: "vit. "; }
-  .rl .vt b { font-weight: 700; color: var(--ink); }
-  /* ingredientele la stânga (coloană îngustă), pașii la dreapta — ies două coloane de înălțimi apropiate */
-  .rc { display: grid; grid-template-columns: 29mm 1fr; gap: 2.5mm; align-items: start; }
-  .ri { list-style: none; margin: 0; padding: 0; font-size: 7pt; line-height: 1.3; }
-  .ri li { display: flex; gap: 1mm; }
-  .ri .q { font-weight: 700; color: var(--acc-ink); white-space: nowrap; }
-  .ri .n { min-width: 0; overflow-wrap: break-word; }
-  .rs { margin: 0; padding-left: 3.4mm; font-size: 7pt; line-height: 1.35; }
-  .rs li { margin-bottom: 0.7mm; }
-  .rs li::marker { font-weight: 700; color: var(--acc-ink); }
-  .rnota { margin: 1.5mm 0 0; font-size: 6pt; color: var(--mute); }
+  .rcol { display: flex; flex-direction: column; gap: var(--ret-gap); min-width: 0; }
 }
+
+/* ---------- cardul de rețetă din caietul de print ----------
+   Regulile astea stau ÎN AFARA lui `@media print`, deși se văd doar la printare. Motivul:
+   de ele are nevoie și cutia de măsurat `.rmas`, care lucrează pe ecran — `app.js` desenează
+   acolo cardurile, le măsoară înălțimea reală și abia apoi le împarte pe coloane și pe pagini.
+   Dacă regulile ar sta în `@media print`, pe ecran cardurile ar ieși cu alt corp de literă și
+   măsurătoarea ar fi greșită. Nu se vede nimic din ele în plus: clasele apar doar în `#print`
+   (ascuns pe ecran) și în `.rmas` (scoasă din ecran).
+   Toate mărimile sunt în pt / mm, adică la fel pe ecran și pe hârtie. */
+.rp { border: 0.4pt solid #C9C6D4; border-radius: 2mm; padding: 1.8mm 2.2mm; overflow: hidden; break-inside: avoid; }
+.rp h2 { margin: 0 0 1mm; font-size: 9pt; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+.rl {
+  margin: 0 0 1.2mm; padding-bottom: 1mm; border-bottom: 0.3pt solid var(--line-2);
+  font-size: 7pt; line-height: 1.4; color: var(--ink);
+}
+.rl b { font-weight: 800; }
+/* vitaminele: pe aceeași linie, dar în plan secundar */
+.rl .vt { color: var(--mute-2); }
+.rl .vt span { margin-left: 1mm; white-space: nowrap; }
+.rl .vt span:first-child::before { content: "vit. "; }
+.rl .vt b { font-weight: 700; color: var(--ink); }
+/* ingredientele la stânga (coloană îngustă), pașii la dreapta — ies două coloane de înălțimi apropiate */
+.rc { display: grid; grid-template-columns: 29mm 1fr; gap: 2.5mm; align-items: start; }
+.ri { list-style: none; margin: 0; padding: 0; font-size: 7pt; line-height: 1.3; }
+.ri li { display: flex; gap: 1mm; }
+.ri .q { font-weight: 700; color: var(--acc-ink); white-space: nowrap; }
+.ri .n { min-width: 0; overflow-wrap: break-word; }
+.rs { margin: 0; padding-left: 3.4mm; font-size: 7pt; line-height: 1.35; }
+.rs li { margin-bottom: 0.7mm; }
+.rs li::marker { font-weight: 700; color: var(--acc-ink); }
+.rnota { margin: 1.5mm 0 0; font-size: 6pt; color: var(--mute); }
+.pt { margin: 0 0 2mm; font-size: 11pt; font-weight: 800; letter-spacing: -0.01em; }
+
+/* Cutia de măsurat: trasă în afara ecranului, dar desenată de-adevăratelea (nu `display: none`,
+   altfel n-ar avea înălțime). `app.js` pune în ea toate cardurile, la lățimea unei coloane,
+   le citește înălțimea și apoi o șterge. Lățimea e cea de pe **canvasul îngust** (cel de la
+   telefon, 266 mm — vezi blocul „orientation: portrait”), nu cea de pe hârtia culcată (284 mm):
+   așa împachetarea e sigură pe amândouă. Pe hârtia culcată coloana e mai lată, deci cardurile
+   ies puțin mai scunde decât s-au măsurat — rămâne un pic mai mult aer jos, niciodată prea puțin. */
+.rmas {
+  position: absolute; left: -20000px; top: 0; visibility: hidden; pointer-events: none;
+  width: calc(var(--panza-lat-tel) / var(--fit));
+}
+.rmas .rcol { width: calc((var(--panza-lat-tel) / var(--fit) - (var(--ret-col) - 1) * var(--ret-gap)) / var(--ret-col)); }
 
 /* ---------- PDF pe telefon: A4 întors chiar și când hârtia iese în picioare ----------
    Chrome și Samsung Internet pe Android ignoră `@page { size: A4 landscape }` — foaia
@@ -710,8 +746,8 @@ button, .seg label, .chips button, .title {
   .ps { width: 210mm; height: 279mm; }
   .pg {
     /* aceeași pânză „vedere” (266 × 197 mm, cu 6 mm margine de jur împrejur), doar culcată */
-    width: calc(266mm / var(--fit));
-    min-height: calc(197mm / var(--fit));
-    transform: translate(203mm, 6mm) rotate(90deg) scale(var(--fit));   /* 203 = 197 (înălțimea pânzei) + 6 */
+    width: calc(var(--panza-lat-tel) / var(--fit));
+    min-height: calc(var(--panza-inalt-tel) / var(--fit));
+    transform: translate(calc(var(--panza-inalt-tel) + 6mm), 6mm) rotate(90deg) scale(var(--fit));
   }
 }

@@ -156,9 +156,74 @@
   // Paginile de rețete din caiet: numai numele, ingredientele cu cantitatea pentru amândoi
   // (Ema + Adi, adică porția S + porția M — cât pui efectiv în oală) și modul de preparare.
   // Nimic altceva, în afară de o singură linie cu kcal, macro-uri și, secundar, vitaminele.
-  // Pagina se împarte în 6 căsuțe (3 coloane × 2 rânduri); rețetele se împart egal pe pagini,
-  // ca să nu rămână ultima aproape goală (19 rețete → 4 pagini de 5, 5, 5, 4).
-  const PE_PAGINA = 6;
+  //
+  // Împărțirea pe pagini: foaia are 3 coloane, iar fiecare rețetă își ia exact înălțimea ei
+  // și stă ÎNTREAGĂ într-o singură coloană — niciodată ruptă între două. Pe o pagină intră
+  // câte încap: se umple coloana de sus în jos, iar când următoarea rețetă nu mai intră
+  // întreagă se trece la coloana următoare; după a treia, foaie nouă. De aceea paginile au
+  // numere diferite de rețete — dar nu mai rămâne jumătate de căsuță goală sub cele scurte,
+  // cum se întâmpla înainte, cu grila fixă de 6 căsuțe egale.
+  //
+  // Ca să știm ce încape, trebuie să știm cât e de înalt fiecare card, iar asta se află doar
+  // desenându-l. De aceea `masoaraCarduri` le desenează o dată într-o cutie scoasă din ecran
+  // (`.rmas` din style.css), le citește înălțimea și le șterge.
+  const RET_COL = 3;   /* ține-l la fel cu --ret-col din style.css */
+
+  // câți px are o valoare scrisă în CSS (mm, pt…), ca să putem socoti în aceeași unitate
+  function pxDinCss(valoare) {
+    const d = document.createElement("div");
+    d.style.cssText = "position:absolute;visibility:hidden;height:" + valoare;
+    document.body.appendChild(d);
+    const px = d.getBoundingClientRect().height;
+    d.remove();
+    return px;
+  }
+
+  // Desenează cardurile în cutia de măsurat și întoarce înălțimile (px) + cât loc are o coloană.
+  function masoaraCarduri(carduri) {
+    const css = getComputedStyle(document.documentElement);
+    const v = (nume) => css.getPropertyValue(nume).trim();
+    const box = document.createElement("div");
+    box.className = "rmas";
+    box.setAttribute("aria-hidden", "true");
+    // titlul și nota se măsoară și ele: mănâncă din înălțimea disponibilă pentru coloane
+    box.innerHTML = `<h1 class="pt">${TITLU_RETETE}</h1><p class="rnota">${NOTA_RETETE}</p>
+      <div class="rcol">${carduri.join("")}</div>`;
+    document.body.appendChild(box);
+    const titlu = box.querySelector(".pt"), nota = box.querySelector(".rnota");
+    const cuMargini = (el) => el.getBoundingClientRect().height + parseFloat(getComputedStyle(el).marginBottom || 0)
+                                                              + parseFloat(getComputedStyle(el).marginTop || 0);
+    const inaltimi = [...box.querySelector(".rcol").children].map((el) => el.getBoundingClientRect().height);
+    // nota se pune doar pe paginile cu rețete fără valori USDA, dar îi păstrăm locul pe toate:
+    // mai bine un pic de aer în plus decât o pagină care se revarsă
+    const disponibil = pxDinCss(`calc(${v("--panza-inalt-tel")} / ${v("--fit")})`) - cuMargini(titlu) - cuMargini(nota);
+    box.remove();
+    return { inaltimi, disponibil, gap: pxDinCss(v("--ret-gap")) };
+  }
+
+  // Umple coloană cu coloană, în ordinea rețetelor. Întoarce [[coloană, …], …] cu indici.
+  function impacheteaza(inaltimi, disponibil, gap, nCol) {
+    const pagini = [];
+    let pag = [], col = [], inalt = 0;
+    const inchideColoana = () => {
+      pag.push(col); col = []; inalt = 0;
+      if (pag.length === nCol) { pagini.push(pag); pag = []; }
+    };
+    inaltimi.forEach((h, i) => {
+      const cuRost = h + (col.length ? gap : 0);
+      // nu mai încape întreagă → coloană nouă (dar o rețetă singură rămâne unde e, chiar dacă
+      // e mai înaltă decât foaia — altfel am învârti la nesfârșit; azi cea mai înaltă are ~99mm)
+      if (col.length && inalt + cuRost > disponibil) inchideColoana();
+      inalt += h + (col.length ? gap : 0);
+      col.push(i);
+    });
+    if (col.length) pag.push(col);
+    if (pag.length) pagini.push(pag);
+    return pagini;
+  }
+
+  const TITLU_RETETE = "Rețete — cantitățile pentru amândoi (Ema + Adi), la un loc";
+  const NOTA_RETETE = "* laptele, laptele de cocos și mixul de fructe de pădure n-au valori în USDA, deci lipsesc din suma de vitamine.";
   function recipeCard(r) {
     const ing = r.comp.reduce((t, c) => t.concat(c.items), [])
       .filter((i) => i.sm)
@@ -176,17 +241,15 @@
   function recipePages() {
     const R = window.RETETE || [];
     if (!R.length) return "";
-    const foi = Math.ceil(R.length / PE_PAGINA);
-    const per = Math.ceil(R.length / foi);
-    let out = "";
-    for (let i = 0; i < R.length; i += per) {
-      const grup = R.slice(i, i + per);
-      const stea = grup.some((r) => r.vitPartial);
-      out += page("p-ret", `<h1 class="pt">Rețete — cantitățile pentru amândoi (Ema + Adi), la un loc</h1>
-        <div class="rgrid">${grup.map(recipeCard).join("")}</div>
-        ${stea ? `<p class="rnota">* laptele, laptele de cocos și mixul de fructe de pădure n-au valori în USDA, deci lipsesc din suma de vitamine.</p>` : ""}`);
-    }
-    return out;
+    const carduri = R.map(recipeCard);
+    const { inaltimi, disponibil, gap } = masoaraCarduri(carduri);
+    return impacheteaza(inaltimi, disponibil, gap, RET_COL).map((pag) => {
+      const stea = pag.some((col) => col.some((i) => R[i].vitPartial));
+      const coloane = pag.map((col) => `<div class="rcol">${col.map((i) => carduri[i]).join("")}</div>`).join("");
+      return page("p-ret", `<h1 class="pt">${TITLU_RETETE}</h1>
+        <div class="rcols">${coloane}</div>
+        ${stea ? `<p class="rnota">${NOTA_RETETE}</p>` : ""}`);
+    }).join("");
   }
   function printHtml() {
     const ingPages = () => data.ema.map((_, wi) =>
@@ -449,7 +512,12 @@
       ah.setAttribute("aria-expanded", String(open));
     });
     addEventListener("resize", mutaPastila);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(mutaPastila);
+    // fontul schimbă înălțimea cardurilor, deci și împărțirea rețetelor pe pagini:
+    // după ce se încarcă, remăsurăm și refacem caietul de print
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {
+      mutaPastila();
+      if (data.ema && data.ema.length && data.adi && data.adi.length) $("#print").innerHTML = printHtml();
+    });
     window.addEventListener("hashchange", () => { readHash(); syncControls(); render(); applyPage(); });
   }
   function syncControls() {
