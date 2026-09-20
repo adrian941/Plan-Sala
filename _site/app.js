@@ -402,15 +402,16 @@
 
   // ---------- pagina „Alimente” ----------
   // Lista de alimente pe categorii (comun/1_ingrediente.md). Doar numele, cu kcal/100 g discret.
-  // Restul valorilor — vitaminele și mineralele din USDA — stau ascunse sub fiecare aliment:
-  // se deschid la apăsare, sau toate odată, din butonul „Vitamine & minerale”.
+  // Restul valorilor — macronutrienții sub kcal, plus vitaminele și mineralele din USDA — stau
+  // ascunse sub fiecare aliment: se deschid la apăsare, sau toate odată, din butonul „Valori
+  // nutriționale”.
   function alimenteHtml() {
     const A = window.ALIMENTE || [];
     if (!A.length) return `<p class="loading">Nu găsesc lista de alimente. Rulează <code>python date/genereaza.py</code>.</p>`;
     const n = A.reduce((t, c) => t + c.items.filter((i) => i.plan).length, 0);
     const tot = A.reduce((t, c) => t + c.items.length, 0);
     return `<p class="hint"><button class="pill" id="doar-plan" type="button" aria-pressed="true">Doar din meniu</button>
-        <button class="pill" id="toti-micro" type="button" aria-pressed="false">Vitamine &amp; minerale</button>
+        <button class="pill" id="toti-micro" type="button" aria-pressed="false">Valori nutriționale</button>
         <span><b>${n}</b> din ${tot} alimente · valorile sunt la 100 g</span></p>` +
       A.map((c) => `<section class="grup cat${c.items.some((i) => i.plan) ? "" : " vid"}">
         <h2 class="gt">${c.icon} ${esc(c.cat)} <small>${c.items.filter((i) => i.plan).length}/${c.items.length}</small></h2>
@@ -420,7 +421,7 @@
   function alimentHtml(i) {
     return `<li class="${i.plan ? "in" : "out"}">
       <button class="ah" type="button" aria-expanded="false">
-        <span class="n">${esc(i.nume)}</span><span class="k">${i.kcal}<small> kcal</small></span>
+        <span class="n">${esc(i.nume)}</span><span class="k">${i.kcal}<small> kcal</small><span class="km">${macroShort(i)}</span></span>
       </button>
       <div class="mic">${microHtml(i)}</div>
     </li>`;
@@ -587,7 +588,7 @@
         pane.classList.toggle("tot", !doar);
         return;
       }
-      // „Vitamine & minerale": deschide restul valorilor la toate alimentele deodată
+      // „Valori nutriționale": deschide restul valorilor (macro + micro) la toate alimentele deodată
       const mb = e.target.closest("#toti-micro");
       if (mb) {
         const on = mb.getAttribute("aria-pressed") !== "true";
