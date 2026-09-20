@@ -19,8 +19,8 @@
   // ---------- stare ----------
   // Cum arată la prima deschidere (până când cineva atinge butoanele): meniul Emei,
   // cu Macro pornit și Ingredientele oprite. Pe urmă contează ce a ales el, salvat în browser.
-  const IMPLICIT = { view: "ema", macro: true, ing: false };
-  const state = { page: "meniu", view: IMPLICIT.view, week: 0, allIng: IMPLICIT.ing, macro: IMPLICIT.macro, printLook: false };
+  const IMPLICIT = { view: "ema", macro: true, ing: false, micro: false };
+  const state = { page: "meniu", view: IMPLICIT.view, week: 0, allIng: IMPLICIT.ing, macro: IMPLICIT.macro, micro: IMPLICIT.micro, printLook: false };
   const PAGES = ["meniu", "retete", "alimente"];
   // ordinea meselor pe card: mic dejun, prânz, cină, apoi (cu spațiu) gustarea
   const ORDER = { "Mic dejun": 0, "Prânz": 1, "Cină": 2, "Gustare": 3 };
@@ -42,6 +42,7 @@
     const salvat = (k, implicit) => { const v = store.get(k); return v === null ? implicit : v === "1"; };
     state.macro = salvat("macro", IMPLICIT.macro);
     state.allIng = salvat("ing", IMPLICIT.ing);
+    state.micro = salvat("micro", IMPLICIT.micro);
     if (saved && PEOPLE[saved] || saved === "comun") state.view = saved;
     // #ema/2 = persoana + săptămâna; opțional /i (ingrediente) /m (macro) /p (doar cardurile, ambele săptămâni — pentru printat/poză)
     const m = /^#(ema|adi|comun)(?:\/([12]))?((?:\/[imp])*)/.exec(location.hash);
@@ -73,6 +74,20 @@
     </div>`;
   }
 
+  // ---------- micronutrienții (butonul „Micronutrienți", implicit oprit) ----------
+  // Valorile vin gata socotite din data.js, în ordinea din window.MICRO; aici doar le
+  // împerechem cu eticheta scurtă și unitatea. Se arată pe trei nivele: ingredient, masă
+  // și zi — iar procentul din DZR apare DOAR pe zi, fiindcă DZR-ul e o doză zilnică;
+  // pus la o masă sau la un ingredient ar spune ceva ce nu înseamnă nimic.
+  const microCap = () => window.MICRO || [];
+  function microLinie(vals, cls) {
+    const M = microCap();
+    if (!M.length) return "";
+    if (!vals) return `<span class="mic ${cls} gol">fără valori în USDA</span>`;
+    return `<span class="mic ${cls}">` + vals.map((v, i) =>
+      `<span><i>${esc(M[i].s)}</i>${esc(v)}<u>${esc(M[i].u)}</u></span>`).join("") + "</span>";
+  }
+
   function ingredientRow(rows, ps, detail) {
     // rows: [{who, ing}] — aceeași poziție în listă la fiecare persoană
     const first = rows.find((r) => r.ing) || {};
@@ -81,7 +96,7 @@
       const i = first.ing;
       // kcal la fiecare ingredient: verde, dar NEîngroșat — bold rămâne doar la Total (masă/zi)
       if (detail) return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="c">${+i.p}</span><span class="c">${+i.g}</span><span class="c">${+i.c}</span><span class="c">${+i.f}</span><span class="k">${i.k}</span></li>`;
-      return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="k"><b>${i.k}</b></span><span class="m">${macroShort(i)}</span></li>`;
+      return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="k"><b>${i.k}</b></span><span class="m">${macroShort(i)}</span>${microLinie(i.m, "ing")}</li>`;
     }
     const q = rows.map((r) => `<span class="q p-${r.who}">${r.ing ? esc(r.ing.qty) : "—"}</span><span class="u p-${r.who}">${r.ing ? r.ing.unit : ""}</span>`).join("");
     const k = rows.map((r) => `<b class="p-${r.who}">${r.ing ? r.ing.k : "—"}</b>`).join(" / ");
@@ -113,12 +128,17 @@
       rows = `<li class="hd"><span></span><span></span><span class="n"></span><span class="c">P</span><span class="c">G</span><span class="c">C</span><span class="c">F</span><span class="k">kcal</span></li>` + rows
         + `<li class="tot"><span class="e"></span><span class="n">Total</span><span class="c">${t.p}</span><span class="c">${t.g}</span><span class="c">${t.c}</span><span class="c">${t.f}</span><span class="k"><b>${t.k}</b></span></li>`;
     }
+    // totalul de micronutrienți al mesei: un rând sub macro-uri, în afara butonului
+    // (rămâne la vedere și când masa e închisă, exact ca linia de macro)
+    const micm = ps.map((w) => { const m = days[w].meals[idx];
+      return m ? `<div class="micm p-${w}">${ps.length > 1 ? `<em>${PEOPLE[w]}</em>` : ""}${microLinie(m.m, "masa")}</div>` : ""; }).join("");
     return `<li class="meal t-${ORDER[ref.type] ?? 9}">
       <button class="mh" type="button" aria-expanded="false">
         <span class="nm" title="${esc(ref.type)}">${esc(ref.name)}</span>
         <span class="kc">${kc}</span>
         <span class="mt">${mt}</span>
       </button>
+      ${micm}
       <div class="ing"><ul class="${ps.length > 1 ? "two" : detail ? "det" : ""}">${rows}</ul></div>
     </li>`;
   }
@@ -152,9 +172,24 @@
         <span class="vzb" style="--f: ${Math.min(v.pct, 100)}%"></span>
       </span>`).join("")}
     </div>` : "";
+    // micronutrienții zilei: singurul loc unde are rost procentul din DZR, fiindcă DZR-ul
+    // e o doză ZILNICĂ. Verde = ziua acoperă, ocru = nu; sodiul n-are procent (e plafon).
+    const micz = ps.map((w) => {
+      const zi = days[w], M = microCap();
+      if (!M.length || !zi.m) return "";
+      const cel = zi.m.map((v, i) => {
+        const p = zi.mpct[i];
+        return `<span class="mz${p === null ? "" : (p >= 100 ? " ok" : " sub")}">`
+          + `<b>${esc(M[i].n)}</b><i>${esc(v)}${esc(M[i].u)}</i>`
+          + `<u>${p === null ? "—" : p + "%"}</u></span>`;
+      }).join("");
+      return `<div class="micz p-${w}"><h3>Micronutrienți${ps.length > 1 ? ` — ${PEOPLE[w]}` : ""}
+        <small>cât a strâns ziua · % din DZR</small></h3><div class="mzg">${cel}</div></div>`;
+    }).join("");
     return `<article class="day" id="day-${wi}-${d}" data-i="${d}">
       <header class="dh"><h2>${ref.name}${ref.tags ? ` <span class="tags">${esc(ref.tags)}</span>` : ""}</h2><div class="dt">${kc}</div>${dtot}${vitz}</header>
       <div class="bars">${bars}</div>
+      ${micz}
       <ol class="meals">${meals}</ol>
     </article>`;
   }
@@ -291,7 +326,7 @@
     return ingPages() + person("ema") + page("p-blank", "") + person("adi") + recipePages();
   }
 
-  const bodyClass = () => `pg-${state.page} v-${state.view}${state.allIng ? " all-ing" : ""}${state.macro ? "" : " no-macro"}${state.printLook ? " print-look" : ""}`;
+  const bodyClass = () => `pg-${state.page} v-${state.view}${state.allIng ? " all-ing" : ""}${state.macro ? "" : " no-macro"}${state.micro ? " cu-micro" : ""}${state.printLook ? " print-look" : ""}`;
   function render() {
     document.body.className = bodyClass();
     if (!data.ema || !data.ema.length || !data.adi.length) return;   // meniul n-a putut fi citit — mesajul e deja pe ecran
@@ -461,7 +496,8 @@
   }
   // bulina de pe buton: se aprinde doar când afișarea e schimbată față de cea implicită
   // (Macro pornit, Ingrediente oprite) — altfel ar fi aprinsă mereu și n-ar mai spune nimic
-  const markOpts = () => opts().classList.toggle("activ", state.macro !== IMPLICIT.macro || state.allIng !== IMPLICIT.ing);
+  const markOpts = () => opts().classList.toggle("activ",
+    state.macro !== IMPLICIT.macro || state.allIng !== IMPLICIT.ing || state.micro !== IMPLICIT.micro);
 
   function bind() {
     $("#opts-btn").addEventListener("click", (e) => {
@@ -488,6 +524,13 @@
       e.currentTarget.setAttribute("aria-pressed", String(state.macro));
       document.body.classList.toggle("no-macro", !state.macro);
       store.set("macro", state.macro ? "1" : "0");
+      markOpts();
+    });
+    $("#toggle-micro").addEventListener("click", (e) => {
+      state.micro = !state.micro;
+      e.currentTarget.setAttribute("aria-pressed", String(state.micro));
+      document.body.classList.toggle("cu-micro", state.micro);
+      store.set("micro", state.micro ? "1" : "0");
       markOpts();
     });
     $("#chips").addEventListener("click", (e) => {
@@ -570,6 +613,7 @@
     const who = document.querySelector(`input[name="who"][value="${state.view}"]`); if (who) who.checked = true;
     $("#toggle-ing").setAttribute("aria-pressed", String(state.allIng));
     $("#toggle-macro").setAttribute("aria-pressed", String(state.macro));
+    $("#toggle-micro").setAttribute("aria-pressed", String(state.micro));
     const wk = document.querySelector(`input[name="week"][value="${state.week}"]`); if (wk) wk.checked = true;
     markOpts();
     mutaPastila();
