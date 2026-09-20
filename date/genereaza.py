@@ -15,8 +15,8 @@ Textul explicativ (regulile, cum e gândit calendarul, organizarea bucătăriei)
 import io, json, os, sys
 
 import db
-from calcule import (macro_reteta, macro_suma, micro_suma, mic, r5, r0, r1, numar, qty, cant,
-                     parte_qty, nume_ing, totals, medie, plants, saptamani, zile_din)
+from calcule import (macro_reteta, macro_suma, macro_rot, micro_suma, mic, r5, r0, r1, numar, qty,
+                     cant, parte_qty, nume_ing, totals, medie, plants, saptamani, zile_din)
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..") + "/"
@@ -157,13 +157,16 @@ def menu(p):
         o.append(f"\n## Săptămâna {w}\n")
         o.append("| Zi | Masa | Ce și cât | kcal | P | G | C | Fibre |\n|---|---|---|--:|--:|--:|--:|--:|")
         for zi in zile_din(plan, w):
-            t = T[zi.id]
             eticheta = f"**{zi.nume}** {zi.semne}".strip()
+            # totalul zilei = suma valorilor rotunjite ale meselor, ca să iasă exact
+            # cifra pe care o obții adunând rândurile de mai sus (vezi macro_rot)
+            zi_tot = [0, 0, 0, 0, 0]
             for tip, _icon, rid in zi.mese:
-                mm = macro_reteta(plan, R[rid], p.portie)
-                o.append(f"| {eticheta} | {tip} | {plate(R[rid], p.portie)} | {r5(mm[0])} | {mm[1]:.0f} | {mm[2]:.0f} | {mm[3]:.0f} | {mm[4]:.0f} |")
+                mr = macro_rot(macro_reteta(plan, R[rid], p.portie))
+                zi_tot = [a + b for a, b in zip(zi_tot, mr)]
+                o.append(f"| {eticheta} | {tip} | {plate(R[rid], p.portie)} | {mr[0]} | {mr[1]} | {mr[2]} | {mr[3]} | {mr[4]} |")
                 eticheta = ""
-            o.append(f"| | **Total zi** | | **{r5(t[0])}** | **{t[1]:.0f}** | **{t[2]:.0f}** | **{t[3]:.0f}** | **{t[4]:.0f}** |")
+            o.append(f"| | **Total zi** | | **{zi_tot[0]}** | **{zi_tot[1]}** | **{zi_tot[2]}** | **{zi_tot[3]}** | **{zi_tot[4]}** |")
         pl = plants(plan, w)
         o.append(f"\n*Plante diferite în săptămâna {w}: **{len(pl)}** (țintă American Gut Project ≥30).*\n")
     o.append(f"\n## Bilanț pe 14 zile\n\n| | Țintă | Media planului | |\n|---|--:|--:|---|\n| Calorii | {tgt[0]} | **{r5(avg[0])}** | {'✅' if abs(avg[0]-tgt[0])<=110 else '⚠️'} ({avg[0]-tgt[0]:+.0f}) |\n| Proteine | {tgt[1]} g | **{avg[1]:.0f} g** | {'✅' if avg[1]>=tgt[1] else '⚠️'} |\n| Grăsimi | {tgt[2]} g | **{avg[2]:.0f} g** | {'✅' if abs(avg[2]-tgt[2])<=8 else '⚠️'} |\n| Carbohidrați | {tgt[3]} g | **{avg[3]:.0f} g** | {'✅' if abs(avg[3]-tgt[3])<=20 else '⚠️'} |\n| Fibre | {p.fibre_tinta} g | **{avg[4]:.0f} g** | ✅ peste țintă — apă {p.apa} l/zi, 1–2 săpt. adaptare |\n")
@@ -177,20 +180,22 @@ for p in plan.persoane:
 # ================= 3b. MENIU VIZUAL (rețetele săptămânii, o zi sub alta) =================
 def menu_zilnic(p):
     col = 1 if p.portie == "S" else 2
-    T = totals(plan, p.portie)
     o = []
     o.append(f"# 📋 Meniu zilnic — {p.nume} (vizualizare rapidă)\n")
     o.append(f"> Doar de citit rapid: o zi sub alta, rețetele mesei una sub alta. Sub numele fiecărui fel: **totalul mesei** (kcal, P/G/C/Fibre — identic cu `4_meniu.md`). Dedesubt, un ingredient pe rând (**un singur rând pe ingredient**, niciodată mai multe înghesuite laolaltă), cu **P/G/C/Fibre** și **kcal** pe coloane separate.\n> Sursa de adevăr (porții exacte) e [`4_meniu.md`](./4_meniu.md) — acesta e doar altă formă de afișare a **aceluiași** meniu, regenerată automat odată cu el.\n")
     for w in SAPT:
         o.append(f"\n## Săptămâna {w}\n")
         for zi in zile_din(plan, w):
-            t = T[zi.id]
             o.append(f"## {f'{zi.nume} {zi.semne}'.strip()}\n")
+            # totalul zilei = suma valorilor rotunjite ale meselor (vezi macro_rot),
+            # ca să iasă exact cifra pe care o obții adunând totalurile de mai jos
+            zi_tot = [0, 0, 0, 0, 0]
             for tip, icon, rid in zi.mese:
                 r = R[rid]
-                mm = macro_reteta(plan, r, p.portie)
+                mr = macro_rot(macro_reteta(plan, r, p.portie))
+                zi_tot = [a + b for a, b in zip(zi_tot, mr)]
                 o.append(f"**{icon} {tip} — {r.nume}**\n")
-                o.append(f"**Total masă — {r5(mm[0])} kcal** (P:{mm[1]:.0f}g, G:{mm[2]:.0f}g, C:{mm[3]:.0f}g, Fibre:{mm[4]:.0f}g)\n")
+                o.append(f"**Total masă — {mr[0]} kcal** (P:{mr[1]}g, G:{mr[2]}g, C:{mr[3]}g, Fibre:{mr[4]}g)\n")
                 o.append("| Ingredient | P/G/C/Fibre | kcal |\n|:---|:---|:---|")
                 for _label, items in r.comp:
                     for it in items:
@@ -199,7 +204,7 @@ def menu_zilnic(p):
                             kcal, pr, gr, cb, fi = [v * g / 100 for v in ing.valori]
                             o.append(f"| {qty(ing, g)} | {pr:.1f}/{gr:.1f}/{cb:.1f}/{fi:.1f} | {kcal:.0f} |")
                 o.append("")
-            o.append(f"**Total zi — {r5(t[0])} kcal** (P:{t[1]:.0f}g, G:{t[2]:.0f}g, C:{t[3]:.0f}g, Fibre:{t[4]:.0f}g)\n")
+            o.append(f"**Total zi — {zi_tot[0]} kcal** (P:{zi_tot[1]}g, G:{zi_tot[2]}g, C:{zi_tot[3]}g, Fibre:{zi_tot[4]}g)\n")
     return "\n".join(o)
 
 
@@ -273,16 +278,19 @@ W("comun/4_calendar.md", "\n".join(o))
 
 def meniu_site(p):
     col = 1 if p.portie == "S" else 2
-    T = totals(plan, p.portie)
     sapt = []
     for w in SAPT:
         zile = []
         for zi in zile_din(plan, w):
-            t = T[zi.id]
             mese = []
+            # totalul zilei = suma valorilor rotunjite ale meselor (vezi macro_rot),
+            # ca să iasă exact cifra pe care o obții adunând totalurile din cardurile de masă
+            zi_tot = [0, 0, 0, 0, 0]
             for tip, icon, rid in zi.mese:
                 r = R[rid]
                 mm = macro_reteta(plan, r, p.portie)
+                mr = macro_rot(mm)
+                zi_tot = [a + b for a, b in zip(zi_tot, mr)]
                 ing = []
                 for _label, items in r.comp:
                     for it in items:
@@ -294,12 +302,11 @@ def meniu_site(p):
                         ing.append({"qty": q, "unit": u, "name": nume, "p": r1(pr), "g": r1(gr),
                                     "c": r1(cb), "f": r1(fi), "k": r0(kcal)})
                 mese.append({"icon": icon, "type": tip, "name": r.nume,
-                             "total": {"k": r5(mm[0]), "p": r0(mm[1]), "g": r0(mm[2]),
-                                       "c": r0(mm[3]), "f": r0(mm[4])},
+                             "total": {"k": mr[0], "p": mr[1], "g": mr[2], "c": mr[3], "f": mr[4]},
                              "ing": ing})
             zile.append({"name": zi.nume, "tags": zi.semne,
-                         "total": {"k": r5(t[0]), "p": r0(t[1]), "g": r0(t[2]),
-                                   "c": r0(t[3]), "f": r0(t[4])},
+                         "total": {"k": zi_tot[0], "p": zi_tot[1], "g": zi_tot[2],
+                                   "c": zi_tot[3], "f": zi_tot[4]},
                          "meals": mese})
         sapt.append({"n": w, "days": zile})
     return sapt

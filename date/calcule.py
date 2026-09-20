@@ -43,6 +43,13 @@ def numar(x):
     return int(x) if float(x).is_integer() else x
 
 
+def macro_rot(m):
+    """Macro rotunjit exact cum se scrie pe pagină: kcal la 5, restul la întreg.
+    Totalul zilei se adună mereu din ACESTE valori (per masă), nu din suma brută
+    rotunjită separat — altfel «Total zi» nu iese egal cu suma meselor de pe pagină."""
+    return [r5(m[0])] + [r0(x) for x in m[1:]]
+
+
 def _bucati(ing, g):
     """Câte bucăți întregi (sau jumătăți) ies din gramaj; None dacă nu iese rotund."""
     if not ing.gram_bucata:
