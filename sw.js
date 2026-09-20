@@ -7,7 +7,7 @@
    ultima dată. Parametrul „?t=…” din index.html e ignorat la salvare, ca să nu se
    adune câte o copie la fiecare deschidere. */
 
-const VERSIUNE = "plan-sala-v18";
+const VERSIUNE = "plan-sala-v19";
 const ESENTIALE = [
   "./",
   "./index.html",

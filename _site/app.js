@@ -165,11 +165,11 @@
     // Două cifre, nu trei: cantitatea strânsă ar fi chiar pct × DZR, deci n-o mai scriem.
     // Liniuța e plină la 100% și rămâne plină peste — cifra spune cât e de fapt.
     const vitz = detail && ref.vit ? `<div class="vitz">
-      <span class="vzl">Vitamine${ref.vitPartial ? "*" : ""}<i>azi / DZR</i></span>
-      ${ref.vit.map((v) => `<span class="vz${v.pct >= 100 ? " full" : ""}">
+      <span class="vzl">Vitamine și minerale${ref.vitPartial ? "*" : ""} — azi / DZR</span>
+      ${ref.vit.map((v) => `<span class="vz${v.pct === null ? " fara" : (v.pct >= 100 ? " full" : "")}">
         <span class="vzn">${esc(v.n)}</span>
-        <span class="vzd"><b>${esc(v.v)}</b>/${esc(v.dzr)}<i>${esc(v.u)}</i></span>
-        <span class="vzb" style="--f: ${Math.min(v.pct, 100)}%"></span>
+        <span class="vzd"><b>${esc(v.v)}</b>${v.dzr === null ? "" : "/" + esc(v.dzr)}<i>${esc(v.u)}</i></span>
+        ${v.pct === null ? "" : `<span class="vzb" style="--f: ${Math.min(v.pct, 100)}%"></span>`}
       </span>`).join("")}
     </div>` : "";
     // micronutrienții zilei: singurul loc unde are rost procentul din DZR, fiindcă DZR-ul
