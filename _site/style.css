@@ -439,6 +439,9 @@ body.pg-retete .chips,      body.pg-alimente .chips { display: none; }
 .vz { min-width: 0; text-align: center; }
 .vzn { display: block; color: var(--mute); line-height: 1.05; }
 .vz b { display: block; color: var(--warm); font-weight: 700; line-height: 1.15; }
+/* DZR-ul, sub procent: din el se citește „cât din cât" */
+.vzd { display: block; color: var(--mute); line-height: 1.2; white-space: nowrap; }
+.vzd i { font-style: normal; font-size: 0.85em; }
 /* liniuța de progres: șina goală și, peste ea, cât s-a acoperit din DZR */
 .vzb { display: block; background: var(--line-2); border-radius: 99px; overflow: hidden; }
 .vzb::before { content: ""; display: block; width: var(--f); height: 100%; background: var(--warm); }
@@ -669,7 +672,8 @@ button, .seg label, .chips button, .title {
   #print .p-det .vzl { font-size: 3.9pt; font-weight: 600; padding-right: 0.3mm; }
   #print .p-det .vzn { font-size: 4pt; font-weight: 600; }
   #print .p-det .vz b { font-size: 4.8pt; }
-  #print .p-det .vzb { height: 0.5mm; margin-top: 0.35mm; }
+  #print .p-det .vzd { font-size: 3.4pt; }
+  #print .p-det .vzb { height: 0.5mm; margin-top: 0.3mm; }
   #print .p-det .ing .c { text-align: right; padding-left: 2.2mm; color: var(--ink); }
   /* kcal la fiecare ingredient: verde, dar NEîngroșat (culoarea o ia și „Total" mai jos, prin
      .tot .k b, dar acolo textul e în plus și `<b>`, deci rămâne gros — vezi mai jos) */

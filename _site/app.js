@@ -140,15 +140,15 @@
         + `<span class="c r2">${t.p}</span><span class="c r2">${t.g}</span><span class="c r2">${t.c}</span><span class="c r2">${t.f}</span><span class="k r2"><b>${t.k}</b></span>`;
     })() : "";
     // Al treilea rând al benzii, pe toată lățimea cardului: vitaminele zilei, toate 13 pe
-    // un rând. O vitamină = numele, cât la sută din DZR a strâns ziua și o liniuță încărcată
-    // până acolo. Liniuța e plină la 100% și rămâne plină peste — cifra de deasupra spune
-    // cât e de fapt. DZR-ul stă în bază (`nutrient.dzr`); procentul vine gata socotit din
-    // data.js. Cantitatea în µg/mg NU încape aici (4 mm de coloană) și n-ar fi citibilă —
-    // pe banda zilei contează acoperirea, nu cifra brută.
+    // un rând. O vitamină = numele · cât la sută din DZR a strâns ziua · DZR-ul, ca să se
+    // citească „cât din cât" · o liniuță încărcată până la acel procent.
+    // Două cifre, nu trei: cantitatea strânsă ar fi chiar pct × DZR, deci n-o mai scriem.
+    // Liniuța e plină la 100% și rămâne plină peste — cifra spune cât e de fapt.
     const vitz = detail && ref.vit ? `<div class="vitz">
       <span class="vzl">%&nbsp;DZR${ref.vitPartial ? "*" : ""}</span>
       ${ref.vit.map((v) => `<span class="vz${v.pct >= 100 ? " full" : ""}">
         <span class="vzn">${esc(v.n)}</span><b>${v.pct}</b>
+        <span class="vzd">${esc(v.dzr)}<i>${esc(v.u)}</i></span>
         <span class="vzb" style="--f: ${Math.min(v.pct, 100)}%"></span>
       </span>`).join("")}
     </div>` : "";

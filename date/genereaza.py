@@ -304,13 +304,16 @@ def meniu_site(p):
                              "total": {"k": r5(mm[0]), "p": r0(mm[1]), "g": r0(mm[2]),
                                        "c": r0(mm[3]), "f": r0(mm[4])},
                              "ing": ing})
-            # vitaminele zilei, pentru banda verde de la paginile Detaliat: cât a strâns
-            # peste zi și cât la sută din DZR e (procentul se rotunjește abia aici, la scris)
+            # Vitaminele zilei, pentru banda verde de la paginile Detaliat. Se trimit două
+            # cifre, nu trei: procentul din DZR și DZR-ul însuși (în aceeași unitate), ca să
+            # se citească „cât din cât". Cantitatea strânsă NU se mai trimite — ea e chiar
+            # pct × dzr, deci ar fi a treia cifră derivată din primele două.
+            # Procentul se rotunjește abia aici, la scris.
             vit, fara_date = micro_zi(plan, zi, p.portie, [i for i, _e in VITAMINE_ZI])
             zile.append({"name": zi.nume, "tags": zi.semne,
                          "total": {"k": r5(t[0]), "p": r0(t[1]), "g": r0(t[2]),
                                    "c": r0(t[3]), "f": r0(t[4])},
-                         "vit": [{"n": et, "v": mic(vit[i]), "u": unit(i),
+                         "vit": [{"n": et, "dzr": mic(plan.nutrienti[i].dzr), "u": unit(i),
                                   "pct": r0(procent_dzr(plan, i, vit[i]))} for i, et in VITAMINE_ZI],
                          "vitPartial": fara_date,   # câte ingrediente n-au valori în USDA
                          "meals": mese})
