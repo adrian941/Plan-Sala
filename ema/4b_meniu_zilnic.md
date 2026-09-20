@@ -68,7 +68,7 @@
 | 10 ml suc de lămâie | 0.0/0.0/0.7/0.0 | 2 |
 | 7 g ulei de măsline | 0.0/7.0/0.0/0.0 | 62 |
 
-**Total zi — 2180 kcal** (P:167g, G:71g, C:238g, Fibre:46g)
+**Total zi — 2180 kcal** (P:166g, G:70g, C:238g, Fibre:46g)
 
 ## Marți 🏋️
 
@@ -129,7 +129,7 @@
 | 2 g usturoi | 0.1/0.0/0.7/0.0 | 3 |
 | 12 g ulei de măsline | 0.0/12.0/0.0/0.0 | 106 |
 
-**Total zi — 2065 kcal** (P:154g, G:63g, C:233g, Fibre:42g)
+**Total zi — 2070 kcal** (P:154g, G:64g, C:232g, Fibre:41g)
 
 ## Miercuri 🥚
 
@@ -196,7 +196,7 @@
 | 100 g roșii pasate | 1.7/0.2/9.0/1.9 | 38 |
 | 10 g ulei de măsline | 0.0/10.0/0.0/0.0 | 88 |
 
-**Total zi — 2195 kcal** (P:160g, G:70g, C:249g, Fibre:48g)
+**Total zi — 2190 kcal** (P:160g, G:70g, C:248g, Fibre:48g)
 
 ## Joi 🏋️
 
@@ -257,7 +257,7 @@
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 | 15 g măsline | 0.1/1.6/0.9/0.2 | 17 |
 
-**Total zi — 2225 kcal** (P:157g, G:63g, C:285g, Fibre:43g)
+**Total zi — 2230 kcal** (P:157g, G:63g, C:284g, Fibre:43g)
 
 ## Vineri 🥚
 
@@ -317,7 +317,7 @@
 | 8 g muștar | 0.3/0.3/0.5/0.3 | 5 |
 | 10 g ulei de măsline | 0.0/10.0/0.0/0.0 | 88 |
 
-**Total zi — 2095 kcal** (P:160g, G:68g, C:230g, Fibre:40g)
+**Total zi — 2090 kcal** (P:160g, G:67g, C:230g, Fibre:41g)
 
 ## Sâmbătă
 
@@ -376,7 +376,7 @@
 | 50 ml lapte de cocos light | 0.2/3.2/1.0/0.0 | 35 |
 | 5 g ulei de măsline | 0.0/5.0/0.0/0.0 | 44 |
 
-**Total zi — 1990 kcal** (P:150g, G:53g, C:237g, Fibre:43g)
+**Total zi — 1990 kcal** (P:150g, G:53g, C:236g, Fibre:43g)
 
 ## Duminică 🥚
 
@@ -440,7 +440,7 @@
 | 20 g măsline | 0.2/2.2/1.2/0.3 | 23 |
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 
-**Total zi — 2275 kcal** (P:159g, G:77g, C:250g, Fibre:39g)
+**Total zi — 2270 kcal** (P:159g, G:76g, C:250g, Fibre:39g)
 
 
 ## Săptămâna 2
@@ -506,7 +506,7 @@
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 | 10 g semințe de dovleac | 3.0/4.9/1.1/0.6 | 56 |
 
-**Total zi — 2125 kcal** (P:150g, G:67g, C:249g, Fibre:39g)
+**Total zi — 2120 kcal** (P:150g, G:67g, C:248g, Fibre:39g)
 
 ## Marți 🥚🏋️
 
@@ -633,7 +633,7 @@
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 | 15 g caju | 2.7/6.6/4.5/0.5 | 83 |
 
-**Total zi — 2090 kcal** (P:156g, G:64g, C:238g, Fibre:44g)
+**Total zi — 2085 kcal** (P:156g, G:64g, C:237g, Fibre:44g)
 
 ## Joi 🥚🏋️
 
@@ -698,7 +698,7 @@
 | 5 g ulei de măsline | 0.0/5.0/0.0/0.0 | 44 |
 | 50 g avocado | 1.0/7.3/4.2/3.4 | 80 |
 
-**Total zi — 2295 kcal** (P:171g, G:75g, C:254g, Fibre:42g)
+**Total zi — 2295 kcal** (P:172g, G:75g, C:253g, Fibre:41g)
 
 ## Vineri
 
@@ -761,7 +761,7 @@
 | 10 ml suc de lămâie | 0.0/0.0/0.7/0.0 | 2 |
 | 7 g ulei de măsline | 0.0/7.0/0.0/0.0 | 62 |
 
-**Total zi — 2085 kcal** (P:154g, G:60g, C:251g, Fibre:48g)
+**Total zi — 2090 kcal** (P:153g, G:60g, C:251g, Fibre:48g)
 
 ## Sâmbătă 🥚
 
@@ -824,7 +824,7 @@
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 | 15 g măsline | 0.1/1.6/0.9/0.2 | 17 |
 
-**Total zi — 2155 kcal** (P:161g, G:70g, C:241g, Fibre:42g)
+**Total zi — 2155 kcal** (P:161g, G:69g, C:241g, Fibre:42g)
 
 ## Duminică
 
@@ -888,4 +888,4 @@
 | 20 g măsline | 0.2/2.2/1.2/0.3 | 23 |
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 
-**Total zi — 2120 kcal** (P:153g, G:62g, C:254g, Fibre:40g)
+**Total zi — 2120 kcal** (P:153g, G:62g, C:253g, Fibre:40g)
