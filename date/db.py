@@ -46,6 +46,7 @@ class Ingredient:
 class Nutrient:
     """Un nutrient din USDA: fier, vitamina C… Unitatea e cea în care vin valorile."""
     id: int; nume: str; nume_ro: str | None; unitate: str; grupa: str | None
+    dzr: float | None = None      # doza zilnică de referință, în aceeași unitate (vezi schema.sql)
 
     @property
     def eticheta(self):
@@ -143,7 +144,8 @@ def incarca(cale=DB):
         ingrediente[ing.cheie] = ing
         cat.ingrediente.append(ing)
 
-    nutrienti = {r["id"]: Nutrient(r["id"], r["nume"], r["nume_ro"], r["unitate"], r["grupa"])
+    nutrienti = {r["id"]: Nutrient(r["id"], r["nume"], r["nume_ro"], r["unitate"], r["grupa"],
+                                   r["dzr"])
                  for r in c.execute("SELECT * FROM nutrient ORDER BY id")}
     for r in c.execute("SELECT * FROM ingredient_nutrient"):
         ingrediente[r["ingredient_cheie"]].micro[r["nutrient_id"]] = r["valoare"]

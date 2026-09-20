@@ -95,14 +95,16 @@ comun/                  ← ce ține de mâncare, pentru amândoi
 date/                   ← BAZA DE DATE (SQLite) + calculatorul (Python). Vezi date/README.md
 ├── plan.db            → **SURSA UNICĂ DE ADEVĂR**: alimente (cu valori nutriționale complete și
                          perisabilitate), rețete cu cantități S/M și modul de preparare, calendar,
-                         persoane + ținte, magazine
+                         persoane + ținte, magazine, plus **DZR-ul fiecărui nutrient**
+                         (`nutrient.dzr` — referința de pe etichete, vezi schema.sql)
 ├── plan.sql           → dump-ul text al bazei, rescris la fiecare rulare — el se vede în `git diff`
 ├── schema.sql         → schema comentată (ce tabele există și de ce)
 ├── db.py              → accesul la bază: `incarca()`, plus `dump` / `reconstruieste` / `verifica`
 ├── calcule.py         → macro-uri, rotunjiri, cantități, totaluri pe zi, numărat plante
 ├── genereaza.py       → scrie din bază cele 7 .md + _site/data.js + plan.sql. Tot aici se aleg
                          micronutrienții care se afișează (`VITAMINE` pe pagina de rețete din PDF,
-                         `MICRO` la pagina Alimente) — restul rămân în bază, nearătați
+                         `VITAMINE_ZI` pe banda zilei la paginile Detaliat, `MICRO` la pagina
+                         Alimente) — restul rămân în bază, nearătați
 ├── raport.py          → verifică fără să scrie: ies zilele la țintă?
 ├── usda.py            → caută / aduce valori / adaugă alimente din baza oficială USDA
 └── usda/              → baza oficială USDA SR Legacy (zip) + usda.db local (ignorat de git)
@@ -132,7 +134,11 @@ adi/                    (de completat)
 3. Dacă s-a schimbat **forma datelor** trimise site-ului (un câmp nou în `window.MENIU`, altă structură), se adaptează și `_site/app.js`, se crește `VERSIUNE` din `sw.js` și se verifică în browser că site-ul afișează corect toate cele 14 zile, pentru Ema, Adi și Amândoi.
 Site-ul nu se editează niciodată cu date „de mână" — el nu are conținut propriu. Toate cele trei pagini (**Meniu**, **Rețete**, **Alimente**) vin din `_site/data.js`, scris de `genereaza.py` din `date/plan.db`. O rețetă sau un aliment nou apare pe site **doar** după ce a intrat în bază și s-a rulat `python genereaza.py`.
 
-**Regulă permanentă — ce conține caietul de print (PDF).** Butonul „PDF” / Ctrl+P scoate mereu același caiet A4 landscape, în ordinea: (1–2) Ema + Adi, ingredientele pentru cumpărături, o săptămână pe pagină · (3) Ema, mesele cu macronutrienți · (4–7) Ema, paginile detaliate · (8) pagină goală · (9–13) Adi, la fel · **rețetele, la sfârșit** (azi 14–16, 16 pagini în total). Într-o rețetă intră **doar**: numele, **o singură linie** cu kcal și macronutrienți și, secundar pe aceeași linie, vitaminele (A, C, D, E, K, B6, Folat, B12), apoi ingredientele cu **cantitatea adunată Ema + Adi** (porția S + porția M, adică exact cât pui în oală) și pașii de preparare. Nimic altceva — fără timp, fără zile, fără note.
+**Regulă permanentă — ce conține caietul de print (PDF).** Butonul „PDF” / Ctrl+P scoate mereu același caiet A4 landscape, în ordinea: (1–2) Ema + Adi, ingredientele pentru cumpărături, o săptămână pe pagină · (3) Ema, mesele cu macronutrienți · (4–7) Ema, paginile detaliate · (8) pagină goală · (9–13) Adi, la fel · **rețetele, la sfârșit** (azi 14–16, 16 pagini în total).
+
+**Pe paginile detaliate, banda verde a zilei are trei straturi**, de la tare la șoptit: numele zilei · totalul zilei (P / G / C / F / kcal, așezat exact peste coloanele ingredientelor de dedesubt) · și, sub o linie subțire, **vitaminele zilei** — toate 13 pe un singur rând, scrise mărunt dinadins. O vitamină = numele, **cât la sută din DZR** a strâns ziua și, sub cifră, o **liniuță încărcată** până acolo. Liniuța e **plină la 100% și rămâne plină peste** (cifra spune cât e de fapt, 96 sau 624), iar ce nu ajunge la 100% trece pe **ocru** — așa se vede dintr-o privire ce lipsește din ziua aia (la noi, aproape mereu vitamina D). DZR-ul e cel de pe etichete (VNR, Reg. UE 1169/2011), ține de bază, nu de cod, și e același pentru amândoi.
+
+**Pe banda zilei nu scrie și cantitatea în µg/mg** — o coloană are ~4 mm (13 vitamine pe un card de ~70 mm, patru zile pe foaie), iar „A 3245µg 406" cere ~10 mm: măsurat, 343 din 364 de celule ieșeau din chenar. Acolo contează acoperirea, nu cifra brută; cantitățile stau în bază și pe pagina Alimente. Din același motiv folatul e scris **B9** și colina **Col**. `% DZR*` cu steluță = ziua are alimente fără valori în USDA, deci suma e incompletă; nota de subsol o explică. Într-o rețetă intră **doar**: numele, **o singură linie** cu kcal și macronutrienți și, secundar pe aceeași linie, vitaminele (A, C, D, E, K, B6, Folat, B12), apoi ingredientele cu **cantitatea adunată Ema + Adi** (porția S + porția M, adică exact cât pui în oală) și pașii de preparare. Nimic altceva — fără timp, fără zile, fără note.
 
 **Cum se așază rețetele pe foaie:** foaia are **3 coloane**, fiecare rețetă își ia **exact înălțimea ei** și stă **întreagă într-o singură coloană** — niciodată ruptă între două. Pe o pagină intră **câte încap**: se umple coloana de sus în jos, iar când următoarea rețetă nu mai intră întreagă se trece la coloana următoare; după a treia, foaie nouă. Deci paginile au numere diferite de rețete (azi 8 / 6 / 5) — e normal, nu e bug. Împărțirea o calculează `_site/app.js`: desenează o dată toate cardurile într-o cutie scoasă din ecran (`.rmas`), le măsoară înălțimea reală și abia apoi le împarte. De aceea regulile cardului de rețetă (`.rp`, `.rl`, `.rc`, `.ri`, `.rs`) stau **în afara** lui `@media print` în `_site/style.css` — altfel măsurătoarea s-ar face cu alt corp de literă și ar ieși greșită. **Măsurarea se face pe canvasul îngust** (266 mm, cel de la telefon), nu pe cel de 284 mm: așa împachetarea e sigură pe amândouă hârtiile. Când se adaugă rețete noi, se verifică în Chromium că nicio rețetă nu se revarsă din coloană (`.rcols` să nu treacă de marginea de jos a lui `.pg`) și că niciun card nu e tăiat (`scrollHeight` vs. `clientHeight` pe `.rp`).
 

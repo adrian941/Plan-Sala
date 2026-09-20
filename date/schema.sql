@@ -89,7 +89,13 @@ CREATE TABLE nutrient (
   nume     TEXT NOT NULL,         -- cum îi zice USDA
   nume_ro  TEXT,                  -- cum îi zicem noi, unde are rost
   unitate  TEXT NOT NULL,         -- KCAL / G / MG / UG / IU
-  grupa    TEXT                   -- macro / mineral / vitamina / lipide / aminoacizi / altele
+  grupa    TEXT,                  -- macro / mineral / vitamina / lipide / aminoacizi / altele
+  -- DZR = doza zilnică de referință, ÎN ACEEAȘI UNITATE ca `unitate` (deci procentul e
+  -- direct valoare/dzr). E VNR-ul de pe etichetele din UE (Reg. 1169/2011, anexa XIII) —
+  -- un singur set pentru adulți, la fel pentru Ema și Adi, exact cum scrie pe ambalaje.
+  -- Excepție: colina n-are VNR, acolo e aportul adecvat EFSA (400 mg/zi, adulți).
+  -- Completat doar la vitaminele care se afișează; NULL = nu arătăm procent.
+  dzr      REAL
 );
 
 CREATE TABLE ingredient_nutrient (
