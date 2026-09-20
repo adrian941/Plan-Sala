@@ -49,13 +49,19 @@ MICRO = [(1106, "Vitamina A"), (1162, "Vitamina C"), (1114, "Vitamina D"), (1109
          (1093, "Sodiu"), (1095, "Zinc"), (1098, "Cupru"), (1101, "Mangan"), (1103, "Seleniu")]
 MICRO_ID = [nid for nid, _e in MICRO]
 # Etichetele scurte, pentru locurile înghesuite: banda zilei din caiet și liniile de
-# masă / ingredient de pe site. Mineralele au deja nume scurte, deci apar doar vitaminele.
-# NU folosim simboluri chimice: „K" ar însemna și potasiu, și vitamina K (care e chiar
-# lângă el în bandă), iar „P" e deja proteinele de pe rândul de deasupra.
+# masă / ingredient de pe site. Mineralele merg cu simbolul chimic („Mg", nu „Magneziu"),
+# fiindcă numele întregi mâncau lățimea de care are nevoie cifra de lângă ele.
+# Simbolurile aduc două ciocniri — „K" e și potasiu, și vitamina K; „P" e și fosfor, și
+# proteinele de pe rândul de deasupra — de aceea banda DESPARTE vizibil vitaminele de
+# minerale. Dacă vreodată se scoate despărțirea, mineralele trebuie să revină la nume întregi.
 MICRO_SCURT = {1106: "A", 1162: "C", 1114: "D", 1109: "E", 1185: "K", 1165: "B1", 1166: "B2",
-               1167: "B3", 1170: "B5", 1175: "B6", 1177: "Folat", 1178: "B12", 1180: "Colină"}
-# banda zilei: aceiași 23, cu eticheta scurtă
-MICRO_ZI = [(nid, MICRO_SCURT.get(nid, et)) for nid, et in MICRO]
+               1167: "B3", 1170: "B5", 1175: "B6", 1177: "Folat", 1178: "B12", 1180: "Colină",
+               1087: "Ca", 1089: "Fe", 1090: "Mg", 1091: "P", 1092: "K", 1093: "Na",
+               1095: "Zn", 1098: "Cu", 1101: "Mn", 1103: "Se"}
+# banda zilei: aceiași 23, cu eticheta scurtă și cu grupa (ca banda să poată despărți
+# vizibil vitaminele de minerale — vezi ciocnirea K / K de mai sus)
+MICRO_VIT = (1106, 1162, 1114, 1109, 1185, 1165, 1166, 1167, 1170, 1175, 1177, 1178, 1180)
+MICRO_ZI = [(nid, MICRO_SCURT.get(nid, et), nid in MICRO_VIT) for nid, et in MICRO]
 UNITATI = {"MG": "mg", "UG": "µg", "IU": "UI", "G": "g", "KCAL": "kcal"}
 
 
@@ -331,10 +337,10 @@ def meniu_site(p):
                                    "c": r0(t[3]), "f": r0(t[4])},
                          # sodiul n-are DZR (e plafon, nu țintă): pleacă fără referință și
                          # fără procent, iar banda nu-i desenează liniuță
-                         "vit": [{"n": et, "v": mic(vit[i]), "u": unit(i),
+                         "vit": [{"n": et, "v": mic(vit[i]), "u": unit(i), "vit": e_vit,
                                   "dzr": mic(plan.nutrienti[i].dzr) if plan.nutrienti[i].dzr else None,
                                   "pct": r0(procent_dzr(plan, i, vit[i])) if plan.nutrienti[i].dzr else None}
-                                 for i, et in MICRO_ZI],
+                                 for i, et, e_vit in MICRO_ZI],
                          "vitPartial": fara_date,   # câte ingrediente n-au valori în USDA
                          "m": [mic(zmic[nid]) for nid in MICRO_ID],
                          # procent doar unde există DZR: sodiul n-are (e plafon, nu țintă)

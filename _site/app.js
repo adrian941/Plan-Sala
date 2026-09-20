@@ -164,11 +164,15 @@
     // citească „cât din cât" · o liniuță încărcată până la acel procent.
     // Două cifre, nu trei: cantitatea strânsă ar fi chiar pct × DZR, deci n-o mai scriem.
     // Liniuța e plină la 100% și rămâne plină peste — cifra spune cât e de fapt.
+    // Numele și cifrele stau pe ACEEAȘI linie, cu liniuța dedesubt — așa banda ține într-un
+    // rând mai puțin de fiecare grup. Vitaminele și mineralele sunt despărțite vizibil: sunt
+    // două feluri de lucruri, iar fără despărțire lista de 23 se citește ca o înșiruire.
     const vitz = detail && ref.vit ? `<div class="vitz">
-      <span class="vzl">Vitamine și minerale${ref.vitPartial ? "*" : ""} — azi / DZR</span>
-      ${ref.vit.map((v) => `<span class="vz${v.pct === null ? " fara" : (v.pct >= 100 ? " full" : "")}">
-        <span class="vzn">${esc(v.n)}</span>
-        <span class="vzd"><b>${esc(v.v)}</b>${v.dzr === null ? "" : "/" + esc(v.dzr)}<i>${esc(v.u)}</i></span>
+      ${ref.vit.map((v, i) => (i === 0
+          ? `<span class="vzl">Vitamine${ref.vitPartial ? "*" : ""} — azi / DZR</span>`
+          : (v.vit !== ref.vit[i - 1].vit ? `<span class="vzl vzl2">Minerale</span>` : ""))
+        + `<span class="vz${v.pct === null ? " fara" : (v.pct >= 100 ? " full" : "")}">
+        <span class="vzd"><em>${esc(v.n)}</em><b>${esc(v.v)}</b>${v.dzr === null ? "" : "/" + esc(v.dzr)}<i>${esc(v.u)}</i></span>
         ${v.pct === null ? "" : `<span class="vzb" style="--f: ${Math.min(v.pct, 100)}%"></span>`}
       </span>`).join("")}
     </div>` : "";

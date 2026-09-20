@@ -431,22 +431,22 @@ body.pg-retete .chips,      body.pg-alimente .chips { display: none; }
    --------------------------------------------------------------------------- */
 .p-det .dh { flex-wrap: wrap; }
 .vitz {
-  display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px;
   width: 100%;
   border-top: 1px solid var(--line-2);   /* firul care desparte macro-urile de vitamine */
 }
-/* Eticheta e o legendă pe toată lățimea, deasupra căsuțelor — NU o coloană a grilei.
-   Cât timp erau 13 vitamine pe două rânduri, stătea în stânga și încăleca ambele
-   rânduri; de când sunt 23 (vitamine + minerale) pe patru rânduri, are nevoie de
-   lățimea aia: „6438/2000mg" (potasiul) cere ~8,5 mm, iar cu eticheta în grilă
-   coloana rămânea la 7,8 mm și cifrele ieșeau din chenar. */
+/* Etichetele sunt legende pe toată lățimea, deasupra căsuțelor — NU coloane ale grilei.
+   Dacă ar fi coloane, ar fura din lățimea de care au nevoie cifrele. */
 .vitz .vzl { grid-column: 1 / -1; color: var(--mute); }
+/* a doua legendă, „Minerale": desparte cele două grupe — sunt lucruri diferite, iar
+   fără despărțire lista de 23 se citește ca o înșiruire */
+.vitz .vzl2 { border-top: 1px solid var(--line-2); }
 .vz { min-width: 0; text-align: center; }
-.vzn { display: block; color: var(--mute); line-height: 1.05; }
-/* Cele două cifre care contează: cât a strâns ziua / cât e DZR-ul, în aceeași unitate.
-   Stau lipite de liniuța lor și depărtate de numele vitaminei — cifrele și liniuța sunt
-   aceeași informație, numele e doar eticheta de deasupra. */
-.vzd { display: block; color: var(--mute); line-height: 1; white-space: nowrap; }
+/* Numele și cifrele pe ACEEAȘI linie, cu liniuța dedesubt: așa fiecare grup ține într-un
+   rând mai puțin. Șase coloane, nu șapte: „Colină 1013/400mg" cere ~10,4 mm pe o linie,
+   iar coloana are 10,4 — la șapte ar fi avut 8,8 și ar fi ieșit din chenar. */
+.vzd { display: block; color: var(--mute); line-height: 1.15; white-space: nowrap; }
+.vzd em { font-style: normal; font-weight: 700; color: var(--mute); margin-right: 0.35em; }
 .vzd b { color: var(--warm); font-weight: 700; }
 .vzd i { font-style: normal; font-size: 0.85em; }
 .vz.full .vzd b { color: var(--acc-ink); }
@@ -728,8 +728,8 @@ button, .seg label, .chips button, .title {
     margin-top: 0.8mm; padding-top: 0.8mm; border-top-width: 0.25pt;
   }
   #print .p-det .vzl { font-size: 3.9pt; font-weight: 600; line-height: 1.1; margin-bottom: 0.2mm; }
-  #print .p-det .vzn { font-size: 4pt; font-weight: 600; }
-  #print .p-det .vzd { font-size: 3.8pt; margin-top: 0.35mm; }
+  #print .p-det .vzl2 { border-top-width: 0.25pt; padding-top: 0.6mm; margin-top: 0.3mm; }
+  #print .p-det .vzd { font-size: 3.2pt; margin-top: 0.1mm; }
   #print .p-det .vzb { margin-top: 0.15mm; }   /* înălțimea e în px, vezi `.vzb` mai sus */
   #print .p-det .ing .c { text-align: right; padding-left: 2.2mm; color: var(--ink); }
   /* kcal la fiecare ingredient: verde, dar NEîngroșat (culoarea o ia și „Total" mai jos, prin
