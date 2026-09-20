@@ -318,7 +318,16 @@
   function recipePages() {
     const R = window.RETETE || [];
     if (!R.length) return "";
-    const carduri = R.map(recipeCard);
+    // În caietul îngust, fiecare tip de rețetă își primește titlul lui, ca pe pagina „Rețete"
+    // a site-ului (Mic dejun · Gustări · Feluri principale). Rețetele vin deja în ordinea asta
+    // din bază, deci titlul se pune acolo unde se schimbă grupul. E LIPIT de primul card al
+    // grupului, într-o cutie măsurată împreună cu el: altfel ar putea rămâne singur la baza
+    // unei coloane, cu rețeta lui pe foaia următoare.
+    const carduri = R.map((r, i) => {
+      const card = recipeCard(r);
+      if (!CAIET || (i && R[i - 1].grup === r.grup)) return card;
+      return `<div class="rgr"><p class="rgt">${esc(r.grup)}</p>${card}</div>`;
+    });
     const { inaltimi, disponibil, gap } = masoaraCarduri(carduri);
     return impacheteaza(inaltimi, disponibil, gap, retCol()).map((pag) => {
       const stea = pag.some((col) => col.some((i) => R[i].vitPartial));

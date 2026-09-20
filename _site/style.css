@@ -931,6 +931,15 @@ html.caiet-retete .ri {
 }
 html.caiet-retete .ri li { break-inside: avoid; }
 html.caiet-retete .rs { padding-left: 4mm; }
+/* titlul tipului de rețetă (Mic dejun · Gustări · Feluri principale), ca pe pagina „Rețete"
+   a site-ului. Stă în aceeași cutie cu primul card al grupului (`.rgr`, scrisă de app.js),
+   ca să nu rămână niciodată singur la baza unei coloane. */
+html.caiet-retete .rgr { display: flex; flex-direction: column; gap: var(--ret-gap); }
+html.caiet-retete .rgt {
+  margin: 0; padding-bottom: 0.8mm; border-bottom: 0.5pt solid var(--acc-ink);
+  font-size: 8pt; font-weight: 800; line-height: 1.1; color: var(--acc-ink);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
 
 @media print {
   /* foaia: 99 × 210 mm minus cele 4 mm de margine din `@page` (scris de app.js) */
