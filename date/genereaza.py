@@ -43,7 +43,7 @@ VITAMINE = [(1106, "A"), (1162, "C"), (1114, "D"), (1109, "E"),
             (1185, "K"), (1175, "B6"), (1177, "Folat"), (1178, "B12")]
 VITAMINE_ZI = [(1106, "A"), (1162, "C"), (1114, "D"), (1109, "E"), (1185, "K"),
                (1165, "B1"), (1166, "B2"), (1167, "B3"), (1170, "B5"), (1175, "B6"),
-               (1177, "B9"), (1178, "B12"), (1180, "Col")]   # B9 = folat · Col = colină
+               (1177, "Folat"), (1178, "B12"), (1180, "Colină")]
 MICRO = [(1106, "Vitamina A"), (1162, "Vitamina C"), (1114, "Vitamina D"), (1109, "Vitamina E"),
          (1185, "Vitamina K"), (1165, "B1 tiamină"), (1166, "B2 riboflavină"), (1167, "B3 niacină"),
          (1170, "B5 pantotenic"), (1175, "Vitamina B6"), (1177, "Folat"), (1178, "Vitamina B12"),
