@@ -431,17 +431,21 @@ body.pg-retete .chips,      body.pg-alimente .chips { display: none; }
    --------------------------------------------------------------------------- */
 .p-det .dh { flex-wrap: wrap; }
 .vitz {
-  display: grid; grid-template-columns: auto repeat(13, 1fr); gap: 3px;
-  align-items: center; width: 100%;
+  display: grid; grid-template-columns: auto repeat(7, 1fr); gap: 3px;
+  width: 100%;
   border-top: 1px solid var(--line-2);   /* firul care desparte macro-urile de vitamine */
 }
-.vitz .vzl { color: var(--mute); white-space: nowrap; }
+/* eticheta încalecă amândouă rândurile — dacă ar ocupa o căsuță, rândul de jos
+   ar porni decalat cu o coloană față de cel de sus și s-ar vedea strâmb */
+.vitz .vzl { grid-row: 1 / 3; align-self: center; color: var(--mute); white-space: nowrap; }
+.vitz .vzl i { display: block; font-style: normal; }
 .vz { min-width: 0; text-align: center; }
 .vzn { display: block; color: var(--mute); line-height: 1.05; }
-.vz b { display: block; color: var(--warm); font-weight: 700; line-height: 1.15; }
-/* DZR-ul, sub procent: din el se citește „cât din cât" */
+/* cele două cifre care contează: cât a strâns ziua / cât e DZR-ul, în aceeași unitate */
 .vzd { display: block; color: var(--mute); line-height: 1.2; white-space: nowrap; }
+.vzd b { color: var(--warm); font-weight: 700; }
 .vzd i { font-style: normal; font-size: 0.85em; }
+.vz.full .vzd b { color: var(--acc-ink); }
 /* liniuța de progres: șina goală și, peste ea, cât s-a acoperit din DZR */
 .vzb { display: block; background: var(--line-2); border-radius: 99px; overflow: hidden; }
 .vzb::before { content: ""; display: block; width: var(--f); height: 100%; background: var(--warm); }
@@ -666,14 +670,13 @@ button, .seg label, .chips button, .title {
   /* rândul de vitamine: al treilea rând al benzii, pe toată lățimea cardului (forma lui e
      mai sus, la `.vitz`; aici doar cât de mic e pe hârtie) */
   #print .p-det .dh .vitz {
-    grid-column: 1 / -1; grid-row: 3; gap: 0.6mm;
+    grid-column: 1 / -1; grid-row: 3; gap: 0.8mm 0.8mm;
     margin-top: 0.8mm; padding-top: 0.8mm; border-top-width: 0.25pt;
   }
-  #print .p-det .vzl { font-size: 3.9pt; font-weight: 600; padding-right: 0.3mm; }
+  #print .p-det .vzl { font-size: 3.9pt; font-weight: 600; padding-right: 0.4mm; line-height: 1.2; }
   #print .p-det .vzn { font-size: 4pt; font-weight: 600; }
-  #print .p-det .vz b { font-size: 4.8pt; }
-  #print .p-det .vzd { font-size: 3.4pt; }
-  #print .p-det .vzb { height: 0.5mm; margin-top: 0.3mm; }
+  #print .p-det .vzd { font-size: 3.8pt; }
+  #print .p-det .vzb { height: 0.5mm; margin-top: 0.35mm; }
   #print .p-det .ing .c { text-align: right; padding-left: 2.2mm; color: var(--ink); }
   /* kcal la fiecare ingredient: verde, dar NEîngroșat (culoarea o ia și „Total" mai jos, prin
      .tot .k b, dar acolo textul e în plus și `<b>`, deci rămâne gros — vezi mai jos) */
