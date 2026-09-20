@@ -139,8 +139,21 @@
       return `<span class="c r1">P</span><span class="c r1">G</span><span class="c r1">C</span><span class="c r1">F</span><span class="k r1">kcal</span>`
         + `<span class="c r2">${t.p}</span><span class="c r2">${t.g}</span><span class="c r2">${t.c}</span><span class="c r2">${t.f}</span><span class="k r2"><b>${t.k}</b></span>`;
     })() : "";
+    // Al treilea rând al benzii, pe toată lățimea cardului: vitaminele zilei, toate 13 pe
+    // un rând. O vitamină = numele · cât la sută din DZR a strâns ziua · DZR-ul, ca să se
+    // citească „cât din cât" · o liniuță încărcată până la acel procent.
+    // Două cifre, nu trei: cantitatea strânsă ar fi chiar pct × DZR, deci n-o mai scriem.
+    // Liniuța e plină la 100% și rămâne plină peste — cifra spune cât e de fapt.
+    const vitz = detail && ref.vit ? `<div class="vitz">
+      <span class="vzl">Vitamine${ref.vitPartial ? "*" : ""}<i>azi / DZR</i></span>
+      ${ref.vit.map((v) => `<span class="vz${v.pct >= 100 ? " full" : ""}">
+        <span class="vzn">${esc(v.n)}</span>
+        <span class="vzd"><b>${esc(v.v)}</b>/${esc(v.dzr)}<i>${esc(v.u)}</i></span>
+        <span class="vzb" style="--f: ${Math.min(v.pct, 100)}%"></span>
+      </span>`).join("")}
+    </div>` : "";
     return `<article class="day" id="day-${wi}-${d}" data-i="${d}">
-      <header class="dh"><h2>${ref.name}${ref.tags ? ` <span class="tags">${esc(ref.tags)}</span>` : ""}</h2><div class="dt">${kc}</div>${dtot}</header>
+      <header class="dh"><h2>${ref.name}${ref.tags ? ` <span class="tags">${esc(ref.tags)}</span>` : ""}</h2><div class="dt">${kc}</div>${dtot}${vitz}</header>
       <div class="bars">${bars}</div>
       <ol class="meals">${meals}</ol>
     </article>`;
@@ -159,8 +172,14 @@
   // `@page size: landscape`), CSS-ul poate să rotească `.pg` cu 90° și tot iese A4 întors.
   const page = (cls, inner) => `<section class="ps ${cls}"><div class="pg">${inner}</div></section>`;
   function detailPages(who) {
-    return data[who].map((_, wi) => [[0, 3], [4, 6]].map((range) =>
-      page("v-one p-det", weekHtml(wi, [who], false, `${PEOPLE[who]} — Detaliat — `, range, true))).join("")).join("");
+    return data[who].map((_, wi) => [[0, 3], [4, 6]].map((range) => {
+      const zile = data[who][wi].days.slice(range[0], range[1] + 1);
+      // steluța de la „Vitamine" vine de la zilele cu alimente fără valori în USDA — aceleași
+      // trei ca la rețete, deci aceeași notă (vezi NOTA_USDA)
+      const stea = zile.some((z) => z.vitPartial);
+      return page("v-one p-det", weekHtml(wi, [who], false, `${PEOPLE[who]} — Detaliat — `, range, true)
+        + (stea ? `<p class="rnota">${NOTA_USDA}</p>` : ""));
+    }).join("")).join("");
   }
   // Paginile de rețete din caiet: numai numele, ingredientele cu cantitatea pentru amândoi
   // (Ema + Adi, adică porția S + porția M — cât pui efectiv în oală) și modul de preparare.
@@ -196,7 +215,7 @@
     box.className = "rmas";
     box.setAttribute("aria-hidden", "true");
     // titlul și nota se măsoară și ele: mănâncă din înălțimea disponibilă pentru coloane
-    box.innerHTML = `<h1 class="pt">${TITLU_RETETE}</h1><p class="rnota">${NOTA_RETETE}</p>
+    box.innerHTML = `<h1 class="pt">${TITLU_RETETE}</h1><p class="rnota">${NOTA_USDA}</p>
       <div class="rcol">${carduri.join("")}</div>`;
     document.body.appendChild(box);
     const titlu = box.querySelector(".pt"), nota = box.querySelector(".rnota");
@@ -232,7 +251,8 @@
   }
 
   const TITLU_RETETE = "Rețete — cantitățile pentru amândoi (Ema + Adi), la un loc";
-  const NOTA_RETETE = "* laptele, laptele de cocos și mixul de fructe de pădure n-au valori în USDA, deci lipsesc din suma de vitamine.";
+  // aceeași notă peste tot unde se adună vitamine: și la rețete, și pe banda zilei
+  const NOTA_USDA = "* laptele, laptele de cocos și mixul de fructe de pădure n-au valori în USDA, deci lipsesc din suma de vitamine.";
   function recipeCard(r) {
     const ing = r.comp.reduce((t, c) => t.concat(c.items), [])
       .filter((i) => i.sm)
@@ -257,7 +277,7 @@
       const coloane = pag.map((col) => `<div class="rcol">${col.map((i) => carduri[i]).join("")}</div>`).join("");
       return page("p-ret", `<h1 class="pt">${TITLU_RETETE}</h1>
         <div class="rcols">${coloane}</div>
-        ${stea ? `<p class="rnota">${NOTA_RETETE}</p>` : ""}`);
+        ${stea ? `<p class="rnota">${NOTA_USDA}</p>` : ""}`);
     }).join("");
   }
   function printHtml() {

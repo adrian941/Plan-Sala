@@ -155,6 +155,17 @@ def micro_suma(plan, reteta, ids):
     return micro(plan, items, ids)
 
 
+def micro_zi(plan, zi, portie, ids):
+    """Cât strânge cineva într-o zi întreagă: toate mesele zilei, pe porția lui."""
+    items = [it for rid in zi.retete for it in plan.retete[rid].ingrediente(portie)]
+    return micro(plan, items, ids)
+
+
+def procent_dzr(plan, nutrient_id, valoare):
+    """Cât la sută din doza zilnică de referință acoperă valoarea (vezi nutrient.dzr)."""
+    return 100.0 * valoare / plan.nutrienti[nutrient_id].dzr
+
+
 def macro_suma(plan, reteta):
     """Macro-urile pe cantitățile adunate: porția S + porția M."""
     return macro(plan, reteta.ingrediente("S") + reteta.ingrediente("M"))

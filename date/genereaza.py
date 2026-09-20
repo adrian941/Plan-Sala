@@ -15,8 +15,9 @@ Textul explicativ (regulile, cum e gândit calendarul, organizarea bucătăriei)
 import io, json, os, sys
 
 import db
-from calcule import (macro_reteta, macro_suma, micro_suma, mic, r5, r0, r1, numar, qty, cant,
-                     parte_qty, nume_ing, totals, medie, plants, saptamani, zile_din)
+from calcule import (macro_reteta, macro_suma, micro_suma, micro_zi, procent_dzr, mic, r5, r0, r1,
+                     numar, qty, cant, parte_qty, nume_ing, totals, medie, plants, saptamani,
+                     zile_din)
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..") + "/"
@@ -33,10 +34,16 @@ def m5(t):
 # ---------------------------------------------------------------------------
 #  Micronutrienții care se afișează, în ordinea în care apar. Restul rămân în bază.
 #  `VITAMINE` = linia scurtă de sub fiecare rețetă din caietul de print;
+#  `VITAMINE_ZI` = rândul de pe banda zilei, la paginile Detaliat — toate vitaminele,
+#      fiecare cu cât s-a strâns în ziua aia și cu cât la sută din DZR înseamnă (dzr
+#      stă în bază, la nutrient). Etichetele sunt scurte: intră 13 într-un card îngust;
 #  `MICRO` = tot ce se deschide din butonul „Vitamine & minerale" de la Alimente.
 # ---------------------------------------------------------------------------
 VITAMINE = [(1106, "A"), (1162, "C"), (1114, "D"), (1109, "E"),
             (1185, "K"), (1175, "B6"), (1177, "Folat"), (1178, "B12")]
+VITAMINE_ZI = [(1106, "A"), (1162, "C"), (1114, "D"), (1109, "E"), (1185, "K"),
+               (1165, "B1"), (1166, "B2"), (1167, "B3"), (1170, "B5"), (1175, "B6"),
+               (1177, "Folat"), (1178, "B12"), (1180, "Colină")]
 MICRO = [(1106, "Vitamina A"), (1162, "Vitamina C"), (1114, "Vitamina D"), (1109, "Vitamina E"),
          (1185, "Vitamina K"), (1165, "B1 tiamină"), (1166, "B2 riboflavină"), (1167, "B3 niacină"),
          (1170, "B5 pantotenic"), (1175, "Vitamina B6"), (1177, "Folat"), (1178, "Vitamina B12"),
@@ -297,9 +304,19 @@ def meniu_site(p):
                              "total": {"k": r5(mm[0]), "p": r0(mm[1]), "g": r0(mm[2]),
                                        "c": r0(mm[3]), "f": r0(mm[4])},
                              "ing": ing})
+            # Vitaminele zilei, pentru banda verde de la paginile Detaliat. Cele două cifre
+            # care contează: `v` = cât a strâns ziua și `dzr` = cât e referința, în aceeași
+            # unitate — se scriu ca „1692/800µg". Procentul NU se scrie (ar fi exact v/dzr,
+            # adică o a treia cifră derivată din primele două); el pleacă doar ca `pct`,
+            # pentru cât se umple liniuța. Rotunjirile se fac abia aici, la scris.
+            vit, fara_date = micro_zi(plan, zi, p.portie, [i for i, _e in VITAMINE_ZI])
             zile.append({"name": zi.nume, "tags": zi.semne,
                          "total": {"k": r5(t[0]), "p": r0(t[1]), "g": r0(t[2]),
                                    "c": r0(t[3]), "f": r0(t[4])},
+                         "vit": [{"n": et, "v": mic(vit[i]), "dzr": mic(plan.nutrienti[i].dzr),
+                                  "u": unit(i), "pct": r0(procent_dzr(plan, i, vit[i]))}
+                                 for i, et in VITAMINE_ZI],
+                         "vitPartial": fara_date,   # câte ingrediente n-au valori în USDA
                          "meals": mese})
         sapt.append({"n": w, "days": zile})
     return sapt

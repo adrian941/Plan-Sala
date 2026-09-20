@@ -29,7 +29,9 @@ python usda.py adauga 168874 quinoa "Quinoa, crudă" "Cereale & amidon" --scurt 
 python genereaza.py                                                      # 3. apare în lista de alimente și pe site
 ```
 
-`adauga` scrie și cele cinci valori de pe farfurie (kcal, P, G, C, fibre) **și** toate celelalte pe care le are USDA (minerale, vitamine, aminoacizi, acizi grași) — ele stau în `ingredient_nutrient`. O parte din ele se și văd acum: **13 vitamine + 10 minerale** la pagina Alimente de pe site (butonul „Vitamine & minerale") și **8 vitamine** pe linia fiecărei rețete din caietul de print. Care anume se afișează se alege în `genereaza.py`, în listele `MICRO` și `VITAMINE`; restul rămân în bază, materie primă pentru „acoperim necesarul de fier / B12?".
+`adauga` scrie și cele cinci valori de pe farfurie (kcal, P, G, C, fibre) **și** toate celelalte pe care le are USDA (minerale, vitamine, aminoacizi, acizi grași) — ele stau în `ingredient_nutrient`. O parte din ele se și văd acum: **13 vitamine + 10 minerale** la pagina Alimente de pe site (butonul „Vitamine & minerale"), **8 vitamine** pe linia fiecărei rețete din caietul de print și **toate cele 13 vitamine pe banda fiecărei zile**, la paginile Detaliat din caiet — acolo ca **cantitatea zilei / DZR** („1692/800µg"), cu o liniuță încărcată cât e acoperit; procentul nu se scrie, fiind chiar raportul celor două cifre. Care anume se afișează se alege în `genereaza.py`, în listele `MICRO`, `VITAMINE` și `VITAMINE_ZI`; restul rămân în bază, materie primă pentru „acoperim necesarul de fier / B12?".
+
+Procentul din **DZR** se socotește din `nutrient.dzr` — doza zilnică de referință, în aceeași unitate ca valorile. E VNR-ul de pe etichetele din UE (Reg. 1169/2011, anexa XIII), deci **același pentru Ema și Adi**; colina, care n-are VNR, are aportul adecvat EFSA (400 mg). Completat doar la cele 13 vitamine: `dzr` NULL înseamnă „nu arătăm procent". Vrei procente și la minerale → pui valorile în coloana aia, nu în cod.
 
 ### O rețetă nouă, o cantitate schimbată, altă zi în calendar
 
