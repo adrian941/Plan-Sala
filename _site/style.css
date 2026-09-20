@@ -329,7 +329,7 @@ body.pg-retete .chips,      body.pg-alimente .chips { display: none; }
 }
 .ah:hover { background: color-mix(in srgb, var(--line) 40%, transparent); }
 .ah:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
-.alist .k { color: var(--mute); font-size: 11px; white-space: nowrap; }
+.alist .k { color: var(--mute); font-size: 11px; white-space: nowrap; text-align: right; }
 .alist .k small { font-size: 10px; }
 .alist .out { display: none; }                          /* implicit: doar ce intră în meniu */
 .cat.vid { display: none; }
@@ -337,7 +337,10 @@ body.pg-retete .chips,      body.pg-alimente .chips { display: none; }
 #pane-alimente.tot .alist .out .n { color: var(--mute); }
 #pane-alimente.tot .cat.vid { display: block; }
 
-/* restul valorilor: vitaminele și mineralele din USDA, ascunse până le ceri */
+/* restul valorilor: macronutrienții sub kcal, plus vitaminele și mineralele din USDA,
+   ascunse până le ceri */
+.km { display: none; margin-top: 1px; font-size: 9.5px; font-weight: 400; color: var(--mute); white-space: normal; }
+.alist li.open .km, #pane-alimente.micro .km { display: block; }
 .mic { display: none; padding: 2px 12px 11px; }
 .alist li.open { background: var(--soft); }
 .alist li.open .mic, #pane-alimente.micro .mic { display: block; }
@@ -612,7 +615,7 @@ body.no-macro .ing ul.two { grid-template-columns: repeat(4, max-content) 1fr; }
   /* alimentul deschis ia rândul lui întreg: altfel tabelul de vitamine împinge în sus
      vecinul de pe coloana cealaltă și rămâne o jumătate de rând goală */
   .alist li.open { grid-column: 1 / -1; }
-  /* „Vitamine & minerale" le deschide pe toate → o singură coloană, ca fiecare tabel să aibă loc */
+  /* „Valori nutriționale" le deschide pe toate → o singură coloană, ca fiecare tabel să aibă loc */
   #pane-alimente.micro .alist { grid-template-columns: 1fr; }
   #pane-alimente.micro .alist li:nth-child(2) { border-top: 1px solid var(--line); }
   /* pe ecran lat, cantitățile stau lângă nume, nu tocmai la marginea din dreapta */
