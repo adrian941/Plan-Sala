@@ -671,13 +671,17 @@ button, .seg label, .chips button, .title {
   #print .p-det .dh .r2 { grid-row: 2; font-size: 7.4pt; font-weight: 700; color: var(--ink); line-height: 1.15; }
   /* rândul de vitamine: al treilea rând al benzii, pe toată lățimea cardului (forma lui e
      mai sus, la `.vitz`; aici doar cât de mic e pe hârtie) */
+  /* Cele trei distanțe se citesc ca o ierarhie, de la strâns la larg: cifre–liniuță
+     (0,15 mm, aceeași informație) < nume–cifre (0,35 mm) < rând–rând (1,6 mm). Dacă
+     rostul dintre rânduri nu e clar mai mare decât cele din interiorul unei celule,
+     rândul al doilea pare lipit de primul. */
   #print .p-det .dh .vitz {
-    grid-column: 1 / -1; grid-row: 3; gap: 0.8mm 0.8mm;
+    grid-column: 1 / -1; grid-row: 3; gap: 1.6mm 0.8mm;
     margin-top: 0.8mm; padding-top: 0.8mm; border-top-width: 0.25pt;
   }
   #print .p-det .vzl { font-size: 3.9pt; font-weight: 600; padding-right: 0.4mm; line-height: 1.2; }
   #print .p-det .vzn { font-size: 4pt; font-weight: 600; }
-  #print .p-det .vzd { font-size: 3.8pt; margin-top: 0.75mm; }
+  #print .p-det .vzd { font-size: 3.8pt; margin-top: 0.35mm; }
   #print .p-det .vzb { height: 0.5mm; margin-top: 0.15mm; }
   #print .p-det .ing .c { text-align: right; padding-left: 2.2mm; color: var(--ink); }
   /* kcal la fiecare ingredient: verde, dar NEîngroșat (culoarea o ia și „Total" mai jos, prin
