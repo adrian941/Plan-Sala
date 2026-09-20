@@ -22,6 +22,11 @@
   const IMPLICIT = { view: "ema", macro: true, ing: false, micro: false };
   const state = { page: "meniu", view: IMPLICIT.view, week: 0, allIng: IMPLICIT.ing, macro: IMPLICIT.macro, micro: IMPLICIT.micro, printLook: false };
   const PAGES = ["meniu", "retete", "alimente"];
+  // „caietul îngust", doar cu rețete: index.html?caiet=retete
+  // Aceleași cartonașe ca în caietul mare de print, dar foaia e cât o TREIME de A4 culcat
+  // (99 × 210 mm, adică exact lățimea unei coloane de rețete). Pe telefon iese cât ecranul,
+  // deci se citește derulând, fără zoom. Vezi blocul „caiet-retete" din style.css.
+  const CAIET = /[?&]caiet=retete(?:&|$)/.test(location.search);
   // ordinea meselor pe card: mic dejun, prânz, cină, apoi (cu spațiu) gustarea
   const ORDER = { "Mic dejun": 0, "Prânz": 1, "Cină": 2, "Gustare": 3 };
   const g = (x) => `${+x}g`;
@@ -234,7 +239,9 @@
   // Ca să știm ce încape, trebuie să știm cât e de înalt fiecare card, iar asta se află doar
   // desenându-l. De aceea `masoaraCarduri` le desenează o dată într-o cutie scoasă din ecran
   // (`.rmas` din style.css), le citește înălțimea și le șterge.
-  const RET_COL = 3;   /* ține-l la fel cu --ret-col din style.css */
+  // câte coloane are foaia de rețete: o ia din CSS (`--ret-col`), fiindcă tot de acolo vine
+  // și lățimea coloanei din cutia de măsurat — 3 în caietul mare, 1 în cel îngust
+  const retCol = () => +getComputedStyle(document.documentElement).getPropertyValue("--ret-col") || 3;
 
   // câți px are o valoare scrisă în CSS (mm, pt…), ca să putem socoti în aceeași unitate
   function pxDinCss(valoare) {
@@ -289,7 +296,9 @@
     return pagini;
   }
 
-  const TITLU_RETETE = "Rețete — cantitățile pentru amândoi (Ema + Adi), la un loc";
+  // în foaia îngustă titlul lung s-ar rupe pe trei rânduri la fiecare pagină
+  const TITLU_RETETE = CAIET ? "Rețete — cantități pentru amândoi (Ema + Adi)"
+                             : "Rețete — cantitățile pentru amândoi (Ema + Adi), la un loc";
   // aceeași notă peste tot unde se adună vitamine: și la rețete, și pe banda zilei
   const NOTA_USDA = "* laptele, laptele de cocos și mixul de fructe de pădure n-au valori în USDA, deci lipsesc din suma de vitamine.";
   function recipeCard(r) {
@@ -311,7 +320,7 @@
     if (!R.length) return "";
     const carduri = R.map(recipeCard);
     const { inaltimi, disponibil, gap } = masoaraCarduri(carduri);
-    return impacheteaza(inaltimi, disponibil, gap, RET_COL).map((pag) => {
+    return impacheteaza(inaltimi, disponibil, gap, retCol()).map((pag) => {
       const stea = pag.some((col) => col.some((i) => R[i].vitPartial));
       const coloane = pag.map((col) => `<div class="rcol">${col.map((i) => carduri[i]).join("")}</div>`).join("");
       return page("p-ret", `<h1 class="pt">${TITLU_RETETE}</h1>
@@ -625,7 +634,23 @@
   }
 
   // ---------- start ----------
+  // Caietul îngust: pagina n-are nevoie de meniu, de butoane și de nimic din restul site-ului —
+  // doar de cartonașele de rețete, unul sub altul, la lățimea foii.
+  function caietRetete() {
+    document.documentElement.classList.add("caiet-retete");
+    // `@page` e regulă de document: nu se poate scrie pe o clasă. O punem de aici, după
+    // style.css, ca să bată `@page`-urile de acolo (A4 landscape și cel de la telefon).
+    const st = document.createElement("style");
+    st.textContent = "@media print{@page{size:99mm 210mm;margin:4mm}}";
+    document.head.appendChild(st);
+    const deseneaza = () => { $("#print").innerHTML = recipePages(); };
+    deseneaza();
+    // fontul schimbă înălțimea cardurilor, deci și împărțirea pe foi — remăsurăm după ce vine
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(deseneaza);
+  }
+
   (function init() {
+    if (CAIET) { caietRetete(); return; }
     readHash();
     syncControls();
     document.body.className = bodyClass();

@@ -883,15 +883,71 @@ button, .seg label, .chips button, .title {
    Aici întoarcem noi conținutul: fiecare foaie (`.ps`) devine o cutie cât pagina, iar pânza
    dinăuntru (`.pg`), care e în format vedere, se rotește cu 90°. Iese același A4 întors.
    Pe calculator, unde `@page` chiar e respectat, foaia e deja „landscape” — blocul ăsta nu
-   se potrivește și nu schimbă nimic. */
+   se potrivește și nu schimbă nimic.
+   Caietul îngust de rețete (`html.caiet-retete`) e portret DINADINS — foaia lui e cât o
+   treime de A4 — deci el nu intră aici: altfel i-am roti conținutul cu 90° degeaba. */
 @media print and (orientation: portrait) {
   @page { size: A4; margin: 0; }
   /* 279 mm = înălțimea foii Letter; așa intră pe o singură pagină și pe A4, și pe Letter */
-  .ps { width: 210mm; height: 279mm; }
-  .pg {
+  html:not(.caiet-retete) .ps { width: 210mm; height: 279mm; }
+  html:not(.caiet-retete) .pg {
     /* aceeași pânză „vedere” (266 × 197 mm, cu 6 mm margine de jur împrejur), doar culcată */
     width: calc(var(--panza-lat-tel) / var(--fit));
     min-height: calc(var(--panza-inalt-tel) / var(--fit));
     transform: translate(calc(var(--panza-inalt-tel) + 6mm), 6mm) rotate(90deg) scale(var(--fit));
   }
+}
+
+/* ---------- caietul îngust, doar cu rețete (index.html?caiet=retete) ----------
+   Aceleași cartonașe ca în caietul mare de print, dar foaia e **99 × 210 mm** — exact o
+   treime dintr-un A4 culcat, adică lățimea unei coloane de rețete din caiet. Pe telefon
+   foaia iese cât ecranul, deci PDF-ul se citește derulând, fără zoom și fără rotit.
+   Trei diferențe față de caietul mare, toate din lățime:
+   1. **o singură coloană pe foaie** (`--ret-col: 1`) și fără micșorare (`--fit: 1`) — pânza
+      e deja cât foaia, n-are ce să scadă;
+   2. **ingredientele pe două coloane, la toată lățimea**, iar pașii dedesubt: cu grila din
+      caietul mare (29 mm ingrediente | pași) pașii ar fi rămas pe ~55 mm, iar sub lista de
+      ingrediente ar fi rămas o jumătate de foaie albă (exact ce se vedea în poză);
+   3. `@page` se scrie din `app.js` — o regulă de document nu se poate pune pe o clasă.
+   Regulile stau ÎN AFARA lui `@media print`, ca și cele ale cardului (`.rp` & co.): cutia de
+   măsurat `.rmas` lucrează pe ecran, iar dacă n-ar vedea exact aceleași reguli ar măsura alte
+   înălțimi și împărțirea pe foi ar ieși greșită. */
+html.caiet-retete {
+  --fit: 1;                  /* foaia e deja cât pânza */
+  --ret-col: 1;              /* app.js citește tot de aici câte coloane să împacheteze */
+  /* foaia 99 × 210 mm, cu 4 mm margine de jur împrejur */
+  --panza-lat: 91mm;      --panza-inalt: 202mm;
+  --panza-lat-tel: 91mm;  --panza-inalt-tel: 202mm;
+}
+html.caiet-retete .rcol { display: flex; flex-direction: column; gap: var(--ret-gap); min-width: 0; }
+html.caiet-retete .rp { padding: 2.2mm 2.6mm; }
+html.caiet-retete .pt { font-size: 9.5pt; margin-bottom: 1.6mm; }
+/* ingredientele: două coloane egale, pe toată lățimea, citite de la stânga la dreapta;
+   sub ele o linie subțire, ca să se vadă unde încep pașii */
+html.caiet-retete .rc { display: block; }
+html.caiet-retete .ri {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.2mm 3mm;
+  padding-bottom: 1.4mm; margin-bottom: 1.6mm; border-bottom: 0.3pt solid var(--line-2);
+}
+html.caiet-retete .ri li { break-inside: avoid; }
+html.caiet-retete .rs { padding-left: 4mm; }
+
+@media print {
+  /* foaia: 99 × 210 mm minus cele 4 mm de margine din `@page` (scris de app.js) */
+  html.caiet-retete .ps { width: 91mm; height: 202mm; }
+}
+
+/* Pe ecran, aceeași foaie se vede ca o bandă albă, una sub alta — așa se poate citi caietul
+   direct din browser (și se vede exact ce va ieși în PDF), fără butoanele site-ului. */
+@media screen {
+  html.caiet-retete body { background: #DEDBE8; padding: 4mm 0; }
+  html.caiet-retete .top, html.caiet-retete .chips, html.caiet-retete main { display: none; }
+  html.caiet-retete body::before { display: none; }
+  html.caiet-retete #print[hidden] { display: block; }
+  html.caiet-retete .ps {
+    box-sizing: border-box; width: 99mm; min-height: 210mm; padding: 4mm;
+    margin: 0 auto 4mm; background: #fff; border-radius: 1mm;
+    box-shadow: 0 1px 6px rgba(20, 18, 31, 0.18);
+  }
+  html.caiet-retete .pg { width: 91mm; }
 }
