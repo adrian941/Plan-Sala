@@ -72,7 +72,9 @@ index.html             ← site-ul (doar afișare, fără backend). Trei pagini,
                          **Meniu** (zilele, Ema / Amândoi / Adi) · **Rețete** (toate rețetele, cu ingredientele
                          și cantitățile S/M, iar dedesubt modul de preparare pas cu pas; fiecare rețetă se
                          închide din butonul „Minimizează rețeta") · **Alimente** (lista pe categorii, cu
-                         vitaminele și mineralele la cerere — butonul „Vitamine & minerale" sau apăsarea unui aliment)
+                         vitaminele și mineralele la cerere — butonul „Vitamine & minerale" sau apăsarea unui aliment).
+                         Din panoul de opțiuni: **Macro**, **Ingrediente** și **Micronutrienți** — fiecare își
+                         ține starea în localStorage (vezi regula de mai jos)
 manifest.webmanifest   ← datele aplicației instalabile (nume, iconițe, „fullscreen”)
 sw.js                  ← service worker: face site-ul instalabil și îl ține funcțional fără internet
 .nojekyll              ← ca GitHub Pages să servească și folderul _site/ (Jekyll ignoră folderele cu „_")
@@ -133,6 +135,8 @@ adi/                    (de completat)
 2. Se verifică că `_site/data.js` și `date/plan.sql` s-au schimbat odată cu `4b` (`git status` trebuie să le arate pe toate).
 3. Dacă s-a schimbat **forma datelor** trimise site-ului (un câmp nou în `window.MENIU`, altă structură), se adaptează și `_site/app.js`, se crește `VERSIUNE` din `sw.js` și se verifică în browser că site-ul afișează corect toate cele 14 zile, pentru Ema, Adi și Amândoi.
 Site-ul nu se editează niciodată cu date „de mână" — el nu are conținut propriu. Toate cele trei pagini (**Meniu**, **Rețete**, **Alimente**) vin din `_site/data.js`, scris de `genereaza.py` din `date/plan.db`. O rețetă sau un aliment nou apare pe site **doar** după ce a intrat în bază și s-a rulat `python genereaza.py`.
+
+**Regulă permanentă — micronutrienții pe pagina Meniu stau după un buton, implicit OPRIT.** Butonul „Micronutrienți" din panoul de opțiuni arată cei **23** de micronutrienți (13 vitamine + 10 minerale, lista `MICRO`) pe **trei nivele**: sub fiecare ingredient (cel mai mic corp de literă din pagină), pe un rând sub macro-urile mesei, și un bloc la ziua întreagă. **Procentul din DZR apare DOAR la zi** — DZR-ul e o doză *zilnică*, deci la o masă sau la un ingredient n-ar însemna nimic. Verde = ziua acoperă DZR-ul, ocru = nu; **sodiul n-are procent** fiindcă n-are VNR: e un plafon („cât să nu depășești"), iar un procent acolo ar spune exact pe dos. Starea butonului se ține în localStorage (`meniu.micro`), ca la Macro și Ingrediente, iar butonul de opțiuni se aprinde când afișarea diferă de cea implicită. **Micronutrienții nu apar niciodată în caietul de print**, indiferent de buton: caietul are deja vitaminele pe banda zilei, iar regula „Ctrl+P scoate mereu același caiet" rămâne. La „Amândoi" nu apar sub ingrediente (rândul are deja două cantități), exact ca macro-urile.
 
 **Regulă permanentă — ce conține caietul de print (PDF).** Butonul „PDF” / Ctrl+P scoate mereu același caiet A4 landscape, în ordinea: (1–2) Ema + Adi, ingredientele pentru cumpărături, o săptămână pe pagină · (3) Ema, mesele cu macronutrienți · (4–7) Ema, paginile detaliate · (8) pagină goală · (9–13) Adi, la fel · **rețetele, la sfârșit** (azi 14–16, 16 pagini în total).
 

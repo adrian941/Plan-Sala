@@ -519,6 +519,40 @@ body.pg-retete .chips,      body.pg-alimente .chips { display: none; }
 .ing .k { padding-left: 8px; }
 .ing .n { min-width: 0; overflow-wrap: break-word; }
 .ing .m { grid-column: 1 / -1; color: var(--mute); font-size: 10.5px; margin: -2px 0 3px; }
+
+/* ---------------------------------------------------------------------------
+   Micronutrienții pe pagina Meniu — butonul „Micronutrienți", implicit OPRIT
+   (se aprinde din panoul de opțiuni, iar alegerea se ține în localStorage).
+   Trei nivele: sub fiecare ingredient, sub macro-urile mesei și, pentru zi, un
+   bloc cu procentul din DZR. Procentul apare DOAR la zi — DZR-ul e o doză
+   zilnică, deci la o masă sau la un ingredient n-ar însemna nimic.
+   Nu apare niciodată în caietul de print: acolo banda zilei are deja vitaminele.
+   --------------------------------------------------------------------------- */
+.mic, .micm, .micz { display: none; }
+body.cu-micro .mic, body.cu-micro .micm { display: block; }
+body.cu-micro .micz { display: block; }
+/* linia compactă (ingredient, masă): perechi „etichetă valoare", una după alta */
+.mic { color: var(--mute); line-height: 1.35; }
+.mic > span { display: inline-block; white-space: nowrap; margin-right: 7px; }
+.mic i { font-style: normal; font-weight: 600; color: var(--mute); margin-right: 2px; opacity: .85; }
+.mic u { text-decoration: none; font-size: 0.9em; }
+.mic.gol { font-style: italic; }
+/* sub ingredient: cel mai mic corp de literă din pagină, e detaliu de fundal */
+.ing .mic { grid-column: 1 / -1; font-size: 9.5px; margin: -1px 0 4px; padding-left: 2px; }
+/* sub masă: un rând, aliniat cu numele felului */
+.micm { padding: 0 12px 7px 12px; font-size: 10px; }
+.micm em { font-style: normal; font-weight: 700; color: var(--p-ink); margin-right: 5px; }
+/* blocul zilei: nume întreg, cantitate și procent din DZR, în coloane care se așază singure */
+.micz { padding: 2px 12px 10px; border-bottom: 1px solid var(--line); }
+.micz h3 { margin: 0 0 5px; font-size: 11px; font-weight: 700; color: var(--mute-2); }
+.micz h3 small { font-weight: 400; color: var(--mute); }
+.mzg { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1px 12px; }
+.mz { display: grid; grid-template-columns: 1fr auto auto; gap: 6px; align-items: baseline; font-size: 11px; }
+.mz b { font-weight: 400; color: var(--ink); min-width: 0; overflow-wrap: break-word; }
+.mz i { font-style: normal; color: var(--mute); }
+.mz u { text-decoration: none; font-weight: 700; color: var(--mute); min-width: 34px; text-align: right; }
+.mz.ok u { color: var(--acc-ink); }
+.mz.sub u { color: var(--warm); }
 /* butonul Macro oprit: rămâne doar meniul, fără kcal și fără macro */
 body.no-macro .bars, body.no-macro .mt, body.no-macro .ing .m,
 body.no-macro .dh .dt, body.no-macro .mh .kc, body.no-macro .ing .k, body.no-macro .chips small { display: none; }
@@ -645,6 +679,9 @@ button, .seg label, .chips button, .title {
   .top, .chips, #days, .pane { display: none !important; }
   body::before { display: none; }
   #print[hidden] { display: block; }
+  /* micronutrienții sunt numai pentru ecran: caietul are deja vitaminele pe banda zilei,
+     iar butonul de pe site nu are voie să schimbe ce iese la imprimantă */
+  #print .mic, #print .micm, #print .micz { display: none !important; }
 
   /* culorile: secțiunea „Ema + Adi” are roz/albastru; secțiunile individuale, verdele */
   #print .v-one, #print .v-one .p-ema, #print .v-one .p-adi { --p: var(--acc); --p-ink: var(--ink); --p-soft: var(--acc-soft); }

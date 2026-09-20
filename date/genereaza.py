@@ -15,9 +15,9 @@ Textul explicativ (regulile, cum e gândit calendarul, organizarea bucătăriei)
 import io, json, os, sys
 
 import db
-from calcule import (macro_reteta, macro_suma, micro_suma, micro_zi, procent_dzr, mic, r5, r0, r1,
-                     numar, qty, cant, parte_qty, nume_ing, totals, medie, plants, saptamani,
-                     zile_din)
+from calcule import (macro_reteta, macro_suma, micro_reteta, micro_suma, micro_zi, procent_dzr,
+                     mic, r5, r0, r1, numar, qty, cant, parte_qty, nume_ing, totals, medie,
+                     plants, saptamani, zile_din)
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..") + "/"
@@ -50,6 +50,11 @@ MICRO = [(1106, "Vitamina A"), (1162, "Vitamina C"), (1114, "Vitamina D"), (1109
          (1180, "Colină"),
          (1087, "Calciu"), (1089, "Fier"), (1090, "Magneziu"), (1091, "Fosfor"), (1092, "Potasiu"),
          (1093, "Sodiu"), (1095, "Zinc"), (1098, "Cupru"), (1101, "Mangan"), (1103, "Seleniu")]
+MICRO_ID = [nid for nid, _e in MICRO]
+# etichetele scurte, pentru liniile înghesuite de pe pagina Meniu (masă, ingredient).
+# Mineralele au deja nume scurte, deci apar doar vitaminele.
+MICRO_SCURT = {1106: "A", 1162: "C", 1114: "D", 1109: "E", 1185: "K", 1165: "B1", 1166: "B2",
+               1167: "B3", 1170: "B5", 1175: "B6", 1177: "Folat", 1178: "B12", 1180: "Colină"}
 UNITATI = {"MG": "mg", "UG": "µg", "IU": "UI", "G": "g", "KCAL": "kcal"}
 
 
@@ -298,11 +303,17 @@ def meniu_site(p):
                             continue
                         kcal, pr, gr, cb, fi = [v * g / 100 for v in al.valori]
                         q, u, nume = parte_qty(al, g)
+                        # micronutrienții aduși de ingredientul ăsta, în ordinea din MICRO;
+                        # null la cele trei alimente fără corespondent în USDA
                         ing.append({"qty": q, "unit": u, "name": nume, "p": r1(pr), "g": r1(gr),
-                                    "c": r1(cb), "f": r1(fi), "k": r0(kcal)})
+                                    "c": r1(cb), "f": r1(fi), "k": r0(kcal),
+                                    "m": [mic(al.micro.get(nid, 0.0) * g / 100) for nid, _e in MICRO]
+                                         if al.micro else None})
+                mmic, _f = micro_reteta(plan, r, p.portie, MICRO_ID)
                 mese.append({"icon": icon, "type": tip, "name": r.nume,
                              "total": {"k": r5(mm[0]), "p": r0(mm[1]), "g": r0(mm[2]),
                                        "c": r0(mm[3]), "f": r0(mm[4])},
+                             "m": [mic(mmic[nid]) for nid in MICRO_ID],
                              "ing": ing})
             # Vitaminele zilei, pentru banda verde de la paginile Detaliat. Cele două cifre
             # care contează: `v` = cât a strâns ziua și `dzr` = cât e referința, în aceeași
@@ -310,6 +321,10 @@ def meniu_site(p):
             # adică o a treia cifră derivată din primele două); el pleacă doar ca `pct`,
             # pentru cât se umple liniuța. Rotunjirile se fac abia aici, la scris.
             vit, fara_date = micro_zi(plan, zi, p.portie, [i for i, _e in VITAMINE_ZI])
+            # aceeași socoteală, dar pe toți micronutrienții afișabili — pentru butonul
+            # „Micronutrienți" de pe site. Aici merge și procentul din DZR: pe zi are sens
+            # (ziua e unitatea în care se măsoară DZR-ul), pe masă sau pe ingredient nu.
+            zmic, _f = micro_zi(plan, zi, p.portie, MICRO_ID)
             zile.append({"name": zi.nume, "tags": zi.semne,
                          "total": {"k": r5(t[0]), "p": r0(t[1]), "g": r0(t[2]),
                                    "c": r0(t[3]), "f": r0(t[4])},
@@ -317,6 +332,10 @@ def meniu_site(p):
                                   "u": unit(i), "pct": r0(procent_dzr(plan, i, vit[i]))}
                                  for i, et in VITAMINE_ZI],
                          "vitPartial": fara_date,   # câte ingrediente n-au valori în USDA
+                         "m": [mic(zmic[nid]) for nid in MICRO_ID],
+                         # procent doar unde există DZR: sodiul n-are (e plafon, nu țintă)
+                         "mpct": [r0(procent_dzr(plan, nid, zmic[nid]))
+                                  if plan.nutrienti[nid].dzr else None for nid in MICRO_ID],
                          "meals": mese})
         sapt.append({"n": w, "days": zile})
     return sapt
@@ -370,8 +389,10 @@ _alimente = [{
               for i in cat.ingrediente],
 } for cat in plan.categorii]
 
-# capul de tabel al micronutrienților: o singură dată, nu la fiecare aliment
-_micro_cap = [{"n": et, "u": unit(nid),
+# Capul de tabel al micronutrienților: o singură dată, nu la fiecare aliment.
+# `s` = eticheta scurtă, pentru liniile înghesuite (masă, ingredient) de pe pagina Meniu;
+# `n` = numele întreg, pentru pagina Alimente și pentru totalul zilei, unde e loc.
+_micro_cap = [{"n": et, "s": MICRO_SCURT.get(nid, et), "u": unit(nid),
                "g": "vitamina" if nid in (1106, 1162, 1114, 1109, 1185, 1165, 1166, 1167,
                                           1170, 1175, 1177, 1178, 1180) else "mineral"}
               for nid, et in MICRO]
