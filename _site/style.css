@@ -882,9 +882,13 @@ button, .seg label, .chips button, .title {
    rămâne portret și caietul iese îngrămădit sus (exact ce se vedea în PDF-ul de pe Samsung).
    Aici întoarcem noi conținutul: fiecare foaie (`.ps`) devine o cutie cât pagina, iar pânza
    dinăuntru (`.pg`), care e în format vedere, se rotește cu 90°. Iese același A4 întors.
-   Pe calculator, unde `@page` chiar e respectat, foaia e deja „landscape” — blocul ăsta nu
-   se potrivește și nu schimbă nimic. */
-@media print and (orientation: portrait) {
+   `(hover: none)` = dispozitiv fără mouse (telefon, tabletă) și NU e ornament: Chrome evaluează
+   `orientation` la print după orientarea din DIALOGUL de print, nu după `@page`. Pe calculator
+   dialogul pornește pe „Portrait”, deci fără `hover: none` blocul ăsta se potrivea și acolo,
+   iar `@page { size: A4 }` de mai jos suprascria `A4 landscape` — caietul ieșea în picioare,
+   cu textul rotit (bug văzut pe desktop după ce s-a rezolvat telefonul). Cu `hover: none`,
+   pe calculator blocul nu se potrivește niciodată și `@page` din blocul mare rămâne stăpân. */
+@media print and (orientation: portrait) and (hover: none) {
   @page { size: A4; margin: 0; }
   /* 279 mm = înălțimea foii Letter; așa intră pe o singură pagină și pe A4, și pe Letter */
   .ps { width: 210mm; height: 279mm; }
