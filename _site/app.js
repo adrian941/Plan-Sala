@@ -96,7 +96,7 @@
       const i = first.ing;
       // kcal la fiecare ingredient: verde, dar NEîngroșat — bold rămâne doar la Total (masă/zi)
       if (detail) return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="c">${+i.p}</span><span class="c">${+i.g}</span><span class="c">${+i.c}</span><span class="c">${+i.f}</span><span class="k">${i.k}</span></li>`;
-      return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="k"><b>${i.k}</b></span><span class="m">${macroShort(i)}</span>${microLinie(i.m, "ing")}</li>`;
+      return `<li><span class="q">${esc(i.qty)}</span><span class="u">${i.unit}</span><span class="n">${esc(name)}</span><span class="k"><b>${i.k}</b></span><span class="m">${macroShort(i)}</span>${microLinie(i.m, "ingr")}</li>`;
     }
     const q = rows.map((r) => `<span class="q p-${r.who}">${r.ing ? esc(r.ing.qty) : "—"}</span><span class="u p-${r.who}">${r.ing ? r.ing.unit : ""}</span>`).join("");
     const k = rows.map((r) => `<b class="p-${r.who}">${r.ing ? r.ing.k : "—"}</b>`).join(" / ");
