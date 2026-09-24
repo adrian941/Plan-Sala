@@ -10881,7 +10881,7 @@ CREATE TABLE persoana (
   apa          TEXT NOT NULL       -- litri pe zi: "2,5"
 );
 INSERT INTO "persoana" VALUES('ema',1,'Ema','ea','S','standard',2200,150,65,255,'25–30','2,5');
-INSERT INTO "persoana" VALUES('adi',2,'Adi','el','M','mare',2400,180,75,250,'30–38','3');
+INSERT INTO "persoana" VALUES('adi',2,'Adi','el','M','mare',2375,180,75,245,'30–38','3');
 CREATE TABLE reteta (
   id          TEXT PRIMARY KEY,   -- "MD1", "P12"
   pozitie     INTEGER NOT NULL,   -- ordinea în liste
