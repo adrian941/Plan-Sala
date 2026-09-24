@@ -6,19 +6,19 @@
 ## Bază de calcul (Mifflin-St Jeor)
 Detalii formulă: [`1_profil.md`](./1_profil.md) · ghid: [`wiki/calorii.md`](../wiki/calorii.md)
 
-- **BMR** ≈ **2125 kcal** (M, 32 ani, 192 cm, 108 kg)
-- **TDEE** ≈ **2920 kcal** (×1.375, 2 antrenamente/săpt.)
-- Deficit ~520 kcal → **țintă ≈ 2400 kcal/zi** (~0,5–0,6 kg/săpt.)
+- **BMR** ≈ **2105 kcal** (M, 32 ani, 192 cm, 106 kg)
+- **TDEE** ≈ **2895 kcal** (×1.375, 2 antrenamente/săpt.)
+- Deficit ~520 kcal → **țintă ≈ 2375 kcal/zi** (~0,5–0,6 kg/săpt.)
 
 ## Ținte zilnice
 
 | Macro | Cantitate | Calorii | Rațiune |
 |-------|----------:|--------:|---------|
-| Proteine | **180 g** | 720 | ~1,9 g/kg greutate-țintă (~93 kg). Calculat pe ținta, NU pe 108 kg. Cheia recompoziției: păstrează/construiește mușchi în deficit + sațietate. |
+| Proteine | **180 g** | 720 | ~1,9 g/kg greutate-țintă (~93 kg). Calculat pe ținta, NU pe greutatea actuală. Cheia recompoziției: păstrează/construiește mușchi în deficit + sațietate. |
 | Grăsimi | **75 g** | 675 | ~28% din calorii; ~0,8 g/kg greutate-țintă, prag pentru testosteron. |
-| Carbohidrați | **250 g** | 1000 | Energie pentru forță + fibre. Mai mulți în zilele de sală. |
+| Carbohidrați | **245 g** | 980 | Energie pentru forță + fibre. Mai mulți în zilele de sală. |
 | **Fibre** | **30–38 g** | — | Sațietate, glicemie, tranzit. Ținta pentru bărbați adulți. |
-| **TOTAL** | | **≈ 2395 kcal** |
+| **TOTAL** | | **≈ 2375 kcal** |
 
 ## Principii personalizate
 - **Recompoziție, nu doar slăbit**: proteina e nenegociabilă (~35–45 g × 4 mese), iar sala trebuie să fie **forță progresivă** — fără stimul, deficitul taie și din mușchi.

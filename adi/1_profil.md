@@ -10,8 +10,12 @@
 | Vârstă | 32 ani |
 | Sex biologic | masculin |
 | Înălțime | 192 cm |
-| Greutate actuală | 108 kg |
+| Greutate actuală | **106 kg** *(23 sept. 2026, cântar/ceas smart)* |
 | Circumferință talie | ⟨… cm⟩ *(opțional)* |
+| Grăsime corporală | **31,4%** *(23 sept. 2026, bioimpedanță ceas)* |
+| Masă musculară | **38,8 kg** *(23 sept. 2026, bioimpedanță ceas)* |
+
+> Grăsimea și masa musculară vin din bioimpedanța ceasului smart — estimare utilă pentru **tendință în timp**, nu o valoare de precizie clinică (DEXA ar fi etalonul). Le ținem ca reper: dacă la următoarele cântăriri grăsimea scade și masa musculară crește/stagnează, recompoziția merge cum trebuie.
 
 ## Activitate & stil de viață
 
@@ -51,8 +55,9 @@
 **Formulă: Mifflin-St Jeor** (aceeași ca la Ema). Ghid complet: [`wiki/calorii.md`](../wiki/calorii.md).
 `BMR = 10·W + 6.25·H − 5·A + 5`
 
-- **BMR** = 10·108 + 6.25·192 − 5·32 + 5 = **≈ 2125 kcal**
-- **TDEE** = 2125 × **1.375** (activitate ușoară: 2 antrenamente/săpt.) = **≈ 2920 kcal**
-- **Țintă calorică**: **≈ 2400 kcal/zi** (deficit ~520)
+- **BMR** = 10·106 + 6.25·192 − 5·32 + 5 = **≈ 2105 kcal**
+- **TDEE** = 2105 × **1.375** (activitate ușoară: 2 antrenamente/săpt.) = **≈ 2895 kcal**
+- **Țintă calorică**: **≈ 2375 kcal/zi** (deficit ~520)
 - **De ce nu mai agresiv**: obiectivul secundar e mușchiul. Deficit >600 la un începător taie din capacitatea de a construi; ~500 + proteină mare permite recompoziție (grăsime jos, mușchi sus) — fereastra asta o au doar începătorii cu % grăsime mare.
-- **Reguli**: nu sub BMR (2125); recalibrăm după cântar la 2–3 săpt.; cântarul poate scădea mai încet decât grăsimea (mușchiul câștigat cântărește) → urmărim și **talia**.
+- **Reguli**: nu sub BMR (2105); recalibrăm după cântar la 2–3 săpt.; cântarul poate scădea mai încet decât grăsimea (mușchiul câștigat cântărește) → urmărim și **talia**.
+- **Istoric greutate**: 108 kg (14 sept. 2026) → **106 kg** (23 sept. 2026), −2 kg. Recalculat BMR/TDEE/țintă; proteina și grăsimile rămân neschimbate (calculate pe greutatea-țintă ~93 kg, nu pe cea actuală).

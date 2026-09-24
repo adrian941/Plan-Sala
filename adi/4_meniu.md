@@ -5,7 +5,7 @@
 
 ## Porția: **M** (mare) la toate rețetele
 
-Ținte: **2400 kcal · P180 / G75 / C250**. Cantitățile sunt **crude** (carnea, orezul, lintea înainte de gătit). Mesele principale = farfuria 40/40/20: *proteină · legume · amidon · sos*. **Fără lactate cu carne/pește și fără ouă cu carne în aceeași masă** — lactatele sunt la micul dejun și gustări.
+Ținte: **2375 kcal · P180 / G75 / C245**. Cantitățile sunt **crude** (carnea, orezul, lintea înainte de gătit). Mesele principale = farfuria 40/40/20: *proteină · legume · amidon · sos*. **Fără lactate cu carne/pește și fără ouă cu carne în aceeași masă** — lactatele sunt la micul dejun și gustări.
 
 
 ## Săptămâna 1
@@ -98,8 +98,8 @@
 
 | | Țintă | Media planului | |
 |---|--:|--:|---|
-| Calorii | 2400 | **2460** | ✅ (+58) |
+| Calorii | 2375 | **2460** | ✅ (+83) |
 | Proteine | 180 g | **189 g** | ✅ |
 | Grăsimi | 75 g | **79 g** | ✅ |
-| Carbohidrați | 250 g | **263 g** | ✅ |
+| Carbohidrați | 245 g | **263 g** | ✅ |
 | Fibre | 30–38 g | **45 g** | ✅ peste țintă — apă 3 l/zi, 1–2 săpt. adaptare |
