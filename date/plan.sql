@@ -67,14 +67,14 @@ INSERT INTO "ingredient" VALUES('pastrav','Păstrăv curcubeu de crescătorie, c
 INSERT INTO "ingredient" VALUES('ton','Ton conservă în apă, scurs','ton (conservă, scurs)',1,15,116.0,25.5,0.8,0.0,0.0,'USDA 171986',171986,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('ou','Ou întreg, crud','ouă',2,1,143.0,12.6,9.5,0.7,0.0,'USDA 171287',171287,'1 ou M ≈ 55 g → 79 kcal, 6,9 g P','g',55.0,'ou','ouă',0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('albus','Albuș, crud','albușuri',2,2,52.0,10.9,0.2,0.7,0.0,'USDA 172183',172183,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
-INSERT INTO "ingredient" VALUES('skyr','Skyr / iaurt grec 0%','skyr',3,1,59.0,10.2,0.4,3.6,0.0,'USDA 170894',170894,'USDA: Greek yogurt nonfat; skyr-ul din comerț e practic identic','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
+INSERT INTO "ingredient" VALUES('skyr','Skyr natur 0,2%','skyr',3,1,62.0,11.0,0.2,4.0,0.0,'etichetă Pilos (micro: USDA 170894)',170894,'macro de pe eticheta produsului cumpărat (vezi tabelul produs); vitaminele și mineralele din USDA Greek yogurt nonfat','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('iaurt_grec','Iaurt grec 2%','iaurt grec',3,2,73.0,10.0,1.9,3.9,0.0,'USDA 170903',170903,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('iaurt','Iaurt simplu 1,5–2%',NULL,3,3,63.0,5.3,1.6,7.0,0.0,'USDA 170886',170886,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('branza_vaci','Brânză de vaci 2% (cottage)','brânză de vaci',3,4,81.0,10.5,2.3,4.8,0.0,'USDA 172182',172182,'brânza de vaci RO presată are de obicei mai multă proteină (13–16 g) — verifică eticheta','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('branza_vaci_4','Brânză de vaci 4%',NULL,3,5,98.0,11.1,4.3,3.4,0.0,'USDA 172179',172179,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('kefir','Kefir 1–2%','kefir',3,6,43.0,3.8,1.0,4.8,0.0,'USDA 170904',170904,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('lapte','Lapte 1,5%','lapte 1,5%',3,7,46.0,3.3,1.5,4.8,0.0,'etichetă',NULL,'USDA are doar 1% (42 kcal) și 2% (50 kcal); 1,5% = media','ml',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
-INSERT INTO "ingredient" VALUES('lapte_integral','Lapte integral 3,5%',NULL,3,8,61.0,3.2,3.3,4.8,0.0,'USDA 172217',172217,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
+INSERT INTO "ingredient" VALUES('lapte_integral','Lapte 3,5%','lapte 3,5%',3,8,62.0,3.2,3.5,4.5,0.0,'etichetă Pilos (micro: USDA 172217)',172217,'macro de pe eticheta produsului cumpărat (vezi tabelul produs), per 100 ml; vitaminele și mineralele din USDA Milk, whole 3.25%','ml',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('telemea','Telemea / feta','telemea',3,9,265.0,14.2,21.5,3.9,0.0,'USDA 173420',173420,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('mozzarella','Mozzarella light (part skim)',NULL,3,10,254.0,24.3,15.9,2.8,0.0,'USDA 170847',170847,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('ricotta','Ricotta (part skim)',NULL,3,11,138.0,11.4,7.9,5.1,0.0,'USDA 171248',171248,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
@@ -152,15 +152,6 @@ INSERT INTO "ingredient" VALUES('struguri','Struguri',NULL,8,11,69.0,0.7,0.2,18.
 INSERT INTO "ingredient" VALUES('soia','Sos de soia','sos de soia',9,1,53.0,8.1,0.6,4.9,0.8,'USDA 174277',174277,'','ml',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('mustar','Muștar','muștar',9,2,60.0,3.7,3.3,5.8,4.0,'USDA 172234',172234,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('lamaie','Suc de lămâie','suc de lămâie',9,3,22.0,0.4,0.2,6.9,0.3,'USDA 167747',167747,'','ml',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
-CREATE TABLE ingredient_magazin (
-  ingredient_cheie TEXT NOT NULL REFERENCES ingredient(cheie) ON DELETE CASCADE,
-  magazin_id       INTEGER NOT NULL REFERENCES magazin(id) ON DELETE CASCADE,
-  preferat         INTEGER NOT NULL DEFAULT 0 CHECK (preferat IN (0,1)),
-  ambalaj_g        REAL,          -- cât are un pachet / o conservă
-  ambalaj_nume     TEXT,          -- "conservă 400 g", "pachet 500 g"
-  nota             TEXT,
-  PRIMARY KEY (ingredient_cheie, magazin_id)
-);
 CREATE TABLE ingredient_nutrient (
   ingredient_cheie TEXT NOT NULL REFERENCES ingredient(cheie) ON DELETE CASCADE,
   nutrient_id      INTEGER NOT NULL REFERENCES nutrient(id),
@@ -10699,11 +10690,12 @@ CREATE TABLE magazin (
   pozitie  INTEGER NOT NULL,
   nota     TEXT
 );
+INSERT INTO "magazin" VALUES(1,'Lidl',1,NULL);
 CREATE TABLE meta (
   cheie   TEXT PRIMARY KEY,
   valoare TEXT NOT NULL
 );
-INSERT INTO "meta" VALUES('schema_versiune','1');
+INSERT INTO "meta" VALUES('schema_versiune','3');
 INSERT INTO "meta" VALUES('descriere','Plan-Sala — sursa unică de adevăr. Generat în .md și pe site de date/genereaza.py.');
 CREATE TABLE nutrient (
   id       INTEGER PRIMARY KEY,   -- nutrient_id de la USDA (1008 = Energy, 1003 = Protein…)
@@ -10882,6 +10874,41 @@ CREATE TABLE persoana (
 );
 INSERT INTO "persoana" VALUES('ema',1,'Ema','ea','S','standard',2200,150,65,255,'25–30','2,5');
 INSERT INTO "persoana" VALUES('adi',2,'Adi','el','M','mare',2375,180,75,245,'30–38','3');
+CREATE TABLE produs (
+  id               INTEGER PRIMARY KEY,
+  ingredient_cheie TEXT NOT NULL REFERENCES ingredient(cheie) ON DELETE CASCADE,
+  marca            TEXT NOT NULL,          -- "Pilos"
+  nume             TEXT NOT NULL,          -- "Skyr natur 0,2%"
+  ambalaj          REAL NOT NULL,          -- 500 / 1500 — cât are un ambalaj
+  unitate          TEXT NOT NULL DEFAULT 'g' CHECK (unitate IN ('g','ml')),
+  ambalaj_nume     TEXT NOT NULL,          -- "cutie 500 g", "sticlă 1,5 L"
+  preferat         INTEGER NOT NULL DEFAULT 1 CHECK (preferat IN (0,1)),  -- pe ăsta îl punem pe listă
+  fdc_echivalent   INTEGER NOT NULL,       -- 170894 — alimentul USDA din care vin vitaminele și mineralele
+  echivalent       TEXT NOT NULL,          -- "Yogurt, Greek, plain, nonfat" (descrierea USDA)
+  echivalent_motiv TEXT,                   -- de ce e acela echivalentul
+  -- eticheta, per 100 g / 100 ml (NULL = nu scrie pe ambalaj)
+  kcal             REAL,
+  grasimi          REAL,
+  grasimi_sat      REAL,
+  carbo            REAL,
+  zaharuri         REAL,
+  fibre            REAL,
+  proteine         REAL,
+  sare             REAL,
+  nota             TEXT,
+  UNIQUE (marca, nume, ambalaj)
+);
+INSERT INTO "produs" VALUES(1,'skyr','Pilos','Skyr natur 0,2%',500.0,'g','cutie 500 g',1,170894,'Yogurt, Greek, plain, nonfat','skyr-ul e iaurt strecurat, degresat — același profil ca iaurtul grecesc 0%; USDA n-are skyr separat',62.0,0.2,0.1,4.0,4.0,0.0,11.0,0.13,'producător Privatmolkerei Bechtel (DE)');
+INSERT INTO "produs" VALUES(2,'lapte_integral','Pilos','Lapte 3,5%',1500.0,'ml','sticlă 1,5 L',1,172217,'Milk, whole, 3.25% milkfat, without added vitamin A and vitamin D','lapte integral; varianta FĂRĂ vitamine A și D adăugate, fiindcă laptele din RO nu e fortifiat (cel cu vitamina D adăugată ar umfla D-ul zilei)',62.0,3.5,2.1,4.5,4.5,0.0,3.2,0.06,'7,5 porții de 200 ml');
+CREATE TABLE produs_magazin (
+  produs_id   INTEGER NOT NULL REFERENCES produs(id) ON DELETE CASCADE,
+  magazin_id  INTEGER NOT NULL REFERENCES magazin(id) ON DELETE CASCADE,
+  preferat    INTEGER NOT NULL DEFAULT 1 CHECK (preferat IN (0,1)),
+  nota        TEXT,
+  PRIMARY KEY (produs_id, magazin_id)
+) WITHOUT ROWID;
+INSERT INTO "produs_magazin" VALUES(1,1,1,NULL);
+INSERT INTO "produs_magazin" VALUES(2,1,1,NULL);
 CREATE TABLE reteta (
   id          TEXT PRIMARY KEY,   -- "MD1", "P12"
   pozitie     INTEGER NOT NULL,   -- ordinea în liste
@@ -11126,7 +11153,7 @@ INSERT INTO "reteta_ingredient" VALUES(11,7,1,'ovaz',60.0,70.0);
 INSERT INTO "reteta_ingredient" VALUES(12,8,1,'fructe_padure',100.0,100.0);
 INSERT INTO "reteta_ingredient" VALUES(13,9,1,'chia',10.0,10.0);
 INSERT INTO "reteta_ingredient" VALUES(14,9,2,'nuci',10.0,15.0);
-INSERT INTO "reteta_ingredient" VALUES(15,10,1,'lapte',100.0,100.0);
+INSERT INTO "reteta_ingredient" VALUES(15,10,1,'lapte_integral',100.0,100.0);
 INSERT INTO "reteta_ingredient" VALUES(16,11,1,'iaurt_grec',200.0,200.0);
 INSERT INTO "reteta_ingredient" VALUES(17,12,1,'ovaz',40.0,50.0);
 INSERT INTO "reteta_ingredient" VALUES(18,13,1,'banana',120.0,120.0);
@@ -11150,7 +11177,7 @@ INSERT INTO "reteta_ingredient" VALUES(35,25,1,'castravete',50.0,50.0);
 INSERT INTO "reteta_ingredient" VALUES(36,25,2,'ardei',50.0,50.0);
 INSERT INTO "reteta_ingredient" VALUES(37,25,3,'morcov',50.0,50.0);
 INSERT INTO "reteta_ingredient" VALUES(38,26,1,'skyr',150.0,200.0);
-INSERT INTO "reteta_ingredient" VALUES(39,27,1,'lapte',200.0,200.0);
+INSERT INTO "reteta_ingredient" VALUES(39,27,1,'lapte_integral',200.0,200.0);
 INSERT INTO "reteta_ingredient" VALUES(40,28,1,'banana',120.0,120.0);
 INSERT INTO "reteta_ingredient" VALUES(41,29,1,'unt_arahide',10.0,15.0);
 INSERT INTO "reteta_ingredient" VALUES(42,30,1,'pui_piept',150.0,190.0);
@@ -11366,4 +11393,6 @@ INSERT INTO "zi_masa" VALUES(54,13,1,'Prânz','🍲','P6');
 INSERT INTO "zi_masa" VALUES(55,13,2,'Gustare','🍎','G2');
 INSERT INTO "zi_masa" VALUES(56,13,3,'Cină','🌙','P10');
 CREATE INDEX ix_ingredient_cat ON ingredient(categorie_id, pozitie);
+CREATE INDEX ix_produs_ingredient ON produs(ingredient_cheie);
+CREATE INDEX ix_produs_magazin_m ON produs_magazin(magazin_id);
 COMMIT;

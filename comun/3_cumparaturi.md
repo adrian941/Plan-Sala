@@ -19,7 +19,7 @@
 
 | Magazin | Ce luăm de aici | Observații |
 |---------|-----------------|------------|
-| ⟨…⟩ | ⟨…⟩ | |
+| Lidl | **Pilos** Skyr natur 0,2% — cutie 500 g · **Pilos** lapte 3,5% — sticlă 1,5 L | produsele stau în baza de date, tabelul `produs` |
 
 ## Ce ținem mereu în casă
 

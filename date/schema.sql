@@ -198,8 +198,9 @@ CREATE TABLE zi_masa (
 );
 
 -- ---------------------------------------------------------------------------
---  magazin + cumparaturi — pasul 3. DE COMPLETAT: tabelele există, dar sunt
---  goale până știm ce magazine aveți la îndemână și ce se găsește bun în fiecare.
+--  magazin + produs + produs_magazin — pasul 3, cumpărăturile.
+--  ingredient (generic, din rețete) 1 ── N produs (articolul de la raft)
+--  produs N ── N magazin (prin produs_magazin: același produs se poate găsi în mai multe)
 --  Lista se va calcula din rețetele puse în calendar × porțiile fiecăruia.
 -- ---------------------------------------------------------------------------
 CREATE TABLE magazin (
@@ -209,16 +210,59 @@ CREATE TABLE magazin (
   nota     TEXT
 );
 
--- de unde luăm fiecare aliment, cu ce ambalaj se vinde (ca să rotunjim lista la ambalajul real)
-CREATE TABLE ingredient_magazin (
+-- ---------------------------------------------------------------------------
+--  produs — ce se cumpără efectiv: un articol concret de la raft, cu marcă
+--  și ambalaj (Skyr Pilos 500 g, lapte Pilos 3,5% 1,5 L). Unde se găsește
+--  stă în `produs_magazin`, nu aici — un produs poate fi în mai multe magazine.
+--  Alimentul din rețete (`ingredient`) rămâne generic („skyr", „lapte"); produsul
+--  spune DE UNDE și ÎN CE AMBALAJ îl luăm. Din el iese lista de cumpărături:
+--  cantitatea din meniu se rotunjește la ambalaje întregi ale produsului preferat.
+--  Valorile de pe etichetă (per 100 g / 100 ml, cum scrie pe ambalaj) se țin aici
+--  ca înregistrare; valorile de calcul rămân cele din `ingredient`.
+--
+--  ECHIVALENȚA USDA: eticheta dă doar macro-urile. Vitaminele și mineralele
+--  produsului se iau de la alimentul USDA echivalent (`fdc_echivalent`, cu
+--  descrierea lui oficială în `echivalent`) — ales de om, cu motivul în
+--  `echivalent_motiv`. E același ID cu `ingredient.fdc_id` al alimentului legat
+--  (de acolo se scriu valorile în `ingredient_nutrient`); `db.py verifica` se
+--  asigură că cele două nu se despart.
+-- ---------------------------------------------------------------------------
+CREATE TABLE produs (
+  id               INTEGER PRIMARY KEY,
   ingredient_cheie TEXT NOT NULL REFERENCES ingredient(cheie) ON DELETE CASCADE,
-  magazin_id       INTEGER NOT NULL REFERENCES magazin(id) ON DELETE CASCADE,
-  preferat         INTEGER NOT NULL DEFAULT 0 CHECK (preferat IN (0,1)),
-  ambalaj_g        REAL,          -- cât are un pachet / o conservă
-  ambalaj_nume     TEXT,          -- "conservă 400 g", "pachet 500 g"
+  marca            TEXT NOT NULL,          -- "Pilos"
+  nume             TEXT NOT NULL,          -- "Skyr natur 0,2%"
+  ambalaj          REAL NOT NULL,          -- 500 / 1500 — cât are un ambalaj
+  unitate          TEXT NOT NULL DEFAULT 'g' CHECK (unitate IN ('g','ml')),
+  ambalaj_nume     TEXT NOT NULL,          -- "cutie 500 g", "sticlă 1,5 L"
+  preferat         INTEGER NOT NULL DEFAULT 1 CHECK (preferat IN (0,1)),  -- pe ăsta îl punem pe listă
+  fdc_echivalent   INTEGER NOT NULL,       -- 170894 — alimentul USDA din care vin vitaminele și mineralele
+  echivalent       TEXT NOT NULL,          -- "Yogurt, Greek, plain, nonfat" (descrierea USDA)
+  echivalent_motiv TEXT,                   -- de ce e acela echivalentul
+  -- eticheta, per 100 g / 100 ml (NULL = nu scrie pe ambalaj)
+  kcal             REAL,
+  grasimi          REAL,
+  grasimi_sat      REAL,
+  carbo            REAL,
+  zaharuri         REAL,
+  fibre            REAL,
+  proteine         REAL,
+  sare             REAL,
   nota             TEXT,
-  PRIMARY KEY (ingredient_cheie, magazin_id)
+  UNIQUE (marca, nume, ambalaj)
 );
+CREATE INDEX ix_produs_ingredient ON produs(ingredient_cheie);
+
+-- în ce magazine se găsește fiecare produs (N ── N). `preferat` = de aici îl
+-- luăm de obicei — lista de cumpărături îl pune la magazinul ăsta.
+CREATE TABLE produs_magazin (
+  produs_id   INTEGER NOT NULL REFERENCES produs(id) ON DELETE CASCADE,
+  magazin_id  INTEGER NOT NULL REFERENCES magazin(id) ON DELETE CASCADE,
+  preferat    INTEGER NOT NULL DEFAULT 1 CHECK (preferat IN (0,1)),
+  nota        TEXT,
+  PRIMARY KEY (produs_id, magazin_id)
+) WITHOUT ROWID;
+CREATE INDEX ix_produs_magazin_m ON produs_magazin(magazin_id);
 
 -- ce e deja în casă, ca să nu cumpărăm de două ori
 CREATE TABLE stoc (

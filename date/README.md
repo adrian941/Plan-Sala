@@ -6,7 +6,7 @@ Nu se editează manual `comun/1_ingrediente.md`, `comun/2_retete.md`, `comun/4_c
 
 | Fișier | Ce e |
 |---|---|
-| `plan.db` | **Baza.** Alimente (cu valorile nutriționale complete și perisabilitatea), rețete cu cantități S/M și **modul de preparare pas cu pas**, calendarul pe 14 zile, persoanele și țintele lor, magazinele. |
+| `plan.db` | **Baza.** Alimente (cu valorile nutriționale complete și perisabilitatea), rețete cu cantități S/M și **modul de preparare pas cu pas**, calendarul pe 14 zile, persoanele și țintele lor, magazinele și **produsele** (ce se cumpără efectiv: marcă, magazin, ambalaj, eticheta). |
 | `plan.sql` | **Dump-ul text al bazei**, scris automat la fiecare rulare. El e ce se vede în `git diff` (baza e binară): un ingredient nou sau o cantitate schimbată se citesc direct în PR. |
 | `schema.sql` | Schema comentată — ce tabele există și de ce. Din ea se construiește baza de la zero. |
 | `db.py` | Accesul la bază: `incarca()` întoarce planul întreg ca obiecte Python. Din linia de comandă: `dump`, `reconstruieste`, `verifica`. |
@@ -34,6 +34,10 @@ python genereaza.py                                                      # 3. ap
 Pe pagina **Meniu**, butonul „Micro" (implicit oprit, starea în localStorage) arată toți cei 23 pe trei nivele: sub ingredient, sub masă și pe zi — pe zi și cu procentul din DZR.
 
 Procentul din **DZR** se socotește din `nutrient.dzr` — doza zilnică de referință, în aceeași unitate ca valorile. E VNR-ul de pe etichetele din UE (Reg. 1169/2011, anexa XIII), deci **același pentru Ema și Adi**; colina, care n-are VNR, are aportul adecvat EFSA (400 mg). Completat la **13 vitamine + 9 minerale**. `dzr` NULL înseamnă „nu arătăm procent" — așa e **sodiul**, dinadins: n-are VNR fiindcă e un plafon, nu o țintă, iar „x% din DZR" ar sugera că trebuie atins.
+
+### Un produs nou (pentru lista de cumpărături)
+
+Alimentul din rețete e generic („skyr", „lapte 3,5%"); **produsul** e articolul concret de la raft: marca, ambalajul (500 g, 1,5 L) și valorile de pe etichetă per 100 g/ml. Se pune în tabelul `produs`, legat de `ingredient_cheie`. **Unde se găsește** stă separat, în `produs_magazin` (relație N–N: un produs poate fi în mai multe magazine; `preferat = 1` = de acolo îl luăm de obicei). Magazinele sunt în tabelul `magazin`. Eticheta dă doar macro-urile, așa că fiecare produs are și **echivalentul USDA** (`fdc_echivalent` + `echivalent` = descrierea oficială + `echivalent_motiv`), din care vin vitaminele și mineralele. E același ID cu `fdc_id` al alimentului legat; `python db.py verifica` dă eroare dacă se despart. `preferat = 1` = pe ăsta îl punem pe listă; din `ambalaj` se rotunjește cantitatea la ambalaje întregi.
 
 ### O rețetă nouă, o cantitate schimbată, altă zi în calendar
 

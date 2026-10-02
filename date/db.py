@@ -231,6 +231,11 @@ def verifica(cale=DB):
                           WHERE i.cheie IS NULL""").fetchone()[0]
     if orfane:
         probleme.append(f"{orfane} ingrediente folosite în rețete nu există în lista de alimente")
+    for r in c.execute("""SELECT p.marca, p.nume, p.fdc_echivalent, i.cheie, i.fdc_id FROM produs p
+                         JOIN ingredient i ON i.cheie = p.ingredient_cheie
+                         WHERE i.fdc_id IS NOT p.fdc_echivalent"""):
+        probleme.append(f"produsul {r[0]} {r[1]} are echivalent USDA {r[2]}, dar alimentul {r[3]} "
+                        f"ia vitaminele din {r[4]} — trebuie să fie același")
     c.close(); gol.close()
     return probleme
 
