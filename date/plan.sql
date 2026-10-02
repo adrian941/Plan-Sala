@@ -67,7 +67,7 @@ INSERT INTO "ingredient" VALUES('pastrav','Păstrăv curcubeu de crescătorie, c
 INSERT INTO "ingredient" VALUES('ton','Ton conservă în apă, scurs','ton (conservă, scurs)',1,15,116.0,25.5,0.8,0.0,0.0,'USDA 171986',171986,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('ou','Ou întreg, crud','ouă',2,1,143.0,12.6,9.5,0.7,0.0,'USDA 171287',171287,'1 ou M ≈ 55 g → 79 kcal, 6,9 g P','g',55.0,'ou','ouă',0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('albus','Albuș, crud','albușuri',2,2,52.0,10.9,0.2,0.7,0.0,'USDA 172183',172183,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
-INSERT INTO "ingredient" VALUES('skyr','Skyr natur 0,2% (Pilos)','skyr',3,1,62.0,11.0,0.2,4.0,0.0,'etichetă Pilos (micro: USDA 170894)',170894,'macro de pe eticheta Pilos (Lidl, cutie 500 g): 62 kcal, P 11 g, G 0,2 g, C 4 g (zaharuri 4 g), sare 0,13 g; vitaminele și mineralele din USDA Greek yogurt nonfat','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
+INSERT INTO "ingredient" VALUES('skyr','Skyr natur 0,2%','skyr',3,1,62.0,11.0,0.2,4.0,0.0,'etichetă Pilos (micro: USDA 170894)',170894,'macro de pe eticheta produsului cumpărat (vezi tabelul produs); vitaminele și mineralele din USDA Greek yogurt nonfat','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('iaurt_grec','Iaurt grec 2%','iaurt grec',3,2,73.0,10.0,1.9,3.9,0.0,'USDA 170903',170903,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('iaurt','Iaurt simplu 1,5–2%',NULL,3,3,63.0,5.3,1.6,7.0,0.0,'USDA 170886',170886,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('branza_vaci','Brânză de vaci 2% (cottage)','brânză de vaci',3,4,81.0,10.5,2.3,4.8,0.0,'USDA 172182',172182,'brânza de vaci RO presată are de obicei mai multă proteină (13–16 g) — verifică eticheta','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
@@ -152,16 +152,6 @@ INSERT INTO "ingredient" VALUES('struguri','Struguri',NULL,8,11,69.0,0.7,0.2,18.
 INSERT INTO "ingredient" VALUES('soia','Sos de soia','sos de soia',9,1,53.0,8.1,0.6,4.9,0.8,'USDA 174277',174277,'','ml',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('mustar','Muștar','muștar',9,2,60.0,3.7,3.3,5.8,4.0,'USDA 172234',172234,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('lamaie','Suc de lămâie','suc de lămâie',9,3,22.0,0.4,0.2,6.9,0.3,'USDA 167747',167747,'','ml',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
-CREATE TABLE ingredient_magazin (
-  ingredient_cheie TEXT NOT NULL REFERENCES ingredient(cheie) ON DELETE CASCADE,
-  magazin_id       INTEGER NOT NULL REFERENCES magazin(id) ON DELETE CASCADE,
-  preferat         INTEGER NOT NULL DEFAULT 0 CHECK (preferat IN (0,1)),
-  ambalaj_g        REAL,          -- cât are un pachet / o conservă
-  ambalaj_nume     TEXT,          -- "conservă 400 g", "pachet 500 g"
-  nota             TEXT,
-  PRIMARY KEY (ingredient_cheie, magazin_id)
-);
-INSERT INTO "ingredient_magazin" VALUES('skyr',1,1,500.0,'cutie 500 g','Pilos Skyr natur, 0,2% grăsime');
 CREATE TABLE ingredient_nutrient (
   ingredient_cheie TEXT NOT NULL REFERENCES ingredient(cheie) ON DELETE CASCADE,
   nutrient_id      INTEGER NOT NULL REFERENCES nutrient(id),
@@ -10705,7 +10695,7 @@ CREATE TABLE meta (
   cheie   TEXT PRIMARY KEY,
   valoare TEXT NOT NULL
 );
-INSERT INTO "meta" VALUES('schema_versiune','1');
+INSERT INTO "meta" VALUES('schema_versiune','2');
 INSERT INTO "meta" VALUES('descriere','Plan-Sala — sursa unică de adevăr. Generat în .md și pe site de date/genereaza.py.');
 CREATE TABLE nutrient (
   id       INTEGER PRIMARY KEY,   -- nutrient_id de la USDA (1008 = Energy, 1003 = Protein…)
@@ -10884,6 +10874,30 @@ CREATE TABLE persoana (
 );
 INSERT INTO "persoana" VALUES('ema',1,'Ema','ea','S','standard',2200,150,65,255,'25–30','2,5');
 INSERT INTO "persoana" VALUES('adi',2,'Adi','el','M','mare',2375,180,75,245,'30–38','3');
+CREATE TABLE produs (
+  id               INTEGER PRIMARY KEY,
+  ingredient_cheie TEXT NOT NULL REFERENCES ingredient(cheie) ON DELETE CASCADE,
+  magazin_id       INTEGER NOT NULL REFERENCES magazin(id),
+  marca            TEXT NOT NULL,          -- "Pilos"
+  nume             TEXT NOT NULL,          -- "Skyr natur 0,2%"
+  ambalaj          REAL NOT NULL,          -- 500 / 1500 — cât are un ambalaj
+  unitate          TEXT NOT NULL DEFAULT 'g' CHECK (unitate IN ('g','ml')),
+  ambalaj_nume     TEXT NOT NULL,          -- "cutie 500 g", "sticlă 1,5 L"
+  preferat         INTEGER NOT NULL DEFAULT 1 CHECK (preferat IN (0,1)),  -- pe ăsta îl punem pe listă
+  -- eticheta, per 100 g / 100 ml (NULL = nu scrie pe ambalaj)
+  kcal             REAL,
+  grasimi          REAL,
+  grasimi_sat      REAL,
+  carbo            REAL,
+  zaharuri         REAL,
+  fibre            REAL,
+  proteine         REAL,
+  sare             REAL,
+  nota             TEXT,
+  UNIQUE (marca, nume, ambalaj, magazin_id)
+);
+INSERT INTO "produs" VALUES(1,'skyr',1,'Pilos','Skyr natur 0,2%',500.0,'g','cutie 500 g',1,62.0,0.2,0.1,4.0,4.0,0.0,11.0,0.13,'producător Privatmolkerei Bechtel (DE)');
+INSERT INTO "produs" VALUES(2,'lapte_integral',1,'Pilos','Lapte 3,5%',1500.0,'ml','sticlă 1,5 L',1,62.0,3.5,2.1,4.5,4.5,0.0,3.2,0.06,'7,5 porții de 200 ml');
 CREATE TABLE reteta (
   id          TEXT PRIMARY KEY,   -- "MD1", "P12"
   pozitie     INTEGER NOT NULL,   -- ordinea în liste
@@ -11368,4 +11382,5 @@ INSERT INTO "zi_masa" VALUES(54,13,1,'Prânz','🍲','P6');
 INSERT INTO "zi_masa" VALUES(55,13,2,'Gustare','🍎','G2');
 INSERT INTO "zi_masa" VALUES(56,13,3,'Cină','🌙','P10');
 CREATE INDEX ix_ingredient_cat ON ingredient(categorie_id, pozitie);
+CREATE INDEX ix_produs_ingredient ON produs(ingredient_cheie);
 COMMIT;
