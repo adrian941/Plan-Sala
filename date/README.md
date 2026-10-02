@@ -37,7 +37,7 @@ Procentul din **DZR** se socotește din `nutrient.dzr` — doza zilnică de refe
 
 ### Un produs nou (pentru lista de cumpărături)
 
-Alimentul din rețete e generic („skyr", „lapte 3,5%"); **produsul** e articolul concret de la raft: marca, magazinul, ambalajul (500 g, 1,5 L) și valorile de pe etichetă per 100 g/ml. Se pune în tabelul `produs`, legat de `ingredient_cheie` și de `magazin`. Eticheta dă doar macro-urile, așa că fiecare produs are și **echivalentul USDA** (`fdc_echivalent` + `echivalent` = descrierea oficială + `echivalent_motiv`), din care vin vitaminele și mineralele. E același ID cu `fdc_id` al alimentului legat; `python db.py verifica` dă eroare dacă se despart. `preferat = 1` = pe ăsta îl punem pe listă; din `ambalaj` se rotunjește cantitatea la ambalaje întregi.
+Alimentul din rețete e generic („skyr", „lapte 3,5%"); **produsul** e articolul concret de la raft: marca, magazinul, ambalajul (500 g, 1,5 L) și valorile de pe etichetă per 100 g/ml. Se pune în tabelul `produs`, legat de `ingredient_cheie`. **Unde se găsește** stă separat, în `produs_magazin` (relație N–N: un produs poate fi în mai multe magazine; `preferat = 1` = de acolo îl luăm de obicei). Magazinele sunt în tabelul `magazin`. Eticheta dă doar macro-urile, așa că fiecare produs are și **echivalentul USDA** (`fdc_echivalent` + `echivalent` = descrierea oficială + `echivalent_motiv`), din care vin vitaminele și mineralele. E același ID cu `fdc_id` al alimentului legat; `python db.py verifica` dă eroare dacă se despart. `preferat = 1` = pe ăsta îl punem pe listă; din `ambalaj` se rotunjește cantitatea la ambalaje întregi.
 
 ### O rețetă nouă, o cantitate schimbată, altă zi în calendar
 

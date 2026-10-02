@@ -10695,7 +10695,7 @@ CREATE TABLE meta (
   cheie   TEXT PRIMARY KEY,
   valoare TEXT NOT NULL
 );
-INSERT INTO "meta" VALUES('schema_versiune','2');
+INSERT INTO "meta" VALUES('schema_versiune','3');
 INSERT INTO "meta" VALUES('descriere','Plan-Sala — sursa unică de adevăr. Generat în .md și pe site de date/genereaza.py.');
 CREATE TABLE nutrient (
   id       INTEGER PRIMARY KEY,   -- nutrient_id de la USDA (1008 = Energy, 1003 = Protein…)
@@ -10877,7 +10877,6 @@ INSERT INTO "persoana" VALUES('adi',2,'Adi','el','M','mare',2375,180,75,245,'30�
 CREATE TABLE produs (
   id               INTEGER PRIMARY KEY,
   ingredient_cheie TEXT NOT NULL REFERENCES ingredient(cheie) ON DELETE CASCADE,
-  magazin_id       INTEGER NOT NULL REFERENCES magazin(id),
   marca            TEXT NOT NULL,          -- "Pilos"
   nume             TEXT NOT NULL,          -- "Skyr natur 0,2%"
   ambalaj          REAL NOT NULL,          -- 500 / 1500 — cât are un ambalaj
@@ -10897,10 +10896,19 @@ CREATE TABLE produs (
   proteine         REAL,
   sare             REAL,
   nota             TEXT,
-  UNIQUE (marca, nume, ambalaj, magazin_id)
+  UNIQUE (marca, nume, ambalaj)
 );
-INSERT INTO "produs" VALUES(1,'skyr',1,'Pilos','Skyr natur 0,2%',500.0,'g','cutie 500 g',1,170894,'Yogurt, Greek, plain, nonfat','skyr-ul e iaurt strecurat, degresat — același profil ca iaurtul grecesc 0%; USDA n-are skyr separat',62.0,0.2,0.1,4.0,4.0,0.0,11.0,0.13,'producător Privatmolkerei Bechtel (DE)');
-INSERT INTO "produs" VALUES(2,'lapte_integral',1,'Pilos','Lapte 3,5%',1500.0,'ml','sticlă 1,5 L',1,172217,'Milk, whole, 3.25% milkfat, without added vitamin A and vitamin D','lapte integral; varianta FĂRĂ vitamine A și D adăugate, fiindcă laptele din RO nu e fortifiat (cel cu vitamina D adăugată ar umfla D-ul zilei)',62.0,3.5,2.1,4.5,4.5,0.0,3.2,0.06,'7,5 porții de 200 ml');
+INSERT INTO "produs" VALUES(1,'skyr','Pilos','Skyr natur 0,2%',500.0,'g','cutie 500 g',1,170894,'Yogurt, Greek, plain, nonfat','skyr-ul e iaurt strecurat, degresat — același profil ca iaurtul grecesc 0%; USDA n-are skyr separat',62.0,0.2,0.1,4.0,4.0,0.0,11.0,0.13,'producător Privatmolkerei Bechtel (DE)');
+INSERT INTO "produs" VALUES(2,'lapte_integral','Pilos','Lapte 3,5%',1500.0,'ml','sticlă 1,5 L',1,172217,'Milk, whole, 3.25% milkfat, without added vitamin A and vitamin D','lapte integral; varianta FĂRĂ vitamine A și D adăugate, fiindcă laptele din RO nu e fortifiat (cel cu vitamina D adăugată ar umfla D-ul zilei)',62.0,3.5,2.1,4.5,4.5,0.0,3.2,0.06,'7,5 porții de 200 ml');
+CREATE TABLE produs_magazin (
+  produs_id   INTEGER NOT NULL REFERENCES produs(id) ON DELETE CASCADE,
+  magazin_id  INTEGER NOT NULL REFERENCES magazin(id) ON DELETE CASCADE,
+  preferat    INTEGER NOT NULL DEFAULT 1 CHECK (preferat IN (0,1)),
+  nota        TEXT,
+  PRIMARY KEY (produs_id, magazin_id)
+) WITHOUT ROWID;
+INSERT INTO "produs_magazin" VALUES(1,1,1,NULL);
+INSERT INTO "produs_magazin" VALUES(2,1,1,NULL);
 CREATE TABLE reteta (
   id          TEXT PRIMARY KEY,   -- "MD1", "P12"
   pozitie     INTEGER NOT NULL,   -- ordinea în liste
@@ -11386,4 +11394,5 @@ INSERT INTO "zi_masa" VALUES(55,13,2,'Gustare','🍎','G2');
 INSERT INTO "zi_masa" VALUES(56,13,3,'Cină','🌙','P10');
 CREATE INDEX ix_ingredient_cat ON ingredient(categorie_id, pozitie);
 CREATE INDEX ix_produs_ingredient ON produs(ingredient_cheie);
+CREATE INDEX ix_produs_magazin_m ON produs_magazin(magazin_id);
 COMMIT;
