@@ -10884,6 +10884,9 @@ CREATE TABLE produs (
   unitate          TEXT NOT NULL DEFAULT 'g' CHECK (unitate IN ('g','ml')),
   ambalaj_nume     TEXT NOT NULL,          -- "cutie 500 g", "sticlă 1,5 L"
   preferat         INTEGER NOT NULL DEFAULT 1 CHECK (preferat IN (0,1)),  -- pe ăsta îl punem pe listă
+  fdc_echivalent   INTEGER NOT NULL,       -- 170894 — alimentul USDA din care vin vitaminele și mineralele
+  echivalent       TEXT NOT NULL,          -- "Yogurt, Greek, plain, nonfat" (descrierea USDA)
+  echivalent_motiv TEXT,                   -- de ce e acela echivalentul
   -- eticheta, per 100 g / 100 ml (NULL = nu scrie pe ambalaj)
   kcal             REAL,
   grasimi          REAL,
@@ -10896,8 +10899,8 @@ CREATE TABLE produs (
   nota             TEXT,
   UNIQUE (marca, nume, ambalaj, magazin_id)
 );
-INSERT INTO "produs" VALUES(1,'skyr',1,'Pilos','Skyr natur 0,2%',500.0,'g','cutie 500 g',1,62.0,0.2,0.1,4.0,4.0,0.0,11.0,0.13,'producător Privatmolkerei Bechtel (DE)');
-INSERT INTO "produs" VALUES(2,'lapte_integral',1,'Pilos','Lapte 3,5%',1500.0,'ml','sticlă 1,5 L',1,62.0,3.5,2.1,4.5,4.5,0.0,3.2,0.06,'7,5 porții de 200 ml');
+INSERT INTO "produs" VALUES(1,'skyr',1,'Pilos','Skyr natur 0,2%',500.0,'g','cutie 500 g',1,170894,'Yogurt, Greek, plain, nonfat','skyr-ul e iaurt strecurat, degresat — același profil ca iaurtul grecesc 0%; USDA n-are skyr separat',62.0,0.2,0.1,4.0,4.0,0.0,11.0,0.13,'producător Privatmolkerei Bechtel (DE)');
+INSERT INTO "produs" VALUES(2,'lapte_integral',1,'Pilos','Lapte 3,5%',1500.0,'ml','sticlă 1,5 L',1,172217,'Milk, whole, 3.25% milkfat, without added vitamin A and vitamin D','lapte integral; varianta FĂRĂ vitamine A și D adăugate, fiindcă laptele din RO nu e fortifiat (cel cu vitamina D adăugată ar umfla D-ul zilei)',62.0,3.5,2.1,4.5,4.5,0.0,3.2,0.06,'7,5 porții de 200 ml');
 CREATE TABLE reteta (
   id          TEXT PRIMARY KEY,   -- "MD1", "P12"
   pozitie     INTEGER NOT NULL,   -- ordinea în liste

@@ -217,6 +217,13 @@ CREATE TABLE magazin (
 --  cantitatea din meniu se rotunjește la ambalaje întregi ale produsului preferat.
 --  Valorile de pe etichetă (per 100 g / 100 ml, cum scrie pe ambalaj) se țin aici
 --  ca înregistrare; valorile de calcul rămân cele din `ingredient`.
+--
+--  ECHIVALENȚA USDA: eticheta dă doar macro-urile. Vitaminele și mineralele
+--  produsului se iau de la alimentul USDA echivalent (`fdc_echivalent`, cu
+--  descrierea lui oficială în `echivalent`) — ales de om, cu motivul în
+--  `echivalent_motiv`. E același ID cu `ingredient.fdc_id` al alimentului legat
+--  (de acolo se scriu valorile în `ingredient_nutrient`); `db.py verifica` se
+--  asigură că cele două nu se despart.
 -- ---------------------------------------------------------------------------
 CREATE TABLE produs (
   id               INTEGER PRIMARY KEY,
@@ -228,6 +235,9 @@ CREATE TABLE produs (
   unitate          TEXT NOT NULL DEFAULT 'g' CHECK (unitate IN ('g','ml')),
   ambalaj_nume     TEXT NOT NULL,          -- "cutie 500 g", "sticlă 1,5 L"
   preferat         INTEGER NOT NULL DEFAULT 1 CHECK (preferat IN (0,1)),  -- pe ăsta îl punem pe listă
+  fdc_echivalent   INTEGER NOT NULL,       -- 170894 — alimentul USDA din care vin vitaminele și mineralele
+  echivalent       TEXT NOT NULL,          -- "Yogurt, Greek, plain, nonfat" (descrierea USDA)
+  echivalent_motiv TEXT,                   -- de ce e acela echivalentul
   -- eticheta, per 100 g / 100 ml (NULL = nu scrie pe ambalaj)
   kcal             REAL,
   grasimi          REAL,
