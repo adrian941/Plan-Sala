@@ -19,7 +19,7 @@
 
 | Magazin | Ce luăm de aici | Observații |
 |---------|-----------------|------------|
-| ⟨…⟩ | ⟨…⟩ | |
+| Lidl | Skyr natur 0,2% **Pilos** — cutie 500 g | valorile de pe etichetă sunt cele din bază (62 kcal, P 11 g / 100 g) |
 
 ## Ce ținem mereu în casă
 

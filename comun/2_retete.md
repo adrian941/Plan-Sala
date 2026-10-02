@@ -35,12 +35,12 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 | # | Rețetă | Masă | Timp | kcal S / M | S: P / G / C / Fibre | M: P / G / C / Fibre | Ema | Adi | Frigider |
 |--:|--------|------|-----:|-----------:|---|---|:-:|:-:|:-:|
 | MD1 | [Omletă cu legume și brânză de vaci, pâine integrală + banană](#md1) | mic dejun 🥚 | 15′ | 635 / 730 | 43 / 26 / 62 / 9 | 52 / 31 / 63 / 9 | ❔ | ❔ | nu |
-| MD2 | [Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci](#md2) | mic dejun | 5′ (seara) | 550 / 625 | 36 / 16 / 70 / 14 | 38 / 20 / 77 / 15 | ❔ | ❔ | 3 zile |
+| MD2 | [Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci](#md2) | mic dejun | 5′ (seara) | 560 / 630 | 37 / 16 / 70 / 14 | 39 / 20 / 78 / 15 | ❔ | ❔ | 3 zile |
 | MD3 | [Bol de iaurt grec cu banană, unt de arahide, ovăz și in](#md3) | mic dejun | 5′ | 575 / 645 | 32 / 19 / 76 / 12 | 35 / 22 / 84 / 13 | ❔ | ❔ | nu |
 | MD4 | [Ouă ochiuri cu avocado pe pâine, roșii, castravete, brânză de vaci + măr](#md4) | mic dejun 🥚 | 10′ | 655 / 750 | 41 / 28 / 65 / 13 | 50 / 34 / 66 / 13 | ❔ | ❔ | nu |
-| G1 | [Skyr cu măr și migdale](#g1) | gustare | 2′ | 300 / 355 | 24 / 9 / 35 / 6 | 30 / 11 / 38 / 7 | ❔ | ❔ | — |
+| G1 | [Skyr cu măr și migdale](#g1) | gustare | 2′ | 305 / 365 | 26 / 8 / 36 / 6 | 32 / 11 / 39 / 7 | ❔ | ❔ | — |
 | G2 | [Brânză de vaci cu pâine integrală și legume crude](#g2) | gustare | 5′ | 265 / 330 | 22 / 5 / 34 / 5 | 29 / 7 / 41 / 6 | ❔ | ❔ | — |
-| G3 | [Shake post-sală: lapte, skyr, banană, unt de arahide](#g3) | gustare 🏋️ | 3′ | 345 / 405 | 25 / 9 / 45 / 4 | 32 / 12 / 48 / 4 | ❔ | ❔ | — |
+| G3 | [Shake post-sală: lapte, skyr, banană, unt de arahide](#g3) | gustare 🏋️ | 3′ | 350 / 410 | 27 / 9 / 45 / 4 | 33 / 11 / 48 / 4 | ❔ | ❔ | — |
 | P1 | [Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie](#p1) | prânz/cină | 45′ (10 activ) | 585 / 670 | 44 / 18 / 65 / 14 | 53 / 21 / 69 / 14 | ❔ | ❔ | 3 zile |
 | P2 | [Tocăniță de vită cu ciuperci, mămăligă și salată de varză roșie cu mere](#p2) | prânz/cină | 75′ (15 activ) | 670 / 755 | 50 / 18 / 85 / 14 | 59 / 21 / 89 / 14 | ❔ | ❔ | 4 zile · congelator |
 | P3 | [Doradă la cuptor cu fasole verde cu usturoi, salată de rucola, quinoa și sos de lămâie cu mărar 🐟](#p3) | cină | 25′ | 585 / 640 | 49 / 20 / 53 / 10 | 57 / 21 / 56 / 10 | ❔ | ❔ | 1 zi (rece) |
@@ -124,8 +124,8 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
-| **S** | 550 | 36 | 16 | 70 | 14 |
-| **M** | 625 | 38 | 20 | 77 | 15 |
+| **S** | 560 | 37 | 16 | 70 | 14 |
+| **M** | 630 | 39 | 20 | 78 | 15 |
 
 **Variante:** Iarna: ovăz fiert în lapte, skyr adăugat la final.
 
@@ -218,8 +218,8 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
-| **S** | 300 | 24 | 9 | 35 | 6 |
-| **M** | 355 | 30 | 11 | 38 | 7 |
+| **S** | 305 | 26 | 8 | 36 | 6 |
+| **M** | 365 | 32 | 11 | 39 | 7 |
 
 
 <a id="g2"></a>
@@ -276,8 +276,8 @@ Procentele sunt **pe volum**, nu la gram. Diversitatea contează la fel de mult 
 
 | Pe porție | kcal | P | G | C | Fibre |
 |---|--:|--:|--:|--:|--:|
-| **S** | 345 | 25 | 9 | 45 | 4 |
-| **M** | 405 | 32 | 12 | 48 | 4 |
+| **S** | 350 | 27 | 9 | 45 | 4 |
+| **M** | 410 | 33 | 11 | 48 | 4 |
 
 **Variante:** De ce: proteină rapidă + carbohidrați simpli după forță.
 

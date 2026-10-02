@@ -67,7 +67,7 @@ INSERT INTO "ingredient" VALUES('pastrav','Păstrăv curcubeu de crescătorie, c
 INSERT INTO "ingredient" VALUES('ton','Ton conservă în apă, scurs','ton (conservă, scurs)',1,15,116.0,25.5,0.8,0.0,0.0,'USDA 171986',171986,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('ou','Ou întreg, crud','ouă',2,1,143.0,12.6,9.5,0.7,0.0,'USDA 171287',171287,'1 ou M ≈ 55 g → 79 kcal, 6,9 g P','g',55.0,'ou','ouă',0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('albus','Albuș, crud','albușuri',2,2,52.0,10.9,0.2,0.7,0.0,'USDA 172183',172183,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
-INSERT INTO "ingredient" VALUES('skyr','Skyr / iaurt grec 0%','skyr',3,1,59.0,10.2,0.4,3.6,0.0,'USDA 170894',170894,'USDA: Greek yogurt nonfat; skyr-ul din comerț e practic identic','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
+INSERT INTO "ingredient" VALUES('skyr','Skyr natur 0,2% (Pilos)','skyr',3,1,62.0,11.0,0.2,4.0,0.0,'etichetă Pilos (micro: USDA 170894)',170894,'macro de pe eticheta Pilos (Lidl, cutie 500 g): 62 kcal, P 11 g, G 0,2 g, C 4 g (zaharuri 4 g), sare 0,13 g; vitaminele și mineralele din USDA Greek yogurt nonfat','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('iaurt_grec','Iaurt grec 2%','iaurt grec',3,2,73.0,10.0,1.9,3.9,0.0,'USDA 170903',170903,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('iaurt','Iaurt simplu 1,5–2%',NULL,3,3,63.0,5.3,1.6,7.0,0.0,'USDA 170886',170886,'','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 INSERT INTO "ingredient" VALUES('branza_vaci','Brânză de vaci 2% (cottage)','brânză de vaci',3,4,81.0,10.5,2.3,4.8,0.0,'USDA 172182',172182,'brânza de vaci RO presată are de obicei mai multă proteină (13–16 g) — verifică eticheta','g',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
@@ -161,6 +161,7 @@ CREATE TABLE ingredient_magazin (
   nota             TEXT,
   PRIMARY KEY (ingredient_cheie, magazin_id)
 );
+INSERT INTO "ingredient_magazin" VALUES('skyr',1,1,500.0,'cutie 500 g','Pilos Skyr natur, 0,2% grăsime');
 CREATE TABLE ingredient_nutrient (
   ingredient_cheie TEXT NOT NULL REFERENCES ingredient(cheie) ON DELETE CASCADE,
   nutrient_id      INTEGER NOT NULL REFERENCES nutrient(id),
@@ -10699,6 +10700,7 @@ CREATE TABLE magazin (
   pozitie  INTEGER NOT NULL,
   nota     TEXT
 );
+INSERT INTO "magazin" VALUES(1,'Lidl',1,NULL);
 CREATE TABLE meta (
   cheie   TEXT PRIMARY KEY,
   valoare TEXT NOT NULL

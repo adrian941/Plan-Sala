@@ -54,7 +54,7 @@
 
 | Aliment | Rol | kcal | Proteine | Grăsimi | Carbo | Fibre | Sursă | Notă |
 |---|:-:|--:|--:|--:|--:|--:|---|---|
-| Skyr / iaurt grec 0% | P | 59 | 10.2 | 0.4 | 3.6 | 0 | [USDA 170894](https://fdc.nal.usda.gov/food-details/170894/nutrients) | USDA: Greek yogurt nonfat; skyr-ul din comerț e practic identic |
+| Skyr natur 0,2% (Pilos) | P | 62 | 11 | 0.2 | 4 | 0 | [etichetă Pilos (micro: USDA 170894)](https://fdc.nal.usda.gov/food-details/170894/nutrients) | macro de pe eticheta Pilos (Lidl, cutie 500 g): 62 kcal, P 11 g, G 0,2 g, C 4 g (zaharuri 4 g), sare 0,13 g; vitaminele și mineralele din USDA Greek yogurt nonfat |
 | Iaurt grec 2% | P | 73 | 10 | 1.9 | 3.9 | 0 | [USDA 170903](https://fdc.nal.usda.gov/food-details/170903/nutrients) |  |
 | Iaurt simplu 1,5–2% | P | 63 | 5.3 | 1.6 | 7 | 0 | [USDA 170886](https://fdc.nal.usda.gov/food-details/170886/nutrients) |  |
 | Brânză de vaci 2% (cottage) | P | 81 | 10.5 | 2.3 | 4.8 | 0 | [USDA 172182](https://fdc.nal.usda.gov/food-details/172182/nutrients) | brânza de vaci RO presată are de obicei mai multă proteină (13–16 g) — verifică eticheta |
