@@ -61,7 +61,7 @@
 | Brânză de vaci 4% | P | 98 | 11.1 | 4.3 | 3.4 | 0 | [USDA 172179](https://fdc.nal.usda.gov/food-details/172179/nutrients) |  |
 | Kefir 1–2% | P | 43 | 3.8 | 1 | 4.8 | 0 | [USDA 170904](https://fdc.nal.usda.gov/food-details/170904/nutrients) |  |
 | Lapte 1,5% | P | 46 | 3.3 | 1.5 | 4.8 | 0 | etichetă | USDA are doar 1% (42 kcal) și 2% (50 kcal); 1,5% = media |
-| Lapte integral 3,5% | P | 61 | 3.2 | 3.3 | 4.8 | 0 | [USDA 172217](https://fdc.nal.usda.gov/food-details/172217/nutrients) |  |
+| Lapte 3,5% | P | 62 | 3.2 | 3.5 | 4.5 | 0 | [etichetă Pilos (micro: USDA 172217)](https://fdc.nal.usda.gov/food-details/172217/nutrients) | macro de pe eticheta produsului cumpărat (vezi tabelul produs), per 100 ml; vitaminele și mineralele din USDA Milk, whole 3.25% |
 | Telemea / feta | P | 265 | 14.2 | 21.5 | 3.9 | 0 | [USDA 173420](https://fdc.nal.usda.gov/food-details/173420/nutrients) |  |
 | Mozzarella light (part skim) | P | 254 | 24.3 | 15.9 | 2.8 | 0 | [USDA 170847](https://fdc.nal.usda.gov/food-details/170847/nutrients) |  |
 | Ricotta (part skim) | P | 138 | 11.4 | 7.9 | 5.1 | 0 | [USDA 171248](https://fdc.nal.usda.gov/food-details/171248/nutrients) |  |

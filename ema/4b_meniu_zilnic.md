@@ -74,7 +74,7 @@
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
-**Total masă — 560 kcal** (P:37g, G:16g, C:70g, Fibre:14g)
+**Total masă — 575 kcal** (P:37g, G:18g, C:70g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -83,7 +83,7 @@
 | 100 g fructe de pădure | 0.9/0.4/11.4/3.6 | 47 |
 | 10 g chia | 1.6/3.1/4.2/3.4 | 49 |
 | 10 g nuci | 1.5/6.5/1.4/0.7 | 65 |
-| 100 ml lapte 1,5% | 3.3/1.5/4.8/0.0 | 46 |
+| 100 ml lapte 3,5% | 3.2/3.5/4.5/0.0 | 62 |
 
 **🍲 Prânz — Pui la cuptor cu legume la tavă, cartof dulce și sos de tahini cu lămâie**
 
@@ -104,12 +104,12 @@
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
-**Total masă — 350 kcal** (P:27g, G:9g, C:45g, Fibre:4g)
+**Total masă — 385 kcal** (P:26g, G:13g, C:45g, Fibre:4g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 150 g skyr | 16.5/0.3/6.0/0.0 | 93 |
-| 200 ml lapte 1,5% | 6.6/3.0/9.6/0.0 | 92 |
+| 200 ml lapte 3,5% | 6.4/7.0/9.0/0.0 | 124 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
 | 10 g unt de arahide | 2.2/5.1/2.2/0.5 | 60 |
 
@@ -129,7 +129,7 @@
 | 2 g usturoi | 0.1/0.0/0.7/0.0 | 3 |
 | 12 g ulei de măsline | 0.0/12.0/0.0/0.0 | 106 |
 
-**Total zi — 2080 kcal** (P:157g, G:63g, C:233g, Fibre:41g)
+**Total zi — 2125 kcal** (P:157g, G:69g, C:232g, Fibre:41g)
 
 ## Miercuri 🥚
 
@@ -232,12 +232,12 @@
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
-**Total masă — 350 kcal** (P:27g, G:9g, C:45g, Fibre:4g)
+**Total masă — 385 kcal** (P:26g, G:13g, C:45g, Fibre:4g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 150 g skyr | 16.5/0.3/6.0/0.0 | 93 |
-| 200 ml lapte 1,5% | 6.6/3.0/9.6/0.0 | 92 |
+| 200 ml lapte 3,5% | 6.4/7.0/9.0/0.0 | 124 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
 | 10 g unt de arahide | 2.2/5.1/2.2/0.5 | 60 |
 
@@ -257,7 +257,7 @@
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 | 15 g măsline | 0.1/1.6/0.9/0.2 | 17 |
 
-**Total zi — 2235 kcal** (P:159g, G:62g, C:284g, Fibre:43g)
+**Total zi — 2265 kcal** (P:158g, G:66g, C:284g, Fibre:43g)
 
 ## Vineri 🥚
 
@@ -323,7 +323,7 @@
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
-**Total masă — 560 kcal** (P:37g, G:16g, C:70g, Fibre:14g)
+**Total masă — 575 kcal** (P:37g, G:18g, C:70g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -332,7 +332,7 @@
 | 100 g fructe de pădure | 0.9/0.4/11.4/3.6 | 47 |
 | 10 g chia | 1.6/3.1/4.2/3.4 | 49 |
 | 10 g nuci | 1.5/6.5/1.4/0.7 | 65 |
-| 100 ml lapte 1,5% | 3.3/1.5/4.8/0.0 | 46 |
+| 100 ml lapte 3,5% | 3.2/3.5/4.5/0.0 | 62 |
 
 **🍲 Prânz — Cotlet de porc cu piure de conopidă și morcov, cartofi copți și salată de varză**
 
@@ -376,7 +376,7 @@
 | 50 ml lapte de cocos light | 0.2/3.2/1.0/0.0 | 35 |
 | 5 g ulei de măsline | 0.0/5.0/0.0/0.0 | 44 |
 
-**Total zi — 1995 kcal** (P:151g, G:53g, C:237g, Fibre:43g)
+**Total zi — 2010 kcal** (P:151g, G:55g, C:237g, Fibre:43g)
 
 ## Duminică 🥚
 
@@ -543,12 +543,12 @@
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
-**Total masă — 350 kcal** (P:27g, G:9g, C:45g, Fibre:4g)
+**Total masă — 385 kcal** (P:26g, G:13g, C:45g, Fibre:4g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 150 g skyr | 16.5/0.3/6.0/0.0 | 93 |
-| 200 ml lapte 1,5% | 6.6/3.0/9.6/0.0 | 92 |
+| 200 ml lapte 3,5% | 6.4/7.0/9.0/0.0 | 124 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
 | 10 g unt de arahide | 2.2/5.1/2.2/0.5 | 60 |
 
@@ -569,13 +569,13 @@
 | 3 g usturoi | 0.2/0.0/1.0/0.1 | 4 |
 | 10 g ulei de măsline | 0.0/10.0/0.0/0.0 | 88 |
 
-**Total zi — 2215 kcal** (P:165g, G:76g, C:237g, Fibre:38g)
+**Total zi — 2245 kcal** (P:165g, G:80g, C:237g, Fibre:38g)
 
 ## Miercuri
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
-**Total masă — 560 kcal** (P:37g, G:16g, C:70g, Fibre:14g)
+**Total masă — 575 kcal** (P:37g, G:18g, C:70g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -584,7 +584,7 @@
 | 100 g fructe de pădure | 0.9/0.4/11.4/3.6 | 47 |
 | 10 g chia | 1.6/3.1/4.2/3.4 | 49 |
 | 10 g nuci | 1.5/6.5/1.4/0.7 | 65 |
-| 100 ml lapte 1,5% | 3.3/1.5/4.8/0.0 | 46 |
+| 100 ml lapte 3,5% | 3.2/3.5/4.5/0.0 | 62 |
 
 **🍲 Prânz — Salată de ton cu năut, legume crude și vinegretă de muștar 🐟**
 
@@ -633,7 +633,7 @@
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 | 15 g caju | 2.7/6.6/4.5/0.5 | 83 |
 
-**Total zi — 2100 kcal** (P:159g, G:63g, C:239g, Fibre:44g)
+**Total zi — 2115 kcal** (P:159g, G:65g, C:239g, Fibre:44g)
 
 ## Joi 🥚🏋️
 
@@ -672,12 +672,12 @@
 
 **🍎 Gustare — Shake post-sală: lapte, skyr, banană, unt de arahide**
 
-**Total masă — 350 kcal** (P:27g, G:9g, C:45g, Fibre:4g)
+**Total masă — 385 kcal** (P:26g, G:13g, C:45g, Fibre:4g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
 | 150 g skyr | 16.5/0.3/6.0/0.0 | 93 |
-| 200 ml lapte 1,5% | 6.6/3.0/9.6/0.0 | 92 |
+| 200 ml lapte 3,5% | 6.4/7.0/9.0/0.0 | 124 |
 | 1 banană | 1.3/0.4/27.4/3.1 | 107 |
 | 10 g unt de arahide | 2.2/5.1/2.2/0.5 | 60 |
 
@@ -698,7 +698,7 @@
 | 5 g ulei de măsline | 0.0/5.0/0.0/0.0 | 44 |
 | 50 g avocado | 1.0/7.3/4.2/3.4 | 80 |
 
-**Total zi — 2300 kcal** (P:173g, G:75g, C:253g, Fibre:41g)
+**Total zi — 2335 kcal** (P:173g, G:79g, C:253g, Fibre:41g)
 
 ## Vineri
 
@@ -830,7 +830,7 @@
 
 **🌅 Mic dejun — Ovăz peste noapte cu skyr, fructe de pădure, chia și nuci**
 
-**Total masă — 560 kcal** (P:37g, G:16g, C:70g, Fibre:14g)
+**Total masă — 575 kcal** (P:37g, G:18g, C:70g, Fibre:14g)
 
 | Ingredient | P/G/C/Fibre | kcal |
 |:---|:---|:---|
@@ -839,7 +839,7 @@
 | 100 g fructe de pădure | 0.9/0.4/11.4/3.6 | 47 |
 | 10 g chia | 1.6/3.1/4.2/3.4 | 49 |
 | 10 g nuci | 1.5/6.5/1.4/0.7 | 65 |
-| 100 ml lapte 1,5% | 3.3/1.5/4.8/0.0 | 46 |
+| 100 ml lapte 3,5% | 3.2/3.5/4.5/0.0 | 62 |
 
 **🍲 Prânz — Paste integrale cu pui, sos de roșii cu dovlecel și salată de rucola cu roșii cherry**
 
@@ -888,4 +888,4 @@
 | 20 g măsline | 0.2/2.2/1.2/0.3 | 23 |
 | 8 g ulei de măsline | 0.0/8.0/0.0/0.0 | 71 |
 
-**Total zi — 2130 kcal** (P:154g, G:62g, C:254g, Fibre:40g)
+**Total zi — 2145 kcal** (P:154g, G:64g, C:254g, Fibre:40g)
